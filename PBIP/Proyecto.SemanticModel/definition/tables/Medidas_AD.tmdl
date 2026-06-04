@@ -1,0 +1,420 @@
+table Medidas_AD
+	isHidden
+	lineageTag: c7badb4a-3661-4961-a120-1576c2314372
+
+	measure 'Plan Actividades Planificadas' = COUNTROWS('Fct_PlanFormacion')
+		formatString: #,0
+		displayFolder: 01 Plan Formacion
+		lineageTag: 13bf49f0-4051-4e59-bc23-7d071075004c
+
+	measure 'Plan Actividades Ejecutadas' = CALCULATE(COUNTROWS('Fct_PlanFormacion'), 'Fct_PlanFormacion'[EstadoFormacion_Key] = "EJECUTADA")
+		formatString: #,0
+		displayFolder: 01 Plan Formacion
+		lineageTag: 9616bacc-cfe9-46d8-a9c4-6718f28557b6
+
+	measure 'Plan Actividades Canceladas' = CALCULATE(COUNTROWS('Fct_PlanFormacion'), 'Fct_PlanFormacion'[EstadoFormacion_Key] = "CANCELADA")
+		formatString: #,0
+		displayFolder: 01 Plan Formacion
+		lineageTag: e4a58cca-fb3d-46cb-aebe-80b96f1119e2
+
+	measure 'Plan Actividades Reprogramadas' = CALCULATE(COUNTROWS('Fct_PlanFormacion'), 'Fct_PlanFormacion'[EstadoFormacion_Key] = "REPROGRAMADA")
+		formatString: #,0
+		displayFolder: 01 Plan Formacion
+		lineageTag: da21c0c0-be26-42e8-8110-a1f302dc16fb
+
+	measure 'Plan Actividades Vigentes' = [Plan Actividades Planificadas] - [Plan Actividades Canceladas]
+		formatString: #,0
+		displayFolder: 01 Plan Formacion
+		lineageTag: ed3fc386-63b2-445b-95f7-451a885e0a14
+
+	measure 'Plan Porcentaje Ejecucion' = DIVIDE([Plan Actividades Ejecutadas], [Plan Actividades Vigentes])
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: 01 Plan Formacion
+		lineageTag: 737a2c66-b4af-454f-bafc-75392baf797f
+
+	measure 'Plan Brecha Actividades' = [Plan Actividades Ejecutadas] - [Plan Actividades Vigentes]
+		formatString: #,0
+		displayFolder: 01 Plan Formacion
+		lineageTag: 750b8677-4138-4a17-b1f5-e376f47c957c
+
+	measure 'Plan Publico Objetivo' = SUM('Fct_PlanFormacion'[PUBLICO OBJETIVO ])
+		formatString: #,0
+		displayFolder: 01 Plan Formacion
+		lineageTag: 54afa7d7-e229-4660-bdae-72111fef494e
+
+	measure 'Plan Asistencia Registrada' = SUM('Fct_PlanFormacion'[ASISTENCIA])
+		formatString: #,0
+		displayFolder: 01 Plan Formacion
+		lineageTag: cff3cfec-31b2-4cfa-ab36-a18517303712
+
+	measure '% Cobertura' = DIVIDE(SUM('Fct_PlanFormacion'[ASISTENCIA]), SUM('Fct_PlanFormacion'[PUBLICO OBJETIVO ]), 0)
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: 01 Plan Formacion
+		lineageTag: ee9905d4-fe15-4bcd-9d9c-4422c880a6e7
+
+	measure '% Brecha Cobertura' = VAR _p = [% Cobertura] RETURN IF(ISBLANK(_p), BLANK(), MAX(0, 1 - _p))
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: 01 Plan Formacion
+		lineageTag: 298b0543-503c-4670-aca5-40aa2ff218b0
+
+	measure 'Plan Cobertura Asistencia' = [% Cobertura]
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: 01 Plan Formacion
+		lineageTag: 2f3af5ac-9620-4a61-a5d4-3fbc94b2db22
+
+	measure 'Plan Horas Formacion' = SUM('Fct_PlanFormacion'[TOTAL DE HORAS DE FORMACIÓN ])
+		formatString: #,0
+		displayFolder: 01 Plan Formacion
+		lineageTag: e053ccaa-25eb-4072-9620-4571a48635ee
+
+	measure 'Plan Total Horas Formacion' = SUM('Fct_PlanFormacion'[TOTAL DE HORAS DE FORMACIÓN ])
+		formatString: #,0
+		displayFolder: 01 Plan Formacion
+		lineageTag: cf9e0ed7-bde3-405d-907d-af0daa4372e8
+
+	measure 'Plan Costo' = SUM('Fct_PlanFormacion'[COSTO])
+		formatString: $ #,0
+		displayFolder: 01 Plan Formacion
+		lineageTag: 49cbeab6-ceb6-4613-987c-a8c3f50ecff5
+
+	measure 'Asistencia Total Registros' = COUNTROWS('Fct_AsistenciaFormacion')
+		formatString: #,0
+		displayFolder: 02 Asistencia
+		lineageTag: 3d393594-40cc-41a2-8cd3-a8f9c1e0bb12
+
+	measure 'Asistencia Total Asistentes' = [Asistencia Total Registros]
+		formatString: #,0
+		displayFolder: 02 Asistencia
+		lineageTag: 1872009d-5975-4079-a676-f9c0916a9862
+
+	measure 'Asistencia Participantes Unicos' = DISTINCTCOUNT('Fct_AsistenciaFormacion'[Número de documento del participante])
+		formatString: #,0
+		displayFolder: 02 Asistencia
+		lineageTag: 2c935cb8-e80e-4265-8a82-945c88b62868
+
+	measure 'Asistencia Formaciones' = DISTINCTCOUNT('Fct_AsistenciaFormacion'[TemaFormacion_Key])
+		formatString: #,0
+		displayFolder: 02 Asistencia
+		lineageTag: 2b7fd8ae-1e97-427e-9e8f-338bbcc3a95f
+
+	measure 'Asistencia Total Convocados' = [Plan Publico Objetivo]
+		formatString: #,0
+		displayFolder: 02 Asistencia
+		lineageTag: 1d864477-151b-4977-b05a-c828a4d16009
+
+	measure 'Asistencia Porcentaje Asistencia' = DIVIDE([Asistencia Total Asistentes], [Asistencia Total Convocados])
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: 02 Asistencia
+		lineageTag: d8f8cff2-0bc9-4438-8a9a-43b36d82ef04
+
+	measure 'Asistencia Porcentaje Ausentismo' = VAR _p = [Asistencia Porcentaje Asistencia] RETURN IF(ISBLANK(_p), BLANK(), MAX(0, 1 - _p))
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: 02 Asistencia
+		lineageTag: 7e98b418-ad44-44df-953f-833d88f95c91
+
+	measure 'Asistencia Promedio Por Formacion' = DIVIDE([Asistencia Total Asistentes], [Asistencia Formaciones])
+		formatString: #,0.0
+		displayFolder: 02 Asistencia
+		lineageTag: 2b93e2e1-8605-4a8f-badb-120a66ee5f51
+
+	measure 'Encuesta Total Respuestas' = COUNTROWS('Fct_EncuestaFormacion')
+		formatString: #,0
+		displayFolder: 03 Encuesta Formacion
+		lineageTag: 8f3cef95-8fb8-44b3-8e1b-657872806636
+
+	measure 'Encuesta Participantes Estimados' = [Encuesta Total Respuestas]
+		formatString: #,0
+		displayFolder: 03 Encuesta Formacion
+		lineageTag: 8dce703a-0eee-483d-8bf2-2bf8feb77912
+
+	measure 'Encuesta Tasa Respuesta' = DIVIDE([Encuesta Total Respuestas], [Asistencia Total Asistentes])
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: 03 Encuesta Formacion
+		lineageTag: 8c5290a2-677e-40b0-8c40-f693077cfdb5
+
+	measure 'Encuesta Calificacion Promedio' =
+			VAR _Suma =
+			    SUM('Fct_EncuestaFormacion'[¿Qué tan satisfecho te encuentras con el dominio del tema por parte del facilitador?]) +
+			    SUM('Fct_EncuestaFormacion'[¿Qué tan satisfecho te encuentras con la habilidad para comunicarse y transmitir ideas por parte del facilitador?]) +
+			    SUM('Fct_EncuestaFormacion'[¿Qué tan satisfecho te encuentras con las actividades o ejercicios por parte del facilitador?]) +
+			    SUM('Fct_EncuestaFormacion'[¿Qué tan satisfecho te encuentras con el uso de ayudas didácticas por parte del facilitador?]) +
+			    SUM('Fct_EncuestaFormacion'[¿Qué tan satisfecho te encuentras con la resolución de dudas u observaciones del facilitador?]) +
+			    SUM('Fct_EncuestaFormacion'[¿Qué tan satisfecho te encuentras con el cumplimiento del programa propuesto?]) +
+			    SUM('Fct_EncuestaFormacion'[¿Qué tan satisfecho te encuentras con el espacio, logística y ambiente de la formación?]) +
+			    SUM('Fct_EncuestaFormacion'[¿Qué tan oportuna fue la información respecto a fechas, horarios y lugar?]) +
+			    SUM('Fct_EncuestaFormacion'[¿Qué tan satisfecho te encuentras con el logro de los objetivos propuestos?]) +
+			    SUM('Fct_EncuestaFormacion'[¿Qué tan satisfecho te encuentras con la contribución del programa para tu desarrollo personal y/o profesional?]) +
+			    SUM('Fct_EncuestaFormacion'[¿Qué tan satisfecho te encuentras con el acompañamiento de la Universidad Challenger en tu desarrollo personal y/o profesional?]) +
+			    SUM('Fct_EncuestaFormacion'[En general, ¿Qué tan satisfecho te encuentras con la formación recibida?])
+			VAR _Conteo =
+			    COUNT('Fct_EncuestaFormacion'[¿Qué tan satisfecho te encuentras con el dominio del tema por parte del facilitador?]) +
+			    COUNT('Fct_EncuestaFormacion'[¿Qué tan satisfecho te encuentras con la habilidad para comunicarse y transmitir ideas por parte del facilitador?]) +
+			    COUNT('Fct_EncuestaFormacion'[¿Qué tan satisfecho te encuentras con las actividades o ejercicios por parte del facilitador?]) +
+			    COUNT('Fct_EncuestaFormacion'[¿Qué tan satisfecho te encuentras con el uso de ayudas didácticas por parte del facilitador?]) +
+			    COUNT('Fct_EncuestaFormacion'[¿Qué tan satisfecho te encuentras con la resolución de dudas u observaciones del facilitador?]) +
+			    COUNT('Fct_EncuestaFormacion'[¿Qué tan satisfecho te encuentras con el cumplimiento del programa propuesto?]) +
+			    COUNT('Fct_EncuestaFormacion'[¿Qué tan satisfecho te encuentras con el espacio, logística y ambiente de la formación?]) +
+			    COUNT('Fct_EncuestaFormacion'[¿Qué tan oportuna fue la información respecto a fechas, horarios y lugar?]) +
+			    COUNT('Fct_EncuestaFormacion'[¿Qué tan satisfecho te encuentras con el logro de los objetivos propuestos?]) +
+			    COUNT('Fct_EncuestaFormacion'[¿Qué tan satisfecho te encuentras con la contribución del programa para tu desarrollo personal y/o profesional?]) +
+			    COUNT('Fct_EncuestaFormacion'[¿Qué tan satisfecho te encuentras con el acompañamiento de la Universidad Challenger en tu desarrollo personal y/o profesional?]) +
+			    COUNT('Fct_EncuestaFormacion'[En general, ¿Qué tan satisfecho te encuentras con la formación recibida?])
+			RETURN
+			    DIVIDE(_Suma, _Conteo)
+		formatString: 0.00
+		displayFolder: 03 Encuesta Formacion
+		lineageTag: 66d4c70a-b055-4891-9abe-6d10eda690dc
+
+	measure 'Encuesta Favorabilidad' = DIVIDE(CALCULATE(COUNTROWS('Fct_EncuestaFormacion'), 'Fct_EncuestaFormacion'[En general, ¿Qué tan satisfecho te encuentras con la formación recibida?] >= 4), [Encuesta Total Respuestas])
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: 03 Encuesta Formacion
+		lineageTag: 4444042a-1946-4ca9-97e1-6be11e260c0e
+
+	measure 'Encuesta NPS Equivalente' =
+			VAR _Total = COUNT('Fct_EncuestaFormacion'[En general, ¿Qué tan satisfecho te encuentras con la formación recibida?])
+			VAR _Promotores = CALCULATE(COUNTROWS('Fct_EncuestaFormacion'), 'Fct_EncuestaFormacion'[En general, ¿Qué tan satisfecho te encuentras con la formación recibida?] >= 5)
+			VAR _Detractores = CALCULATE(COUNTROWS('Fct_EncuestaFormacion'), 'Fct_EncuestaFormacion'[En general, ¿Qué tan satisfecho te encuentras con la formación recibida?] <= 3)
+			RETURN
+			    DIVIDE(_Promotores - _Detractores, _Total) * 100
+		formatString: 0.0
+		displayFolder: 03 Encuesta Formacion
+		lineageTag: 3124a3a4-d281-4ef4-86de-717a9d7fd907
+
+	measure 'Induccion Total Colaboradores' = COUNTROWS('Fct_Induccion')
+		formatString: #,0
+		displayFolder: 04 Induccion UC
+		lineageTag: 3b28d7f6-130e-4260-bfe3-d840ffa3bdbb
+
+	measure 'Induccion Colaboradores Unicos' = DISTINCTCOUNT('Fct_Induccion'[Colaborador_Key])
+		formatString: #,0
+		displayFolder: 04 Induccion UC
+		lineageTag: 24f1148a-539f-4465-b843-3ed95f9b4368
+
+	measure 'Induccion Aprobados' = CALCULATE(COUNTROWS('Fct_Induccion'), 'Fct_Induccion'[EstadoInduccion_Key] = "APROBO")
+		formatString: #,0
+		displayFolder: 04 Induccion UC
+		lineageTag: 0ac88ffa-7bc3-45b7-909d-a74217a123d4
+
+	measure 'Induccion No Aprobados' = CALCULATE(COUNTROWS('Fct_Induccion'), 'Fct_Induccion'[EstadoInduccion_Key] = "NO_APROBO")
+		formatString: #,0
+		displayFolder: 04 Induccion UC
+		lineageTag: ccffef5a-a187-4ddb-bd64-5755dbebdf3e
+
+	measure 'Induccion Retiros' = CALCULATE(COUNTROWS('Fct_Induccion'), 'Fct_Induccion'[EstadoInduccion_Key] IN { "RETIRADO", "RENUNCIA" })
+		formatString: #,0
+		displayFolder: 04 Induccion UC
+		lineageTag: e4a40db9-198d-4158-9ccc-1cb3261f9fd2
+
+	measure 'Induccion Outboarding' = CALCULATE(COUNTROWS('Fct_Induccion'), 'Fct_Induccion'[Estado_Colaborador] IN { "Retirado", "Inactivo" })
+		formatString: #,0
+		displayFolder: 04 Induccion UC
+		lineageTag: 7afb6905-9eeb-4444-8d1b-1dc1550c66ab
+
+	measure 'Induccion Minutos Entrenamiento' = SUM('Fct_Induccion'[Min_Entrenamiento])
+		formatString: #,0
+		displayFolder: 04 Induccion UC
+		lineageTag: bf2ee324-989a-491e-a0f2-84923ea310db
+
+	measure 'Induccion Horas Entrenamiento' = DIVIDE([Induccion Minutos Entrenamiento], 60)
+		formatString: #,0.0
+		displayFolder: 04 Induccion UC
+		lineageTag: 5f477709-6bd7-46fb-b89d-9dbb43b5eef0
+
+	measure 'Induccion Porcentaje Cumplimiento' = DIVIDE([Induccion Aprobados], [Induccion Total Colaboradores])
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: 04 Induccion UC
+		lineageTag: e5679ca3-7b9c-4927-8d60-1e2a38d37b4f
+
+	measure 'Induccion Tiempo Promedio Finalizacion Dias' = AVERAGE('Fct_Induccion'[Tiempo_Finalizacion_Dias])
+		formatString: #,0.0
+		displayFolder: 04 Induccion UC
+		lineageTag: 4ecf7285-b950-42c1-b6bc-1382bd7a7848
+
+	measure 'Induccion Cumplimiento Antes UC' = CALCULATE([Induccion Porcentaje Cumplimiento], 'Dim_SegmentoUC'[SegmentoUC_Key] = "Antes_UC")
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: 04 Induccion UC
+		lineageTag: 2ba24b53-d84d-4e15-963a-370651097629
+
+	measure 'Induccion Cumplimiento UC 2025' = CALCULATE([Induccion Porcentaje Cumplimiento], 'Dim_SegmentoUC'[SegmentoUC_Key] = "UC_2025")
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: 04 Induccion UC
+		lineageTag: 706a9b2e-4a2f-4dc9-b4f6-a837fd99d2ed
+
+	measure 'Induccion Cumplimiento UC 2026' = CALCULATE([Induccion Porcentaje Cumplimiento], 'Dim_SegmentoUC'[SegmentoUC_Key] = "UC_2026")
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: 04 Induccion UC
+		lineageTag: f389252f-923d-498e-87d8-4298d4550f77
+
+	measure 'Induccion Variacion UC2025 vs Antes UC' = [Induccion Cumplimiento UC 2025] - [Induccion Cumplimiento Antes UC]
+		formatString: 0.0 pp;-0.0 pp;0.0 pp
+		displayFolder: 04 Induccion UC
+		lineageTag: 9c81cf4a-cd06-468c-affc-34a53cdc1fb7
+
+	measure 'Induccion Variacion UC2026 vs UC2025' = [Induccion Cumplimiento UC 2026] - [Induccion Cumplimiento UC 2025]
+		formatString: 0.0 pp;-0.0 pp;0.0 pp
+		displayFolder: 04 Induccion UC
+		lineageTag: 28128333-0bfc-4b7b-aa96-fd7f89a1e03d
+
+	measure 'KPI Indice Aprendizaje' =
+			VAR _Base =
+			    {
+			        [Plan Porcentaje Ejecucion],
+			        [Plan Cobertura Asistencia],
+			        [Encuesta Favorabilidad],
+			        [Induccion Porcentaje Cumplimiento]
+			    }
+			RETURN
+			    AVERAGEX(FILTER(_Base, NOT ISBLANK([Value])), [Value])
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: 00 KPIs Gerenciales
+		lineageTag: 20367492-6403-4ce2-9065-99d64758cb84
+
+	measure 'KPI Actividades Totales Gestionadas' = [Plan Actividades Planificadas] + [Asistencia Total Registros] + [Encuesta Total Respuestas] + [Induccion Total Colaboradores]
+		formatString: #,0
+		displayFolder: 00 KPIs Gerenciales
+		lineageTag: 436e3d36-7e91-45a6-8731-006381405169
+
+	measure 'Ranking Area Cumplimiento Plan' = RANKX(ALLSELECTED('Dim_Area'[Area]), [Plan Porcentaje Ejecucion], , DESC, Dense)
+		formatString: #,0
+		displayFolder: 05 Rankings y Alertas
+		lineageTag: 7f6aca7f-7192-4d86-8202-b826d0067630
+
+	measure 'Ranking Area Cumplimiento Induccion' = RANKX(ALLSELECTED('Dim_Area'[Area]), [Induccion Porcentaje Cumplimiento], , DESC, Dense)
+		formatString: #,0
+		displayFolder: 05 Rankings y Alertas
+		lineageTag: 838ac55b-68aa-4f9b-890c-5e93178fb5a9
+
+	measure 'Ranking Empresa Asistencia' = RANKX(ALLSELECTED('Dim_Empresa'[Empresa]), [Asistencia Total Asistentes], , DESC, Dense)
+		formatString: #,0
+		displayFolder: 05 Rankings y Alertas
+		lineageTag: b108b9b7-eb2f-4f23-889d-cf61f1f6492f
+
+	measure 'Alerta Plan Bajo Cumplimiento' = IF(NOT ISBLANK([Plan Porcentaje Ejecucion]) && [Plan Porcentaje Ejecucion] < 0.8, 1, 0)
+		formatString: #,0
+		displayFolder: 05 Rankings y Alertas
+		lineageTag: 60c3836c-4cfd-4e27-a23a-dd03110ade43
+
+	measure 'Alerta Induccion Bajo Cumplimiento' = IF(NOT ISBLANK([Induccion Porcentaje Cumplimiento]) && [Induccion Porcentaje Cumplimiento] < 0.9, 1, 0)
+		formatString: #,0
+		displayFolder: 05 Rankings y Alertas
+		lineageTag: a0bf2452-432c-4a18-8ebe-c63f9fd5271d
+
+	measure 'Hallazgo Plan' =
+			""Plan: "" & FORMAT([Plan Porcentaje Ejecucion], ""0.0%"") &
+			"" de ejecucion; brecha de "" & FORMAT([Plan Brecha Actividades], ""#,0"") & "" actividades.""
+		displayFolder: 06 Hallazgos
+		lineageTag: c90f3e51-b848-44f7-bfe2-c044e8551ac5
+
+	measure 'Hallazgo Asistencia' =
+			""Asistencia: "" & FORMAT([Asistencia Total Asistentes], ""#,0"") &
+			"" registros y "" & FORMAT([% Cobertura], ""0.0%"") & "" de cobertura registrada en el plan.""
+		displayFolder: 06 Hallazgos
+		lineageTag: dd1611ff-cc0b-4c8b-bc5d-2eab245b0df8
+
+	measure 'Hallazgo UC' =
+			""UC: Antes "" & FORMAT([Induccion Cumplimiento Antes UC], ""0.0%"") &
+			"", UC 2025 "" & FORMAT([Induccion Cumplimiento UC 2025], ""0.0%"") &
+			"", UC 2026 "" & FORMAT([Induccion Cumplimiento UC 2026], ""0.0%"") & "".""
+		displayFolder: 06 Hallazgos
+		lineageTag: 910b7dbd-062d-48a9-8a26-9c7eda604bea
+
+	measure 'Plan Eficacia Promedio' = DIVIDE(AVERAGE('Fct_PlanFormacion'[EFICACIA]), 100)
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: 01 Plan Formacion
+		lineageTag: 7c112d7e-9a2c-4aae-925e-fdecb44a6c6a
+
+	measure 'Plan Actividades Pendientes' = [Plan Actividades Vigentes] - [Plan Actividades Ejecutadas]
+		formatString: #,0
+		displayFolder: 01 Plan Formacion
+		lineageTag: 3d4f4796-4656-460c-85ae-281be025cb69
+
+	measure 'Plan Variacion Ejecutadas MoM' = [Plan Actividades Ejecutadas] - CALCULATE([Plan Actividades Ejecutadas], DATEADD('Dim_Calendario'[Date], -1, MONTH))
+		formatString: #,0
+		displayFolder: 07 Comparativos
+		lineageTag: cb518286-cff8-4df5-b208-f5f8588f2a32
+
+	measure 'Plan Variacion Ejecutadas MoM %' = DIVIDE([Plan Variacion Ejecutadas MoM], CALCULATE([Plan Actividades Ejecutadas], DATEADD('Dim_Calendario'[Date], -1, MONTH)))
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: 07 Comparativos
+		lineageTag: 85b0fc0f-6973-4584-b043-3938adc6d9a2
+
+	measure 'Plan Variacion Ejecutadas YoY' = [Plan Actividades Ejecutadas] - CALCULATE([Plan Actividades Ejecutadas], SAMEPERIODLASTYEAR('Dim_Calendario'[Date]))
+		formatString: #,0
+		displayFolder: 07 Comparativos
+		lineageTag: 162123aa-1e9e-4298-ae3d-4de7e25f5fc9
+
+	measure 'Plan Variacion Ejecutadas YoY %' = DIVIDE([Plan Variacion Ejecutadas YoY], CALCULATE([Plan Actividades Ejecutadas], SAMEPERIODLASTYEAR('Dim_Calendario'[Date])))
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: 07 Comparativos
+		lineageTag: b47209f7-088c-491e-964e-c4454d69e423
+
+	measure 'Asistencia Variacion MoM' = [Asistencia Total Asistentes] - CALCULATE([Asistencia Total Asistentes], DATEADD('Dim_Calendario'[Date], -1, MONTH))
+		formatString: #,0
+		displayFolder: 07 Comparativos
+		lineageTag: 1461ce00-99be-433f-9bfd-fc3828401a21
+
+	measure 'Asistencia Variacion MoM %' = DIVIDE([Asistencia Variacion MoM], CALCULATE([Asistencia Total Asistentes], DATEADD('Dim_Calendario'[Date], -1, MONTH)))
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: 07 Comparativos
+		lineageTag: fcd3c38b-ecb4-480e-b38d-4853b834bc87
+
+	measure 'Asistencia Variacion YoY' = [Asistencia Total Asistentes] - CALCULATE([Asistencia Total Asistentes], SAMEPERIODLASTYEAR('Dim_Calendario'[Date]))
+		formatString: #,0
+		displayFolder: 07 Comparativos
+		lineageTag: 420b2312-0cd1-48a7-8dcd-756f9f52842a
+
+	measure 'Asistencia Variacion YoY %' = DIVIDE([Asistencia Variacion YoY], CALCULATE([Asistencia Total Asistentes], SAMEPERIODLASTYEAR('Dim_Calendario'[Date])))
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: 07 Comparativos
+		lineageTag: 9813eb66-418c-48b0-9710-677970200ba3
+
+	measure 'Induccion Variacion Colaboradores MoM' = [Induccion Total Colaboradores] - CALCULATE([Induccion Total Colaboradores], DATEADD('Dim_Calendario'[Date], -1, MONTH))
+		formatString: #,0
+		displayFolder: 07 Comparativos
+		lineageTag: fa88eb05-9b5c-4742-806b-31938463215d
+
+	measure 'Induccion Variacion Colaboradores MoM %' = DIVIDE([Induccion Variacion Colaboradores MoM], CALCULATE([Induccion Total Colaboradores], DATEADD('Dim_Calendario'[Date], -1, MONTH)))
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: 07 Comparativos
+		lineageTag: a166664c-36ef-4674-8226-07abdbece4bb
+
+	measure 'Induccion Variacion Cumplimiento MoM' = [Induccion Porcentaje Cumplimiento] - CALCULATE([Induccion Porcentaje Cumplimiento], DATEADD('Dim_Calendario'[Date], -1, MONTH))
+		formatString: 0.0 pp;-0.0 pp;0.0 pp
+		displayFolder: 07 Comparativos
+		lineageTag: 747a66fd-67af-4f14-8826-1e2d27022fa5
+
+	measure 'KPI Frente Pendiente' = BLANK()
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: 00 KPIs Gerenciales
+		lineageTag: ad78c626-132c-4dee-addc-e2167c6375a3
+
+	measure 'KPI Nivel Cargo Pendiente' = BLANK()
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: 00 KPIs Gerenciales
+		lineageTag: 26162c48-6994-43d9-8f3b-01f8af6b5a24
+
+	measure 'Encuesta Calificacion Satisfaccion Formacion' = AVERAGE('Fct_EncuestaFormacion'[En general, ¿Qué tan satisfecho te encuentras con la formación recibida?])
+		formatString: 0.00
+		displayFolder: 03 Encuesta Formacion
+		lineageTag: 3f212dda-cebe-415e-9990-10491b437488
+
+	measure 'Encuesta Favorabilidad Variacion MoM' = [Encuesta Favorabilidad] - CALCULATE([Encuesta Favorabilidad], DATEADD('Dim_Calendario'[Date], -1, MONTH))
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: 07 Comparativos
+		lineageTag: 8098de79-6685-468c-8a65-d28dd3425b31
+
+	measure 'Encuesta Favorabilidad Variacion YoY' = [Encuesta Favorabilidad] - CALCULATE([Encuesta Favorabilidad], SAMEPERIODLASTYEAR('Dim_Calendario'[Date]))
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: 07 Comparativos
+		lineageTag: eb2d8e62-aef9-4d7d-bde2-9967ea9477d5
+
+	column Indice
+		dataType: int64
+		isHidden
+		lineageTag: b2e8471f-a590-4c95-b4ad-18d6cd43dc5a
+		sourceColumn: [Indice]
+
+	partition Medidas_AD = calculated
+		mode: import
+		source = DATATABLE("Indice", INTEGER, {{ 0 }})
+
