@@ -1,0 +1,224 @@
+table Fct_EncuestaFormacion
+	lineageTag: 7add75a0-205b-4864-a80c-902c257c5835
+
+	column Id
+		dataType: int64
+		formatString: 0
+		lineageTag: 10636933-152f-4895-9a51-6e63ce196609
+		summarizeBy: count
+		sourceColumn: Id
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Hora de inicio'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: f01f7dc2-0a45-4cd6-8b6d-e7b252f682b6
+		summarizeBy: none
+		sourceColumn: Hora de inicio
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Hora de finalización'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 2b3bf499-c8b4-42cb-87cb-82966c7ce951
+		summarizeBy: none
+		sourceColumn: Hora de finalización
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Correo electrónico'
+		dataType: string
+		lineageTag: 41cf4968-8cf2-4eae-8946-e0f322f5b0e3
+		summarizeBy: none
+		sourceColumn: Correo electrónico
+
+		annotation SummarizationSetBy = Automatic
+
+	column Nombre
+		dataType: string
+		lineageTag: 7892dcec-be4c-4dbb-9902-6077d6d3638b
+		summarizeBy: none
+		sourceColumn: Nombre
+
+		annotation SummarizationSetBy = Automatic
+
+	column '¡Cuéntanos tu percepción de la formación!'
+		dataType: string
+		lineageTag: 0ce9d22e-efaa-44a8-a5aa-464cb4ed046b
+		summarizeBy: none
+		sourceColumn: ¡Cuéntanos tu percepción de la formación!
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Indícanos de qué empresa haces parte'
+		dataType: string
+		lineageTag: 4dc5b4df-d36b-4b0f-952b-3cd039629016
+		summarizeBy: none
+		sourceColumn: Indícanos de qué empresa haces parte
+
+		annotation SummarizationSetBy = Automatic
+
+	column '¿Qué tan satisfecho te encuentras con el dominio del tema por parte del facilitador?'
+		dataType: int64
+		formatString: 0
+		lineageTag: bd8a9f14-0c20-428a-85fe-c391ec78a346
+		summarizeBy: sum
+		sourceColumn: ¿Qué tan satisfecho te encuentras con el dominio del tema por parte del facilitador?
+
+		annotation SummarizationSetBy = Automatic
+
+	column '¿Qué tan satisfecho te encuentras con la habilidad para comunicarse y transmitir ideas por parte del facilitador?'
+		dataType: int64
+		formatString: 0
+		lineageTag: 464685bb-6057-4e88-b5d0-a81310492333
+		summarizeBy: sum
+		sourceColumn: ¿Qué tan satisfecho te encuentras con la habilidad para comunicarse y transmitir ideas por parte del facilitador?
+
+		annotation SummarizationSetBy = Automatic
+
+	column '¿Qué tan satisfecho te encuentras con las actividades o ejercicios por parte del facilitador?'
+		dataType: int64
+		formatString: 0
+		lineageTag: 58ef3e23-b4a3-470e-82d9-eed5c56ab39b
+		summarizeBy: sum
+		sourceColumn: ¿Qué tan satisfecho te encuentras con las actividades o ejercicios por parte del facilitador?
+
+		annotation SummarizationSetBy = Automatic
+
+	column '¿Qué tan satisfecho te encuentras con el uso de ayudas didácticas por parte del facilitador?'
+		dataType: int64
+		formatString: 0
+		lineageTag: e8d059e9-9967-4111-8a1f-eb741e69b714
+		summarizeBy: sum
+		sourceColumn: ¿Qué tan satisfecho te encuentras con el uso de ayudas didácticas por parte del facilitador?
+
+		annotation SummarizationSetBy = Automatic
+
+	column '¿Qué tan satisfecho te encuentras con la resolución de dudas u observaciones del facilitador?'
+		dataType: int64
+		formatString: 0
+		lineageTag: 1bad4e61-9aba-480e-adb2-d058777638ec
+		summarizeBy: sum
+		sourceColumn: ¿Qué tan satisfecho te encuentras con la resolución de dudas u observaciones del facilitador?
+
+		annotation SummarizationSetBy = Automatic
+
+	column '¿Qué tan satisfecho te encuentras con el cumplimiento del programa propuesto?'
+		dataType: int64
+		formatString: 0
+		lineageTag: 644dfa7c-e080-4bd7-872e-91af56eb9a6d
+		summarizeBy: sum
+		sourceColumn: ¿Qué tan satisfecho te encuentras con el cumplimiento del programa propuesto?
+
+		annotation SummarizationSetBy = Automatic
+
+	column '¿Qué tan satisfecho te encuentras con el espacio, logística y ambiente de la formación?'
+		dataType: int64
+		formatString: 0
+		lineageTag: 67b168e7-5451-4c5e-a454-be376e395b5c
+		summarizeBy: sum
+		sourceColumn: ¿Qué tan satisfecho te encuentras con el espacio, logística y ambiente de la formación?
+
+		annotation SummarizationSetBy = Automatic
+
+	column '¿Qué tan oportuna fue la información respecto a fechas, horarios y lugar?'
+		dataType: int64
+		formatString: 0
+		lineageTag: fbfe54b4-ecf8-4d8d-8ceb-28aa213eb944
+		summarizeBy: sum
+		sourceColumn: ¿Qué tan oportuna fue la información respecto a fechas, horarios y lugar?
+
+		annotation SummarizationSetBy = Automatic
+
+	column '¿Qué tan satisfecho te encuentras con el logro de los objetivos propuestos?'
+		dataType: int64
+		formatString: 0
+		lineageTag: 68c238c9-bd9a-4549-ad9f-faa1c614a83e
+		summarizeBy: sum
+		sourceColumn: ¿Qué tan satisfecho te encuentras con el logro de los objetivos propuestos?
+
+		annotation SummarizationSetBy = Automatic
+
+	column '¿Qué tan satisfecho te encuentras con la contribución del programa para tu desarrollo personal y/o profesional?'
+		dataType: int64
+		formatString: 0
+		lineageTag: ff180311-7a6f-4456-a81a-7c76f288e0ad
+		summarizeBy: sum
+		sourceColumn: ¿Qué tan satisfecho te encuentras con la contribución del programa para tu desarrollo personal y/o profesional?
+
+		annotation SummarizationSetBy = Automatic
+
+	column '¿Qué tan satisfecho te encuentras con el acompañamiento de la Universidad Challenger en tu desarrollo personal y/o profesional?'
+		dataType: int64
+		formatString: 0
+		lineageTag: 8c55ff67-9ffc-43d8-9178-9017406966cf
+		summarizeBy: sum
+		sourceColumn: ¿Qué tan satisfecho te encuentras con el acompañamiento de la Universidad Challenger en tu desarrollo personal y/o profesional?
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'En general, ¿Qué tan satisfecho te encuentras con la formación recibida?'
+		dataType: int64
+		formatString: 0
+		lineageTag: 1d8ea91e-be6b-4022-894c-ba6d110e76c3
+		summarizeBy: sum
+		sourceColumn: En general, ¿Qué tan satisfecho te encuentras con la formación recibida?
+
+		annotation SummarizationSetBy = Automatic
+
+	column '¡Cuéntanos! ¿Qué fue lo que más valoraste y qué podríamos mejorar?'
+		dataType: string
+		lineageTag: 1c3fc291-7806-4087-aef7-88c384b10903
+		summarizeBy: none
+		sourceColumn: ¡Cuéntanos! ¿Qué fue lo que más valoraste y qué podríamos mejorar?
+
+		annotation SummarizationSetBy = Automatic
+
+	column Fecha_Encuesta = VAR _d = 'Fct_EncuestaFormacion'[Hora de inicio] RETURN IF(ISBLANK(_d), BLANK(), DATE(YEAR(_d), MONTH(_d), DAY(_d)))
+		dataType: dateTime
+		isHidden
+		formatString: Short Date
+		lineageTag: 7fcb1419-0db3-4cb2-9ddf-ef3676f617b9
+
+	column TemaFormacion_Key =
+			VAR _t0 = UPPER(TRIM(SUBSTITUTE(COALESCE('Fct_EncuestaFormacion'[¡Cuéntanos tu percepción de la formación!], ""), UNICHAR(160), " ")))
+			VAR _t1 = SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(_t0, "Á", "A"), "É", "E"), "Í", "I"), "Ó", "O"), "Ú", "U"), "Ñ", "N")
+			VAR _t2 = SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(_t1, ".", ""), "  ", " "), "  ", " ")
+			RETURN IF(_t2 = "", "", _t2)
+		dataType: string
+		isHidden
+		lineageTag: 6a9abaa8-24f2-44dd-935b-0e8299b8c7fd
+
+	column Empresa_Key =
+			VAR _t0 = UPPER(TRIM(SUBSTITUTE(COALESCE('Fct_EncuestaFormacion'[Indícanos de qué empresa haces parte], ""), UNICHAR(160), " ")))
+			VAR _t1 = SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(_t0, "Á", "A"), "É", "E"), "Í", "I"), "Ó", "O"), "Ú", "U"), "Ñ", "N")
+			VAR _t2 = SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(_t1, ".", ""), "  ", " "), "  ", " ")
+			RETURN
+			    SWITCH(
+			        TRUE(),
+			        _t2 = "", "SIN_EMPRESA",
+			        _t2 IN { "CHALLENGER SAS", "CHALLENGER S A S" }, "CHALLENGER SAS",
+			        _t2 IN { "LEMCO SAS", "LEMCO S A S" }, "LEMCO SAS",
+			        CONTAINSSTRING(_t2, "FUNDACION CHALLENGER"), "FUNDACION CHALLENGER",
+			        _t2
+			    )
+		dataType: string
+		isHidden
+		lineageTag: 47c0aeb0-2755-4238-992a-9f85980330e5
+
+	partition Fct_EncuestaFormacion = m
+		mode: import
+		source =
+				let
+				    Origen = Excel.Workbook(Web.Contents("https://lemcosas.sharepoint.com/sites/TalentoHumanoGrupoLemco/Documentos%20compartidos/5.%20People%20analytics/04_Aprendizaje_y_Desarrollo/Data/%C2%A1Queremos%20conocer%20tu%20opini%C3%B3n%20sobre%20nuestra%20formaci%C3%B3n!.xlsx"), null, true),
+				    OfficeForms.Table_Table = Origen{[Item="OfficeForms.Table",Kind="Table"]}[Data],
+				    #"Tipo cambiado" = Table.TransformColumnTypes(OfficeForms.Table_Table,{{"Id", Int64.Type}, {"Hora de inicio", type datetime}, {"Hora de finalización", type datetime}, {"Correo electrónico", type text}, {"Nombre", type any}, {"¡Cuéntanos tu percepción de la formación!", type text}, {"Indícanos de qué empresa haces parte", type text}, {"¿Qué tan satisfecho te encuentras con el dominio del tema por parte del facilitador?", Int64.Type}, {"¿Qué tan satisfecho te encuentras con la habilidad para comunicarse y transmitir ideas por parte del facilitador?", Int64.Type}, {"¿Qué tan satisfecho te encuentras con las actividades o ejercicios por parte del facilitador?", Int64.Type}, {"¿Qué tan satisfecho te encuentras con el uso de ayudas didácticas por parte del facilitador?", Int64.Type}, {"¿Qué tan satisfecho te encuentras con la resolución de dudas u observaciones del facilitador?", Int64.Type}, {"¿Qué tan satisfecho te encuentras con el cumplimiento del programa propuesto?", Int64.Type}, {"¿Qué tan satisfecho te encuentras con el espacio, logística y ambiente de la formación?", Int64.Type}, {"¿Qué tan oportuna fue la información respecto a fechas, horarios y lugar?", Int64.Type}, {"¿Qué tan satisfecho te encuentras con el logro de los objetivos propuestos?", Int64.Type}, {"¿Qué tan satisfecho te encuentras con la contribución del programa para tu desarrollo personal y/o profesional?", Int64.Type}, {"¿Qué tan satisfecho te encuentras con el acompañamiento de la Universidad Challenger en tu desarrollo personal y/o profesional?", Int64.Type}, {"En general, ¿Qué tan satisfecho te encuentras con la formación recibida?", Int64.Type}, {"¡Cuéntanos! #(lf)¿Qué fue lo que más valoraste y qué podríamos mejorar?", type text}})
+				in
+				    #"Tipo cambiado"
+
+	annotation PBI_NavigationStepName = Navegación
+
+	annotation PBI_ResultType = Table
+

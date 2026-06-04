@@ -1,0 +1,289 @@
+table Fct_InduccionColaborador_UC_2026
+	lineageTag: 11308724-e24b-404d-b22a-b7cd37310c24
+
+	column CEDULA
+		dataType: int64
+		formatString: 0
+		lineageTag: d49d9505-40d3-4b6e-9389-d5ff870508c7
+		summarizeBy: sum
+		sourceColumn: CEDULA
+
+		annotation SummarizationSetBy = Automatic
+
+	column NOMBRES
+		dataType: string
+		lineageTag: cf0d96b3-6e5a-419c-b813-2da7de00090c
+		summarizeBy: none
+		sourceColumn: NOMBRES
+
+		annotation SummarizationSetBy = Automatic
+
+	column APELLIDOS
+		dataType: string
+		lineageTag: 834c7803-0ecb-4212-99d1-bb3d24fef6d4
+		summarizeBy: none
+		sourceColumn: APELLIDOS
+
+		annotation SummarizationSetBy = Automatic
+
+	column CORREO
+		dataType: string
+		lineageTag: f6a278a0-0905-447b-8cd1-5bca5deec3e9
+		summarizeBy: none
+		sourceColumn: CORREO
+
+		annotation SummarizationSetBy = Automatic
+
+	column CIUDAD
+		dataType: string
+		lineageTag: ebf1cd3f-9412-4aaf-b4b3-acda1982aef0
+		summarizeBy: none
+		sourceColumn: CIUDAD
+
+		annotation SummarizationSetBy = Automatic
+
+	column EMPRESA
+		dataType: string
+		lineageTag: 191aa99b-0b7c-4f93-a1b6-7f1a47e559f5
+		summarizeBy: none
+		sourceColumn: EMPRESA
+
+		annotation SummarizationSetBy = Automatic
+
+	column CARGO
+		dataType: string
+		lineageTag: 9d850ab5-b0f4-426f-8b07-edaeb226ea38
+		summarizeBy: none
+		sourceColumn: CARGO
+
+		annotation SummarizationSetBy = Automatic
+
+	column DEPENDENCIA
+		dataType: string
+		lineageTag: 9e85af83-33c8-4285-a236-ac2ee8015a5a
+		summarizeBy: none
+		sourceColumn: DEPENDENCIA
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'GERENCIA O DIRECCIÓN'
+		dataType: string
+		lineageTag: f12bbc14-4bbd-4fe1-a232-2a9549916354
+		summarizeBy: none
+		sourceColumn: GERENCIA O DIRECCIÓN
+
+		annotation SummarizationSetBy = Automatic
+
+	column JEFE_INMEDIATO
+		dataType: string
+		lineageTag: ce74673f-3bc9-4217-be46-5ff339ce4762
+		summarizeBy: none
+		sourceColumn: JEFE_INMEDIATO
+
+		annotation SummarizationSetBy = Automatic
+
+	column FECHA_INGRESO
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 748cacc5-0ad4-459f-abfb-45a38ada88c9
+		summarizeBy: none
+		sourceColumn: FECHA_INGRESO
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column AÑO
+		dataType: int64
+		formatString: 0
+		lineageTag: ff7d5f47-ed78-4d6e-8272-05e1aa89a626
+		summarizeBy: sum
+		sourceColumn: AÑO
+
+		annotation SummarizationSetBy = Automatic
+
+	column MES_INGRESO
+		dataType: string
+		lineageTag: 77340824-4fd4-4537-8f26-4c764a541986
+		summarizeBy: none
+		sourceColumn: MES_INGRESO
+
+		annotation SummarizationSetBy = Automatic
+
+	column TIPO_CONTRATO
+		dataType: string
+		lineageTag: 8101e6b8-139b-403f-96de-b3bce0027fa1
+		summarizeBy: none
+		sourceColumn: TIPO_CONTRATO
+
+		annotation SummarizationSetBy = Automatic
+
+	column TELEFONO
+		dataType: string
+		lineageTag: 033cc253-c350-4299-8dcc-a46bbc233bf4
+		summarizeBy: none
+		sourceColumn: TELEFONO
+
+		annotation SummarizationSetBy = Automatic
+
+	column CURSO
+		dataType: string
+		lineageTag: 951e554c-8b0b-430d-8b0b-de6f99fa5c9b
+		summarizeBy: none
+		sourceColumn: CURSO
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Modulo 8 PDP'
+		dataType: string
+		lineageTag: 35e14a89-4e58-49c5-bd3b-a2059e4f6a0c
+		summarizeBy: none
+		sourceColumn: Modulo 8 PDP
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Modulo 8.2 spla'
+		dataType: string
+		lineageTag: 0e543150-c011-4b59-aa3b-3b37dcd7c12c
+		summarizeBy: none
+		sourceColumn: Modulo 8.2 spla
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Modulo 8.3 ptele'
+		dataType: string
+		lineageTag: 061ce1ea-689e-4a14-99b7-cc2ca8b13e22
+		summarizeBy: none
+		sourceColumn: Modulo 8.3 ptele
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Módulo 5 Sistema de Gestión de Calidad'
+		dataType: string
+		lineageTag: 3568322f-b0e4-4c12-b66a-882b86d6ebac
+		summarizeBy: none
+		sourceColumn: Módulo 5 Sistema de Gestión de Calidad
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Módulo 4 Seguridad y Salud en el Trabajo'
+		dataType: string
+		lineageTag: 1a7cf0f8-638d-4707-841c-e61ddf225af7
+		summarizeBy: none
+		sourceColumn: Módulo 4 Seguridad y Salud en el Trabajo
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Promedio '
+		dataType: string
+		lineageTag: d0c38f1e-bad4-4d8d-9cfc-31ab58555ddf
+		summarizeBy: none
+		sourceColumn: "Promedio "
+
+		annotation SummarizationSetBy = Automatic
+
+	column Estado
+		dataType: string
+		lineageTag: 71d61af3-f84a-4b30-b639-3ca92571f857
+		summarizeBy: none
+		sourceColumn: Estado
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Fecha Certificado'
+		dataType: string
+		lineageTag: 33282e57-ea84-4325-9a82-8ac5ec74b0cf
+		summarizeBy: none
+		sourceColumn: Fecha Certificado
+
+		annotation SummarizationSetBy = Automatic
+
+	column Asistencia
+		dataType: string
+		lineageTag: 9c31dbd0-bdbe-4f3f-b402-1ce36681b051
+		summarizeBy: none
+		sourceColumn: Asistencia
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Entrenamiento '
+		dataType: string
+		lineageTag: 1dd65580-4d85-4b2d-8e40-7bf8f1c89387
+		summarizeBy: none
+		sourceColumn: "Entrenamiento "
+
+		annotation SummarizationSetBy = Automatic
+
+	column Archivo
+		dataType: string
+		lineageTag: 02a2b17c-96f7-4d49-90c4-611b76adc50a
+		summarizeBy: none
+		sourceColumn: Archivo
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Horas de inducción'
+		dataType: int64
+		formatString: 0
+		lineageTag: 356a0b22-50be-4a35-b68d-8a565f862b4e
+		summarizeBy: sum
+		sourceColumn: Horas de inducción
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Horas de entrenamiento '
+		dataType: int64
+		formatString: 0
+		lineageTag: ca128163-e133-4fdd-b93a-4fefda57a927
+		summarizeBy: sum
+		sourceColumn: "Horas de entrenamiento "
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Min de entrenamientos'
+		dataType: int64
+		formatString: 0
+		lineageTag: 10789708-df9c-49dc-9a62-7a81f96dbf39
+		summarizeBy: sum
+		sourceColumn: Min de entrenamientos
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Estado del colaborador'
+		dataType: string
+		lineageTag: b39218fc-f4f0-4aff-bf52-f419abf27a23
+		summarizeBy: none
+		sourceColumn: Estado del colaborador
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'CARTA APRENDIZ/PRACTICANTE'
+		dataType: string
+		lineageTag: 22b095f3-258e-4302-b625-d7e0c900becf
+		summarizeBy: none
+		sourceColumn: CARTA APRENDIZ/PRACTICANTE
+
+		annotation SummarizationSetBy = Automatic
+
+	column Observación
+		dataType: string
+		lineageTag: 99023d75-9fee-464f-912c-2a01c30017f6
+		summarizeBy: none
+		sourceColumn: Observación
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Fct_InduccionColaborador_UC_2026 = m
+		mode: import
+		source =
+				let
+				    Origen = Excel.Workbook(Web.Contents("https://lemcosas.sharepoint.com/sites/TalentoHumanoGrupoLemco/Documentos%20compartidos/5.%20People%20analytics/04_Aprendizaje_y_Desarrollo/Data/Seguimiento%20Inducci%C3%B3n%20Challenger%20-%20Lemco%20-%20Fundaci%C3%B3n%202026.xlsx"), null, true),
+				    Tabla242_Table = Origen{[Item="Tabla242",Kind="Table"]}[Data],
+				    #"Tipo cambiado" = Table.TransformColumnTypes(Tabla242_Table,{{"CEDULA", Int64.Type}, {"NOMBRES", type text}, {"APELLIDOS", type text}, {"CORREO", type text}, {"CIUDAD", type text}, {"EMPRESA", type text}, {"CARGO", type text}, {"DEPENDENCIA", type text}, {"GERENCIA O DIRECCIÓN", type text}, {"JEFE_INMEDIATO", type text}, {"FECHA_INGRESO", type date}, {"AÑO", Int64.Type}, {"MES_INGRESO", type text}, {"TIPO_CONTRATO", type any}, {"TELEFONO", type any}, {"CURSO", type text}, {"Modulo 8 PDP", type any}, {"Modulo 8.2 spla", type any}, {"Modulo 8.3 ptele", type any}, {"Módulo 5 Sistema de Gestión de Calidad", type any}, {"Módulo 4 Seguridad y Salud en el Trabajo", type any}, {"Promedio ", type any}, {"Estado", type text}, {"Fecha Certificado", type any}, {"Asistencia", type text}, {"Entrenamiento ", type text}, {"Archivo", type any}, {"Horas de inducción", Int64.Type}, {"Horas de entrenamiento ", Int64.Type}, {"Min de entrenamientos", Int64.Type}, {"Estado del colaborador", type text}, {"CARTA APRENDIZ/PRACTICANTE", type text}, {"Observación", type any}})
+				in
+				    #"Tipo cambiado"
+
+	annotation PBI_NavigationStepName = Navegación
+
+	annotation PBI_ResultType = Table
+

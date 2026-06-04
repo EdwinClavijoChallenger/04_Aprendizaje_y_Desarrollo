@@ -1,0 +1,224 @@
+table Fct_PlanFormacion
+	lineageTag: 9644805a-c1c7-4945-9cd5-0df168cdf61d
+
+	column 'NOMBRE FORMACIÓN'
+		dataType: string
+		lineageTag: 3186522c-80b8-449e-8f88-d62eb61f2c8f
+		summarizeBy: none
+		sourceColumn: NOMBRE FORMACIÓN
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'OBJETIVO DE LA FORMACIÓN '
+		dataType: string
+		lineageTag: b14d4a90-6026-4861-88b9-d052741e9d32
+		summarizeBy: none
+		sourceColumn: "OBJETIVO DE LA FORMACIÓN "
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'TIPO DE FORMACIÓN'
+		dataType: string
+		lineageTag: 8f3a75b4-cc7f-42c7-8d2e-cff71c0a290b
+		summarizeBy: none
+		sourceColumn: TIPO DE FORMACIÓN
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'AREA A FORMAR'
+		dataType: string
+		lineageTag: b7042951-812b-4568-8c07-98ac1223683c
+		summarizeBy: none
+		sourceColumn: AREA A FORMAR
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'PUBLICO OBJETIVO '
+		dataType: int64
+		formatString: 0
+		lineageTag: f4457be2-eaca-4444-b8f5-588d361c605d
+		summarizeBy: sum
+		sourceColumn: "PUBLICO OBJETIVO "
+
+		annotation SummarizationSetBy = Automatic
+
+	column ASISTENCIA
+		dataType: int64
+		formatString: 0
+		lineageTag: d9bf8a83-aa97-4177-a358-42c1ce1717e6
+		summarizeBy: sum
+		sourceColumn: ASISTENCIA
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'HORAS DE FORMACIÓN '
+		dataType: int64
+		formatString: 0
+		lineageTag: 1391fe63-90b2-4527-9940-ef09691c81d9
+		summarizeBy: sum
+		sourceColumn: "HORAS DE FORMACIÓN "
+
+		annotation SummarizationSetBy = Automatic
+
+	column NPS
+		dataType: double
+		lineageTag: 409bf4b5-0672-4b22-91c7-eaf15a186e29
+		summarizeBy: sum
+		sourceColumn: NPS
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column EFICACIA
+		dataType: int64
+		formatString: 0
+		lineageTag: a41a7e1a-f273-4919-908f-88728cc77b7a
+		summarizeBy: sum
+		sourceColumn: EFICACIA
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'TOTAL DE HORAS DE FORMACIÓN '
+		dataType: int64
+		formatString: 0
+		lineageTag: 9ebcccc6-5c90-4cd8-a564-580cd15e0d3d
+		summarizeBy: sum
+		sourceColumn: "TOTAL DE HORAS DE FORMACIÓN "
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'FECHA DE FORMACIÓN'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: e7e89945-1330-466f-8601-61e59b070b4d
+		summarizeBy: none
+		sourceColumn: FECHA DE FORMACIÓN
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column MES
+		dataType: string
+		lineageTag: 6a027fb2-20c5-4a2b-bb3d-3fd2614794eb
+		summarizeBy: none
+		sourceColumn: MES
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'ESTADO DE FORMACIÓN'
+		dataType: string
+		lineageTag: 037bc892-01e6-4cd6-b5e6-40b30ac011c8
+		summarizeBy: none
+		sourceColumn: ESTADO DE FORMACIÓN
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'RESPONSABLE DE LA EJECUCIÓN '
+		dataType: string
+		lineageTag: 5096e1a8-7a10-4ba0-af6d-d213ea90b4b9
+		summarizeBy: none
+		sourceColumn: "RESPONSABLE DE LA EJECUCIÓN "
+
+		annotation SummarizationSetBy = Automatic
+
+	column MODALIDAD
+		dataType: string
+		lineageTag: 81faf23a-6fe0-4e67-925f-b8455e5a4787
+		summarizeBy: none
+		sourceColumn: MODALIDAD
+
+		annotation SummarizationSetBy = Automatic
+
+	column COSTO
+		dataType: decimal
+		formatString: \$\ #,0.###############;-\$\ #,0.###############;\$\ #,0.###############
+		lineageTag: b0b667e5-fb30-457c-88fb-63e59e6ffb97
+		summarizeBy: sum
+		sourceColumn: COSTO
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"es-CO"}
+
+	column ENTIDAD
+		dataType: string
+		lineageTag: 12a48e82-1095-4d5a-8ad3-b72b49a023c5
+		summarizeBy: none
+		sourceColumn: ENTIDAD
+
+		annotation SummarizationSetBy = Automatic
+
+	column Fecha_Formacion = VAR _d = 'Fct_PlanFormacion'[FECHA DE FORMACIÓN] RETURN IF(ISBLANK(_d), BLANK(), DATE(YEAR(_d), MONTH(_d), DAY(_d)))
+		dataType: dateTime
+		isHidden
+		formatString: Short Date
+		lineageTag: 7d0ebcc0-f90d-472e-8b9c-db9cf02ebcf6
+
+	column TemaFormacion_Key =
+			VAR _t0 = UPPER(TRIM(SUBSTITUTE(COALESCE('Fct_PlanFormacion'[NOMBRE FORMACIÓN], ""), UNICHAR(160), " ")))
+			VAR _t1 = SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(_t0, "Á", "A"), "É", "E"), "Í", "I"), "Ó", "O"), "Ú", "U"), "Ñ", "N")
+			VAR _t2 = SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(_t1, ".", ""), "  ", " "), "  ", " ")
+			RETURN IF(_t2 = "", "", _t2)
+		dataType: string
+		isHidden
+		lineageTag: b3c13c3a-57d3-493f-93ef-d86dd2354368
+
+	column TipoFormacion_Key =
+			VAR _t0 = UPPER(TRIM(SUBSTITUTE(COALESCE('Fct_PlanFormacion'[TIPO DE FORMACIÓN], ""), UNICHAR(160), " ")))
+			VAR _t1 = SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(_t0, "Á", "A"), "É", "E"), "Í", "I"), "Ó", "O"), "Ú", "U"), "Ñ", "N")
+			VAR _t2 = SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(_t1, ".", ""), "  ", " "), "  ", " ")
+			RETURN IF(_t2 = "", "SIN_TIPO", _t2)
+		dataType: string
+		isHidden
+		lineageTag: af6d1224-cbba-4e17-a79f-0436b18862f3
+
+	column Modalidad_Key =
+			VAR _t0 = UPPER(TRIM(SUBSTITUTE(COALESCE('Fct_PlanFormacion'[MODALIDAD], ""), UNICHAR(160), " ")))
+			VAR _t1 = SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(_t0, "Á", "A"), "É", "E"), "Í", "I"), "Ó", "O"), "Ú", "U"), "Ñ", "N")
+			VAR _t2 = SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(_t1, ".", ""), "  ", " "), "  ", " ")
+			RETURN IF(_t2 = "", "SIN_MODALIDAD", _t2)
+		dataType: string
+		isHidden
+		lineageTag: ab7f8408-fef5-44c0-8b49-5c7051d29829
+
+	column Area_Key =
+			VAR _t0 = UPPER(TRIM(SUBSTITUTE(COALESCE('Fct_PlanFormacion'[AREA A FORMAR], ""), UNICHAR(160), " ")))
+			VAR _t1 = SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(_t0, "Á", "A"), "É", "E"), "Í", "I"), "Ó", "O"), "Ú", "U"), "Ñ", "N")
+			VAR _t2 = SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(_t1, ".", ""), "  ", " "), "  ", " ")
+			RETURN IF(_t2 = "", "SIN_AREA", _t2)
+		dataType: string
+		isHidden
+		lineageTag: bccc3618-486f-44a5-bc9a-b61e78e14f2b
+
+	column EstadoFormacion_Key =
+			VAR _t0 = UPPER(TRIM(SUBSTITUTE(COALESCE('Fct_PlanFormacion'[ESTADO DE FORMACIÓN], ""), UNICHAR(160), " ")))
+			VAR _t1 = SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(_t0, "Á", "A"), "É", "E"), "Í", "I"), "Ó", "O"), "Ú", "U"), "Ñ", "N")
+			VAR _t2 = SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(_t1, ".", ""), "  ", " "), "  ", " ")
+			RETURN IF(_t2 = "", "SIN_ESTADO", _t2)
+		dataType: string
+		isHidden
+		lineageTag: 56c9acc8-23b0-4f7f-9181-9b9f2c895bd4
+
+	column EntidadFormadora_Key =
+			VAR _t0 = UPPER(TRIM(SUBSTITUTE(COALESCE('Fct_PlanFormacion'[ENTIDAD], ""), UNICHAR(160), " ")))
+			VAR _t1 = SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(_t0, "Á", "A"), "É", "E"), "Í", "I"), "Ó", "O"), "Ú", "U"), "Ñ", "N")
+			VAR _t2 = SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(_t1, ".", ""), "  ", " "), "  ", " ")
+			RETURN IF(_t2 = "", "SIN_ENTIDAD", _t2)
+		dataType: string
+		isHidden
+		lineageTag: 16651004-e193-41f9-9ff8-cc2cfe86ac4a
+
+	partition Fct_PlanFormacion = m
+		mode: import
+		source =
+				let
+				    Origen = Excel.Workbook(Web.Contents("https://lemcosas.sharepoint.com/sites/TalentoHumanoGrupoLemco/Documentos compartidos/5. People analytics/04_Aprendizaje_y_Desarrollo/Data/Documento_Formación_Plan_de_formación_2026.xlsx"), null, true),
+				    Tabla1_Table = Origen{[Item="Tabla1",Kind="Table"]}[Data],
+				    #"Tipo cambiado" = Table.TransformColumnTypes(Tabla1_Table,{{"NOMBRE FORMACIÓN", type text}, {"OBJETIVO DE LA FORMACIÓN ", type text}, {"TIPO DE FORMACIÓN", type text}, {"AREA A FORMAR", type text}, {"PUBLICO OBJETIVO ", Int64.Type}, {"ASISTENCIA", Int64.Type}, {"HORAS DE FORMACIÓN ", Int64.Type}, {"NPS", type number}, {"EFICACIA", Int64.Type}, {"TOTAL DE HORAS DE FORMACIÓN ", Int64.Type}, {"FECHA DE FORMACIÓN", type date}, {"MES", type text}, {"ESTADO DE FORMACIÓN", type text}, {"RESPONSABLE DE LA EJECUCIÓN ", type text}, {"MODALIDAD", type text}, {"COSTO", Currency.Type}, {"ENTIDAD", type text}})
+				in
+				    #"Tipo cambiado"
+
+	annotation PBI_ResultType = Table
+

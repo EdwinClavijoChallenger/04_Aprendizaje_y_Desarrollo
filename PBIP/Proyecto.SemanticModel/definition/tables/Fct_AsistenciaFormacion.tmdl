@@ -1,0 +1,138 @@
+table Fct_AsistenciaFormacion
+	lineageTag: ad704d4e-9c6b-4654-8130-07525dd6f37b
+
+	column Id
+		dataType: int64
+		formatString: 0
+		lineageTag: dbc9268a-997a-45dd-bb12-e6a22e625d72
+		summarizeBy: count
+		sourceColumn: Id
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Hora de inicio'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 6a89e99f-01c5-4a85-8b8e-b8c63b402ac0
+		summarizeBy: none
+		sourceColumn: Hora de inicio
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Hora de finalización'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 2f102075-9b1b-43ab-b7d8-d3ed4dfac609
+		summarizeBy: none
+		sourceColumn: Hora de finalización
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Correo electrónico'
+		dataType: string
+		lineageTag: 60b364d1-9c31-46ff-9713-4dfebacaf78a
+		summarizeBy: none
+		sourceColumn: Correo electrónico
+
+		annotation SummarizationSetBy = Automatic
+
+	column Nombre
+		dataType: string
+		lineageTag: 6811d485-ff4d-4a83-868f-ad73563a7647
+		summarizeBy: none
+		sourceColumn: Nombre
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Número de documento del participante'
+		dataType: string
+		lineageTag: 1082b251-8a28-48d9-8256-4c33da8ad268
+		summarizeBy: none
+		sourceColumn: Número de documento del participante
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Nombre completo del participante '
+		dataType: string
+		lineageTag: f1ab35c0-7eca-427a-b279-9d9fa1c8126a
+		summarizeBy: none
+		sourceColumn: "Nombre completo del participante "
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Indícanos de qué empresa haces parte'
+		dataType: string
+		lineageTag: 8f990cd5-a3d2-46bf-ae4e-10d24c26b9b3
+		summarizeBy: none
+		sourceColumn: Indícanos de qué empresa haces parte
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Selecciona la formación en la que estás participando'
+		dataType: string
+		lineageTag: 0094fe5f-201d-4f99-a206-fc5af28b84dc
+		summarizeBy: none
+		sourceColumn: Selecciona la formación en la que estás participando
+
+		annotation SummarizationSetBy = Automatic
+
+	column Fecha_Asistencia = VAR _d = 'Fct_AsistenciaFormacion'[Hora de inicio] RETURN IF(ISBLANK(_d), BLANK(), DATE(YEAR(_d), MONTH(_d), DAY(_d)))
+		dataType: dateTime
+		isHidden
+		formatString: Short Date
+		lineageTag: 19ab9659-77df-463f-9983-a7b5e99be3b4
+
+	column TemaFormacion_Key =
+			VAR _t0 = UPPER(TRIM(SUBSTITUTE(COALESCE('Fct_AsistenciaFormacion'[Selecciona la formación en la que estás participando], ""), UNICHAR(160), " ")))
+			VAR _t1 = SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(_t0, "Á", "A"), "É", "E"), "Í", "I"), "Ó", "O"), "Ú", "U"), "Ñ", "N")
+			VAR _t2 = SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(_t1, ".", ""), "  ", " "), "  ", " ")
+			RETURN IF(_t2 = "", "", _t2)
+		dataType: string
+		isHidden
+		lineageTag: e3c09bbf-9c98-4550-9c68-6dd517c570b9
+
+	column Empresa_Key =
+			VAR _t0 = UPPER(TRIM(SUBSTITUTE(COALESCE('Fct_AsistenciaFormacion'[Indícanos de qué empresa haces parte], ""), UNICHAR(160), " ")))
+			VAR _t1 = SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(_t0, "Á", "A"), "É", "E"), "Í", "I"), "Ó", "O"), "Ú", "U"), "Ñ", "N")
+			VAR _t2 = SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(_t1, ".", ""), "  ", " "), "  ", " ")
+			RETURN
+			    SWITCH(
+			        TRUE(),
+			        _t2 = "", "SIN_EMPRESA",
+			        _t2 IN { "CHALLENGER SAS", "CHALLENGER S A S" }, "CHALLENGER SAS",
+			        _t2 IN { "LEMCO SAS", "LEMCO S A S" }, "LEMCO SAS",
+			        CONTAINSSTRING(_t2, "FUNDACION CHALLENGER"), "FUNDACION CHALLENGER",
+			        _t2
+			    )
+		dataType: string
+		isHidden
+		lineageTag: 6b934393-b199-4710-9614-ab5312e4a9cc
+
+	column Colaborador_Key =
+			VAR _doc0 = UPPER(TRIM(SUBSTITUTE(COALESCE('Fct_AsistenciaFormacion'[Número de documento del participante], ""), UNICHAR(160), " ")))
+			VAR _doc1 = SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(_doc0, ".", ""), ",", ""), " ", "")
+			VAR _fecha = 'Fct_AsistenciaFormacion'[Hora de inicio]
+			RETURN
+			    IF(
+			        _doc1 = "" || ISBLANK(_fecha),
+			        BLANK(),
+			        _doc1 & "-" & FORMAT(_fecha, "yyyy-MM")
+			    )
+		dataType: string
+		isHidden
+		lineageTag: 053d350a-7dc5-46fe-baf5-ffb741b37fd1
+
+	partition Fct_AsistenciaFormacion = m
+		mode: import
+		source =
+				let
+				    Origen = Excel.Workbook(Web.Contents("https://lemcosas.sharepoint.com/sites/TalentoHumanoGrupoLemco/Documentos%20compartidos/5.%20People%20analytics/04_Aprendizaje_y_Desarrollo/Data/Registra%20tu%20asistencia%20al%20proceso%20de%20formaci%C3%B3n.xlsx"), null, true),
+				    OfficeForms.Table_Table = Origen{[Item="OfficeForms.Table",Kind="Table"]}[Data],
+				    #"Tipo cambiado" = Table.TransformColumnTypes(OfficeForms.Table_Table,{{"Id", Int64.Type}, {"Hora de inicio", type datetime}, {"Hora de finalización", type datetime}, {"Correo electrónico", type text}, {"Nombre", type any}, {"Número de documento del participante", type text}, {"Nombre completo del participante ", type text}, {"Indícanos de qué empresa haces parte", type text}, {"Selecciona la formación en la que estás participando", type text}})
+				in
+				    #"Tipo cambiado"
+
+	annotation PBI_NavigationStepName = Navegación
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,246 @@
+table Fct_Induccion
+	lineageTag: 00d711c6-2e9f-4403-85c8-4a37e12a4afd
+
+	column Cohorte_Fuente
+		dataType: string
+		lineageTag: 67d71d0c-26d7-4b6a-9153-1c9778919821
+		sourceColumn: [Cohorte_Fuente]
+
+	column SegmentoUC_Key
+		dataType: string
+		isHidden
+		lineageTag: 9afef41b-0696-475b-8a42-ad547143af5f
+		sourceColumn: [SegmentoUC_Key]
+
+	column Colaborador_Key
+		dataType: string
+		isHidden
+		lineageTag: 3e3c8506-1a22-44f1-9edf-455e1b813e80
+		sourceColumn: [Colaborador_Key]
+
+	column Nombres
+		dataType: string
+		isHidden
+		lineageTag: e487681a-78cb-463d-8171-1ba69affe5b9
+		sourceColumn: [Nombres]
+
+	column Apellidos
+		dataType: string
+		isHidden
+		lineageTag: 5d336665-4586-4432-9967-286900a814cd
+		sourceColumn: [Apellidos]
+
+	column Correo
+		dataType: string
+		isHidden
+		lineageTag: 2e1ab6f7-49a2-40ef-8427-fec4be4ddbae
+		sourceColumn: [Correo]
+
+	column Ciudad
+		dataType: string
+		lineageTag: af8d371e-0e0a-4787-bf0e-f9e3c335c274
+		sourceColumn: [Ciudad]
+
+	column Empresa_Key
+		dataType: string
+		isHidden
+		lineageTag: b8f2319a-3818-44a3-abd1-c3cf70de539f
+		sourceColumn: [Empresa_Key]
+
+	column Area_Key
+		dataType: string
+		isHidden
+		lineageTag: 16d366b2-da0e-41f5-aa23-da9398e2aa7c
+		sourceColumn: [Area_Key]
+
+	column Cargo
+		dataType: string
+		isHidden
+		lineageTag: 49c9d139-b18d-44d2-8749-559759c693b4
+		sourceColumn: [Cargo]
+
+	column Gerencia
+		dataType: string
+		lineageTag: 62f59f62-9976-4e7a-a5e2-1191132f5062
+		sourceColumn: [Gerencia]
+
+	column Fecha_Ingreso
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: eff0f5c5-39e6-4501-9a0a-b8c794b8ca65
+		sourceColumn: [Fecha_Ingreso]
+
+	column Fecha_Certificado
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 46422bf4-4b88-411b-b8dd-b12614e1919a
+		sourceColumn: [Fecha_Certificado]
+
+	column EstadoInduccion_Key
+		dataType: string
+		isHidden
+		lineageTag: 3d7ed26e-85d5-4073-8608-2aba12e1c159
+		sourceColumn: [EstadoInduccion_Key]
+
+	column Horas_Induccion
+		dataType: int64
+		formatString: 0
+		lineageTag: 9724de44-1120-44a9-a917-a042351859a6
+		sourceColumn: [Horas_Induccion]
+
+	column Min_Entrenamiento
+		dataType: int64
+		formatString: 0
+		lineageTag: 6112f66f-4c91-4898-b652-2de9a02fef64
+		sourceColumn: [Min_Entrenamiento]
+
+	column Estado_Colaborador
+		dataType: string
+		lineageTag: dd543d25-c7d1-42d5-a012-691852d38277
+		sourceColumn: [Estado_Colaborador]
+
+	column Tiempo_Finalizacion_Dias
+		dataType: int64
+		formatString: 0
+		lineageTag: e70c3102-0a14-404f-9ff5-375ac01cd6d4
+		sourceColumn: [Tiempo_Finalizacion_Dias]
+
+	partition Fct_Induccion = calculated
+		mode: import
+		source =
+				VAR _Antes =
+				    SELECTCOLUMNS(
+				        'Fct_InduccionColaborador_antes_de_UC_2025',
+				        "Cohorte_Fuente", "Antes_UC_2025",
+				        "SegmentoUC_Key", "Antes_UC",
+				        "Colaborador_Key", FORMAT('Fct_InduccionColaborador_antes_de_UC_2025'[ID], "0"),
+				        "Nombres", 'Fct_InduccionColaborador_antes_de_UC_2025'[NOMBRES],
+				        "Apellidos", 'Fct_InduccionColaborador_antes_de_UC_2025'[APELLIDOS],
+				        "Correo", 'Fct_InduccionColaborador_antes_de_UC_2025'[CORREO],
+				        "Ciudad", 'Fct_InduccionColaborador_antes_de_UC_2025'[CIUDAD],
+				        "Empresa_Key", VAR _t0 = UPPER(TRIM(SUBSTITUTE(COALESCE('Fct_InduccionColaborador_antes_de_UC_2025'[EMPRESA], ""), UNICHAR(160), " ")))
+				VAR _t1 = SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(_t0, "Á", "A"), "É", "E"), "Í", "I"), "Ó", "O"), "Ú", "U"), "Ñ", "N")
+				VAR _t2 = SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(_t1, ".", ""), "  ", " "), "  ", " ")
+				RETURN
+				    SWITCH(
+				        TRUE(),
+				        _t2 = "", "SIN_EMPRESA",
+				        _t2 IN { "CHALLENGER SAS", "CHALLENGER S A S" }, "CHALLENGER SAS",
+				        _t2 IN { "LEMCO SAS", "LEMCO S A S" }, "LEMCO SAS",
+				        CONTAINSSTRING(_t2, "FUNDACION CHALLENGER"), "FUNDACION CHALLENGER",
+				        _t2
+				    ),
+				        "Area_Key", VAR _t0 = UPPER(TRIM(SUBSTITUTE(COALESCE('Fct_InduccionColaborador_antes_de_UC_2025'[DEPENDENCIA], ""), UNICHAR(160), " ")))
+				VAR _t1 = SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(_t0, "Á", "A"), "É", "E"), "Í", "I"), "Ó", "O"), "Ú", "U"), "Ñ", "N")
+				VAR _t2 = SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(_t1, ".", ""), "  ", " "), "  ", " ")
+				RETURN IF(_t2 = "", "SIN_AREA", _t2),
+				        "Cargo", 'Fct_InduccionColaborador_antes_de_UC_2025'[CARGO],
+				        "Gerencia", 'Fct_InduccionColaborador_antes_de_UC_2025'[GERENCIA O DIRECCIÓN],
+				        "Fecha_Ingreso", VAR _d = 'Fct_InduccionColaborador_antes_de_UC_2025'[FECHA_INGRESO] RETURN IF(ISBLANK(_d), BLANK(), DATE(YEAR(_d), MONTH(_d), DAY(_d))),
+				        "Fecha_Certificado", VAR _d = 'Fct_InduccionColaborador_antes_de_UC_2025'[Fecha Certificado] RETURN IF(ISBLANK(_d), BLANK(), DATE(YEAR(_d), MONTH(_d), DAY(_d))),
+				        "EstadoInduccion_Key", VAR _t0 = UPPER(TRIM(SUBSTITUTE(COALESCE('Fct_InduccionColaborador_antes_de_UC_2025'[Estado], ""), UNICHAR(160), " ")))
+				VAR _t1 = SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(_t0, "Á", "A"), "É", "E"), "Í", "I"), "Ó", "O"), "Ú", "U"), "Ñ", "N")
+				RETURN
+				    SWITCH(
+				        TRUE(),
+				        _t1 = "", "SIN_ESTADO",
+				        _t1 = "NO APROBO", "NO_APROBO",
+				        _t1
+				    ),
+				        "Horas_Induccion", 'Fct_InduccionColaborador_antes_de_UC_2025'[Horas de inducción],
+				        "Min_Entrenamiento", 'Fct_InduccionColaborador_antes_de_UC_2025'[Min de entrenamientos],
+				        "Estado_Colaborador", 'Fct_InduccionColaborador_antes_de_UC_2025'[Estado del colaborador],
+				        "Tiempo_Finalizacion_Dias", VAR _fi = 'Fct_InduccionColaborador_antes_de_UC_2025'[FECHA_INGRESO] VAR _fc = 'Fct_InduccionColaborador_antes_de_UC_2025'[Fecha Certificado] RETURN IF(NOT ISBLANK(_fi) && NOT ISBLANK(_fc), DATEDIFF(_fi, _fc, DAY), BLANK())
+				    )
+				VAR _UC2025 =
+				    SELECTCOLUMNS(
+				        'Fct_InduccionColaborador_UC_2025',
+				        "Cohorte_Fuente", "UC_2025",
+				        "SegmentoUC_Key", VAR _d = 'Fct_InduccionColaborador_UC_2025'[FECHA_INGRESO] RETURN IF(NOT ISBLANK(_d) && _d < DATE(2025, 7, 4), "Antes_UC", "UC_2025"),
+				        "Colaborador_Key", FORMAT('Fct_InduccionColaborador_UC_2025'[CEDULA], "0"),
+				        "Nombres", 'Fct_InduccionColaborador_UC_2025'[NOMBRES],
+				        "Apellidos", 'Fct_InduccionColaborador_UC_2025'[APELLIDOS],
+				        "Correo", 'Fct_InduccionColaborador_UC_2025'[CORREO],
+				        "Ciudad", 'Fct_InduccionColaborador_UC_2025'[CIUDAD],
+				        "Empresa_Key", VAR _t0 = UPPER(TRIM(SUBSTITUTE(COALESCE('Fct_InduccionColaborador_UC_2025'[EMPRESA], ""), UNICHAR(160), " ")))
+				VAR _t1 = SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(_t0, "Á", "A"), "É", "E"), "Í", "I"), "Ó", "O"), "Ú", "U"), "Ñ", "N")
+				VAR _t2 = SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(_t1, ".", ""), "  ", " "), "  ", " ")
+				RETURN
+				    SWITCH(
+				        TRUE(),
+				        _t2 = "", "SIN_EMPRESA",
+				        _t2 IN { "CHALLENGER SAS", "CHALLENGER S A S" }, "CHALLENGER SAS",
+				        _t2 IN { "LEMCO SAS", "LEMCO S A S" }, "LEMCO SAS",
+				        CONTAINSSTRING(_t2, "FUNDACION CHALLENGER"), "FUNDACION CHALLENGER",
+				        _t2
+				    ),
+				        "Area_Key", VAR _t0 = UPPER(TRIM(SUBSTITUTE(COALESCE('Fct_InduccionColaborador_UC_2025'[DEPENDENCIA], ""), UNICHAR(160), " ")))
+				VAR _t1 = SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(_t0, "Á", "A"), "É", "E"), "Í", "I"), "Ó", "O"), "Ú", "U"), "Ñ", "N")
+				VAR _t2 = SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(_t1, ".", ""), "  ", " "), "  ", " ")
+				RETURN IF(_t2 = "", "SIN_AREA", _t2),
+				        "Cargo", 'Fct_InduccionColaborador_UC_2025'[CARGO],
+				        "Gerencia", 'Fct_InduccionColaborador_UC_2025'[GERENCIA O DIRECCIÓN],
+				        "Fecha_Ingreso", VAR _d = 'Fct_InduccionColaborador_UC_2025'[FECHA_INGRESO] RETURN IF(ISBLANK(_d), BLANK(), DATE(YEAR(_d), MONTH(_d), DAY(_d))),
+				        "Fecha_Certificado", VAR _d = 'Fct_InduccionColaborador_UC_2025'[Fecha Certificado] RETURN IF(ISBLANK(_d), BLANK(), DATE(YEAR(_d), MONTH(_d), DAY(_d))),
+				        "EstadoInduccion_Key", VAR _t0 = UPPER(TRIM(SUBSTITUTE(COALESCE('Fct_InduccionColaborador_UC_2025'[Estado], ""), UNICHAR(160), " ")))
+				VAR _t1 = SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(_t0, "Á", "A"), "É", "E"), "Í", "I"), "Ó", "O"), "Ú", "U"), "Ñ", "N")
+				RETURN
+				    SWITCH(
+				        TRUE(),
+				        _t1 = "", "SIN_ESTADO",
+				        _t1 = "NO APROBO", "NO_APROBO",
+				        _t1
+				    ),
+				        "Horas_Induccion", 'Fct_InduccionColaborador_UC_2025'[Horas de inducción],
+				        "Min_Entrenamiento", 'Fct_InduccionColaborador_UC_2025'[Min de entrenamientos],
+				        "Estado_Colaborador", 'Fct_InduccionColaborador_UC_2025'[Estado del colaborador],
+				        "Tiempo_Finalizacion_Dias", VAR _fi = 'Fct_InduccionColaborador_UC_2025'[FECHA_INGRESO] VAR _fc = 'Fct_InduccionColaborador_UC_2025'[Fecha Certificado] RETURN IF(NOT ISBLANK(_fi) && NOT ISBLANK(_fc), DATEDIFF(_fi, _fc, DAY), BLANK())
+				    )
+				VAR _UC2026 =
+				    SELECTCOLUMNS(
+				        'Fct_InduccionColaborador_UC_2026',
+				        "Cohorte_Fuente", "UC_2026",
+				        "SegmentoUC_Key", "UC_2026",
+				        "Colaborador_Key", FORMAT('Fct_InduccionColaborador_UC_2026'[CEDULA], "0"),
+				        "Nombres", 'Fct_InduccionColaborador_UC_2026'[NOMBRES],
+				        "Apellidos", 'Fct_InduccionColaborador_UC_2026'[APELLIDOS],
+				        "Correo", 'Fct_InduccionColaborador_UC_2026'[CORREO],
+				        "Ciudad", 'Fct_InduccionColaborador_UC_2026'[CIUDAD],
+				        "Empresa_Key", VAR _t0 = UPPER(TRIM(SUBSTITUTE(COALESCE('Fct_InduccionColaborador_UC_2026'[EMPRESA], ""), UNICHAR(160), " ")))
+				VAR _t1 = SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(_t0, "Á", "A"), "É", "E"), "Í", "I"), "Ó", "O"), "Ú", "U"), "Ñ", "N")
+				VAR _t2 = SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(_t1, ".", ""), "  ", " "), "  ", " ")
+				RETURN
+				    SWITCH(
+				        TRUE(),
+				        _t2 = "", "SIN_EMPRESA",
+				        _t2 IN { "CHALLENGER SAS", "CHALLENGER S A S" }, "CHALLENGER SAS",
+				        _t2 IN { "LEMCO SAS", "LEMCO S A S" }, "LEMCO SAS",
+				        CONTAINSSTRING(_t2, "FUNDACION CHALLENGER"), "FUNDACION CHALLENGER",
+				        _t2
+				    ),
+				        "Area_Key", VAR _t0 = UPPER(TRIM(SUBSTITUTE(COALESCE('Fct_InduccionColaborador_UC_2026'[DEPENDENCIA], ""), UNICHAR(160), " ")))
+				VAR _t1 = SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(_t0, "Á", "A"), "É", "E"), "Í", "I"), "Ó", "O"), "Ú", "U"), "Ñ", "N")
+				VAR _t2 = SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(_t1, ".", ""), "  ", " "), "  ", " ")
+				RETURN IF(_t2 = "", "SIN_AREA", _t2),
+				        "Cargo", 'Fct_InduccionColaborador_UC_2026'[CARGO],
+				        "Gerencia", 'Fct_InduccionColaborador_UC_2026'[GERENCIA O DIRECCIÓN],
+				        "Fecha_Ingreso", VAR _d = 'Fct_InduccionColaborador_UC_2026'[FECHA_INGRESO] RETURN IF(ISBLANK(_d), BLANK(), DATE(YEAR(_d), MONTH(_d), DAY(_d))),
+				        "Fecha_Certificado", VAR _txt = TRIM(SUBSTITUTE('Fct_InduccionColaborador_UC_2026'[Fecha Certificado], UNICHAR(160), " ")) RETURN IFERROR(DATEVALUE(_txt), BLANK()),
+				        "EstadoInduccion_Key", VAR _t0 = UPPER(TRIM(SUBSTITUTE(COALESCE('Fct_InduccionColaborador_UC_2026'[Estado], ""), UNICHAR(160), " ")))
+				VAR _t1 = SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(_t0, "Á", "A"), "É", "E"), "Í", "I"), "Ó", "O"), "Ú", "U"), "Ñ", "N")
+				RETURN
+				    SWITCH(
+				        TRUE(),
+				        _t1 = "", "SIN_ESTADO",
+				        _t1 = "NO APROBO", "NO_APROBO",
+				        _t1
+				    ),
+				        "Horas_Induccion", 'Fct_InduccionColaborador_UC_2026'[Horas de inducción],
+				        "Min_Entrenamiento", 'Fct_InduccionColaborador_UC_2026'[Min de entrenamientos],
+				        "Estado_Colaborador", 'Fct_InduccionColaborador_UC_2026'[Estado del colaborador],
+				        "Tiempo_Finalizacion_Dias", VAR _fi = 'Fct_InduccionColaborador_UC_2026'[FECHA_INGRESO] VAR _txt = TRIM(SUBSTITUTE('Fct_InduccionColaborador_UC_2026'[Fecha Certificado], UNICHAR(160), " ")) VAR _fc = IFERROR(DATEVALUE(_txt), BLANK()) RETURN IF(NOT ISBLANK(_fi) && NOT ISBLANK(_fc), DATEDIFF(_fi, _fc, DAY), BLANK())
+				    )
+				VAR _Base = UNION(_Antes, _UC2025, _UC2026)
+				RETURN
+				    FILTER(_Base, [Colaborador_Key] <> "" && NOT ISBLANK([Fecha_Ingreso]))
+

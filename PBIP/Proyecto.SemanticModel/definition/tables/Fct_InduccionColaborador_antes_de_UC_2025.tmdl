@@ -1,0 +1,317 @@
+table Fct_InduccionColaborador_antes_de_UC_2025
+	lineageTag: 19f455e0-2673-40d9-a766-3e835c8d9cfe
+
+	column ID
+		dataType: int64
+		formatString: 0
+		lineageTag: 2a63eb37-1ea7-47c2-b4ed-a95c04aec7b3
+		summarizeBy: count
+		sourceColumn: ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column NOMBRES
+		dataType: string
+		lineageTag: 98afa7f8-5def-4e68-98bb-7cf554e6687d
+		summarizeBy: none
+		sourceColumn: NOMBRES
+
+		annotation SummarizationSetBy = Automatic
+
+	column APELLIDOS
+		dataType: string
+		lineageTag: 64ff4144-0b17-4ffe-80ed-542c90fdb410
+		summarizeBy: none
+		sourceColumn: APELLIDOS
+
+		annotation SummarizationSetBy = Automatic
+
+	column CORREO
+		dataType: string
+		lineageTag: c578e0b6-833c-4821-9cd7-c6a868eeea20
+		summarizeBy: none
+		sourceColumn: CORREO
+
+		annotation SummarizationSetBy = Automatic
+
+	column CIUDAD
+		dataType: string
+		lineageTag: 02a0905f-dd10-43b4-8355-cbeb0bb6631e
+		summarizeBy: none
+		sourceColumn: CIUDAD
+
+		annotation SummarizationSetBy = Automatic
+
+	column EMPRESA
+		dataType: string
+		lineageTag: ce8ed49f-cdf8-414d-b4c6-c175522034f3
+		summarizeBy: none
+		sourceColumn: EMPRESA
+
+		annotation SummarizationSetBy = Automatic
+
+	column CARGO
+		dataType: string
+		lineageTag: 0cf4e1a5-c646-4775-87ac-bb72bebf3787
+		summarizeBy: none
+		sourceColumn: CARGO
+
+		annotation SummarizationSetBy = Automatic
+
+	column DEPENDENCIA
+		dataType: string
+		lineageTag: 0e156a16-2b7b-408f-b881-c1dc2ce3d90a
+		summarizeBy: none
+		sourceColumn: DEPENDENCIA
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'GERENCIA O DIRECCIÓN'
+		dataType: string
+		lineageTag: 3206ed14-4403-4af4-952a-2d75f874c67b
+		summarizeBy: none
+		sourceColumn: GERENCIA O DIRECCIÓN
+
+		annotation SummarizationSetBy = Automatic
+
+	column JEFE_INMEDIATO
+		dataType: string
+		lineageTag: 0ac8e2ae-8622-4b39-a021-5f92c16d0061
+		summarizeBy: none
+		sourceColumn: JEFE_INMEDIATO
+
+		annotation SummarizationSetBy = Automatic
+
+	column FECHA_INGRESO
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 96837742-efd0-4609-8e75-b4338a2e84c8
+		summarizeBy: none
+		sourceColumn: FECHA_INGRESO
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column AÑO
+		dataType: int64
+		formatString: 0
+		lineageTag: 94e0bca7-15f0-4915-b5ae-5cd9bab98709
+		summarizeBy: sum
+		sourceColumn: AÑO
+
+		annotation SummarizationSetBy = Automatic
+
+	column FECHA_INGRESO2
+		dataType: string
+		lineageTag: ddcc3c80-5b6e-4ba7-92e4-f8179a98e75f
+		summarizeBy: none
+		sourceColumn: FECHA_INGRESO2
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'TIPO CONTRATO'
+		dataType: string
+		lineageTag: 3444c49b-6892-4f05-8dc0-1820fbbe25a1
+		summarizeBy: none
+		sourceColumn: TIPO CONTRATO
+
+		annotation SummarizationSetBy = Automatic
+
+	column TELEFONO
+		dataType: int64
+		formatString: 0
+		lineageTag: 4b959e85-2539-4bef-b9e1-dc74771f908e
+		summarizeBy: sum
+		sourceColumn: TELEFONO
+
+		annotation SummarizationSetBy = Automatic
+
+	column CURSO
+		dataType: string
+		lineageTag: 837dd495-ded9-4050-b1ba-8b87dc41cbfe
+		summarizeBy: none
+		sourceColumn: CURSO
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Módulo 1 Familia Challenger'
+		dataType: int64
+		formatString: 0
+		lineageTag: 76019700-cfe6-4be0-be27-522ac88b385c
+		summarizeBy: sum
+		sourceColumn: Módulo 1 Familia Challenger
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Modulo 8 PDP'
+		dataType: double
+		lineageTag: 56523d50-9cbc-45b4-8a8d-59742fe2d348
+		summarizeBy: sum
+		sourceColumn: Modulo 8 PDP
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Modulo 8.2 spla'
+		dataType: int64
+		formatString: 0
+		lineageTag: d917a5f9-b9be-4203-b1de-34fbed0917d4
+		summarizeBy: sum
+		sourceColumn: Modulo 8.2 spla
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Modulo 8.3 ptele'
+		dataType: double
+		lineageTag: c82121f2-7d27-4ce5-a8e2-71f3bdf42ca0
+		summarizeBy: sum
+		sourceColumn: Modulo 8.3 ptele
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Módulo 2 Adm del Personal'
+		dataType: double
+		lineageTag: 67da317c-55a9-49cc-a79e-abb6929e522b
+		summarizeBy: sum
+		sourceColumn: Módulo 2 Adm del Personal
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Módulo 3 Módulo Seguridad de la Información'
+		dataType: double
+		lineageTag: 4c57507c-3855-4c49-8ec7-83f4936087d0
+		summarizeBy: sum
+		sourceColumn: Módulo 3 Módulo Seguridad de la Información
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Módulo 5 Sistema de Gestión de Calidad'
+		dataType: double
+		lineageTag: 054ef0a7-a4ea-4626-8853-93753f0ffe63
+		summarizeBy: sum
+		sourceColumn: Módulo 5 Sistema de Gestión de Calidad
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Módulo 4 Seguridad y Salud en el Trabajo'
+		dataType: int64
+		formatString: 0
+		lineageTag: 8c2baccc-c212-4de0-9441-fa534c41746f
+		summarizeBy: sum
+		sourceColumn: Módulo 4 Seguridad y Salud en el Trabajo
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Módulo 7 Seguridad Física'
+		dataType: int64
+		formatString: 0
+		lineageTag: 04a50ee8-a15d-42ac-8478-0757cfd6d899
+		summarizeBy: sum
+		sourceColumn: Módulo 7 Seguridad Física
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Promedio '
+		dataType: double
+		lineageTag: 358e0652-ecd7-42ec-be98-783e675bebde
+		summarizeBy: sum
+		sourceColumn: "Promedio "
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Estado
+		dataType: string
+		lineageTag: c89be463-7bfd-4565-bea1-6ea7f7a9972b
+		summarizeBy: none
+		sourceColumn: Estado
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Fecha Certificado'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 7ec68a5e-c205-4625-98ca-edc375d87404
+		summarizeBy: none
+		sourceColumn: Fecha Certificado
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Entrenamiento '
+		dataType: string
+		lineageTag: 2dc9bf3c-bba6-41ac-b7c4-5f65655fc1ad
+		summarizeBy: none
+		sourceColumn: "Entrenamiento "
+
+		annotation SummarizationSetBy = Automatic
+
+	column Archivo
+		dataType: string
+		lineageTag: 97504431-8c87-45f6-ad7b-15926d9f65a5
+		summarizeBy: none
+		sourceColumn: Archivo
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Horas de inducción'
+		dataType: int64
+		formatString: 0
+		lineageTag: 96e7b98d-5951-4b67-a356-dfb18d8f09ff
+		summarizeBy: sum
+		sourceColumn: Horas de inducción
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Horas de entrenamiento '
+		dataType: int64
+		formatString: 0
+		lineageTag: 463cb687-bf22-4cde-a55e-66c2638f8136
+		summarizeBy: sum
+		sourceColumn: "Horas de entrenamiento "
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Min de entrenamientos'
+		dataType: int64
+		formatString: 0
+		lineageTag: adbac2a7-4c37-4463-9869-7d24d889c094
+		summarizeBy: sum
+		sourceColumn: Min de entrenamientos
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Estado del colaborador'
+		dataType: string
+		lineageTag: 695ed9f1-49da-4181-b9b3-1ce178bce764
+		summarizeBy: none
+		sourceColumn: Estado del colaborador
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Fct_InduccionColaborador_antes_de_UC_2025 = m
+		mode: import
+		source =
+				let
+				    Origen = Excel.Workbook(Web.Contents("https://lemcosas.sharepoint.com/sites/TalentoHumanoGrupoLemco/Documentos%20compartidos/5.%20People%20analytics/04_Aprendizaje_y_Desarrollo/Data/Seguimiento%20Inducci%C3%B3n%20Challenger%20-%20Lemco%20-%20Fundaci%C3%B3n%202026.xlsx"), null, true),
+				    Tabla2_Table = Origen{[Item="Tabla2",Kind="Table"]}[Data],
+				    #"Tipo cambiado" = Table.TransformColumnTypes(Tabla2_Table,{{"ID", Int64.Type}, {"NOMBRES", type text}, {"APELLIDOS", type text}, {"CORREO", type text}, {"CIUDAD", type text}, {"EMPRESA", type text}, {"CARGO", type text}, {"DEPENDENCIA", type text}, {"GERENCIA O DIRECCIÓN", type text}, {"JEFE_INMEDIATO", type text}, {"FECHA_INGRESO", type date}, {"AÑO", Int64.Type}, {"FECHA_INGRESO2", type text}, {"TIPO CONTRATO", type text}, {"TELEFONO", Int64.Type}, {"CURSO", type text}, {"Módulo 1 Familia Challenger", Int64.Type}, {"Modulo 8 PDP", type number}, {"Modulo 8.2 spla", Int64.Type}, {"Modulo 8.3 ptele", type number}, {"Módulo 2 Adm del Personal", type number}, {"Módulo 3 Módulo Seguridad de la Información", type number}, {"Módulo 5 Sistema de Gestión de Calidad", type number}, {"Módulo 4 Seguridad y Salud en el Trabajo", Int64.Type}, {"Módulo 7 Seguridad Física", Int64.Type}, {"Promedio ", type number}, {"Estado", type text}, {"Fecha Certificado", type date}, {"Entrenamiento ", type text}, {"Archivo", type any}, {"Horas de inducción", Int64.Type}, {"Horas de entrenamiento ", Int64.Type}, {"Min de entrenamientos", Int64.Type}, {"Estado del colaborador", type text}})
+				in
+				    #"Tipo cambiado"
+
+	annotation PBI_NavigationStepName = Navegación
+
+	annotation PBI_ResultType = Table
+
