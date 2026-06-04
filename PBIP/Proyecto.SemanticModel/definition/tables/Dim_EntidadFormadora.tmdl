@@ -1,0 +1,18 @@
+table Dim_EntidadFormadora
+	lineageTag: 6957edf4-9604-4321-aff4-9479ecea186d
+
+	column EntidadFormadora_Key
+		dataType: string
+		isHidden
+		lineageTag: 8ce0c56f-8345-447d-aa81-fdf2467489bb
+		sourceColumn: [EntidadFormadora_Key]
+
+	column EntidadFormadora
+		dataType: string
+		lineageTag: f2f9230f-8436-4c80-a4fa-63a4b6de7c4d
+		sourceColumn: [EntidadFormadora]
+
+	partition Dim_EntidadFormadora = calculated
+		mode: import
+		source = ADDCOLUMNS(DISTINCT(SELECTCOLUMNS('Fct_PlanFormacion', "EntidadFormadora_Key", 'Fct_PlanFormacion'[EntidadFormadora_Key])), "EntidadFormadora", [EntidadFormadora_Key])
+

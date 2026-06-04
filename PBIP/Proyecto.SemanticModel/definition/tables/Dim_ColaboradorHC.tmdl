@@ -1,0 +1,179 @@
+table Dim_ColaboradorHC
+	lineageTag: 13b1210c-8e24-4968-968e-4ade97191eed
+
+	column Colaborador_Key
+		dataType: string
+		lineageTag: 4a936c31-60a6-44d6-b6d6-419f69d58910
+		summarizeBy: none
+		sourceColumn: Colaborador_Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column Numero_Documento
+		dataType: int64
+		formatString: 0
+		lineageTag: 956fef87-6ef0-4dda-b444-4ec02e4ab9df
+		summarizeBy: sum
+		sourceColumn: Numero_Documento
+
+		annotation SummarizationSetBy = Automatic
+
+	column Tipo_Documento
+		dataType: string
+		lineageTag: 4e62ab19-1da7-491b-a987-012c58b2cbd1
+		summarizeBy: none
+		sourceColumn: Tipo_Documento
+
+		annotation SummarizationSetBy = Automatic
+
+	column Nombre_Completo
+		dataType: string
+		lineageTag: 2b4f3025-a50c-4593-936f-34e090f94cd7
+		summarizeBy: none
+		sourceColumn: Nombre_Completo
+
+		annotation SummarizationSetBy = Automatic
+
+	column Fecha_Corte_HC
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 31c92406-a2bc-4990-8ab2-c232b978d6b4
+		summarizeBy: none
+		sourceColumn: Fecha_Corte_HC
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column AnioMes_Corte
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 2b067c65-e04f-4a8b-9cd6-4be54e910e29
+		summarizeBy: none
+		sourceColumn: AnioMes_Corte
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'AGRUPACIÓN EMPRESA'
+		dataType: string
+		lineageTag: 7d635479-6909-4aa5-9f11-4ccdaeb18593
+		summarizeBy: none
+		sourceColumn: AGRUPACIÓN EMPRESA
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'UNIDAD DE NEGOCIO | CLASE DE NÓMINA'
+		dataType: string
+		lineageTag: b1e6f292-fd29-4e27-8517-42d8ff2c9224
+		summarizeBy: none
+		sourceColumn: UNIDAD DE NEGOCIO | CLASE DE NÓMINA
+
+		annotation SummarizationSetBy = Automatic
+
+	column DEPENDENCIA
+		dataType: string
+		lineageTag: 3944df30-f358-43ea-9003-ae4a1c2eb86b
+		summarizeBy: none
+		sourceColumn: DEPENDENCIA
+
+		annotation SummarizationSetBy = Automatic
+
+	column AREA
+		dataType: string
+		lineageTag: c772b680-71b5-4d24-8e1a-88a953ca4b60
+		summarizeBy: none
+		sourceColumn: AREA
+
+		annotation SummarizationSetBy = Automatic
+
+	column Centro_Costo
+		dataType: string
+		lineageTag: 0a5a4b00-5c27-4ac3-866e-76c3529452db
+		summarizeBy: none
+		sourceColumn: Centro_Costo
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cargo
+		dataType: string
+		lineageTag: 5f8ac2ed-3011-4f6d-8043-f41fe94228bf
+		summarizeBy: none
+		sourceColumn: Cargo
+
+		annotation SummarizationSetBy = Automatic
+
+	column Nivel_Cargo
+		dataType: string
+		lineageTag: 812b5c45-8e30-472c-b95d-7c27f3ecf4f2
+		summarizeBy: none
+		sourceColumn: Nivel_Cargo
+
+		annotation SummarizationSetBy = Automatic
+
+	column Tipo_Cargo
+		dataType: string
+		lineageTag: 2ded896c-e188-4d6c-bc0e-0adfab14bbb6
+		summarizeBy: none
+		sourceColumn: Tipo_Cargo
+
+		annotation SummarizationSetBy = Automatic
+
+	column Tipo_Contrato
+		dataType: string
+		lineageTag: acdf81b9-e2b1-4c4c-8d17-03c8b69ba268
+		summarizeBy: none
+		sourceColumn: Tipo_Contrato
+
+		annotation SummarizationSetBy = Automatic
+
+	column Modalidad_Trabajo
+		dataType: string
+		lineageTag: e548a796-bb0c-45e7-a6b5-7cb0936140dd
+		summarizeBy: none
+		sourceColumn: Modalidad_Trabajo
+
+		annotation SummarizationSetBy = Automatic
+
+	column Fecha_Ingreso
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 6c45cbc8-39e4-46b5-9abe-7d089ce73330
+		summarizeBy: none
+		sourceColumn: Fecha_Ingreso
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Antiguedad_Meses
+		dataType: int64
+		formatString: 0
+		lineageTag: 16512f96-2b5d-4b9f-be02-2a2b6d68bdd5
+		summarizeBy: sum
+		sourceColumn: Antiguedad_Meses
+
+		annotation SummarizationSetBy = Automatic
+
+	column Estado_HC
+		dataType: string
+		lineageTag: 95804936-79b3-4d22-9fe9-66de270adf8d
+		summarizeBy: none
+		sourceColumn: Estado_HC
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Dim_ColaboradorHC = m
+		mode: import
+		source =
+				let
+				    Origen = Excel.Workbook(Web.Contents("https://lemcosas.sharepoint.com/sites/TalentoHumanoGrupoLemco/Documentos compartidos/5. People analytics/04_Aprendizaje_y_Desarrollo/Data/Dim_ColaboradorHC.xlsx"), null, true),
+				    Dim_ColaboradorHC_Sheet = Origen{[Item="Dim_ColaboradorHC",Kind="Sheet"]}[Data],
+				    #"Encabezados promovidos" = Table.PromoteHeaders(Dim_ColaboradorHC_Sheet, [PromoteAllScalars=true]),
+				    #"Tipo cambiado" = Table.TransformColumnTypes(#"Encabezados promovidos",{{"Colaborador_Key", type text}, {"Numero_Documento", Int64.Type}, {"Tipo_Documento", type any}, {"Nombre_Completo", type text}, {"Fecha_Corte_HC", type date}, {"AnioMes_Corte", type date}, {"AGRUPACIÓN EMPRESA", type text}, {"UNIDAD DE NEGOCIO | CLASE DE NÓMINA", type text}, {"DEPENDENCIA", type text}, {"AREA", type text}, {"Centro_Costo", type text}, {"Cargo", type text}, {"Nivel_Cargo", type text}, {"Tipo_Cargo", type text}, {"Tipo_Contrato", type text}, {"Modalidad_Trabajo", type any}, {"Fecha_Ingreso", type date}, {"Antiguedad_Meses", Int64.Type}, {"Estado_HC", type text}})
+				in
+				    #"Tipo cambiado"
+
+	annotation PBI_ResultType = Table
+

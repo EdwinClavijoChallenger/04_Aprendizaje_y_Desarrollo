@@ -1,0 +1,27 @@
+table Dim_Area
+	lineageTag: 539451ed-76ad-45d1-b4e2-0f1d6915ffa0
+
+	column Area_Key
+		dataType: string
+		isHidden
+		lineageTag: c41a897f-2aa6-4679-8aeb-d060229e7722
+		sourceColumn: [Area_Key]
+
+	column Area
+		dataType: string
+		lineageTag: ee262b53-6024-43b1-87ff-d3359f2af776
+		sourceColumn: [Area]
+
+	partition Dim_Area = calculated
+		mode: import
+		source =
+				VAR _Areas =
+				    DISTINCT(
+				        UNION(
+				            SELECTCOLUMNS('Fct_PlanFormacion', "Area_Key", 'Fct_PlanFormacion'[Area_Key]),
+				            SELECTCOLUMNS('Fct_Induccion', "Area_Key", 'Fct_Induccion'[Area_Key])
+				        )
+				    )
+				RETURN
+				    ADDCOLUMNS(_Areas, "Area", [Area_Key])
+

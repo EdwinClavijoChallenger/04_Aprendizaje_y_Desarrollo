@@ -1,0 +1,28 @@
+table Dim_Empresa
+	lineageTag: b3bfef35-913b-4bad-bcbc-06325e1a3c21
+
+	column Empresa_Key
+		dataType: string
+		isHidden
+		lineageTag: a4af892e-d543-4d89-a806-c7c9850853f0
+		sourceColumn: [Empresa_Key]
+
+	column Empresa
+		dataType: string
+		lineageTag: 9a37f71f-3b0d-4b03-ba10-64012e1cff13
+		sourceColumn: [Empresa]
+
+	partition Dim_Empresa = calculated
+		mode: import
+		source =
+				VAR _Empresas =
+				    DISTINCT(
+				        UNION(
+				            SELECTCOLUMNS('Fct_AsistenciaFormacion', "Empresa_Key", 'Fct_AsistenciaFormacion'[Empresa_Key]),
+				            SELECTCOLUMNS('Fct_EncuestaFormacion', "Empresa_Key", 'Fct_EncuestaFormacion'[Empresa_Key]),
+				            SELECTCOLUMNS('Fct_Induccion', "Empresa_Key", 'Fct_Induccion'[Empresa_Key])
+				        )
+				    )
+				RETURN
+				    ADDCOLUMNS(_Empresas, "Empresa", [Empresa_Key])
+

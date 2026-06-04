@@ -1,0 +1,36 @@
+table Dim_SegmentoUC
+	lineageTag: 9e263687-fe41-4998-8aa2-608b42f8e590
+
+	column SegmentoUC_Key
+		dataType: string
+		isHidden
+		lineageTag: 548a7b43-3714-42af-a278-baab20b73f22
+		sourceColumn: [SegmentoUC_Key]
+
+	column SegmentoUC
+		dataType: string
+		lineageTag: dc16dce4-23be-40af-9757-1fc0df120790
+		sourceColumn: [SegmentoUC]
+		sortByColumn: OrdenSegmentoUC
+
+	column OrdenSegmentoUC
+		dataType: int64
+		isHidden
+		lineageTag: 072d724b-f945-4ede-ab45-8983bb7b4456
+		sourceColumn: [OrdenSegmentoUC]
+
+	column Fecha_Lanzamiento_UC
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 63e7c643-0fe8-4d75-9d84-439385ccb843
+		sourceColumn: [Fecha_Lanzamiento_UC]
+
+	partition Dim_SegmentoUC = calculated
+		mode: import
+		source =
+				UNION(
+				    ROW("SegmentoUC_Key", "Antes_UC", "SegmentoUC", "Antes UC", "OrdenSegmentoUC", 1, "Fecha_Lanzamiento_UC", DATE(2025, 7, 4)),
+				    ROW("SegmentoUC_Key", "UC_2025", "SegmentoUC", "UC 2025", "OrdenSegmentoUC", 2, "Fecha_Lanzamiento_UC", DATE(2025, 7, 4)),
+				    ROW("SegmentoUC_Key", "UC_2026", "SegmentoUC", "UC 2026", "OrdenSegmentoUC", 3, "Fecha_Lanzamiento_UC", DATE(2025, 7, 4))
+				)
+

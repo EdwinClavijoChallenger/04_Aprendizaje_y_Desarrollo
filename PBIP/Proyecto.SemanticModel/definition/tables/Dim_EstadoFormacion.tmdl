@@ -1,0 +1,18 @@
+table Dim_EstadoFormacion
+	lineageTag: 1bd5d6e6-9f69-4d0e-a045-de2ae0cd1246
+
+	column EstadoFormacion_Key
+		dataType: string
+		isHidden
+		lineageTag: 95147089-f765-4647-a8e7-449304bc34f3
+		sourceColumn: [EstadoFormacion_Key]
+
+	column EstadoFormacion
+		dataType: string
+		lineageTag: 3ad366f0-6593-4563-a02c-c6d0e2e76578
+		sourceColumn: [EstadoFormacion]
+
+	partition Dim_EstadoFormacion = calculated
+		mode: import
+		source = ADDCOLUMNS(DISTINCT(SELECTCOLUMNS('Fct_PlanFormacion', "EstadoFormacion_Key", 'Fct_PlanFormacion'[EstadoFormacion_Key])), "EstadoFormacion", SWITCH([EstadoFormacion_Key], "SIN_ESTADO", "Sin estado", [EstadoFormacion_Key]))
+

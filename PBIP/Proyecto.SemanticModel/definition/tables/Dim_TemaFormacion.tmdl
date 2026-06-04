@@ -1,0 +1,28 @@
+table Dim_TemaFormacion
+	lineageTag: b06b038b-7c9b-45ab-8721-00a69f460db9
+
+	column TemaFormacion_Key
+		dataType: string
+		isHidden
+		lineageTag: 312d1ddb-aba4-415c-8cf6-a28ead5c8b79
+		sourceColumn: [TemaFormacion_Key]
+
+	column TemaFormacion
+		dataType: string
+		lineageTag: 00b7e874-4ffc-4619-8dd3-d6384fe0ef0a
+		sourceColumn: [TemaFormacion]
+
+	partition Dim_TemaFormacion = calculated
+		mode: import
+		source =
+				VAR _Temas =
+				    DISTINCT(
+				        UNION(
+				            SELECTCOLUMNS('Fct_PlanFormacion', "TemaFormacion_Key", 'Fct_PlanFormacion'[TemaFormacion_Key]),
+				            SELECTCOLUMNS('Fct_AsistenciaFormacion', "TemaFormacion_Key", 'Fct_AsistenciaFormacion'[TemaFormacion_Key]),
+				            SELECTCOLUMNS('Fct_EncuestaFormacion', "TemaFormacion_Key", 'Fct_EncuestaFormacion'[TemaFormacion_Key])
+				        )
+				    )
+				RETURN
+				    FILTER(ADDCOLUMNS(_Temas, "TemaFormacion", [TemaFormacion_Key]), [TemaFormacion_Key] <> "")
+

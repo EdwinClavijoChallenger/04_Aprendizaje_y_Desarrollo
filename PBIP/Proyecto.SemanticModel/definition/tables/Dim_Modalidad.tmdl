@@ -1,0 +1,18 @@
+table Dim_Modalidad
+	lineageTag: e2613cc9-2ce8-4935-a025-d6732147b8a2
+
+	column Modalidad_Key
+		dataType: string
+		isHidden
+		lineageTag: b9bf0315-d166-467b-b39f-8a5fa5d73e78
+		sourceColumn: [Modalidad_Key]
+
+	column Modalidad
+		dataType: string
+		lineageTag: 0306bbbd-1a58-4ce7-9fa4-893acbaf0d83
+		sourceColumn: [Modalidad]
+
+	partition Dim_Modalidad = calculated
+		mode: import
+		source = ADDCOLUMNS(DISTINCT(SELECTCOLUMNS('Fct_PlanFormacion', "Modalidad_Key", 'Fct_PlanFormacion'[Modalidad_Key])), "Modalidad", [Modalidad_Key])
+

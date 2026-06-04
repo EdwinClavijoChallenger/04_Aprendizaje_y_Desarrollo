@@ -1,0 +1,31 @@
+table Dim_EstadoInduccion
+	lineageTag: 4cd8ff7b-7555-4600-9075-31cdbccd9d98
+
+	column EstadoInduccion_Key
+		dataType: string
+		isHidden
+		lineageTag: 63e3c46c-495c-440e-a196-85986a62fe57
+		sourceColumn: [EstadoInduccion_Key]
+
+	column EstadoInduccion
+		dataType: string
+		lineageTag: 5432d5f3-586a-4f1d-b5a2-73dba1c4daec
+		sourceColumn: [EstadoInduccion]
+
+	partition Dim_EstadoInduccion = calculated
+		mode: import
+		source =
+				ADDCOLUMNS(
+				    DISTINCT(SELECTCOLUMNS('Fct_Induccion', "EstadoInduccion_Key", 'Fct_Induccion'[EstadoInduccion_Key])),
+				    "EstadoInduccion",
+				    SWITCH(
+				        [EstadoInduccion_Key],
+				        "APROBO", "Aprobo",
+				        "NO_APROBO", "No Aprobo",
+				        "RETIRADO", "Retirado",
+				        "RENUNCIA", "Renuncia",
+				        "SIN_ESTADO", "Sin estado",
+				        [EstadoInduccion_Key]
+				    )
+				)
+

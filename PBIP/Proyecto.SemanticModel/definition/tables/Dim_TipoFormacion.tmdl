@@ -1,0 +1,18 @@
+table Dim_TipoFormacion
+	lineageTag: 824ca499-172e-4d31-8e02-a8b62718eff5
+
+	column TipoFormacion_Key
+		dataType: string
+		isHidden
+		lineageTag: 543de4b9-8a27-482a-ba32-a526dc1f347d
+		sourceColumn: [TipoFormacion_Key]
+
+	column TipoFormacion
+		dataType: string
+		lineageTag: 466d07f6-075a-4757-880c-9b356d0d4155
+		sourceColumn: [TipoFormacion]
+
+	partition Dim_TipoFormacion = calculated
+		mode: import
+		source = ADDCOLUMNS(DISTINCT(SELECTCOLUMNS('Fct_PlanFormacion', "TipoFormacion_Key", 'Fct_PlanFormacion'[TipoFormacion_Key])), "TipoFormacion", [TipoFormacion_Key])
+

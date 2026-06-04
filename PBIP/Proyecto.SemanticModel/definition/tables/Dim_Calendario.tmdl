@@ -1,0 +1,171 @@
+table Dim_Calendario
+	lineageTag: 7b0b3696-3267-4c49-8ea6-0a80dbdb3f9f
+	dataCategory: Time
+
+	column Date
+		isKey
+		formatString: General Date
+		lineageTag: ad35f77f-f2d4-4ca3-8ec4-2ab82163b851
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Date]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Año
+		isHidden
+		formatString: 0
+		lineageTag: 56c3ad45-b053-4bef-a29a-51eefd806581
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Año]
+
+		annotation SummarizationSetBy = Automatic
+
+	column AñoMes
+		isHidden
+		lineageTag: c71fd6c8-d7d4-4299-aed7-6f07b3f362fe
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [AñoMes]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Numero Mes'
+		isHidden
+		formatString: 0
+		lineageTag: 0a167572-17a7-446f-9388-dbdacf0714b6
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Numero Mes]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Mes Abreviado'
+		isHidden
+		lineageTag: 4f3345d5-6d45-4852-8f37-fce687b25187
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Mes Abreviado]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Numero Semana'
+		isHidden
+		formatString: 0
+		lineageTag: e8715172-a593-43e8-b626-36dc8788fb4e
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Numero Semana]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Numero Dia'
+		isHidden
+		formatString: 0
+		lineageTag: 6ea28a7a-cc22-4f23-893d-59970766af9e
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Numero Dia]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Numero Dia de la Semana'
+		isHidden
+		formatString: 0
+		lineageTag: 99ce8f44-dac9-42a5-a85b-d04e94d0e520
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Numero Dia de la Semana]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Dia Semana'
+		isHidden
+		lineageTag: 2d169133-f89b-4c2d-b43d-876490818aba
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Dia Semana]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Dia Abreviado'
+		isHidden
+		lineageTag: 0cae0b23-f85b-4536-963c-846885cc1aeb
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Dia Abreviado]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Día del año'
+		isHidden
+		formatString: 0
+		lineageTag: f54ae6e1-9477-4fe5-ab72-37091987b83b
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Día del año]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Fecha = 'Dim_Calendario'[Date]
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 31bce900-1ac9-41ed-8e1d-f691462b83b8
+
+	column Anio = YEAR('Dim_Calendario'[Date])
+		dataType: int64
+		formatString: 0
+		lineageTag: 5abbd96e-247e-4250-86f1-c4232e5d5cae
+
+	column MesNumero = MONTH('Dim_Calendario'[Date])
+		dataType: int64
+		formatString: 0
+		lineageTag: 0133a6a6-55c3-42d5-80b2-ccedd686175a
+
+	column MesNombreCorto = FORMAT('Dim_Calendario'[Date], "mmm")
+		dataType: string
+		lineageTag: f82939a4-fd62-4c2d-abd3-17d87591a50c
+		sortByColumn: MesNumero
+
+	column AnioMes = FORMAT('Dim_Calendario'[Date], "YYYY-MM")
+		dataType: string
+		lineageTag: 7f1085f9-91e0-4300-a2af-ab5c9cbc812f
+		sortByColumn: AnioMesOrden
+
+	column AnioMesOrden = YEAR('Dim_Calendario'[Date]) * 100 + MONTH('Dim_Calendario'[Date])
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: a99e8077-bf17-4cf4-b059-91e62f9747d7
+
+	column Trimestre = "T" & FORMAT(QUARTER('Dim_Calendario'[Date]), "0")
+		dataType: string
+		lineageTag: 9d7b6bdb-649a-407f-8bc3-e98a075c8b0b
+
+	partition Dim_Calendario = calculated
+		mode: import
+		source =
+				
+				VAR MinDate = DATE(2022, 1, 1)
+				VAR MaxDate = DATE(2026, 12, 31)
+				RETURN
+				ADDCOLUMNS(
+				    FILTER(
+				        CALENDAR(MinDate, MaxDate),
+				        [Date] <= MaxDate
+				    ),
+				    "Año", YEAR([Date]),
+				    "AñoMes", FORMAT([Date], "YYYY-MM"),
+				    "Numero Mes", MONTH([Date]),
+				    "Mes Abreviado", FORMAT([Date], "mmm"),
+				    "Numero Semana", WEEKNUM([Date], 21),
+				    "Numero Dia", DAY([Date]),
+				    "Numero Dia de la Semana", WEEKDAY([Date], 2),
+				    "Dia Semana", FORMAT([Date], "dddd"),
+				    "Dia Abreviado", LEFT(FORMAT([Date], "dddd"), 3),
+				    "Día del año", DATEDIFF(DATE(YEAR([Date]), 1, 1), [Date], DAY) + 1
+				)
+
+	annotation PBI_Id = deb9005d004f4dc1ac404d84ce54fce6
+
