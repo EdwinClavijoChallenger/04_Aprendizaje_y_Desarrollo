@@ -1,0 +1,36 @@
+model Model
+	culture: es-ES
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: es-CO
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 0
+
+annotation PBI_ProTooling = ["DevMode"]
+
+annotation PBI_QueryOrder = ["Fct_PlanFormacion","Fct_AsistenciaFormacion","Fct_EncuestaFormacion","Fct_InduccionColaborador_antes_de_UC_2025","Fct_InduccionColaborador_UC_2025","Fct_InduccionColaborador_UC_2026","Dim_ColaboradorHC"]
+
+ref table Dim_Calendario
+ref table Fct_PlanFormacion
+ref table Fct_AsistenciaFormacion
+ref table Fct_EncuestaFormacion
+ref table Fct_InduccionColaborador_antes_de_UC_2025
+ref table Fct_InduccionColaborador_UC_2025
+ref table Fct_InduccionColaborador_UC_2026
+ref table Fct_Induccion
+ref table Medidas_AD
+ref table Dim_SegmentoUC
+ref table Dim_Empresa
+ref table Dim_Area
+ref table Dim_TemaFormacion
+ref table Dim_TipoFormacion
+ref table Dim_Modalidad
+ref table Dim_EntidadFormadora
+ref table Dim_EstadoFormacion
+ref table Dim_EstadoInduccion
+ref table Dim_ColaboradorHC
+
+ref cultureInfo es-ES
+
