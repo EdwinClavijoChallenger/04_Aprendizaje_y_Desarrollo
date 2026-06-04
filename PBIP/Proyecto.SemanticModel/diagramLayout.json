@@ -1,0 +1,267 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 3221.32525991536,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 3710.5671777198822,
+            "y": 297.77863964170933
+          },
+          "nodeIndex": "Dim_Calendario",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 3994.5671777198822,
+            "y": 247.77863964170933
+          },
+          "nodeIndex": "Fct_PlanFormacion",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1488.5671777198825,
+            "y": 247.77863964170933
+          },
+          "nodeIndex": "Medidas_AD",
+          "nodeLineageTag": "c7badb4a-3661-4961-a120-1576c2314372",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 245.12221248181748,
+            "y": 83.848961854657546
+          },
+          "nodeIndex": "Dim_Area",
+          "nodeLineageTag": "539451ed-76ad-45d1-b4e2-0f1d6915ffa0",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 622.89181671698611,
+            "y": 213.83584162556468
+          },
+          "nodeIndex": "Dim_Empresa",
+          "nodeLineageTag": "b3bfef35-913b-4bad-bcbc-06325e1a3c21",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1772.5671777198825,
+            "y": 333.77863964170933
+          },
+          "nodeIndex": "Dim_EntidadFormadora",
+          "nodeLineageTag": "6957edf4-9604-4321-aff4-9479ecea186d",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 2056.5671777198822,
+            "y": 333.77863964170933
+          },
+          "nodeIndex": "Dim_EstadoFormacion",
+          "nodeLineageTag": "1bd5d6e6-9f69-4d0e-a045-de2ae0cd1246",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 151.01781390832852,
+            "y": 617.55727928341867
+          },
+          "nodeIndex": "Dim_EstadoInduccion",
+          "nodeLineageTag": "4cd8ff7b-7555-4600-9075-31cdbccd9d98",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 2340.5671777198822,
+            "y": 333.77863964170933
+          },
+          "nodeIndex": "Dim_Modalidad",
+          "nodeLineageTag": "e2613cc9-2ce8-4935-a025-d6732147b8a2",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 50,
+            "y": 280.126931815732
+          },
+          "nodeIndex": "Dim_SegmentoUC",
+          "nodeLineageTag": "9e263687-fe41-4998-8aa2-608b42f8e590",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1254.5671777198822,
+            "y": 271.64712786805757
+          },
+          "nodeIndex": "Dim_TemaFormacion",
+          "nodeLineageTag": "b06b038b-7c9b-45ab-8721-00a69f460db9",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 2624.5671777198822,
+            "y": 333.77863964170933
+          },
+          "nodeIndex": "Dim_TipoFormacion",
+          "nodeLineageTag": "824ca499-172e-4d31-8e02-a8b62718eff5",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 967.56973773096979,
+            "y": -50
+          },
+          "nodeIndex": "Fct_AsistenciaFormacion",
+          "nodeLineageTag": "ad704d4e-9c6b-4654-8130-07525dd6f37b",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 909.94796941708785,
+            "y": 303.6878791806198
+          },
+          "nodeIndex": "Fct_EncuestaFormacion",
+          "nodeLineageTag": "7add75a0-205b-4864-a80c-902c257c5835",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 337.09696588128486,
+            "y": 264.71966772354017
+          },
+          "nodeIndex": "Fct_Induccion",
+          "nodeLineageTag": "00d711c6-2e9f-4403-85c8-4a37e12a4afd",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 2908.5671777198822,
+            "y": 247.77863964170933
+          },
+          "nodeIndex": "Fct_InduccionColaborador_antes_de_UC_2025",
+          "nodeLineageTag": "19f455e0-2673-40d9-a766-3e835c8d9cfe",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 3192.5671777198822,
+            "y": 247.77863964170933
+          },
+          "nodeIndex": "Fct_InduccionColaborador_UC_2025",
+          "nodeLineageTag": "087165b3-2840-42e9-a39d-3993ae3f860d",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 3476.5671777198822,
+            "y": 247.77863964170933
+          },
+          "nodeIndex": "Fct_InduccionColaborador_UC_2026",
+          "nodeLineageTag": "11308724-e24b-404d-b22a-b7cd37310c24",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 4254.5671777198822,
+            "y": 247.77863964170933
+          },
+          "nodeIndex": "Dim_ColaboradorHC",
+          "nodeLineageTag": "13b1210c-8e24-4968-968e-4ade97191eed",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "Todas las tablas",
+      "zoomValue": 79.55318203769987,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "Todas las tablas",
+  "defaultDiagram": "Todas las tablas"
+}

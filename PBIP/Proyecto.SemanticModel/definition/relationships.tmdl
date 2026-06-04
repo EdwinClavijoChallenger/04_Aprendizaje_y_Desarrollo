@@ -1,0 +1,76 @@
+relationship AD_Calendario_Plan
+	fromColumn: Fct_PlanFormacion.Fecha_Formacion
+	toColumn: Dim_Calendario.Date
+
+relationship AD_Calendario_Asistencia
+	fromColumn: Fct_AsistenciaFormacion.Fecha_Asistencia
+	toColumn: Dim_Calendario.Date
+
+relationship AD_Calendario_Encuesta
+	fromColumn: Fct_EncuestaFormacion.Fecha_Encuesta
+	toColumn: Dim_Calendario.Date
+
+relationship AD_Calendario_Induccion
+	fromColumn: Fct_Induccion.Fecha_Ingreso
+	toColumn: Dim_Calendario.Date
+
+relationship AD_Tema_Plan
+	fromColumn: Fct_PlanFormacion.TemaFormacion_Key
+	toColumn: Dim_TemaFormacion.TemaFormacion_Key
+
+relationship AD_Tema_Asistencia
+	fromColumn: Fct_AsistenciaFormacion.TemaFormacion_Key
+	toColumn: Dim_TemaFormacion.TemaFormacion_Key
+
+relationship AD_Tema_Encuesta
+	fromColumn: Fct_EncuestaFormacion.TemaFormacion_Key
+	toColumn: Dim_TemaFormacion.TemaFormacion_Key
+
+relationship AD_Empresa_Asistencia
+	fromColumn: Fct_AsistenciaFormacion.Empresa_Key
+	toColumn: Dim_Empresa.Empresa_Key
+
+relationship AD_Empresa_Encuesta
+	fromColumn: Fct_EncuestaFormacion.Empresa_Key
+	toColumn: Dim_Empresa.Empresa_Key
+
+relationship AD_Empresa_Induccion
+	fromColumn: Fct_Induccion.Empresa_Key
+	toColumn: Dim_Empresa.Empresa_Key
+
+relationship AD_Area_Plan
+	fromColumn: Fct_PlanFormacion.Area_Key
+	toColumn: Dim_Area.Area_Key
+
+relationship AD_Area_Induccion
+	fromColumn: Fct_Induccion.Area_Key
+	toColumn: Dim_Area.Area_Key
+
+relationship AD_TipoFormacion_Plan
+	fromColumn: Fct_PlanFormacion.TipoFormacion_Key
+	toColumn: Dim_TipoFormacion.TipoFormacion_Key
+
+relationship AD_Modalidad_Plan
+	fromColumn: Fct_PlanFormacion.Modalidad_Key
+	toColumn: Dim_Modalidad.Modalidad_Key
+
+relationship AD_EntidadFormadora_Plan
+	fromColumn: Fct_PlanFormacion.EntidadFormadora_Key
+	toColumn: Dim_EntidadFormadora.EntidadFormadora_Key
+
+relationship AD_EstadoFormacion_Plan
+	fromColumn: Fct_PlanFormacion.EstadoFormacion_Key
+	toColumn: Dim_EstadoFormacion.EstadoFormacion_Key
+
+relationship AD_EstadoInduccion_Fct
+	fromColumn: Fct_Induccion.EstadoInduccion_Key
+	toColumn: Dim_EstadoInduccion.EstadoInduccion_Key
+
+relationship AD_SegmentoUC_Fct
+	fromColumn: Fct_Induccion.SegmentoUC_Key
+	toColumn: Dim_SegmentoUC.SegmentoUC_Key
+
+relationship AD_ColaboradorHC_Asistencia
+	fromColumn: Fct_AsistenciaFormacion.Colaborador_Key
+	toColumn: Dim_ColaboradorHC.Colaborador_Key
+
