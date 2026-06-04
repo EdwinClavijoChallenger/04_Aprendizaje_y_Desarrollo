@@ -19,7 +19,8 @@ table Dim_Area
 				    DISTINCT(
 				        UNION(
 				            SELECTCOLUMNS('Fct_PlanFormacion', "Area_Key", 'Fct_PlanFormacion'[Area_Key]),
-				            SELECTCOLUMNS('Fct_Induccion', "Area_Key", 'Fct_Induccion'[Area_Key])
+				            SELECTCOLUMNS('Fct_Induccion', "Area_Key", 'Fct_Induccion'[Area_Key]),
+				            SELECTCOLUMNS('Fct_Seguimiento_PDI', "Area_Key", 'Fct_Seguimiento_PDI'[Area_Key])
 				        )
 				    )
 				RETURN

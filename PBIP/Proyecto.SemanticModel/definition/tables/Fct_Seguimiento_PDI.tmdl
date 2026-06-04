@@ -1,0 +1,254 @@
+table Fct_Seguimiento_PDI
+	lineageTag: 5f14fdcb-94eb-485f-9bb5-e736070ca985
+
+	column Nombre_Empresa
+		dataType: string
+		lineageTag: 455423a9-9cd2-43ed-90d7-e321b05a9a2e
+		summarizeBy: none
+		sourceColumn: Nombre_Empresa
+
+		annotation SummarizationSetBy = Automatic
+
+	column Identificacion_Colaborador
+		dataType: int64
+		formatString: 0
+		lineageTag: 32a18315-3d8c-49e8-9a67-0038e467fece
+		summarizeBy: none
+		sourceColumn: Identificacion_Colaborador
+
+		annotation SummarizationSetBy = Automatic
+
+	column Nombres
+		dataType: string
+		lineageTag: 7388bec0-7cc4-414c-851d-e1d7f6aba582
+		summarizeBy: none
+		sourceColumn: Nombres
+
+		annotation SummarizationSetBy = Automatic
+
+	column Apellidos
+		dataType: string
+		lineageTag: 1821abb6-b926-4f44-ba08-c612cda35806
+		summarizeBy: none
+		sourceColumn: Apellidos
+
+		annotation SummarizationSetBy = Automatic
+
+	column Dependencia
+		dataType: string
+		lineageTag: 79db02e3-725c-4a52-b5e0-1afdea19f321
+		summarizeBy: none
+		sourceColumn: Dependencia
+
+		annotation SummarizationSetBy = Automatic
+
+	column Area
+		dataType: string
+		lineageTag: 71684faf-abe3-415e-b6aa-743700572265
+		summarizeBy: none
+		sourceColumn: Area
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cargo
+		dataType: string
+		lineageTag: f7f1dd82-cbee-4533-be97-90c63a3c3411
+		summarizeBy: none
+		sourceColumn: Cargo
+
+		annotation SummarizationSetBy = Automatic
+
+	column CC_Jefe_Inmediato
+		dataType: int64
+		formatString: 0
+		lineageTag: 5ff51caf-763a-4e6e-a7b4-bd63059c8e00
+		summarizeBy: none
+		sourceColumn: CC_Jefe_Inmediato
+
+		annotation SummarizationSetBy = Automatic
+
+	column Jefe_Inmediato
+		dataType: string
+		lineageTag: 1ea64f18-ea9e-4ead-9696-6b400ee53399
+		summarizeBy: none
+		sourceColumn: Jefe_Inmediato
+
+		annotation SummarizationSetBy = Automatic
+
+	column Motivo_PDI
+		dataType: string
+		lineageTag: e3fbb27c-f580-4a59-94d0-8b827af5833a
+		summarizeBy: none
+		sourceColumn: Motivo_PDI
+
+		annotation SummarizationSetBy = Automatic
+
+	column Fecha_Inicio
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 8702b706-e5f5-46bd-b38d-09b2ecb83e0e
+		summarizeBy: none
+		sourceColumn: Fecha_Inicio
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Fecha_Fin
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: f1118700-be4f-4c09-9620-49a5e4b60246
+		summarizeBy: none
+		sourceColumn: Fecha_Fin
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Asignacion_Plan
+		dataType: string
+		lineageTag: 5ff4f9b0-06e7-4259-a8ed-a3fe77798f30
+		summarizeBy: none
+		sourceColumn: Asignacion_Plan
+
+		annotation SummarizationSetBy = Automatic
+
+	column Fecha_Seguimiento_1
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 2f8f7933-f680-463b-a490-03829634c6fb
+		summarizeBy: none
+		sourceColumn: Fecha_Seguimiento_1
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Acompanamiento_1
+		dataType: string
+		lineageTag: ac41b3e6-d447-4b49-9503-12ad53754d8c
+		summarizeBy: none
+		sourceColumn: Acompanamiento_1
+
+		annotation SummarizationSetBy = Automatic
+
+	column Fecha_Seguimiento_2
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 20fc26cf-74a8-4c49-81b1-9063aa9c083e
+		summarizeBy: none
+		sourceColumn: Fecha_Seguimiento_2
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Acompanamiento_2
+		dataType: string
+		lineageTag: 8a5b8c63-69d2-442f-ab8b-890d4c3e0d93
+		summarizeBy: none
+		sourceColumn: Acompanamiento_2
+
+		annotation SummarizationSetBy = Automatic
+
+	column Fecha_Seguimiento_3
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: cfdf1ea4-7f55-4635-8c65-d5f67e5b36ed
+		summarizeBy: none
+		sourceColumn: Fecha_Seguimiento_3
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Acompanamiento_3
+		dataType: string
+		lineageTag: 5ecf50bb-0a63-418a-bdc8-1261ef6f2ae1
+		summarizeBy: none
+		sourceColumn: Acompanamiento_3
+
+		annotation SummarizationSetBy = Automatic
+
+	column Avance_PDI
+		dataType: double
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 5929d94d-3694-4dbc-b132-d87688963d8f
+		summarizeBy: none
+		sourceColumn: Avance_PDI
+
+		annotation SummarizationSetBy = Automatic
+
+	column Estado_PDI
+		dataType: string
+		lineageTag: 53a1d54f-c3aa-4100-9958-b0d3893728c1
+		summarizeBy: none
+		sourceColumn: Estado_PDI
+
+		annotation SummarizationSetBy = Automatic
+
+	column Monitoreo_PDI
+		dataType: string
+		lineageTag: c3cb8464-97be-4321-b0f2-7fe2d7c8c8ea
+		summarizeBy: none
+		sourceColumn: Monitoreo_PDI
+
+		annotation SummarizationSetBy = Automatic
+
+	column Observaciones
+		dataType: string
+		lineageTag: f28073af-e2f2-4879-aaa5-2d5289a022cc
+		summarizeBy: none
+		sourceColumn: Observaciones
+
+		annotation SummarizationSetBy = Automatic
+
+	column Empresa_Key = UPPER(TRIM(COALESCE('Fct_Seguimiento_PDI'[Nombre_Empresa], "")))
+		dataType: string
+		isHidden
+		lineageTag: e942dc2e-7974-4aa4-bfe3-12331f6877ca
+
+	column Area_Key = UPPER(TRIM(COALESCE('Fct_Seguimiento_PDI'[Area], "")))
+		dataType: string
+		isHidden
+		lineageTag: 89770e76-7be1-4f19-9abe-bcc7e4853e34
+
+	column MotivoPDI_Key = UPPER(TRIM(COALESCE('Fct_Seguimiento_PDI'[Motivo_PDI], "")))
+		dataType: string
+		isHidden
+		lineageTag: 3c1ef00e-0e2d-4dff-a64b-f942c5b9c612
+
+	column EstadoPDI_Key = UPPER(TRIM(COALESCE('Fct_Seguimiento_PDI'[Estado_PDI], "")))
+		dataType: string
+		isHidden
+		lineageTag: 50e7fb34-17aa-4216-a36f-19772bad15cc
+
+	column Colaborador_Nombre = TRIM(COALESCE('Fct_Seguimiento_PDI'[Nombres], "") & " " & COALESCE('Fct_Seguimiento_PDI'[Apellidos], ""))
+		dataType: string
+		lineageTag: 128525cb-8f5c-467c-bf6a-52897be3b3bb
+
+	column PDI_Key =
+			VAR _Doc = FORMAT('Fct_Seguimiento_PDI'[Identificacion_Colaborador], "0")
+			VAR _Fecha = FORMAT('Fct_Seguimiento_PDI'[Fecha_Inicio], "YYYYMMDD")
+			RETURN _Doc & "-" & _Fecha & "-" & 'Fct_Seguimiento_PDI'[MotivoPDI_Key]
+		dataType: string
+		isHidden
+		lineageTag: dcb91b72-e3dd-4c7e-b303-49f2484c1b7c
+
+	partition Fct_Seguimiento_PDI = m
+		mode: import
+		source =
+				let
+				    Origen = Excel.Workbook(Web.Contents("https://lemcosas.sharepoint.com/sites/TalentoHumanoGrupoLemco/Documentos%20compartidos/5.%20People%20analytics/04_Aprendizaje_y_Desarrollo/Data/SeguimientodePlanesdeDesarrolloIndividual.xlsx"), null, true),
+				    #"Gestion PDI_Sheet" = Origen{[Item="Gestion PDI",Kind="Sheet"]}[Data],
+				    #"Encabezados promovidos" = Table.PromoteHeaders(#"Gestion PDI_Sheet", [PromoteAllScalars=true]),
+				    #"Tipo cambiado" = Table.TransformColumnTypes(#"Encabezados promovidos",{{"Nombre Empresa", type text}, {"Identificación colabador ", Int64.Type}, {"Nombres", type text}, {"Apellidos", type text}, {"Dependencia", type text}, {"Área", type text}, {"Cargo ", type text}, {"CC Jefe inmediato", Int64.Type}, {"Jefe Inmediato", type text}, {"Motivo PDI", type text}, {"Fecha inicio ", type date}, {"Fecha fin ", type date}, {"Asignación del plan #(lf)P = Programado#(lf)E= Ejecutado ", type text}, {"Fecha seguimiento 1", type date}, {"Acompañamiento 1#(lf)P=Programado#(lf)E=Ejecutado ", type text}, {"Fecha seguimiento 2", type date}, {"Acompañamiento 2#(lf)P=Programado#(lf)E=Ejecutado ", type text}, {"Fecha seguimiento 3", type date}, {"Acompañamiento 3#(lf)P=Programado#(lf)E=Ejecutado ", type text}, {"% Avance ", type number}, {"Estado ", type text}, {"Monitoreo PDI", type text}, {"Observacioes ", type text}}),
+				    #"Columnas renombradas" = Table.RenameColumns(#"Tipo cambiado",{{"Nombre Empresa", "Nombre_Empresa"}, {"Identificación colabador ", "Identificacion_Colaborador"}, {"Área", "Area"}, {"Cargo ", "Cargo"}, {"CC Jefe inmediato", "CC_Jefe_Inmediato"}, {"Jefe Inmediato", "Jefe_Inmediato"}, {"Motivo PDI", "Motivo_PDI"}, {"Fecha inicio ", "Fecha_Inicio"}, {"Fecha fin ", "Fecha_Fin"}, {"Asignación del plan #(lf)P = Programado#(lf)E= Ejecutado ", "Asignacion_Plan"}, {"Fecha seguimiento 1", "Fecha_Seguimiento_1"}, {"Acompañamiento 1#(lf)P=Programado#(lf)E=Ejecutado ", "Acompanamiento_1"}, {"Fecha seguimiento 2", "Fecha_Seguimiento_2"}, {"Acompañamiento 2#(lf)P=Programado#(lf)E=Ejecutado ", "Acompanamiento_2"}, {"Fecha seguimiento 3", "Fecha_Seguimiento_3"}, {"Acompañamiento 3#(lf)P=Programado#(lf)E=Ejecutado ", "Acompanamiento_3"}, {"% Avance ", "Avance_PDI"}, {"Estado ", "Estado_PDI"}, {"Monitoreo PDI", "Monitoreo_PDI"}, {"Observacioes ", "Observaciones"}}, MissingField.Ignore),
+				    #"Texto limpio" = Table.TransformColumns(#"Columnas renombradas",{{"Nombre_Empresa", each Text.Trim(Text.From(_)), type text}, {"Nombres", each Text.Trim(Text.From(_)), type text}, {"Apellidos", each Text.Trim(Text.From(_)), type text}, {"Dependencia", each Text.Trim(Text.From(_)), type text}, {"Area", each Text.Trim(Text.From(_)), type text}, {"Cargo", each Text.Trim(Text.From(_)), type text}, {"Jefe_Inmediato", each Text.Trim(Text.From(_)), type text}, {"Motivo_PDI", each Text.Trim(Text.From(_)), type text}, {"Asignacion_Plan", each Text.Upper(Text.Trim(Text.From(_))), type text}, {"Acompanamiento_1", each Text.Upper(Text.Trim(Text.From(_))), type text}, {"Acompanamiento_2", each Text.Upper(Text.Trim(Text.From(_))), type text}, {"Acompanamiento_3", each Text.Upper(Text.Trim(Text.From(_))), type text}, {"Estado_PDI", each Text.Trim(Text.From(_)), type text}, {"Monitoreo_PDI", each Text.Trim(Text.From(_)), type text}, {"Observaciones", each Text.Trim(Text.From(_)), type text}})
+				in
+				    #"Texto limpio"
+
+	annotation PBI_NavigationStepName = Navegacion
+
+	annotation PBI_ResultType = Table
+

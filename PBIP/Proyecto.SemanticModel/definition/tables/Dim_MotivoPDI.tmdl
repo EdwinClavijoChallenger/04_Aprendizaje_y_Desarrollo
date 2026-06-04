@@ -1,0 +1,31 @@
+table Dim_MotivoPDI
+	lineageTag: e6b57bb4-50a3-43bc-8988-5245f5a1d50a
+
+	column MotivoPDI_Key
+		dataType: string
+		isHidden
+		lineageTag: 482b9c97-e352-427c-9a3d-4fef8b2f4e6e
+		sourceColumn: [MotivoPDI_Key]
+
+	column Motivo_PDI
+		dataType: string
+		lineageTag: 26871d98-7f8c-479d-a48a-e2838e35887a
+		sourceColumn: [Motivo_PDI]
+
+	partition Dim_MotivoPDI = calculated
+		mode: import
+		source =
+				VAR _Motivos =
+				    FILTER(
+				        DISTINCT(
+				            SELECTCOLUMNS(
+				                'Fct_Seguimiento_PDI',
+				                "MotivoPDI_Key", 'Fct_Seguimiento_PDI'[MotivoPDI_Key],
+				                "Motivo_PDI", 'Fct_Seguimiento_PDI'[MotivoPDI_Key]
+				            )
+				        ),
+				        NOT ISBLANK([MotivoPDI_Key]) && [MotivoPDI_Key] <> ""
+				    )
+				RETURN
+				    _Motivos
+

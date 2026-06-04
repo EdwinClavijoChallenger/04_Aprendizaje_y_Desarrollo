@@ -74,3 +74,23 @@ relationship AD_ColaboradorHC_Asistencia
 	fromColumn: Fct_AsistenciaFormacion.Colaborador_Key
 	toColumn: Dim_ColaboradorHC.Colaborador_Key
 
+relationship DO_Calendario_PDI_Inicio
+	fromColumn: Fct_Seguimiento_PDI.Fecha_Inicio
+	toColumn: Dim_Calendario.Date
+
+relationship DO_Empresa_PDI
+	fromColumn: Fct_Seguimiento_PDI.Empresa_Key
+	toColumn: Dim_Empresa.Empresa_Key
+
+relationship DO_Area_PDI
+	fromColumn: Fct_Seguimiento_PDI.Area_Key
+	toColumn: Dim_Area.Area_Key
+
+relationship DO_MotivoPDI_Fct
+	fromColumn: Fct_Seguimiento_PDI.MotivoPDI_Key
+	toColumn: Dim_MotivoPDI.MotivoPDI_Key
+
+relationship DO_EstadoPDI_Fct
+	fromColumn: Fct_Seguimiento_PDI.EstadoPDI_Key
+	toColumn: Dim_EstadoPDI.EstadoPDI_Key
+

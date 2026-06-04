@@ -1,0 +1,31 @@
+table Dim_EstadoPDI
+	lineageTag: 1177defb-f952-4d7e-aedb-88f5021890a8
+
+	column EstadoPDI_Key
+		dataType: string
+		isHidden
+		lineageTag: ecde6144-9ab2-4aa1-b2a8-3f732a763802
+		sourceColumn: [EstadoPDI_Key]
+
+	column Estado_PDI
+		dataType: string
+		lineageTag: f1baf08d-e79d-4617-a3cd-37ca38194c77
+		sourceColumn: [Estado_PDI]
+
+	partition Dim_EstadoPDI = calculated
+		mode: import
+		source =
+				VAR _Estados =
+				    FILTER(
+				        DISTINCT(
+				            SELECTCOLUMNS(
+				                'Fct_Seguimiento_PDI',
+				                "EstadoPDI_Key", 'Fct_Seguimiento_PDI'[EstadoPDI_Key],
+				                "Estado_PDI", 'Fct_Seguimiento_PDI'[EstadoPDI_Key]
+				            )
+				        ),
+				        NOT ISBLANK([EstadoPDI_Key]) && [EstadoPDI_Key] <> ""
+				    )
+				RETURN
+				    _Estados
+

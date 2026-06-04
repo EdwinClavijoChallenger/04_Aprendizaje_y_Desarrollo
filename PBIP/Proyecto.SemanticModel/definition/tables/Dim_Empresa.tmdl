@@ -20,7 +20,8 @@ table Dim_Empresa
 				        UNION(
 				            SELECTCOLUMNS('Fct_AsistenciaFormacion', "Empresa_Key", 'Fct_AsistenciaFormacion'[Empresa_Key]),
 				            SELECTCOLUMNS('Fct_EncuestaFormacion', "Empresa_Key", 'Fct_EncuestaFormacion'[Empresa_Key]),
-				            SELECTCOLUMNS('Fct_Induccion', "Empresa_Key", 'Fct_Induccion'[Empresa_Key])
+				            SELECTCOLUMNS('Fct_Induccion', "Empresa_Key", 'Fct_Induccion'[Empresa_Key]),
+				            SELECTCOLUMNS('Fct_Seguimiento_PDI', "Empresa_Key", 'Fct_Seguimiento_PDI'[Empresa_Key])
 				        )
 				    )
 				RETURN

@@ -252,6 +252,18 @@
             "width": 234
           },
           "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 4538.5671777198822,
+            "y": 252.17821224251537
+          },
+          "nodeIndex": "Fct_Seguimiento_PDI",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
         }
       ],
       "name": "Todas las tablas",

@@ -10,7 +10,7 @@ annotation __PBI_TimeIntelligenceEnabled = 0
 
 annotation PBI_ProTooling = ["DevMode"]
 
-annotation PBI_QueryOrder = ["Fct_PlanFormacion","Fct_AsistenciaFormacion","Fct_EncuestaFormacion","Fct_InduccionColaborador_antes_de_UC_2025","Fct_InduccionColaborador_UC_2025","Fct_InduccionColaborador_UC_2026","Dim_ColaboradorHC"]
+annotation PBI_QueryOrder = ["Fct_PlanFormacion","Fct_AsistenciaFormacion","Fct_EncuestaFormacion","Fct_InduccionColaborador_antes_de_UC_2025","Fct_InduccionColaborador_UC_2025","Fct_InduccionColaborador_UC_2026","Dim_ColaboradorHC","Fct_Seguimiento_PDI"]
 
 ref table Dim_Calendario
 ref table Fct_PlanFormacion
@@ -31,6 +31,9 @@ ref table Dim_EntidadFormadora
 ref table Dim_EstadoFormacion
 ref table Dim_EstadoInduccion
 ref table Dim_ColaboradorHC
+ref table Fct_Seguimiento_PDI
+ref table Dim_MotivoPDI
+ref table Dim_EstadoPDI
 
 ref cultureInfo es-ES
 

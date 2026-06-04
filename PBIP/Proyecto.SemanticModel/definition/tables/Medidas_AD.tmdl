@@ -529,6 +529,211 @@ table Medidas_AD
 		displayFolder: 04 Induccion UC
 		lineageTag: f65cb718-1c4d-4332-9ad3-fc3614da6098
 
+	measure 'PDI Total' = COUNTROWS('Fct_Seguimiento_PDI')
+		formatString: #,0
+		displayFolder: 09 Desarrollo PDI
+		lineageTag: 5a0f5c43-7197-4b55-bdb5-78b021eb2a9e
+
+	measure 'PDI Colaboradores Unicos' = DISTINCTCOUNT('Fct_Seguimiento_PDI'[Identificacion_Colaborador])
+		formatString: #,0
+		displayFolder: 09 Desarrollo PDI
+		lineageTag: b3fb1782-2f58-46f8-9745-391f13483a56
+
+	measure 'PDI Motivos Distintos' = DISTINCTCOUNT('Dim_MotivoPDI'[MotivoPDI_Key])
+		formatString: #,0
+		displayFolder: 09 Desarrollo PDI
+		lineageTag: 7ba1e69c-e498-4147-b910-d15c197deac1
+
+	measure 'PDI Jefes Con PDI' = DISTINCTCOUNT('Fct_Seguimiento_PDI'[Jefe_Inmediato])
+		formatString: #,0
+		displayFolder: 09 Desarrollo PDI
+		lineageTag: db9526bf-b4fd-4244-a819-65b4d9b6fcc0
+
+	measure 'PDI Cargos Con PDI' = DISTINCTCOUNT('Fct_Seguimiento_PDI'[Cargo])
+		formatString: #,0
+		displayFolder: 09 Desarrollo PDI
+		lineageTag: 6c748cfe-5f00-4a07-8812-22f9772fc8ee
+
+	measure 'PDI Avance Promedio' =
+			VAR _Avance = AVERAGE('Fct_Seguimiento_PDI'[Avance_PDI])
+			RETURN IF(_Avance > 1, DIVIDE(_Avance, 100), _Avance)
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: 09 Desarrollo PDI
+		lineageTag: d3c5fd73-5514-452a-9f17-7d6b4acc146f
+
+	measure 'PDI Finalizados' =
+			CALCULATE(
+			    [PDI Total],
+			    'Fct_Seguimiento_PDI'[EstadoPDI_Key] IN { "FINALIZADO", "CERRADO", "COMPLETADO" }
+			)
+		formatString: #,0
+		displayFolder: 09 Desarrollo PDI
+		lineageTag: f8448f24-385d-40ac-bd45-aaac5564f3ac
+
+	measure 'PDI Activos' =
+			CALCULATE(
+			    [PDI Total],
+			    FILTER(
+			        'Fct_Seguimiento_PDI',
+			        NOT (
+			            'Fct_Seguimiento_PDI'[EstadoPDI_Key] IN { "FINALIZADO", "CERRADO", "COMPLETADO", "CANCELADO" }
+			        )
+			    )
+			)
+		formatString: #,0
+		displayFolder: 09 Desarrollo PDI
+		lineageTag: 950fa908-217a-41c9-9faa-4e9652af48b9
+
+	measure 'PDI Pendientes' =
+			CALCULATE(
+			    [PDI Total],
+			    FILTER(
+			        'Fct_Seguimiento_PDI',
+			        'Fct_Seguimiento_PDI'[EstadoPDI_Key] IN { "PENDIENTE", "EN PROCESO", "ACTIVO", "" }
+			            || ISBLANK('Fct_Seguimiento_PDI'[EstadoPDI_Key])
+			    )
+			)
+		formatString: #,0
+		displayFolder: 09 Desarrollo PDI
+		lineageTag: 4425b154-c390-4b36-b8e2-7db2c812e5fd
+
+	measure 'PDI Porcentaje Activos' = DIVIDE([PDI Activos], [PDI Total], 0)
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: 09 Desarrollo PDI
+		lineageTag: 15cc444a-841d-4c49-b4c0-7c3cf976c4f2
+
+	measure 'PDI Porcentaje Por Estado' = DIVIDE([PDI Total], CALCULATE([PDI Total], ALLSELECTED('Dim_EstadoPDI'[Estado_PDI])), 0)
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: 09 Desarrollo PDI
+		lineageTag: 707e9860-ed38-4dc1-a671-8117f3762692
+
+	measure 'PDI Porcentaje Por Motivo' = DIVIDE([PDI Total], CALCULATE([PDI Total], ALLSELECTED('Dim_MotivoPDI'[Motivo_PDI])), 0)
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: 09 Desarrollo PDI
+		lineageTag: ebfc3785-f433-4bea-818b-bb45d4c0cb4b
+
+	measure 'PDI Avance Cero' =
+			CALCULATE(
+			    [PDI Total],
+			    FILTER(
+			        'Fct_Seguimiento_PDI',
+			        COALESCE('Fct_Seguimiento_PDI'[Avance_PDI], 0) = 0
+			    )
+			)
+		formatString: #,0
+		displayFolder: 10 Desarrollo Alertas
+		lineageTag: 086d71ab-3c67-4838-b895-5970f0cb7e0c
+
+	measure 'PDI Bajo Avance' =
+			CALCULATE(
+			    [PDI Total],
+			    FILTER(
+			        'Fct_Seguimiento_PDI',
+			        VAR _Avance = IF('Fct_Seguimiento_PDI'[Avance_PDI] > 1, DIVIDE('Fct_Seguimiento_PDI'[Avance_PDI], 100), 'Fct_Seguimiento_PDI'[Avance_PDI])
+			        RETURN _Avance > 0 && _Avance < 0.4
+			    )
+			)
+		formatString: #,0
+		displayFolder: 10 Desarrollo Alertas
+		lineageTag: 9e73a3c1-e8bd-42f3-97d3-cd63918c668c
+
+	measure 'PDI Vencidos' =
+			CALCULATE(
+			    [PDI Total],
+			    FILTER(
+			        'Fct_Seguimiento_PDI',
+			        NOT ISBLANK('Fct_Seguimiento_PDI'[Fecha_Fin])
+			            && 'Fct_Seguimiento_PDI'[Fecha_Fin] < TODAY()
+			            && NOT (
+			                'Fct_Seguimiento_PDI'[EstadoPDI_Key] IN { "FINALIZADO", "CERRADO", "COMPLETADO", "CANCELADO" }
+			            )
+			    )
+			)
+		formatString: #,0
+		displayFolder: 10 Desarrollo Alertas
+		lineageTag: 310e0db2-f0d1-4d70-a8b7-5b8147cfcc09
+
+	measure 'PDI Proximos A Vencer' =
+			CALCULATE(
+			    [PDI Total],
+			    FILTER(
+			        'Fct_Seguimiento_PDI',
+			        NOT ISBLANK('Fct_Seguimiento_PDI'[Fecha_Fin])
+			            && 'Fct_Seguimiento_PDI'[Fecha_Fin] >= TODAY()
+			            && 'Fct_Seguimiento_PDI'[Fecha_Fin] <= TODAY() + 30
+			            && NOT (
+			                'Fct_Seguimiento_PDI'[EstadoPDI_Key] IN { "FINALIZADO", "CERRADO", "COMPLETADO", "CANCELADO" }
+			            )
+			    )
+			)
+		formatString: #,0
+		displayFolder: 10 Desarrollo Alertas
+		lineageTag: e7d2735e-d44e-4d17-8a64-49ad6772b7ab
+
+	measure 'PDI Acompanamientos Programados' =
+			CALCULATE([PDI Total], 'Fct_Seguimiento_PDI'[Acompanamiento_1] IN { "P", "E", "PROGRAMADO", "EJECUTADO" })
+			    + CALCULATE([PDI Total], 'Fct_Seguimiento_PDI'[Acompanamiento_2] IN { "P", "E", "PROGRAMADO", "EJECUTADO" })
+			    + CALCULATE([PDI Total], 'Fct_Seguimiento_PDI'[Acompanamiento_3] IN { "P", "E", "PROGRAMADO", "EJECUTADO" })
+		formatString: #,0
+		displayFolder: 09 Desarrollo PDI
+		lineageTag: 2930cd49-066d-46c1-8af5-c7b11eea1c81
+
+	measure 'PDI Acompanamientos Ejecutados' =
+			CALCULATE([PDI Total], 'Fct_Seguimiento_PDI'[Acompanamiento_1] IN { "E", "EJECUTADO" })
+			    + CALCULATE([PDI Total], 'Fct_Seguimiento_PDI'[Acompanamiento_2] IN { "E", "EJECUTADO" })
+			    + CALCULATE([PDI Total], 'Fct_Seguimiento_PDI'[Acompanamiento_3] IN { "E", "EJECUTADO" })
+		formatString: #,0
+		displayFolder: 09 Desarrollo PDI
+		lineageTag: 7b38b540-17ee-4260-8b71-af862d8ebc4f
+
+	measure 'PDI Cumplimiento Acompanamientos' = DIVIDE([PDI Acompanamientos Ejecutados], [PDI Acompanamientos Programados], 0)
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: 09 Desarrollo PDI
+		lineageTag: c052eeff-33ed-4762-b7b8-09026516a598
+
+	measure 'PDI Alertas Criticas' =
+			CALCULATE(
+			    [PDI Total],
+			    FILTER(
+			        'Fct_Seguimiento_PDI',
+			        VAR _Avance = IF('Fct_Seguimiento_PDI'[Avance_PDI] > 1, DIVIDE('Fct_Seguimiento_PDI'[Avance_PDI], 100), 'Fct_Seguimiento_PDI'[Avance_PDI])
+			        VAR _Vencido =
+			            NOT ISBLANK('Fct_Seguimiento_PDI'[Fecha_Fin])
+			                && 'Fct_Seguimiento_PDI'[Fecha_Fin] < TODAY()
+			                && NOT (
+			                    'Fct_Seguimiento_PDI'[EstadoPDI_Key] IN { "FINALIZADO", "CERRADO", "COMPLETADO", "CANCELADO" }
+			                )
+			        RETURN COALESCE(_Avance, 0) = 0 || (_Avance > 0 && _Avance < 0.4) || _Vencido
+			    )
+			)
+		formatString: #,0
+		displayFolder: 10 Desarrollo Alertas
+		lineageTag: 5acc123f-755e-4c25-85f0-8f26d30a6718
+
+	measure 'PDI Ranking Area Total' = RANKX(ALLSELECTED('Dim_Area'[Area]), [PDI Total], , DESC, Dense)
+		formatString: #,0
+		displayFolder: 10 Desarrollo Alertas
+		lineageTag: b35f3a01-d64d-475a-92b0-984816763f7b
+
+	measure 'PDI Ranking Jefe Bajo Avance' = RANKX(ALLSELECTED('Fct_Seguimiento_PDI'[Jefe_Inmediato]), [PDI Bajo Avance], , DESC, Dense)
+		formatString: #,0
+		displayFolder: 10 Desarrollo Alertas
+		lineageTag: 4d23f49d-100d-4fcd-9bc6-af3e454183f7
+
+	measure 'KPI Indice Desarrollo' =
+			VAR _SinVencidos = 1 - DIVIDE([PDI Vencidos], [PDI Total], 0)
+			VAR _Base =
+			    {
+			        [PDI Avance Promedio],
+			        [PDI Cumplimiento Acompanamientos],
+			        _SinVencidos
+			    }
+			RETURN
+			    AVERAGEX(FILTER(_Base, NOT ISBLANK([Value])), [Value])
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: 00 KPIs Gerenciales
+		lineageTag: e1b75bcf-3df0-489e-9ccb-f0d3d97846fb
+
 	column Indice
 		dataType: int64
 		isHidden
