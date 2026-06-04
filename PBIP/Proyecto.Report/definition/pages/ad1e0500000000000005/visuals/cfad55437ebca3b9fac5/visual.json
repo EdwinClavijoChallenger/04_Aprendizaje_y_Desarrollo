@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
-  "name": "35e62848a5df96934070",
+  "name": "cfad55437ebca3b9fac5",
   "position": {
-    "x": 992,
-    "y": 328,
-    "z": 17000,
-    "height": 94,
-    "width": 256,
-    "tabOrder": 17000
+    "x": 340,
+    "y": 98,
+    "z": 8000,
+    "height": 82,
+    "width": 138,
+    "tabOrder": 8000
   },
   "visual": {
     "visualType": "card",
@@ -23,17 +23,30 @@
                       "Entity": "Medidas_AD"
                     }
                   },
-                  "Property": "Induccion Variacion UC2026 vs UC2025"
+                  "Property": "Induccion Porcentaje Entrenamiento"
                 }
               },
-              "queryRef": "Medidas_AD.Induccion Variacion UC2026 vs UC2025",
-              "nativeQueryRef": "Induccion Variacion UC2026 vs UC2025"
+              "queryRef": "Medidas_AD.Induccion Porcentaje Entrenamiento",
+              "nativeQueryRef": "Induccion Porcentaje Entrenamiento"
             }
           ]
         }
       }
     },
     "objects": {
+      "categoryLabels": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
       "labels": [
         {
           "properties": {
@@ -62,7 +75,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Var UC 2026 vs UC 2025'"
+                  "Value": "'Entrenamiento %'"
                 }
               }
             },

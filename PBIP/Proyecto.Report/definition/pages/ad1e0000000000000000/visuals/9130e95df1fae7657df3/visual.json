@@ -23,11 +23,11 @@
                       "Entity": "Medidas_AD"
                     }
                   },
-                  "Property": "Induccion Outboarding"
+                  "Property": "Induccion Onboarding"
                 }
               },
-              "queryRef": "Medidas_AD.Induccion Outboarding",
-              "nativeQueryRef": "Induccion Outboarding"
+              "queryRef": "Medidas_AD.Induccion Onboarding",
+              "nativeQueryRef": "Induccion Onboarding"
             }
           ]
         }
@@ -75,7 +75,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Outboarding'"
+                  "Value": "'Onboarding'"
                 }
               }
             },

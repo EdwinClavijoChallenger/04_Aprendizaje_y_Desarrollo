@@ -23,11 +23,11 @@
                       "Entity": "Medidas_AD"
                     }
                   },
-                  "Property": "Induccion Horas Entrenamiento"
+                  "Property": "Induccion Porcentaje Entrenamiento"
                 }
               },
-              "queryRef": "Medidas_AD.Induccion Horas Entrenamiento",
-              "nativeQueryRef": "Induccion Horas Entrenamiento"
+              "queryRef": "Medidas_AD.Induccion Porcentaje Entrenamiento",
+              "nativeQueryRef": "Induccion Porcentaje Entrenamiento"
             }
           ]
         }
@@ -75,7 +75,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Entrenamiento h'"
+                  "Value": "'Entrenamiento'"
                 }
               }
             },

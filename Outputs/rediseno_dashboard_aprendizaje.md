@@ -17,7 +17,7 @@ Pantalla de entrada al proyecto piloto organizada en cuatro bloques visuales:
 
 Aprendizaje queda marcado como frente activo. Los demas frentes quedan como proximas fases, preparados para integrarse cuando se carguen sus fuentes.
 
-Incluye indicadores del bloque Aprendizaje: horas de formacion, cobertura, satisfaccion, eficacia, tipo de formacion, nivel de cargo como pendiente por fuente Headcount, outboarding e indicador de entrenamiento.
+Incluye indicadores del bloque Aprendizaje: horas de formacion, cobertura, satisfaccion, eficacia, tipo de formacion, nivel de cargo como pendiente por fuente Headcount, onboarding e indicador de entrenamiento.
 
 La portada tambien incorpora filtros generales en una franja superior compacta: anio, mes, empresa, area, tipo de formacion, modalidad y segmento UC.
 
@@ -78,7 +78,7 @@ Posteriormente se agregaron 7 filtros generales a la pagina `00 Inicio Corporati
 - Calificacion promedio de satisfaccion de la formacion
 - Favorabilidad
 - Cumplimiento de induccion
-- Outboarding desde induccion
+- Onboarding desde induccion
 - Horas de entrenamiento desde induccion
 - Nivel de cargo pendiente por fuente Headcount
 - Indice aprendizaje

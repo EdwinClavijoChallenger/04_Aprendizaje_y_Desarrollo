@@ -4,10 +4,10 @@
   "position": {
     "x": 482,
     "y": 208,
-    "z": 13000,
+    "z": 15000,
     "height": 214,
     "width": 480,
-    "tabOrder": 13000
+    "tabOrder": 15000
   },
   "visual": {
     "visualType": "lineChart",
@@ -42,11 +42,11 @@
                       "Entity": "Medidas_AD"
                     }
                   },
-                  "Property": "Induccion Total Colaboradores"
+                  "Property": "Induccion Porcentaje Cumplimiento"
                 }
               },
-              "queryRef": "Medidas_AD.Induccion Total Colaboradores",
-              "nativeQueryRef": "Induccion Total Colaboradores"
+              "queryRef": "Medidas_AD.Induccion Porcentaje Cumplimiento",
+              "nativeQueryRef": "Induccion Porcentaje Cumplimiento"
             },
             {
               "field": {
@@ -56,64 +56,15 @@
                       "Entity": "Medidas_AD"
                     }
                   },
-                  "Property": "Induccion Aprobados"
+                  "Property": "Induccion Porcentaje Entrenamiento"
                 }
               },
-              "queryRef": "Medidas_AD.Induccion Aprobados",
-              "nativeQueryRef": "Induccion Aprobados"
+              "queryRef": "Medidas_AD.Induccion Porcentaje Entrenamiento",
+              "nativeQueryRef": "Induccion Porcentaje Entrenamiento"
             }
           ]
         }
       }
-    },
-    "drillFilterOtherVisuals": true,
-    "visualContainerObjects": {
-      "title": [
-        {
-          "properties": {
-            "show": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
-                }
-              }
-            },
-            "text": {
-              "expr": {
-                "Literal": {
-                  "Value": "'Induccion mensual'"
-                }
-              }
-            }
-          }
-        }
-      ],
-      "visualHeader": [
-        {
-          "properties": {
-            "show": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
-                }
-              }
-            }
-          }
-        }
-      ],
-      "visualTooltip": [
-        {
-          "properties": {
-            "show": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
-                }
-              }
-            }
-          }
-        }
-      ]
     },
     "objects": {
       "labels": [
@@ -168,6 +119,55 @@
           }
         }
       ]
-    }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Onboarding y entrenamiento mensual'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "visualHeader": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "visualTooltip": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
   }
 }

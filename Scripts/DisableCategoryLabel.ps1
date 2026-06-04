@@ -18,7 +18,7 @@ $pageMap = [ordered]@{
     "ad1e0200000000000002" = "02 Plan y Ejecucion"
     "ad1e0300000000000003" = "03 Cobertura y Participacion"
     "ad1e0400000000000004" = "04 Satisfaccion y Eficacia"
-    "ad1e0500000000000005" = "05 Induccion y UC"
+    "ad1e0500000000000005" = "05 Induccion y Entrenamiento"
     "ad1e0600000000000006" = "06 Focos de Gestion"
 }
 

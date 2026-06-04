@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "ff2b363e987ea1b41e75",
   "position": {
-    "x": 238,
+    "x": 186,
     "y": 98,
     "z": 7000,
     "height": 82,
-    "width": 190,
+    "width": 138,
     "tabOrder": 7000
   },
   "visual": {
@@ -75,7 +75,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Cumplimiento'"
+                  "Value": "'Onboarding %'"
                 }
               }
             },

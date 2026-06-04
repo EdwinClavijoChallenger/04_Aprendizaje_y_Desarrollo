@@ -190,7 +190,7 @@ table Medidas_AD
 		displayFolder: 04 Induccion UC
 		lineageTag: 24f1148a-539f-4465-b843-3ed95f9b4368
 
-	measure 'Induccion Aprobados' = CALCULATE(COUNTROWS('Fct_Induccion'), 'Fct_Induccion'[EstadoInduccion_Key] = "APROBO")
+	measure 'Induccion Aprobados' = CALCULATE(COUNTROWS('Fct_Induccion'), 'Fct_Induccion'[EstadoInduccion_Key] IN { "APROBO", "APROBADO" })
 		formatString: #,0
 		displayFolder: 04 Induccion UC
 		lineageTag: 0ac88ffa-7bc3-45b7-909d-a74217a123d4
@@ -205,8 +205,8 @@ table Medidas_AD
 		displayFolder: 04 Induccion UC
 		lineageTag: e4a40db9-198d-4158-9ccc-1cb3261f9fd2
 
-	measure 'Induccion Outboarding' = CALCULATE(COUNTROWS('Fct_Induccion'), 'Fct_Induccion'[Estado_Colaborador] IN { "Retirado", "Inactivo" })
-		formatString: #,0
+	measure 'Induccion Onboarding' = DIVIDE([Induccion Onboarding Realizados], [Induccion Onboarding Participantes], 0)
+		formatString: 0.0%;-0.0%;0.0%
 		displayFolder: 04 Induccion UC
 		lineageTag: 7afb6905-9eeb-4444-8d1b-1dc1550c66ab
 
@@ -407,6 +407,117 @@ table Medidas_AD
 		formatString: 0.0%;-0.0%;0.0%
 		displayFolder: 07 Comparativos
 		lineageTag: eb2d8e62-aef9-4d7d-bde2-9967ea9477d5
+
+	measure 'HC Total Colaborador Mes' = DISTINCTCOUNT('Dim_ColaboradorHC'[Colaborador_Key])
+		formatString: #,0
+		displayFolder: 08 Headcount HC
+		lineageTag: f38f73e4-280f-4b41-9ed2-f93ca77a7a86
+
+	measure 'HC Total Colaboradores Unicos' = DISTINCTCOUNT('Dim_ColaboradorHC'[Numero_Documento])
+		formatString: #,0
+		displayFolder: 08 Headcount HC
+		lineageTag: d74aff9e-857b-4aec-804e-4bb2ce4f19fd
+
+	measure 'HC Recuento Tipo Cargo' = COUNTA('Dim_ColaboradorHC'[Tipo_Cargo])
+		formatString: #,0
+		displayFolder: 08 Headcount HC
+		lineageTag: 9f4f8060-aa3c-4b60-ba1f-ecb70ec5c987
+
+	measure 'HC Porcentaje Tipo Cargo' = DIVIDE([HC Recuento Tipo Cargo], CALCULATE([HC Recuento Tipo Cargo], ALLSELECTED('Dim_ColaboradorHC'[Tipo_Cargo])))
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: 08 Headcount HC
+		lineageTag: 436ae1ed-4b2c-4a64-85ac-14f785500dd6
+
+	measure 'HC Tipos Cargo' = DISTINCTCOUNT('Dim_ColaboradorHC'[Tipo_Cargo])
+		formatString: #,0
+		displayFolder: 08 Headcount HC
+		lineageTag: b29411ac-359e-49a8-b86a-4b21cf792b49
+
+	measure 'Asistencia Registros HC Match' =
+			VAR _KeysHC = VALUES('Dim_ColaboradorHC'[Colaborador_Key])
+			RETURN
+			    CALCULATE(
+			        [Asistencia Total Registros],
+			        TREATAS(_KeysHC, 'Fct_AsistenciaFormacion'[Colaborador_Key])
+			    )
+		formatString: #,0
+		displayFolder: 08 Headcount HC
+		lineageTag: d21be951-d44a-4d57-a66d-dd46c9b1caa4
+
+	measure 'Asistencia Colaborador Mes HC Match' =
+			VAR _KeysHC = VALUES('Dim_ColaboradorHC'[Colaborador_Key])
+			RETURN
+			    CALCULATE(
+			        DISTINCTCOUNT('Fct_AsistenciaFormacion'[Colaborador_Key]),
+			        TREATAS(_KeysHC, 'Fct_AsistenciaFormacion'[Colaborador_Key])
+			    )
+		formatString: #,0
+		displayFolder: 08 Headcount HC
+		lineageTag: 0c0ebe99-e406-4e2f-81f0-21e8585c88ee
+
+	measure 'Asistencia Distribucion Tipo Cargo %' = DIVIDE([Asistencia Registros HC Match], CALCULATE([Asistencia Registros HC Match], ALLSELECTED('Dim_ColaboradorHC'[Tipo_Cargo])))
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: 08 Headcount HC
+		lineageTag: bfafa5d7-6dd4-487e-be5a-a37de2ed377c
+
+	measure 'Asistencia Registros Sin HC Match' =
+			VAR _Total =
+			    CALCULATE(
+			        [Asistencia Total Registros],
+			        REMOVEFILTERS('Dim_ColaboradorHC')
+			    )
+			VAR _Match =
+			    CALCULATE(
+			        [Asistencia Registros HC Match],
+			        REMOVEFILTERS('Dim_ColaboradorHC')
+			    )
+			RETURN
+			    _Total - _Match
+		formatString: #,0
+		displayFolder: 08 Headcount HC
+		lineageTag: 04f63099-e053-40aa-a2b0-d36dead67715
+
+	measure 'Asistencia Porcentaje HC Match' =
+			VAR _Total =
+			    CALCULATE(
+			        [Asistencia Total Registros],
+			        REMOVEFILTERS('Dim_ColaboradorHC')
+			    )
+			VAR _Match =
+			    CALCULATE(
+			        [Asistencia Registros HC Match],
+			        REMOVEFILTERS('Dim_ColaboradorHC')
+			    )
+			RETURN
+			    DIVIDE(_Match, _Total)
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: 08 Headcount HC
+		lineageTag: 412f9f00-b82b-4f2d-9a8a-7252d1bc77c2
+
+	measure 'Induccion Onboarding Realizados' = CALCULATE(COUNTROWS('Fct_Induccion'), 'Fct_Induccion'[EstadoInduccion_Key] IN { "APROBO", "APROBADO" })
+		formatString: #,0
+		displayFolder: 04 Induccion UC
+		lineageTag: 06e6c60a-5132-4683-b6dc-e6feef265df3
+
+	measure 'Induccion Onboarding Participantes' = CALCULATE(DISTINCTCOUNT('Fct_Induccion'[Colaborador_Key]), 'Fct_Induccion'[EstadoInduccion_Key] <> "RENUNCIA")
+		formatString: #,0
+		displayFolder: 04 Induccion UC
+		lineageTag: ea4f03a1-dda9-4f02-b869-fe33d44c4736
+
+	measure 'Induccion Entrenamiento Realizados' = CALCULATE(COUNTROWS('Fct_Induccion'), 'Fct_Induccion'[Entrenamiento] = "SI")
+		formatString: #,0
+		displayFolder: 04 Induccion UC
+		lineageTag: 125b628c-9be2-452e-93cf-4e09cebcaacf
+
+	measure 'Induccion Entrenamiento Base' = CALCULATE(COUNTROWS('Fct_Induccion'), 'Fct_Induccion'[Entrenamiento] = "SI" || 'Fct_Induccion'[Entrenamiento] = "PENDIENTE" || ISBLANK('Fct_Induccion'[Entrenamiento]))
+		formatString: #,0
+		displayFolder: 04 Induccion UC
+		lineageTag: 9755415a-51b9-4f80-a07d-cbf78089cb75
+
+	measure 'Induccion Porcentaje Entrenamiento' = DIVIDE([Induccion Entrenamiento Realizados], [Induccion Entrenamiento Base], 0)
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: 04 Induccion UC
+		lineageTag: 58a9b4a5-e29c-4872-ac96-a80a86f57d8e
 
 	column Indice
 		dataType: int64

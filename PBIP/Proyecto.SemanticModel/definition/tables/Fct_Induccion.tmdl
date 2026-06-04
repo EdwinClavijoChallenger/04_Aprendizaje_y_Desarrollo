@@ -105,6 +105,11 @@ table Fct_Induccion
 		lineageTag: e70c3102-0a14-404f-9ff5-375ac01cd6d4
 		sourceColumn: [Tiempo_Finalizacion_Dias]
 
+	column Entrenamiento
+		dataType: string
+		lineageTag: 7c066888-3904-497b-838f-d611a7a52d03
+		sourceColumn: [Entrenamiento]
+
 	partition Fct_Induccion = calculated
 		mode: import
 		source =
@@ -149,6 +154,7 @@ table Fct_Induccion
 				    ),
 				        "Horas_Induccion", 'Fct_InduccionColaborador_antes_de_UC_2025'[Horas de inducción],
 				        "Min_Entrenamiento", 'Fct_InduccionColaborador_antes_de_UC_2025'[Min de entrenamientos],
+				        "Entrenamiento", VAR _raw = 'Fct_InduccionColaborador_antes_de_UC_2025'[Entrenamiento ] VAR _t0 = UPPER(TRIM(SUBSTITUTE(COALESCE(_raw, ""), UNICHAR(160), " "))) VAR _t1 = SUBSTITUTE(_t0, UNICHAR(205), "I") RETURN IF(_t1 = "", BLANK(), _t1),
 				        "Estado_Colaborador", 'Fct_InduccionColaborador_antes_de_UC_2025'[Estado del colaborador],
 				        "Tiempo_Finalizacion_Dias", VAR _fi = 'Fct_InduccionColaborador_antes_de_UC_2025'[FECHA_INGRESO] VAR _fc = 'Fct_InduccionColaborador_antes_de_UC_2025'[Fecha Certificado] RETURN IF(NOT ISBLANK(_fi) && NOT ISBLANK(_fc), DATEDIFF(_fi, _fc, DAY), BLANK())
 				    )
@@ -193,6 +199,7 @@ table Fct_Induccion
 				    ),
 				        "Horas_Induccion", 'Fct_InduccionColaborador_UC_2025'[Horas de inducción],
 				        "Min_Entrenamiento", 'Fct_InduccionColaborador_UC_2025'[Min de entrenamientos],
+				        "Entrenamiento", VAR _raw = 'Fct_InduccionColaborador_UC_2025'[Entrenamiento ] VAR _t0 = UPPER(TRIM(SUBSTITUTE(COALESCE(_raw, ""), UNICHAR(160), " "))) VAR _t1 = SUBSTITUTE(_t0, UNICHAR(205), "I") RETURN IF(_t1 = "", BLANK(), _t1),
 				        "Estado_Colaborador", 'Fct_InduccionColaborador_UC_2025'[Estado del colaborador],
 				        "Tiempo_Finalizacion_Dias", VAR _fi = 'Fct_InduccionColaborador_UC_2025'[FECHA_INGRESO] VAR _fc = 'Fct_InduccionColaborador_UC_2025'[Fecha Certificado] RETURN IF(NOT ISBLANK(_fi) && NOT ISBLANK(_fc), DATEDIFF(_fi, _fc, DAY), BLANK())
 				    )
@@ -237,6 +244,7 @@ table Fct_Induccion
 				    ),
 				        "Horas_Induccion", 'Fct_InduccionColaborador_UC_2026'[Horas de inducción],
 				        "Min_Entrenamiento", 'Fct_InduccionColaborador_UC_2026'[Min de entrenamientos],
+				        "Entrenamiento", VAR _raw = 'Fct_InduccionColaborador_UC_2026'[Entrenamiento ] VAR _t0 = UPPER(TRIM(SUBSTITUTE(COALESCE(_raw, ""), UNICHAR(160), " "))) VAR _t1 = SUBSTITUTE(_t0, UNICHAR(205), "I") RETURN IF(_t1 = "", BLANK(), _t1),
 				        "Estado_Colaborador", 'Fct_InduccionColaborador_UC_2026'[Estado del colaborador],
 				        "Tiempo_Finalizacion_Dias", VAR _fi = 'Fct_InduccionColaborador_UC_2026'[FECHA_INGRESO] VAR _txt = TRIM(SUBSTITUTE('Fct_InduccionColaborador_UC_2026'[Fecha Certificado], UNICHAR(160), " ")) VAR _fc = IFERROR(DATEVALUE(_txt), BLANK()) RETURN IF(NOT ISBLANK(_fi) && NOT ISBLANK(_fc), DATEDIFF(_fi, _fc, DAY), BLANK())
 				    )

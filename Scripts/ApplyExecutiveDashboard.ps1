@@ -353,6 +353,7 @@ VAR _Antes =
         "EstadoInduccion_Key", $estadoAntes,
         "Horas_Induccion", 'Fct_InduccionColaborador_antes_de_UC_2025'[Horas de inducción],
         "Min_Entrenamiento", 'Fct_InduccionColaborador_antes_de_UC_2025'[Min de entrenamientos],
+        "Entrenamiento", VAR _raw = 'Fct_InduccionColaborador_antes_de_UC_2025'[Entrenamiento ] VAR _t0 = UPPER(TRIM(SUBSTITUTE(COALESCE(_raw, ""), UNICHAR(160), " "))) VAR _t1 = SUBSTITUTE(_t0, UNICHAR(205), "I") RETURN IF(_t1 = "", BLANK(), _t1),
         "Estado_Colaborador", 'Fct_InduccionColaborador_antes_de_UC_2025'[Estado del colaborador],
         "Tiempo_Finalizacion_Dias", VAR _fi = 'Fct_InduccionColaborador_antes_de_UC_2025'[FECHA_INGRESO] VAR _fc = 'Fct_InduccionColaborador_antes_de_UC_2025'[Fecha Certificado] RETURN IF(NOT ISBLANK(_fi) && NOT ISBLANK(_fc), DATEDIFF(_fi, _fc, DAY), BLANK())
     )
@@ -375,6 +376,7 @@ VAR _UC2025 =
         "EstadoInduccion_Key", $estadoUC2025,
         "Horas_Induccion", 'Fct_InduccionColaborador_UC_2025'[Horas de inducción],
         "Min_Entrenamiento", 'Fct_InduccionColaborador_UC_2025'[Min de entrenamientos],
+        "Entrenamiento", VAR _raw = 'Fct_InduccionColaborador_UC_2025'[Entrenamiento ] VAR _t0 = UPPER(TRIM(SUBSTITUTE(COALESCE(_raw, ""), UNICHAR(160), " "))) VAR _t1 = SUBSTITUTE(_t0, UNICHAR(205), "I") RETURN IF(_t1 = "", BLANK(), _t1),
         "Estado_Colaborador", 'Fct_InduccionColaborador_UC_2025'[Estado del colaborador],
         "Tiempo_Finalizacion_Dias", VAR _fi = 'Fct_InduccionColaborador_UC_2025'[FECHA_INGRESO] VAR _fc = 'Fct_InduccionColaborador_UC_2025'[Fecha Certificado] RETURN IF(NOT ISBLANK(_fi) && NOT ISBLANK(_fc), DATEDIFF(_fi, _fc, DAY), BLANK())
     )
@@ -397,6 +399,7 @@ VAR _UC2026 =
         "EstadoInduccion_Key", $estadoUC2026,
         "Horas_Induccion", 'Fct_InduccionColaborador_UC_2026'[Horas de inducción],
         "Min_Entrenamiento", 'Fct_InduccionColaborador_UC_2026'[Min de entrenamientos],
+        "Entrenamiento", VAR _raw = 'Fct_InduccionColaborador_UC_2026'[Entrenamiento ] VAR _t0 = UPPER(TRIM(SUBSTITUTE(COALESCE(_raw, ""), UNICHAR(160), " "))) VAR _t1 = SUBSTITUTE(_t0, UNICHAR(205), "I") RETURN IF(_t1 = "", BLANK(), _t1),
         "Estado_Colaborador", 'Fct_InduccionColaborador_UC_2026'[Estado del colaborador],
         "Tiempo_Finalizacion_Dias", VAR _fi = 'Fct_InduccionColaborador_UC_2026'[FECHA_INGRESO] VAR _txt = TRIM(SUBSTITUTE('Fct_InduccionColaborador_UC_2026'[Fecha Certificado], UNICHAR(160), " ")) VAR _fc = IFERROR(DATEVALUE(_txt), BLANK()) RETURN IF(NOT ISBLANK(_fi) && NOT ISBLANK(_fc), DATEDIFF(_fi, _fc, DAY), BLANK())
     )
@@ -422,6 +425,7 @@ RETURN
         @{ Name = "EstadoInduccion_Key"; Source = "EstadoInduccion_Key"; DataType = "String"; Hidden = $true },
         @{ Name = "Horas_Induccion"; Source = "Horas_Induccion"; DataType = "Int64"; FormatString = "0" },
         @{ Name = "Min_Entrenamiento"; Source = "Min_Entrenamiento"; DataType = "Int64"; FormatString = "0" },
+        @{ Name = "Entrenamiento"; Source = "Entrenamiento"; DataType = "String" },
         @{ Name = "Estado_Colaborador"; Source = "Estado_Colaborador"; DataType = "String" },
         @{ Name = "Tiempo_Finalizacion_Dias"; Source = "Tiempo_Finalizacion_Dias"; DataType = "Int64"; FormatString = "0" }
     )
@@ -609,6 +613,57 @@ ADDCOLUMNS(
     Set-Measure $m "Asistencia Porcentaje Ausentismo" "VAR _p = [Asistencia Porcentaje Asistencia] RETURN IF(ISBLANK(_p), BLANK(), MAX(0, 1 - _p))" "0.0%;-0.0%;0.0%" "02 Asistencia"
     Set-Measure $m "Asistencia Promedio Por Formacion" "DIVIDE([Asistencia Total Asistentes], [Asistencia Formaciones])" "#,0.0" "02 Asistencia"
 
+    Set-Measure $m "HC Total Colaborador Mes" "DISTINCTCOUNT('Dim_ColaboradorHC'[Colaborador_Key])" "#,0" "08 Headcount HC"
+    Set-Measure $m "HC Total Colaboradores Unicos" "DISTINCTCOUNT('Dim_ColaboradorHC'[Numero_Documento])" "#,0" "08 Headcount HC"
+    Set-Measure $m "HC Recuento Tipo Cargo" "COUNTA('Dim_ColaboradorHC'[Tipo_Cargo])" "#,0" "08 Headcount HC"
+    Set-Measure $m "HC Porcentaje Tipo Cargo" "DIVIDE([HC Recuento Tipo Cargo], CALCULATE([HC Recuento Tipo Cargo], ALLSELECTED('Dim_ColaboradorHC'[Tipo_Cargo])))" "0.0%;-0.0%;0.0%" "08 Headcount HC"
+    Set-Measure $m "HC Tipos Cargo" "DISTINCTCOUNT('Dim_ColaboradorHC'[Tipo_Cargo])" "#,0" "08 Headcount HC"
+    Set-Measure $m "Asistencia Registros HC Match" @"
+VAR _KeysHC = VALUES('Dim_ColaboradorHC'[Colaborador_Key])
+RETURN
+    CALCULATE(
+        [Asistencia Total Registros],
+        TREATAS(_KeysHC, 'Fct_AsistenciaFormacion'[Colaborador_Key])
+    )
+"@ "#,0" "08 Headcount HC"
+    Set-Measure $m "Asistencia Colaborador Mes HC Match" @"
+VAR _KeysHC = VALUES('Dim_ColaboradorHC'[Colaborador_Key])
+RETURN
+    CALCULATE(
+        DISTINCTCOUNT('Fct_AsistenciaFormacion'[Colaborador_Key]),
+        TREATAS(_KeysHC, 'Fct_AsistenciaFormacion'[Colaborador_Key])
+    )
+"@ "#,0" "08 Headcount HC"
+    Set-Measure $m "Asistencia Distribucion Tipo Cargo %" "DIVIDE([Asistencia Registros HC Match], CALCULATE([Asistencia Registros HC Match], ALLSELECTED('Dim_ColaboradorHC'[Tipo_Cargo])))" "0.0%;-0.0%;0.0%" "08 Headcount HC"
+    Set-Measure $m "Asistencia Registros Sin HC Match" @"
+VAR _Total =
+    CALCULATE(
+        [Asistencia Total Registros],
+        REMOVEFILTERS('Dim_ColaboradorHC')
+    )
+VAR _Match =
+    CALCULATE(
+        [Asistencia Registros HC Match],
+        REMOVEFILTERS('Dim_ColaboradorHC')
+    )
+RETURN
+    _Total - _Match
+"@ "#,0" "08 Headcount HC"
+    Set-Measure $m "Asistencia Porcentaje HC Match" @"
+VAR _Total =
+    CALCULATE(
+        [Asistencia Total Registros],
+        REMOVEFILTERS('Dim_ColaboradorHC')
+    )
+VAR _Match =
+    CALCULATE(
+        [Asistencia Registros HC Match],
+        REMOVEFILTERS('Dim_ColaboradorHC')
+    )
+RETURN
+    DIVIDE(_Match, _Total)
+"@ "0.0%;-0.0%;0.0%" "08 Headcount HC"
+
     Set-Measure $m "Encuesta Total Respuestas" "COUNTROWS('Fct_EncuestaFormacion')" "#,0" "03 Encuesta Formacion"
     Set-Measure $m "Encuesta Participantes Estimados" "[Encuesta Total Respuestas]" "#,0" "03 Encuesta Formacion"
     Set-Measure $m "Encuesta Tasa Respuesta" "DIVIDE([Encuesta Total Respuestas], [Asistencia Total Asistentes])" "0.0%;-0.0%;0.0%" "03 Encuesta Formacion"
@@ -654,12 +709,17 @@ RETURN
 
     Set-Measure $m "Induccion Total Colaboradores" "COUNTROWS('Fct_Induccion')" "#,0" "04 Induccion UC"
     Set-Measure $m "Induccion Colaboradores Unicos" "DISTINCTCOUNT('Fct_Induccion'[Colaborador_Key])" "#,0" "04 Induccion UC"
-    Set-Measure $m "Induccion Aprobados" "CALCULATE(COUNTROWS('Fct_Induccion'), 'Fct_Induccion'[EstadoInduccion_Key] = ""APROBO"")" "#,0" "04 Induccion UC"
+    Set-Measure $m "Induccion Aprobados" "CALCULATE(COUNTROWS('Fct_Induccion'), 'Fct_Induccion'[EstadoInduccion_Key] IN { ""APROBO"", ""APROBADO"" })" "#,0" "04 Induccion UC"
     Set-Measure $m "Induccion No Aprobados" "CALCULATE(COUNTROWS('Fct_Induccion'), 'Fct_Induccion'[EstadoInduccion_Key] = ""NO_APROBO"")" "#,0" "04 Induccion UC"
     Set-Measure $m "Induccion Retiros" "CALCULATE(COUNTROWS('Fct_Induccion'), 'Fct_Induccion'[EstadoInduccion_Key] IN { ""RETIRADO"", ""RENUNCIA"" })" "#,0" "04 Induccion UC"
-    Set-Measure $m "Induccion Outboarding" "CALCULATE(COUNTROWS('Fct_Induccion'), 'Fct_Induccion'[Estado_Colaborador] IN { ""Retirado"", ""Inactivo"" })" "#,0" "04 Induccion UC"
+    Set-Measure $m "Induccion Onboarding Realizados" "CALCULATE(COUNTROWS('Fct_Induccion'), 'Fct_Induccion'[EstadoInduccion_Key] IN { ""APROBO"", ""APROBADO"" })" "#,0" "04 Induccion UC"
+    Set-Measure $m "Induccion Onboarding Participantes" "CALCULATE(DISTINCTCOUNT('Fct_Induccion'[Colaborador_Key]), 'Fct_Induccion'[EstadoInduccion_Key] <> ""RENUNCIA"")" "#,0" "04 Induccion UC"
+    Set-Measure $m "Induccion Onboarding" "DIVIDE([Induccion Onboarding Realizados], [Induccion Onboarding Participantes], 0)" "0.0%;-0.0%;0.0%" "04 Induccion UC"
     Set-Measure $m "Induccion Minutos Entrenamiento" "SUM('Fct_Induccion'[Min_Entrenamiento])" "#,0" "04 Induccion UC"
     Set-Measure $m "Induccion Horas Entrenamiento" "DIVIDE([Induccion Minutos Entrenamiento], 60)" "#,0.0" "04 Induccion UC"
+    Set-Measure $m "Induccion Entrenamiento Realizados" "CALCULATE(COUNTROWS('Fct_Induccion'), 'Fct_Induccion'[Entrenamiento] = ""SI"")" "#,0" "04 Induccion UC"
+    Set-Measure $m "Induccion Entrenamiento Base" "CALCULATE(COUNTROWS('Fct_Induccion'), 'Fct_Induccion'[Entrenamiento] = ""SI"" || 'Fct_Induccion'[Entrenamiento] = ""PENDIENTE"" || ISBLANK('Fct_Induccion'[Entrenamiento]))" "#,0" "04 Induccion UC"
+    Set-Measure $m "Induccion Porcentaje Entrenamiento" "DIVIDE([Induccion Entrenamiento Realizados], [Induccion Entrenamiento Base], 0)" "0.0%;-0.0%;0.0%" "04 Induccion UC"
     Set-Measure $m "Induccion Porcentaje Cumplimiento" "DIVIDE([Induccion Aprobados], [Induccion Total Colaboradores])" "0.0%;-0.0%;0.0%" "04 Induccion UC"
     Set-Measure $m "Induccion Tiempo Promedio Finalizacion Dias" "AVERAGE('Fct_Induccion'[Tiempo_Finalizacion_Dias])" "#,0.0" "04 Induccion UC"
     Set-Measure $m "Induccion Cumplimiento Antes UC" "CALCULATE([Induccion Porcentaje Cumplimiento], 'Dim_SegmentoUC'[SegmentoUC_Key] = ""Antes_UC"")" "0.0%;-0.0%;0.0%" "04 Induccion UC"
@@ -832,7 +892,9 @@ function New-Visual {
     }
     else {
         $queryState.Category = [ordered]@{ projections = @((New-ColumnProjection $CategoryEntity $CategoryColumn)) }
-        $queryState.Y = [ordered]@{ projections = @($Measures | ForEach-Object { New-MeasureProjection $_ }) }
+        if ($Measures -and $Measures.Count -gt 0) {
+            $queryState.Y = [ordered]@{ projections = @($Measures | ForEach-Object { New-MeasureProjection $_ }) }
+        }
     }
 
     $visualId = ConvertTo-PbirId $Name
@@ -1007,9 +1069,9 @@ function Set-ReportLayer {
                 (New-Visual "home_apr_cobertura" "card" 178 124 136 58 1001 "Cobertura" @("% Cobertura")),
                 (New-Visual "home_apr_satisfaccion" "card" 324 124 136 58 1002 "Satisfaccion" @("Encuesta Favorabilidad")),
                 (New-Visual "home_apr_eficacia" "card" 470 124 152 58 1003 "Eficacia" @("Plan Eficacia Promedio")),
-                (New-Visual "home_apr_nivel_cargo" "card" 32 188 136 58 1004 "Nivel cargo" @("KPI Nivel Cargo Pendiente")),
-                (New-Visual "home_apr_outboarding" "card" 178 188 136 58 1005 "Outboarding" @("Induccion Outboarding")),
-                (New-Visual "home_apr_entrenamiento" "card" 324 188 136 58 1006 "Entrenamiento h" @("Induccion Horas Entrenamiento")),
+                (New-Visual "home_apr_tipo_cargo" "barChart" 32 188 136 58 1004 "Tipo de Cargo" @("HC Porcentaje Tipo Cargo") "Dim_ColaboradorHC" "Tipo_Cargo"),
+                (New-Visual "home_apr_onboarding" "card" 178 188 136 58 1005 "Onboarding" @("Induccion Onboarding")),
+                (New-Visual "home_apr_entrenamiento" "card" 324 188 136 58 1006 "Entrenamiento %" @("Induccion Porcentaje Entrenamiento")),
                 (New-Visual "home_apr_indice" "card" 470 188 152 58 1007 "Indice aprendizaje" @("KPI Indice Aprendizaje")),
                 (New-Visual "home_apr_tipo_formacion" "barChart" 32 258 590 92 2000 "Tipo de Formacion" @("Plan Actividades Ejecutadas") "Dim_TipoFormacion" "TipoFormacion"),
 
@@ -1127,7 +1189,7 @@ function Set-ReportLayer {
         },
         [ordered]@{
             Name = "ad1e0500000000000005"
-            Display = "05 Induccion y UC"
+            Display = "05 Inducción y Entrenamiento"
             Visuals = @(
                 (New-Visual "ind_filtro_anio" "slicer" 32 18 176 60 10 "Anio" @() "Dim_Calendario" "Anio"),
                 (New-Visual "ind_filtro_mes" "slicer" 220 18 176 60 11 "Mes" @() "Dim_Calendario" "AnioMes"),
@@ -1135,18 +1197,20 @@ function Set-ReportLayer {
                 (New-Visual "ind_filtro_area" "slicer" 608 18 188 60 13 "Area" @() "Dim_Area" "Area"),
                 (New-Visual "ind_filtro_estado" "slicer" 808 18 188 60 14 "Estado" @() "Dim_EstadoInduccion" "EstadoInduccion"),
                 (New-Visual "ind_filtro_segmento" "slicer" 1008 18 240 60 15 "Segmento UC" @() "Dim_SegmentoUC" "SegmentoUC"),
-                (New-Visual "ind_kpi_total" "card" 32 98 190 82 1000 "Colaboradores" @("Induccion Total Colaboradores")),
-                (New-Visual "ind_kpi_cumplimiento" "card" 238 98 190 82 1001 "Cumplimiento" @("Induccion Porcentaje Cumplimiento")),
-                (New-Visual "ind_kpi_tiempo" "card" 444 98 190 82 1002 "Dias promedio" @("Induccion Tiempo Promedio Finalizacion Dias")),
-                (New-Visual "ind_kpi_antes" "card" 650 98 190 82 1003 "Antes UC" @("Induccion Cumplimiento Antes UC")),
-                (New-Visual "ind_kpi_uc2025" "card" 856 98 190 82 1004 "UC 2025" @("Induccion Cumplimiento UC 2025")),
-                (New-Visual "ind_kpi_uc2026" "card" 1062 98 186 82 1005 "UC 2026" @("Induccion Cumplimiento UC 2026")),
-                (New-Visual "ind_segmento" "barChart" 32 208 420 214 2000 "Cumplimiento por segmento UC" @("Induccion Porcentaje Cumplimiento") "Dim_SegmentoUC" "SegmentoUC"),
-                (New-Visual "ind_mes" "lineChart" 482 208 480 214 2001 "Induccion mensual" @("Induccion Total Colaboradores", "Induccion Aprobados") "Dim_Calendario" "AnioMes"),
+                (New-Visual "ind_kpi_total" "card" 32 98 138 82 1000 "Colaboradores" @("Induccion Total Colaboradores")),
+                (New-Visual "ind_kpi_cumplimiento" "card" 186 98 138 82 1001 "Onboarding %" @("Induccion Porcentaje Cumplimiento")),
+                (New-Visual "ind_kpi_entrenamiento" "card" 340 98 138 82 1002 "Entrenamiento %" @("Induccion Porcentaje Entrenamiento")),
+                (New-Visual "ind_kpi_onboarding" "card" 494 98 138 82 1003 "Onboarding neto" @("Induccion Onboarding")),
+                (New-Visual "ind_kpi_tiempo" "card" 648 98 138 82 1004 "Dias promedio" @("Induccion Tiempo Promedio Finalizacion Dias")),
+                (New-Visual "ind_kpi_antes" "card" 802 98 138 82 1005 "Antes UC" @("Induccion Cumplimiento Antes UC")),
+                (New-Visual "ind_kpi_uc2025" "card" 956 98 138 82 1006 "UC 2025" @("Induccion Cumplimiento UC 2025")),
+                (New-Visual "ind_kpi_uc2026" "card" 1110 98 138 82 1007 "UC 2026" @("Induccion Cumplimiento UC 2026")),
+                (New-Visual "ind_segmento" "barChart" 32 208 420 214 2000 "Onboarding y entrenamiento por segmento" @("Induccion Porcentaje Cumplimiento", "Induccion Porcentaje Entrenamiento") "Dim_SegmentoUC" "SegmentoUC"),
+                (New-Visual "ind_mes" "lineChart" 482 208 480 214 2001 "Onboarding y entrenamiento mensual" @("Induccion Porcentaje Cumplimiento", "Induccion Porcentaje Entrenamiento") "Dim_Calendario" "AnioMes"),
                 (New-Visual "ind_variacion_2025" "card" 992 208 256 94 2002 "Var UC 2025 vs Antes" @("Induccion Variacion UC2025 vs Antes UC")),
                 (New-Visual "ind_variacion_2026" "card" 992 328 256 94 2003 "Var UC 2026 vs UC 2025" @("Induccion Variacion UC2026 vs UC2025")),
-                (New-Visual "ind_empresa" "barChart" 32 452 590 218 3000 "Cumplimiento por empresa" @("Induccion Porcentaje Cumplimiento") "Dim_Empresa" "Empresa"),
-                (New-Visual "ind_tabla" "tableEx" 658 452 590 218 3001 "Comparativo UC" @("Induccion Total Colaboradores", "Induccion Aprobados", "Induccion Porcentaje Cumplimiento", "Induccion Tiempo Promedio Finalizacion Dias") "" "" @(@{ Entity = "Dim_SegmentoUC"; Column = "SegmentoUC" }))
+                (New-Visual "ind_empresa" "barChart" 32 452 590 218 3000 "Onboarding y entrenamiento por empresa" @("Induccion Porcentaje Cumplimiento", "Induccion Porcentaje Entrenamiento") "Dim_Empresa" "Empresa"),
+                (New-Visual "ind_tabla" "tableEx" 658 452 590 218 3001 "Comparativo induccion y entrenamiento" @("Induccion Total Colaboradores", "Induccion Aprobados", "Induccion Porcentaje Cumplimiento", "Induccion Porcentaje Entrenamiento", "Induccion Onboarding", "Induccion Tiempo Promedio Finalizacion Dias") "" "" @(@{ Entity = "Dim_SegmentoUC"; Column = "SegmentoUC" }))
             )
         },
         [ordered]@{
