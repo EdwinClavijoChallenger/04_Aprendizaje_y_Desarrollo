@@ -54,11 +54,12 @@ Este documento resume la aplicacion del Manual Marca Grupo LEMCO al dashboard Po
 
 ## Aplicacion en el MVP
 
-El bloque de Aprendizaje debe mantener identidad visual consistente con:
+Los frentes del dashboard deben mantener identidad visual consistente con:
 
 - `00 Inicio Corporativo`;
-- resumen ejecutivo;
-- paginas de analisis por plan, cobertura, satisfaccion, induccion y focos;
-- indicadores clave de aprendizaje.
+- paginas del frente Aprendizaje con prefijo `A`;
+- paginas del frente Desarrollo con prefijo `D`;
+- paginas de analisis por plan, cobertura, satisfaccion, induccion, PDI y focos;
+- indicadores clave de cada frente.
 
 La experiencia debe sentirse como un dashboard corporativo integrado, no como paginas sueltas.

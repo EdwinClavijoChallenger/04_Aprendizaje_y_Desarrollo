@@ -1,14 +1,14 @@
-# MVP Aprendizaje - Dashboard Corporativo de Desarrollo Organizacional
+# Dashboard Corporativo de Desarrollo Organizacional
 
 ## Objetivo
 
-Este repositorio contiene el proyecto Power BI `Proyecto.pbip`, correspondiente al MVP del bloque de Aprendizaje dentro del Dashboard Corporativo de Desarrollo Organizacional.
+Este repositorio contiene el proyecto Power BI `Proyecto.pbip`, correspondiente al Dashboard Corporativo de Desarrollo Organizacional.
 
-El objetivo del MVP es entregar una lectura gerencial, visual y accionable sobre la gestion de Aprendizaje y Desarrollo, integrando plan de formacion, cobertura, asistencia, satisfaccion, eficacia, onboarding, entrenamiento y focos de gestion.
+El objetivo es entregar una lectura gerencial, visual y accionable sobre los frentes de Desarrollo Organizacional, integrando indicadores de Aprendizaje y, desde esta fase, el seguimiento inicial de Planes de Desarrollo Individual del frente Desarrollo.
 
 ## Alcance del MVP
 
-El alcance actual cubre el frente de Aprendizaje. El reporte permite analizar:
+El alcance consolidado cubre el frente de Aprendizaje. El reporte permite analizar:
 
 - avance del plan de formacion;
 - horas de formacion;
@@ -21,7 +21,7 @@ El alcance actual cubre el frente de Aprendizaje. El reporte permite analizar:
 - comparativos mensuales y anuales;
 - indicadores ejecutivos para priorizacion gerencial.
 
-Los frentes Desempeno, Desarrollo, Bienestar y Clima estan contemplados en la arquitectura corporativa, pero aun no hacen parte del MVP desarrollado.
+El frente Desarrollo inicia su estructuracion con la tabla `Fct_Seguimiento_PDI`, orientada al seguimiento gerencial de Planes de Desarrollo Individual. Los frentes Desempeno y Bienestar y Clima continuan contemplados para fases posteriores.
 
 ## Estructura general
 
@@ -46,24 +46,30 @@ Cuando tambien se realicen cambios desde VS Code, se recomienda revisar `git sta
 
 ## Estado actual del desarrollo
 
-El MVP de Aprendizaje se encuentra consolidado con siete paginas:
+El frente Aprendizaje se encuentra consolidado con siete paginas:
 
 - `00 Inicio Corporativo`
-- `01 Resumen Ejecutivo Aprendizaje`
-- `02 Plan y Ejecucion`
-- `03 Cobertura y Participacion`
-- `04 Satisfaccion y Eficacia`
-- `05 Induccion y Entrenamiento`
-- `06 Focos de Gestion`
+- `A01 Resumen Ejecutivo Aprendizaje`
+- `A02 Plan y Ejecucion`
+- `A03 Cobertura y Participacion`
+- `A04 Satisfaccion y Eficacia`
+- `A05 Induccion y Entrenamiento`
+- `A06 Focos de Gestion`
 
-El modelo incluye dimensiones gerenciales, tabla de medidas `Medidas_AD`, fact consolidada de induccion y relacion entre `Fct_AsistenciaFormacion` y `Dim_ColaboradorHC` mediante `Colaborador_Key`.
+El frente Desarrollo inicia con cuatro paginas:
+
+- `D01 Resumen Ejecutivo Desarrollo`
+- `D02 Estado y Avance PDI`
+- `D03 Motivos y Seguimiento`
+- `D04 Focos de Gestion Desarrollo`
+
+El modelo incluye dimensiones gerenciales, tabla de medidas `Medidas_AD`, fact consolidada de induccion, relacion entre `Fct_AsistenciaFormacion` y `Dim_ColaboradorHC`, y estructura inicial para `Fct_Seguimiento_PDI`.
 
 ## Bloques pendientes del Dashboard Corporativo
 
 Los siguientes bloques estan previstos para fases posteriores:
 
 - Desempeno
-- Desarrollo
 - Bienestar y Clima
 
 Estos frentes deben integrarse respetando la arquitectura corporativa, la navegacion del reporte, la paleta visual LEMCO y los estandares tecnicos documentados en `Docs`.

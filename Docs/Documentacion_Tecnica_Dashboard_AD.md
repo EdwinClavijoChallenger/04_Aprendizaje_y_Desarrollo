@@ -13,6 +13,7 @@ El dashboard cubre:
 - percepcion y calidad de la formacion,
 - seguimiento de induccion,
 - comparativo antes y despues del lanzamiento de Universidad Challenger,
+- seguimiento de Planes de Desarrollo Individual,
 - hallazgos y focos de gestion.
 
 ## Tablas fact utilizadas
@@ -25,6 +26,7 @@ El dashboard cubre:
 | `Fct_InduccionColaborador_antes_de_UC_2025` | 504 | Un colaborador en seguimiento de induccion | Cohorte antes de Universidad Challenger. |
 | `Fct_InduccionColaborador_UC_2025` | 433 | Un colaborador en seguimiento de induccion | Cohorte de transicion UC 2025. Se detectaron 26 registros con ingreso previo al 2025-07-04. |
 | `Fct_InduccionColaborador_UC_2026` | 437 | Un colaborador en seguimiento de induccion | Cohorte UC 2026. `Fecha Certificado` viene como texto y se convierte para el analisis. |
+| `Fct_Seguimiento_PDI` | Pendiente validar en refresh | Un PDI por colaborador y plan | Fuente inicial del frente Desarrollo. Contiene motivo, estado, avance, fechas y acompanamientos. |
 
 ## Dimensiones creadas
 
@@ -40,6 +42,8 @@ El dashboard cubre:
 | `Dim_EstadoFormacion` | Estado de ejecucion del plan. |
 | `Dim_EstadoInduccion` | Estado homologado de induccion: `APROBO`, `NO_APROBO`, `RETIRADO`, `RENUNCIA`, `SIN_ESTADO`. |
 | `Dim_SegmentoUC` | Segmentacion analitica UC: `Antes_UC`, `UC_2025`, `UC_2026`. |
+| `Dim_MotivoPDI` | Motivo de apertura del Plan de Desarrollo Individual. |
+| `Dim_EstadoPDI` | Estado del Plan de Desarrollo Individual. |
 
 ## Fact gerencial creada
 
@@ -77,6 +81,7 @@ Se eliminaron relaciones de tablas locales automaticas de fecha y se crearon rel
 - area hacia plan/induccion,
 - tipo, modalidad, entidad y estado hacia plan,
 - estado y segmento UC hacia induccion.
+- fecha de inicio, empresa, area, motivo y estado hacia `Fct_Seguimiento_PDI`.
 
 ## Medidas principales
 
@@ -89,6 +94,8 @@ Las medidas quedaron en `Medidas_AD`, organizadas por carpetas:
 - `04 Induccion UC`
 - `05 Rankings y Alertas`
 - `06 Hallazgos`
+- `09 Desarrollo PDI`
+- `10 Desarrollo Alertas`
 
 Indicadores clave creados:
 
@@ -97,15 +104,21 @@ Indicadores clave creados:
 - `Encuesta Total Respuestas`, `Encuesta Tasa Respuesta`, `Encuesta Calificacion Promedio`, `Encuesta Satisfaccion General`, `Encuesta Favorabilidad`, `Encuesta NPS Equivalente`.
 - `Induccion Total Colaboradores`, `Induccion Aprobados`, `Induccion Porcentaje Cumplimiento`, `Induccion Tiempo Promedio Finalizacion Dias`, `Induccion Cumplimiento Antes UC`, `Induccion Cumplimiento UC 2025`, `Induccion Cumplimiento UC 2026`.
 - `KPI Indice Aprendizaje`, rankings y alertas de bajo cumplimiento.
+- `PDI Total`, `PDI Activos`, `PDI Finalizados`, `PDI Avance Promedio`, `PDI Cumplimiento Acompanamientos`, `PDI Vencidos`, `PDI Proximos A Vencer`, `PDI Alertas Criticas`, `KPI Indice Desarrollo`.
 
 ## Paginas construidas
 
-1. `01 Resumen ejecutivo`
-2. `02 Plan y ejecucion`
-3. `03 Asistencia`
-4. `04 Percepcion y calidad`
-5. `05 Induccion y UC`
-6. `06 Hallazgos y focos`
+1. `00 Inicio Corporativo`
+2. `A01 Resumen Ejecutivo Aprendizaje`
+3. `A02 Plan y Ejecucion`
+4. `A03 Cobertura y Participacion`
+5. `A04 Satisfaccion y Eficacia`
+6. `A05 Induccion y Entrenamiento`
+7. `A06 Focos de Gestion`
+8. `D01 Resumen Ejecutivo Desarrollo`
+9. `D02 Estado y Avance PDI`
+10. `D03 Motivos y Seguimiento`
+11. `D04 Focos de Gestion Desarrollo`
 
 Se priorizaron tarjetas KPI, barras horizontales, lineas de tendencia y tablas resumen solo donde aportan lectura ejecutiva.
 
@@ -118,6 +131,7 @@ Se actualizo el tema base del reporte con lineamientos de Grupo LEMCO:
 - fondo limpio blanco/gris claro,
 - tipografia ejecutiva con preferencia por `Outfit` y respaldo `Segoe UI`,
 - foco en lectura rapida, jerarquia visual y sobriedad gerencial.
+- nomenclatura de paginas por frente: `A` para Aprendizaje y `D` para Desarrollo.
 
 ## Restricciones y decisiones
 

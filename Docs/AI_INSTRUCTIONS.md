@@ -24,6 +24,7 @@ Este documento define reglas obligatorias para cualquier IA o asistente que trab
 - Evitar cambios masivos si una correccion puntual es suficiente.
 - Validar que los JSON queden en UTF-8 sin BOM.
 - Validar que los JSON parseen correctamente despues de ediciones manuales.
+- Mantener nomenclatura de paginas por frente: `A` para Aprendizaje, `D` para Desarrollo y `00` para Inicio Corporativo, salvo instruccion explicita distinta.
 
 ## Documentacion
 
