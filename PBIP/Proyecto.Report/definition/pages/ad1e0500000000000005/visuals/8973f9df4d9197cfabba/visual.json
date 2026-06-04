@@ -1,173 +1,173 @@
 {
-    "$schema":  "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
-    "name":  "8973f9df4d9197cfabba",
-    "position":  {
-                     "x":  482,
-                     "y":  208,
-                     "z":  15000,
-                     "height":  214,
-                     "width":  480,
-                     "tabOrder":  15000
-                 },
-    "visual":  {
-                   "visualType":  "lineChart",
-                   "query":  {
-                                 "queryState":  {
-                                                    "Category":  {
-                                                                     "projections":  [
-                                                                                         {
-                                                                                             "field":  {
-                                                                                                           "Column":  {
-                                                                                                                          "Expression":  {
-                                                                                                                                             "SourceRef":  {
-                                                                                                                                                               "Entity":  "Dim_Calendario"
-                                                                                                                                                           }
-                                                                                                                                         },
-                                                                                                                          "Property":  "AnioMes"
-                                                                                                                      }
-                                                                                                       },
-                                                                                             "queryRef":  "Dim_Calendario.AnioMes",
-                                                                                             "nativeQueryRef":  "AnioMes",
-                                                                                             "active":  true
-                                                                                         }
-                                                                                     ]
-                                                                 },
-                                                    "Y":  {
-                                                              "projections":  [
-                                                                                  {
-                                                                                      "field":  {
-                                                                                                    "Measure":  {
-                                                                                                                    "Expression":  {
-                                                                                                                                       "SourceRef":  {
-                                                                                                                                                         "Entity":  "Medidas_AD"
-                                                                                                                                                     }
-                                                                                                                                   },
-                                                                                                                    "Property":  "Induccion Porcentaje Cumplimiento"
-                                                                                                                }
-                                                                                                },
-                                                                                      "queryRef":  "Medidas_AD.Induccion Porcentaje Cumplimiento",
-                                                                                      "nativeQueryRef":  "Induccion Porcentaje Cumplimiento"
-                                                                                  },
-                                                                                  {
-                                                                                      "field":  {
-                                                                                                    "Measure":  {
-                                                                                                                    "Expression":  {
-                                                                                                                                       "SourceRef":  {
-                                                                                                                                                         "Entity":  "Medidas_AD"
-                                                                                                                                                     }
-                                                                                                                                   },
-                                                                                                                    "Property":  "Induccion Porcentaje Entrenamiento"
-                                                                                                                }
-                                                                                                },
-                                                                                      "queryRef":  "Medidas_AD.Induccion Porcentaje Entrenamiento",
-                                                                                      "nativeQueryRef":  "Induccion Porcentaje Entrenamiento"
-                                                                                  }
-                                                                              ]
-                                                          }
-                                                }
-                             },
-                   "objects":  {
-                                   "labels":  [
-                                                  {
-                                                      "properties":  {
-                                                                         "show":  {
-                                                                                      "expr":  {
-                                                                                                   "Literal":  {
-                                                                                                                   "Value":  "true"
-                                                                                                               }
-                                                                                               }
-                                                                                  }
-                                                                     }
-                                                  }
-                                              ],
-                                   "categoryAxis":  [
-                                                        {
-                                                            "properties":  {
-                                                                               "showAxisTitle":  {
-                                                                                                     "expr":  {
-                                                                                                                  "Literal":  {
-                                                                                                                                  "Value":  "false"
-                                                                                                                              }
-                                                                                                              }
-                                                                                                 }
-                                                                           }
-                                                        }
-                                                    ],
-                                   "valueAxis":  [
-                                                     {
-                                                         "properties":  {
-                                                                            "showAxisTitle":  {
-                                                                                                  "expr":  {
-                                                                                                               "Literal":  {
-                                                                                                                               "Value":  "false"
-                                                                                                                           }
-                                                                                                           }
-                                                                                              }
-                                                                        }
-                                                     }
-                                                 ],
-                                   "legend":  [
-                                                  {
-                                                      "properties":  {
-                                                                         "showTitle":  {
-                                                                                           "expr":  {
-                                                                                                        "Literal":  {
-                                                                                                                        "Value":  "false"
-                                                                                                                    }
-                                                                                                    }
-                                                                                       }
-                                                                     }
-                                                  }
-                                              ]
-                               },
-                   "visualContainerObjects":  {
-                                                  "title":  [
-                                                                {
-                                                                    "properties":  {
-                                                                                       "show":  {
-                                                                                                    "expr":  {
-                                                                                                                 "Literal":  {
-                                                                                                                                 "Value":  "true"
-                                                                                                                             }
-                                                                                                             }
-                                                                                                },
-                                                                                       "text":  {
-                                                                                                    "expr":  {
-                                                                                                                 "Literal":  {
-                                                                                                                                 "Value":  "\u0027Onboarding y entrenamiento mensual\u0027"
-                                                                                                                             }
-                                                                                                             }
-                                                                                                }
-                                                                                   }
-                                                                }
-                                                            ],
-                                                  "visualHeader":  [
-                                                                       {
-                                                                           "properties":  {
-                                                                                              "show":  {
-                                                                                                           "expr":  {
-                                                                                                                        "Literal":  {
-                                                                                                                                        "Value":  "true"
-                                                                                                                                    }
-                                                                                                                    }
-                                                                                                       }
-                                                                                          }
-                                                                       }
-                                                                   ],
-                                                  "visualTooltip":  [
-                                                                        {
-                                                                            "properties":  {
-                                                                                               "show":  {
-                                                                                                            "expr":  {
-                                                                                                                         "Literal":  {
-                                                                                                                                         "Value":  "true"
-                                                                                                                                     }
-                                                                                                                     }
-                                                                                                        }
-                                                                                           }
-                                                                        }
-                                                                    ]
-                                              },
-                   "drillFilterOtherVisuals":  true
-               }
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "8973f9df4d9197cfabba",
+  "position": {
+    "x": 482,
+    "y": 208,
+    "z": 15000,
+    "height": 214,
+    "width": 480,
+    "tabOrder": 15000
+  },
+  "visual": {
+    "visualType": "lineChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Dim_Calendario"
+                    }
+                  },
+                  "Property": "AnioMes"
+                }
+              },
+              "queryRef": "Dim_Calendario.AnioMes",
+              "nativeQueryRef": "AnioMes",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medidas_AD"
+                    }
+                  },
+                  "Property": "Induccion Porcentaje Cumplimiento"
+                }
+              },
+              "queryRef": "Medidas_AD.Induccion Porcentaje Cumplimiento",
+              "nativeQueryRef": "Induccion Porcentaje Cumplimiento"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medidas_AD"
+                    }
+                  },
+                  "Property": "Induccion Porcentaje Entrenamiento"
+                }
+              },
+              "queryRef": "Medidas_AD.Induccion Porcentaje Entrenamiento",
+              "nativeQueryRef": "Induccion Porcentaje Entrenamiento"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "labels": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "categoryAxis": [
+        {
+          "properties": {
+            "showAxisTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "valueAxis": [
+        {
+          "properties": {
+            "showAxisTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "legend": [
+        {
+          "properties": {
+            "showTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Onboarding y entrenamiento mensual'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "visualHeader": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "visualTooltip": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
 }

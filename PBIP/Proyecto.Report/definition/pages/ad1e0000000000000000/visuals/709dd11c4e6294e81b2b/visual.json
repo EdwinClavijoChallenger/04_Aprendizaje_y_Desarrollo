@@ -75,7 +75,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Entrenamiento neto'"
+                  "Value": "'Entrenamiento'"
                 }
               }
             },

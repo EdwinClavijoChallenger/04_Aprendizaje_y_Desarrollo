@@ -514,15 +514,15 @@ table Medidas_AD
 		displayFolder: 04 Induccion UC
 		lineageTag: 9755415a-51b9-4f80-a07d-cbf78089cb75
 
-	measure 'Induccion Entrenamiento Neto Realizados' = CALCULATE(COUNTROWS('Fct_Induccion'), 'Fct_Induccion'[Archivo] = 50)
-		formatString: #,0
-		displayFolder: 04 Induccion UC
-		lineageTag: 078f9c7c-99d4-44a7-8e05-7188a861ff55
-
 	measure 'Induccion Porcentaje Entrenamiento' = DIVIDE([Induccion Entrenamiento Realizados], [Induccion Entrenamiento Base], 0)
 		formatString: 0.0%;-0.0%;0.0%
 		displayFolder: 04 Induccion UC
 		lineageTag: 58a9b4a5-e29c-4872-ac96-a80a86f57d8e
+
+	measure 'Induccion Entrenamiento Neto Realizados' = CALCULATE(COUNTROWS('Fct_Induccion'), 'Fct_Induccion'[Archivo] = 50)
+		formatString: #,0
+		displayFolder: 04 Induccion UC
+		lineageTag: 078f9c7c-99d4-44a7-8e05-7188a861ff55
 
 	measure 'Induccion Porcentaje Entrenamiento Neto' = DIVIDE([Induccion Entrenamiento Neto Realizados], [Induccion Entrenamiento Base], 0)
 		formatString: 0.0%;-0.0%;0.0%
