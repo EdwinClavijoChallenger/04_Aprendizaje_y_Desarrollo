@@ -23,11 +23,11 @@
                       "Entity": "Medidas_AD"
                     }
                   },
-                  "Property": "Induccion Porcentaje Entrenamiento"
+                  "Property": "Induccion Porcentaje Entrenamiento Neto"
                 }
               },
-              "queryRef": "Medidas_AD.Induccion Porcentaje Entrenamiento",
-              "nativeQueryRef": "Induccion Porcentaje Entrenamiento"
+              "queryRef": "Medidas_AD.Induccion Porcentaje Entrenamiento Neto",
+              "nativeQueryRef": "Induccion Porcentaje Entrenamiento Neto"
             }
           ]
         }
@@ -75,7 +75,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Entrenamiento'"
+                  "Value": "'Entrenamiento neto'"
                 }
               }
             },

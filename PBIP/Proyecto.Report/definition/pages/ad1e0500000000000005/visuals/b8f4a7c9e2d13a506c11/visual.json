@@ -1,13 +1,13 @@
 {
     "$schema":  "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
-    "name":  "eccd24609a8c6fb6b656",
+    "name":  "b8f4a7c9e2d13a506c11",
     "position":  {
-                     "x":  584,
+                     "x":  446,
                      "y":  98,
-                     "z":  9000,
+                     "z":  14500,
                      "height":  82,
                      "width":  126,
-                     "tabOrder":  9000
+                     "tabOrder":  14500
                  },
     "visual":  {
                    "visualType":  "card",
@@ -23,11 +23,11 @@
                                                                                                                                                               "Entity":  "Medidas_AD"
                                                                                                                                                           }
                                                                                                                                         },
-                                                                                                                         "Property":  "Induccion Onboarding"
+                                                                                                                         "Property":  "Induccion Porcentaje Entrenamiento Neto"
                                                                                                                      }
                                                                                                      },
-                                                                                           "queryRef":  "Medidas_AD.Induccion Onboarding",
-                                                                                           "nativeQueryRef":  "Induccion Onboarding"
+                                                                                           "queryRef":  "Medidas_AD.Induccion Porcentaje Entrenamiento Neto",
+                                                                                           "nativeQueryRef":  "Induccion Porcentaje Entrenamiento Neto"
                                                                                        }
                                                                                    ]
                                                                }
@@ -75,7 +75,7 @@
                                                                                        "text":  {
                                                                                                     "expr":  {
                                                                                                                  "Literal":  {
-                                                                                                                                 "Value":  "\u0027Onboarding neto\u0027"
+                                                                                                                                 "Value":  "\u0027Entrenamiento neto\u0027"
                                                                                                                              }
                                                                                                              }
                                                                                                 },

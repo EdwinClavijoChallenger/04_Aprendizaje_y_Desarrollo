@@ -109,6 +109,7 @@ La fact consolidada tambien incorpora:
 - estado de induccion;
 - horas de induccion;
 - minutos de entrenamiento;
+- archivo entregado al area de Archivo;
 - estado del colaborador;
 - tiempo de finalizacion en dias;
 - estado de entrenamiento.
@@ -162,6 +163,8 @@ La fact consolidada tambien incorpora:
 - `Induccion Porcentaje Entrenamiento`
 - `Induccion Entrenamiento Realizados`
 - `Induccion Entrenamiento Base`
+- `Induccion Entrenamiento Neto Realizados`
+- `Induccion Porcentaje Entrenamiento Neto`
 - `Induccion Tiempo Promedio Finalizacion Dias`
 
 `Induccion Porcentaje Cumplimiento` es el porcentaje bruto de cumplimiento:
@@ -183,6 +186,14 @@ Donde los realizados corresponden a registros aprobados y los participantes excl
 ```text
 registros con Entrenamiento = "SI" / registros con Entrenamiento = "SI", "PENDIENTE" o blanco
 ```
+
+`Induccion Porcentaje Entrenamiento Neto` calcula el cumplimiento neto de entrenamiento tomando como referencia la informacion entregada al area de Archivo:
+
+```text
+registros con Archivo = 50 / Induccion Entrenamiento Base
+```
+
+Este indicador se usa como tarjeta en `00 Inicio Corporativo` y se agrega como indicador adicional en `05 Induccion y Entrenamiento`. La medida bruta `Induccion Porcentaje Entrenamiento` se mantiene para lectura operativa del avance reportado por el campo `Entrenamiento`.
 
 ### Headcount y tipo de cargo
 

@@ -43,6 +43,15 @@ Este documento resume la aplicacion del Manual Marca Grupo LEMCO al dashboard Po
 - Alineacion uniforme y uso medido del espacio en blanco.
 - Evitar exceso de tablas y graficos redundantes.
 
+## Barras y rankings
+
+- Usar barras limpias, con poco ruido visual y sin elementos decorativos.
+- Priorizar el azul corporativo como color base de las barras.
+- Usar naranja `#F7931E` como color de contraste para destacar categorias clave, segundos lugares, alertas o comparativos relevantes.
+- Mantener etiquetas de datos visibles y legibles, preferiblemente con contraste alto sobre la barra.
+- Evitar paletas multicolor cuando no exista una razon analitica clara.
+- Mantener ejes, cuadriculas y bordes discretos para reforzar una lectura ejecutiva.
+
 ## Aplicacion en el MVP
 
 El bloque de Aprendizaje debe mantener identidad visual consistente con:
