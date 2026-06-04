@@ -1,0 +1,142 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "f7d6c6d6e6c992ac4254",
+  "position": {
+    "x": 872,
+    "y": 452,
+    "z": 16000,
+    "height": 218,
+    "width": 376,
+    "tabOrder": 16000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Dim_TemaFormacion"
+                    }
+                  },
+                  "Property": "TemaFormacion"
+                }
+              },
+              "queryRef": "Dim_TemaFormacion.TemaFormacion",
+              "nativeQueryRef": "TemaFormacion"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medidas_AD"
+                    }
+                  },
+                  "Property": "Encuesta Total Respuestas"
+                }
+              },
+              "queryRef": "Medidas_AD.Encuesta Total Respuestas",
+              "nativeQueryRef": "Encuesta Total Respuestas"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medidas_AD"
+                    }
+                  },
+                  "Property": "Encuesta Favorabilidad"
+                }
+              },
+              "queryRef": "Medidas_AD.Encuesta Favorabilidad",
+              "nativeQueryRef": "Encuesta Favorabilidad"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medidas_AD"
+                    }
+                  },
+                  "Property": "Encuesta Calificacion Satisfaccion Formacion"
+                }
+              },
+              "queryRef": "Medidas_AD.Encuesta Calificacion Satisfaccion Formacion",
+              "nativeQueryRef": "Encuesta Calificacion Satisfaccion Formacion"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medidas_AD"
+                    }
+                  },
+                  "Property": "Encuesta NPS Equivalente"
+                }
+              },
+              "queryRef": "Medidas_AD.Encuesta NPS Equivalente",
+              "nativeQueryRef": "Encuesta NPS Equivalente"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true,
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Detalle calidad'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "visualHeader": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "visualTooltip": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}
