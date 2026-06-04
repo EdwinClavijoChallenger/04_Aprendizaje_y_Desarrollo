@@ -1,0 +1,13 @@
+# Fuente de datos local o sensible
+Data/
+
+# Backups y salidas generadas por automatizaciones
+backups_codex/
+
+# Archivos locales/cache de Power BI
+**/.pbi/localSettings.json
+**/.pbi/cache.abf
+**/.pbi/editorSettings.json
+
+# Documento pesado de referencia de marca
+Docs/Manual Marca Grupo LEMCO.pdf
