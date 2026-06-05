@@ -53,6 +53,7 @@ Este documento resume la aplicacion del Manual Marca Grupo LEMCO al dashboard Po
 - Las paginas del frente Aprendizaje incluyen acceso a Inicio, paginas principales del frente y entrada al frente Desarrollo.
 - Las paginas del frente Desarrollo incluyen acceso a Inicio, entrada al frente Aprendizaje y paginas principales del frente Desarrollo.
 - El estado activo usa naranja `#F7931E`; los accesos inactivos usan fondo blanco con azul corporativo; los placeholders usan gris neutro.
+- Los accesos hacia otro frente dentro de un menu de frente deben diferenciarse con relleno azul corporativo y texto blanco, manteniendo el mismo tamano, tipografia y comportamiento de navegacion.
 - La navegacion se implementa con visuales de tipo `actionButton` y accion `PageNavigation`.
 
 ## Composicion

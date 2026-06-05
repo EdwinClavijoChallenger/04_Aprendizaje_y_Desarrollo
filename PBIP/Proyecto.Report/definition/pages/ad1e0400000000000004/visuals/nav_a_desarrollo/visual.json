@@ -57,7 +57,7 @@
                                                                                                        "color":  {
                                                                                                                      "expr":  {
                                                                                                                                   "Literal":  {
-                                                                                                                                                  "Value":  "\u0027#FFFFFF\u0027"
+                                                                                                                                                  "Value":  "\u0027#1B487F\u0027"
                                                                                                                                               }
                                                                                                                               }
                                                                                                                  }
@@ -82,7 +82,7 @@
                                                                                                        "color":  {
                                                                                                                      "expr":  {
                                                                                                                                   "Literal":  {
-                                                                                                                                                  "Value":  "\u0027#E6EEF5\u0027"
+                                                                                                                                                  "Value":  "\u0027#003A70\u0027"
                                                                                                                                               }
                                                                                                                               }
                                                                                                                  }
@@ -141,7 +141,7 @@
                                                                                                        "color":  {
                                                                                                                      "expr":  {
                                                                                                                                   "Literal":  {
-                                                                                                                                                  "Value":  "\u0027#003A70\u0027"
+                                                                                                                                                  "Value":  "\u0027#FFFFFF\u0027"
                                                                                                                                               }
                                                                                                                               }
                                                                                                                  }
@@ -201,7 +201,7 @@
                                                                                                        "color":  {
                                                                                                                      "expr":  {
                                                                                                                                   "Literal":  {
-                                                                                                                                                  "Value":  "\u0027#003A70\u0027"
+                                                                                                                                                  "Value":  "\u0027#FFFFFF\u0027"
                                                                                                                                               }
                                                                                                                               }
                                                                                                                  }
