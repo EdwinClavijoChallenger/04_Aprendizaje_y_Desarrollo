@@ -9,6 +9,8 @@ Este documento resume la aplicacion del Manual Marca Grupo LEMCO al dashboard Po
 - Evitar visuales recargados o decorativos sin valor analitico.
 - Mantener consistencia entre paginas.
 - Usar jerarquia visual clara: encabezado, KPIs, analisis principal y detalle.
+- Reducir la carga cognitiva del usuario y orientar la toma de decisiones a partir de los datos.
+- Mantener titulos comprensibles para usuarios tecnicos y no tecnicos.
 
 ## Colores
 
@@ -36,12 +38,27 @@ Este documento resume la aplicacion del Manual Marca Grupo LEMCO al dashboard Po
 
 ## Composicion
 
+- Filtros y contexto general en la parte superior.
+- KPIs principales visibles al inicio de la pagina.
+- Visualizaciones analiticas en la zona central.
+- Detalle operativo o tablas de seguimiento en zonas secundarias.
 - Encabezado claro por pagina.
-- KPIs en la parte superior.
-- Visual principal en el centro.
-- Hallazgos o detalle ejecutivo en la parte inferior.
 - Alineacion uniforme y uso medido del espacio en blanco.
 - Evitar exceso de tablas y graficos redundantes.
+
+## Patrones de lectura
+
+- Para paginas con mayor carga analitica, priorizar una composicion tipo patron F, ubicando los elementos mas relevantes en la parte superior y lateral izquierda del lienzo.
+- Para paginas ejecutivas, de resumen o introduccion, se puede usar una composicion tipo patron Z, guiando al usuario desde el contexto inicial hasta una conclusion o foco de accion.
+- Mantener ubicacion consistente de filtros, estilo de tarjetas, titulos y nomenclatura entre paginas.
+
+## Accesibilidad
+
+- Mantener contraste suficiente entre texto, fondo y elementos graficos.
+- Usar color de forma moderada y con intencion analitica.
+- Evitar depender exclusivamente del color para comunicar estados, alertas o prioridades.
+- Mantener textos legibles y titulos autoexplicativos.
+- Priorizar navegacion simple y consistente entre frentes.
 
 ## Barras y rankings
 
