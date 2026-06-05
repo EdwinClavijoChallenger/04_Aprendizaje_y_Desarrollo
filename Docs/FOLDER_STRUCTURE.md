@@ -54,6 +54,15 @@ Usar esta carpeta para:
 
 Los scripts necesarios para mantenimiento del proyecto deben versionarse.
 
+Los scripts que puedan reconstruir o modificar el reporte, como `Scripts/ApplyExecutiveDashboard.ps1`, deben ejecutarse solo despues de validar estado Git, alcance esperado y posibles cambios abiertos en Power BI Desktop.
+
+Ejemplos de ejecucion controlada:
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File ".\Scripts\ApplyExecutiveDashboard.ps1"
+powershell -NoProfile -ExecutionPolicy Bypass -File ".\Scripts\ApplyExecutiveDashboard.ps1" -ReportOnly
+```
+
 ## `Assets`
 
 Contiene recursos visuales aprobados.

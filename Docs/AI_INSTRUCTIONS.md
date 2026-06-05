@@ -25,6 +25,8 @@ Este documento define reglas obligatorias para cualquier IA o asistente que trab
 - Validar que los JSON queden en UTF-8 sin BOM.
 - Validar que los JSON parseen correctamente despues de ediciones manuales.
 - Mantener nomenclatura de paginas por frente: `A` para Aprendizaje, `D` para Desarrollo y `00` para Inicio Corporativo, salvo instruccion explicita distinta.
+- Cada vez que se agregue una pagina nueva, revisar si debe incorporarse al menu de navegacion, al home corporativo o a un acceso secundario. No dejar paginas nuevas sin acceso claro para el usuario final.
+- No cambiar nombres internos de paginas ni su orden sin informar primero el impacto y recibir autorizacion cuando el cambio afecte navegacion o experiencia de usuario.
 
 ## Documentacion
 
@@ -61,3 +63,10 @@ Si aparecen cambios que no fueron hechos por la IA:
 - revisarlos si afectan la tarea;
 - trabajar con ellos cuando sea posible;
 - pedir confirmacion solo si impiden completar el trabajo de forma segura.
+
+## Scripts y reproducibilidad
+
+- Los scripts de `Scripts`, como `Scripts/ApplyExecutiveDashboard.ps1`, deben tratarse como herramientas de mantenimiento controlado.
+- Antes de ejecutar scripts que puedan modificar modelo o reporte, validar `git status`, alcance esperado, archivos afectados y si Power BI Desktop esta abierto.
+- Cuando un script tenga modo parcial, por ejemplo `-ReportOnly`, explicar el impacto antes de ejecutarlo.
+- No usar scripts de reconstruccion como sustituto de cambios manuales seguros si el usuario esta trabajando simultaneamente en Power BI Desktop.

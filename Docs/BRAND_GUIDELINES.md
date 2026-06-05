@@ -36,6 +36,25 @@ Este documento resume la aplicacion del Manual Marca Grupo LEMCO al dashboard Po
 - Desactivar `Encabezado de segmentacion` cuando aplique para mantener limpieza visual.
 - Priorizar filtros por anio, mes, empresa, area, tipo de formacion, modalidad, estado y segmento UC.
 
+## Navegacion
+
+- La pagina `00 Inicio Corporativo` debe funcionar como entrada principal del dashboard corporativo.
+- Las paginas del frente Aprendizaje deben mantener prefijo `A` y las paginas del frente Desarrollo deben mantener prefijo `D`, salvo decision aprobada.
+- El menu de navegacion debe agrupar las paginas por frente funcional para que usuarios no tecnicos puedan recorrer el reporte sin depender solo de las pestanas inferiores de Power BI.
+- La navegacion debe ser simple, visible, consistente y con estados activo/inactivo claros.
+- El azul corporativo debe usarse como base del menu y el naranja `#F7931E` como acento para pagina activa, frente activo o accion principal.
+- Cada vez que se agregue una nueva pagina al reporte, se debe revisar si debe incorporarse al menu de navegacion, al home corporativo o a un acceso secundario. No deben quedar paginas nuevas sin ruta clara de acceso para el usuario final.
+- Si una pagina es de trabajo, prueba o mantenimiento y no debe exponerse al usuario final, debe documentarse o mantenerse oculta segun corresponda.
+
+### Implementacion actual
+
+- El reporte usa un menu inferior compacto para no competir con la franja superior de filtros.
+- `00 Inicio Corporativo` incluye accesos por bloque: Inicio, Aprendizaje, Desarrollo, Desempeno y Bienestar y Clima. Los bloques sin desarrollo activo deben verse como placeholders deshabilitados.
+- Las paginas del frente Aprendizaje incluyen acceso a Inicio, paginas principales del frente y entrada al frente Desarrollo.
+- Las paginas del frente Desarrollo incluyen acceso a Inicio, entrada al frente Aprendizaje y paginas principales del frente Desarrollo.
+- El estado activo usa naranja `#F7931E`; los accesos inactivos usan fondo blanco con azul corporativo; los placeholders usan gris neutro.
+- La navegacion se implementa con visuales de tipo `actionButton` y accion `PageNavigation`.
+
 ## Composicion
 
 - Filtros y contexto general en la parte superior.

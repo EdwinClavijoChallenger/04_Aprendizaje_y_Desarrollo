@@ -26,6 +26,8 @@ Los frentes pendientes son:
 
 La pagina `00 Inicio Corporativo` funciona como entrada corporativa. Actualmente muestra Aprendizaje como frente consolidado y Desarrollo como frente iniciado con PDI, manteniendo placeholders para componentes futuros como movilidad, sucesion y cargos criticos.
 
+La navegacion debe mantener una ruta clara desde el inicio corporativo hacia los frentes funcionales. Cuando se agreguen nuevas paginas, se debe validar si pertenecen a Aprendizaje, Desarrollo u otro frente futuro, y si requieren acceso desde el menu principal o desde una navegacion secundaria.
+
 ## Publico objetivo
 
 El publico principal es gerencial. Por esta razon, el reporte prioriza:

@@ -19,6 +19,15 @@ La tabla de medidas principal es `Medidas_AD`.
 | `Fct_Induccion` | Fact consolidada de induccion, onboarding y entrenamiento. | Un colaborador consolidado en seguimiento de induccion. |
 | `Fct_Seguimiento_PDI` | Seguimiento de Planes de Desarrollo Individual del frente Desarrollo. | Un PDI por colaborador y plan de desarrollo. |
 
+## Observaciones por fuente
+
+- `Fct_PlanFormacion` contiene fecha, tema, tipo de formacion, area, publico objetivo, asistencia, horas, estado, modalidad, costo y entidad formadora. No contiene empresa, por lo que el cumplimiento del plan por empresa no es calculable directamente desde esta fuente.
+- `Fct_AsistenciaFormacion` contiene registros reales de asistencia por participante y formacion. No contiene convocados ni area de forma directa; los analisis por tipo de cargo se soportan mediante la relacion con `Dim_ColaboradorHC`.
+- `Fct_EncuestaFormacion` contiene respuestas de percepcion y calificaciones. Los campos personales como correo o nombre pueden venir anonimizados o vacios, por lo que las metricas deben enfocarse en respuestas, favorabilidad y percepcion agregada.
+- Las tablas base de induccion se consolidan en `Fct_Induccion` para evitar analisis fragmentados por cohorte.
+- `Fct_Seguimiento_PDI` es la fuente inicial del frente Desarrollo; movilidad, sucesion y cargos criticos quedan pendientes de fuentes adicionales.
+- Los conteos historicos documentados en versiones anteriores deben tratarse como referencia de construccion y validarse nuevamente despues de cada refresh.
+
 ## Dimensiones
 
 | Dimension | Uso principal |
@@ -37,9 +46,19 @@ La tabla de medidas principal es `Medidas_AD`.
 | `Dim_MotivoPDI` | Analisis de motivos de apertura de Planes de Desarrollo Individual. |
 | `Dim_EstadoPDI` | Analisis de estados de Planes de Desarrollo Individual. |
 
+## Criterios de homologacion
+
+- `Dim_Calendario` es la dimension principal de fechas y contiene columnas tecnicas como `Fecha`, `Anio`, `MesNumero`, `MesNombreCorto`, `AnioMes`, `AnioMesOrden` y `Trimestre`.
+- `Dim_Empresa` normaliza variantes de empresa para facilitar comparativos entre asistencia, encuesta, induccion y PDI.
+- `Dim_Area` integra areas del plan y dependencias de induccion/PDI cuando la fuente no usa exactamente la misma nomenclatura.
+- `Dim_TemaFormacion` homologa temas o nombres de formacion entre plan, asistencia y encuesta mediante llaves tecnicas normalizadas.
+- Las dimensiones de estado, modalidad, tipo de formacion, motivo PDI y segmento UC se mantienen separadas para evitar relaciones ambiguas y mejorar la lectura ejecutiva.
+
 ## Relaciones principales
 
 Las relaciones estan definidas en `PBIP/Proyecto.SemanticModel/definition/relationships.tmdl`.
+
+El modelo prioriza relaciones de una direccion desde dimensiones hacia hechos, manteniendo una logica tipo estrella y evitando relaciones ambiguas o duplicadas. Las relaciones automaticas locales de fecha deben evitarse o desactivarse cuando generen tablas locales innecesarias.
 
 Relaciones de calendario:
 
@@ -151,6 +170,8 @@ La fact consolidada tambien incorpora:
 - estado del colaborador;
 - tiempo de finalizacion en dias;
 - estado de entrenamiento.
+
+Se excluyen filas tecnicamente vacias sin colaborador o sin fecha de ingreso. Tambien pueden existir documentos repetidos entre cohortes, por lo que deben diferenciarse las medidas de registros de induccion y las medidas de colaboradores unicos.
 
 ## Medidas DAX clave
 
@@ -303,3 +324,12 @@ Estas medidas soportan el analisis de asistencia por `Tipo_Cargo` desde `Dim_Col
 - `Fct_Induccion` es la fuente gerencial consolidada para onboarding, entrenamiento y segmentacion UC.
 - `Dim_ColaboradorHC` debe mantenerse actualizada por corte mensual para que el analisis de tipo de cargo sea confiable.
 - `Fct_Seguimiento_PDI` es la fuente inicial del frente Desarrollo; los componentes de movilidad, sucesion y cargos criticos quedan como pendientes de fuente.
+
+## Limitaciones y decisiones de modelado
+
+- No se creo `Dim_CentroCosto` porque el centro o codigo aparece embebido en campos como `DEPENDENCIA` y no existe como campo estructurado independiente en todas las fuentes.
+- No se creo `Dim_Proceso` porque no hay un campo comun y consistente de proceso entre las tablas de hechos.
+- Los analisis por empresa del plan de formacion no deben interpretarse como calculos directos de `Fct_PlanFormacion`, ya que esta tabla no trae empresa.
+- La tasa de respuesta de encuesta se calcula contra registros de asistencia disponibles; debe interpretarse como una tasa operacional sobre asistencia registrada, no como tasa oficial de convocados.
+- En induccion pueden existir duplicados de documento entre cohortes; por eso el modelo mantiene medidas diferenciadas para registros y colaboradores unicos.
+- La fecha activa de PDI es `Fecha_Inicio`. Las alertas por vencimiento usan `Fecha_Fin` dentro de las medidas para evitar una segunda relacion activa con calendario.

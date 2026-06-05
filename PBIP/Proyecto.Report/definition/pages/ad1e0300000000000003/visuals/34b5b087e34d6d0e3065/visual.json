@@ -276,7 +276,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Asistencia por formacion'"
+                  "Value": "'Asistencia por formación'"
                 }
               }
             },

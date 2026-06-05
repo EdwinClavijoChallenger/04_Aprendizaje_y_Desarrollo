@@ -1,5 +1,7 @@
 # Dashboard Aprendizaje y Desarrollo - Documentacion tecnica
 
+> Nota de estado documental: este documento queda conservado como historico. Su contenido vigente fue migrado y reorganizado en la nueva estructura de `Docs`, principalmente en `PROJECT_CONTEXT.md`, `DATA_MODEL.md`, `BRAND_GUIDELINES.md`, `FOLDER_STRUCTURE.md` y `AI_INSTRUCTIONS.md`. Antes de usarlo como fuente actual, validar contra esos documentos.
+
 Fecha de construccion: 2026-05-28
 
 ## Alcance

@@ -68,7 +68,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Horas de formacion'"
+                  "Value": "'Horas de formación'"
                 }
               }
             },

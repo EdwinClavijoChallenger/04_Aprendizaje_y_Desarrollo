@@ -49,7 +49,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Tipo formacion'"
+                  "Value": "'Tipo formación'"
                 }
               }
             }
