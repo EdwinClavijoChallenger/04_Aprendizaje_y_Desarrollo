@@ -1,0 +1,30 @@
+table Dim_TipoRetiro
+	lineageTag: 2667e2c3-70c2-4f2e-88b5-9ad5b8bd24b6
+
+	column TipoRetiro_Key
+		dataType: string
+		isHidden
+		lineageTag: 2c4faa71-42f8-47ef-8ddc-fba88952d40c
+		sourceColumn: [TipoRetiro_Key]
+
+	column Tipo_Retiro
+		dataType: string
+		lineageTag: fa72b527-5a73-42f4-b5af-12ef3ade6c26
+		sourceColumn: [Tipo_Retiro]
+
+	partition Dim_TipoRetiro = calculated
+		mode: import
+		source =
+				VAR _Tabla =
+				    FILTER(
+				        DISTINCT(
+				            SELECTCOLUMNS(
+				                'Fct_EntrevistaRetiro_Unificada',
+				                "TipoRetiro_Key", 'Fct_EntrevistaRetiro_Unificada'[TipoRetiro_Key],
+				                "Tipo_Retiro", 'Fct_EntrevistaRetiro_Unificada'[TipoRetiro_Homologado]
+				            )
+				        ),
+				        NOT ISBLANK([TipoRetiro_Key]) && [TipoRetiro_Key] <> ""
+				    )
+				RETURN
+				    _Tabla

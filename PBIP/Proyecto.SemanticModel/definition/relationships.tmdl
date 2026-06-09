@@ -94,3 +94,31 @@ relationship DO_EstadoPDI_Fct
 	fromColumn: Fct_Seguimiento_PDI.EstadoPDI_Key
 	toColumn: Dim_EstadoPDI.EstadoPDI_Key
 
+relationship BEC_Calendario_EntrevistaRetiro
+	fromColumn: Fct_EntrevistaRetiro_Unificada.Fecha_Entrevista
+	toColumn: Dim_Calendario.Date
+
+relationship BEC_Fuente_EntrevistaRetiro
+	fromColumn: Fct_EntrevistaRetiro_Unificada.FuenteEntrevista_Key
+	toColumn: Dim_FuenteEntrevistaRetiro.FuenteEntrevista_Key
+
+relationship BEC_UnidadNegocio_EntrevistaRetiro
+	fromColumn: Fct_EntrevistaRetiro_Unificada.UnidadNegocio_Key
+	toColumn: Dim_UnidadNegocioRetiro.UnidadNegocio_Key
+
+relationship BEC_TipoRetiro_EntrevistaRetiro
+	fromColumn: Fct_EntrevistaRetiro_Unificada.TipoRetiro_Key
+	toColumn: Dim_TipoRetiro.TipoRetiro_Key
+
+relationship BEC_MotivoRetiro_EntrevistaRetiro
+	fromColumn: Fct_EntrevistaRetiro_Unificada.MotivoRetiro_Key
+	toColumn: Dim_MotivoRetiro.MotivoRetiro_Key
+
+relationship BEC_CategoriaMotivo_EntrevistaRetiro
+	fromColumn: Fct_EntrevistaRetiro_Unificada.CategoriaMotivo_Key
+	toColumn: Dim_CategoriaMotivoRetiro.CategoriaMotivo_Key
+
+relationship BEC_Proceso_EntrevistaRetiro
+	fromColumn: Fct_EntrevistaRetiro_Unificada.ProcesoRetiro_Key
+	toColumn: Dim_ProcesoRetiro.ProcesoRetiro_Key
+

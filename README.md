@@ -4,7 +4,7 @@
 
 Este repositorio contiene el proyecto Power BI `Proyecto.pbip`, correspondiente al Dashboard Corporativo de Desarrollo Organizacional.
 
-El objetivo es entregar una lectura gerencial, visual y accionable sobre los frentes de Desarrollo Organizacional, integrando indicadores de Aprendizaje y, desde esta fase, el seguimiento inicial de Planes de Desarrollo Individual del frente Desarrollo.
+El objetivo es entregar una lectura gerencial, visual y accionable sobre los frentes de Desarrollo Organizacional, integrando indicadores de Aprendizaje, seguimiento inicial de Planes de Desarrollo Individual del frente Desarrollo y analisis de Entrevista de Retiro del frente Bienestar y Clima.
 
 ## Alcance del MVP
 
@@ -21,7 +21,7 @@ El alcance consolidado cubre el frente de Aprendizaje. El reporte permite analiz
 - comparativos mensuales y anuales;
 - indicadores ejecutivos para priorizacion gerencial.
 
-El frente Desarrollo inicia su estructuracion con la tabla `Fct_Seguimiento_PDI`, orientada al seguimiento gerencial de Planes de Desarrollo Individual. Los frentes Desempeno y Bienestar y Clima continuan contemplados para fases posteriores.
+El frente Desarrollo inicia su estructuracion con la tabla `Fct_Seguimiento_PDI`, orientada al seguimiento gerencial de Planes de Desarrollo Individual. El frente Bienestar y Clima inicia con las tablas de entrevista de retiro, incluyendo una vista unificada para analisis gerencial agregado. El frente Desempeno continua contemplado para fases posteriores.
 
 ## Estructura general
 
@@ -63,13 +63,19 @@ El frente Desarrollo inicia con cuatro paginas:
 - `D03 Motivos y Seguimiento`
 - `D04 Focos de Gestion Desarrollo`
 
-El modelo incluye dimensiones gerenciales, tabla de medidas `Medidas_AD`, fact consolidada de induccion, relacion entre `Fct_AsistenciaFormacion` y `Dim_ColaboradorHC`, y estructura inicial para `Fct_Seguimiento_PDI`.
+El frente Bienestar y Clima inicia con:
+
+- `B01 Entrevista de Retiro`
+
+El modelo incluye dimensiones gerenciales, tabla de medidas `Medidas_AD`, fact consolidada de induccion, relacion entre `Fct_AsistenciaFormacion` y `Dim_ColaboradorHC`, estructura inicial para `Fct_Seguimiento_PDI` y fact homologada `Fct_EntrevistaRetiro_Unificada`.
 
 ## Bloques pendientes del Dashboard Corporativo
 
 Los siguientes bloques estan previstos para fases posteriores:
 
 - Desempeno
-- Bienestar y Clima
+- Planes de trabajo de Clima Laboral
+- eNPS de actividades de Bienestar
+- Cumplimiento del Plan de Bienestar
 
 Estos frentes deben integrarse respetando la arquitectura corporativa, la navegacion del reporte, la paleta visual LEMCO y los estandares tecnicos documentados en `Docs`.

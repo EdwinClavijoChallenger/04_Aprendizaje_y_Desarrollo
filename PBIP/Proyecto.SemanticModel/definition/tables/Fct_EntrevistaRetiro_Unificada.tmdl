@@ -1,0 +1,407 @@
+table Fct_EntrevistaRetiro_Unificada
+	lineageTag: bddec8e0-513a-4ba5-8e3b-b181da7f98b6
+
+	column EntrevistaRetiro_Key
+		dataType: string
+		isHidden
+		lineageTag: 88369597-43d7-4cc4-b407-40d2df66322c
+		summarizeBy: none
+		sourceColumn: EntrevistaRetiro_Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column FuenteEntrevista_Key
+		dataType: string
+		isHidden
+		lineageTag: f7243638-4a17-4acd-8e29-c6a99188239a
+		summarizeBy: none
+		sourceColumn: FuenteEntrevista_Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column Fuente_Entrevista
+		dataType: string
+		lineageTag: d0e741c3-3fe2-4256-a0cd-d52e6f295ab9
+		summarizeBy: none
+		sourceColumn: Fuente_Entrevista
+
+		annotation SummarizationSetBy = Automatic
+
+	column Fecha_Entrevista
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 3e20536b-f087-43a1-836e-2add3a914900
+		summarizeBy: none
+		sourceColumn: Fecha_Entrevista
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Anio
+		dataType: int64
+		formatString: 0
+		lineageTag: 8a705772-1e3a-499c-b6d8-eced247fe2ea
+		summarizeBy: none
+		sourceColumn: Anio
+
+		annotation SummarizationSetBy = Automatic
+
+	column Mes
+		dataType: int64
+		formatString: 0
+		lineageTag: 2e49cf07-4e7c-4641-84b1-804eacf6b2b2
+		summarizeBy: none
+		sourceColumn: Mes
+
+		annotation SummarizationSetBy = Automatic
+
+	column Periodo
+		dataType: string
+		lineageTag: fe8d55d4-ad18-4033-a1db-b332d8f586df
+		summarizeBy: none
+		sourceColumn: Periodo
+
+		annotation SummarizationSetBy = Automatic
+
+	column AnioMes
+		dataType: string
+		lineageTag: 0b410739-7abf-4ece-ad00-98b0d74bb501
+		summarizeBy: none
+		sourceColumn: AnioMes
+
+		annotation SummarizationSetBy = Automatic
+
+	column UnidadNegocio_Key
+		dataType: string
+		isHidden
+		lineageTag: 6c788c39-5aef-416e-9fcd-6fad6926ad6f
+		summarizeBy: none
+		sourceColumn: UnidadNegocio_Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column UnidadNegocio_Homologada
+		dataType: string
+		lineageTag: 09e6ca68-0634-4f6a-8570-ae136bf4a3ab
+		summarizeBy: none
+		sourceColumn: UnidadNegocio_Homologada
+
+		annotation SummarizationSetBy = Automatic
+
+	column Empresa_Homologada
+		dataType: string
+		lineageTag: 7f8cb588-4c6a-4cc4-ac09-2b2a6bb7e4b9
+		summarizeBy: none
+		sourceColumn: Empresa_Homologada
+
+		annotation SummarizationSetBy = Automatic
+
+	column TipoRetiro_Key
+		dataType: string
+		isHidden
+		lineageTag: dac43475-8ade-4f6b-a998-cb04b411f7e6
+		summarizeBy: none
+		sourceColumn: TipoRetiro_Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column TipoRetiro_Homologado
+		dataType: string
+		lineageTag: 441d66f5-9913-4214-ab8a-4ee8cfc3cfb2
+		summarizeBy: none
+		sourceColumn: TipoRetiro_Homologado
+
+		annotation SummarizationSetBy = Automatic
+
+	column MotivoRetiro_Key
+		dataType: string
+		isHidden
+		lineageTag: 90e237b1-ddd0-4214-90d7-d27eaca9c766
+		summarizeBy: none
+		sourceColumn: MotivoRetiro_Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column MotivoRetiro_Homologado
+		dataType: string
+		lineageTag: d67e562f-df87-4888-bcd2-5e935f4ccc44
+		summarizeBy: none
+		sourceColumn: MotivoRetiro_Homologado
+
+		annotation SummarizationSetBy = Automatic
+
+	column DetalleMotivo_Homologado
+		dataType: string
+		lineageTag: c39ae2bb-5d9e-46f1-a5fd-8b162512aa7d
+		summarizeBy: none
+		sourceColumn: DetalleMotivo_Homologado
+
+		annotation SummarizationSetBy = Automatic
+
+	column CategoriaMotivo_Key
+		dataType: string
+		isHidden
+		lineageTag: 9926d3af-efef-43c6-85df-bf2ad6812cc8
+		summarizeBy: none
+		sourceColumn: CategoriaMotivo_Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column CategoriaPrincipalMotivo
+		dataType: string
+		lineageTag: e17ad509-bbf9-4a94-b595-9964f09afe57
+		summarizeBy: none
+		sourceColumn: CategoriaPrincipalMotivo
+
+		annotation SummarizationSetBy = Automatic
+
+	column SubcategoriaMotivo
+		dataType: string
+		lineageTag: 11e2f08f-47c2-4868-82c8-032e78ff1e0d
+		summarizeBy: none
+		sourceColumn: SubcategoriaMotivo
+
+		annotation SummarizationSetBy = Automatic
+
+	column CausaPrevenible_Key
+		dataType: string
+		isHidden
+		lineageTag: 0cc487ba-6e6a-4fbc-8ac3-0f2e2ed0a43d
+		summarizeBy: none
+		sourceColumn: CausaPrevenible_Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column CausaPrevenible
+		dataType: string
+		lineageTag: d1de854e-2a96-4eaf-8cbb-610a9e294cc1
+		summarizeBy: none
+		sourceColumn: CausaPrevenible
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProcesoRetiro_Key
+		dataType: string
+		isHidden
+		lineageTag: 966bb598-3694-40ea-a71f-b7455d7c3ae3
+		summarizeBy: none
+		sourceColumn: ProcesoRetiro_Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProcesoRelacionado
+		dataType: string
+		lineageTag: 9fdd73bc-4f60-4726-a6b7-fdc81c2b9a6d
+		summarizeBy: none
+		sourceColumn: ProcesoRelacionado
+
+		annotation SummarizationSetBy = Automatic
+
+	column AutorizacionTratamiento
+		dataType: string
+		lineageTag: fc9c1938-dfe2-4f1a-9d7c-b94b013d7dc1
+		summarizeBy: none
+		sourceColumn: AutorizacionTratamiento
+
+		annotation SummarizationSetBy = Automatic
+
+	column RegistroValido
+		dataType: string
+		lineageTag: 5356cb90-a402-4ee4-a218-c0314a5619fb
+		summarizeBy: none
+		sourceColumn: RegistroValido
+
+		annotation SummarizationSetBy = Automatic
+
+	column RegistroValido_Flag
+		dataType: int64
+		formatString: 0
+		lineageTag: 29d5261a-b4f4-4ae0-a50d-ece22ca0a377
+		summarizeBy: sum
+		sourceColumn: RegistroValido_Flag
+
+		annotation SummarizationSetBy = Automatic
+
+	column OportunidadMejora
+		dataType: string
+		lineageTag: 43c03c9c-a028-4ddd-98d5-120aecdd7193
+		summarizeBy: none
+		sourceColumn: OportunidadMejora
+
+		annotation SummarizationSetBy = Automatic
+
+	column RequierePlanAccion
+		dataType: string
+		lineageTag: 5711ba4c-5516-4374-a588-8b28223bfe04
+		summarizeBy: none
+		sourceColumn: RequierePlanAccion
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Fct_EntrevistaRetiro_Unificada = m
+		mode: import
+		queryGroup: EntrevistaRetiro
+		source =
+				let
+				    OutputColumns = {
+				        "EntrevistaRetiro_Key", "FuenteEntrevista_Key", "Fuente_Entrevista", "Fecha_Entrevista", "Anio", "Mes", "Periodo", "AnioMes",
+				        "UnidadNegocio_Key", "UnidadNegocio_Homologada", "Empresa_Homologada", "TipoRetiro_Key", "TipoRetiro_Homologado",
+				        "MotivoRetiro_Key", "MotivoRetiro_Homologado", "DetalleMotivo_Homologado", "CategoriaMotivo_Key", "CategoriaPrincipalMotivo",
+				        "SubcategoriaMotivo", "CausaPrevenible_Key", "CausaPrevenible", "ProcesoRetiro_Key", "ProcesoRelacionado",
+				        "AutorizacionTratamiento", "RegistroValido", "RegistroValido_Flag", "OportunidadMejora", "RequierePlanAccion"
+				    },
+				    FxText = (value as any) as nullable text =>
+				        let
+				            raw = if value = null then null else Text.From(value),
+				            cleaned0 = if raw = null then null else Text.Replace(raw, Character.FromNumber(160), " "),
+				            cleaned = if cleaned0 = null then null else Text.Trim(Text.Clean(cleaned0)),
+				            result = if cleaned = null or cleaned = "" then null else cleaned
+				        in
+				            result,
+				    FxUpper = (value as any) as nullable text =>
+				        let t = FxText(value) in if t = null then null else Text.Upper(t),
+				    FxSearch = (value as any) as nullable text =>
+				        let
+				            upper = FxUpper(value),
+				            normalized =
+				                if upper = null then null
+				                else Text.Replace(Text.Replace(Text.Replace(Text.Replace(Text.Replace(Text.Replace(Text.Replace(Text.Replace(Text.Replace(Text.Replace(upper, "Á", "A"), "É", "E"), "Í", "I"), "Ó", "O"), "Ú", "U"), "Ü", "U"), "Ñ", "N"), "À", "A"), "È", "E"), "Ì", "I")
+				        in
+				            normalized,
+				    FxGet = (row as record, fields as list) as nullable text =>
+				        let
+				            values = List.Transform(fields, each try FxText(Record.Field(row, _)) otherwise null),
+				            filtered = List.Select(values, each _ <> null and _ <> "")
+				        in
+				            if List.Count(filtered) > 0 then filtered{0} else null,
+				    FxDate = (row as record, fields as list) as nullable date =>
+				        let
+				            values = List.Transform(fields, each try Date.From(Record.Field(row, _)) otherwise null),
+				            filtered = List.Select(values, each _ <> null)
+				        in
+				            if List.Count(filtered) > 0 then filtered{0} else null,
+				    FxKey = (value as nullable text) as nullable text =>
+				        let t = FxText(value) in if t = null then null else Text.Upper(t),
+				    FxFuenteKey = (fuente as text) as text => Text.Upper(Text.Replace(fuente, " ", "_")),
+				    FxTipoRetiro = (tipo as nullable text, motivo as nullable text) as text =>
+				        let
+				            base = FxSearch(if tipo <> null then tipo else motivo),
+				            result =
+				                if base = null then "No informado"
+				                else if Text.Contains(base, "VOLUNT") then "Voluntario"
+				                else if Text.Contains(base, "INVOLUNT") or Text.Contains(base, "TERMIN") or Text.Contains(base, "DESPID") or Text.Contains(base, "JUSTA CAUSA") then "Involuntario"
+				                else "No informado"
+				        in
+				            result,
+				    FxCategoria = (motivo as nullable text, detalle as nullable text) as text =>
+				        let
+				            base = FxSearch(Text.Combine(List.RemoveNulls({motivo, detalle}), " ")),
+				            result =
+				                if base = null or base = "" then "No informado"
+				                else if Text.Contains(base, "OFERTA") or Text.Contains(base, "SALARIO") or Text.Contains(base, "COMPENS") or Text.Contains(base, "BENEFICIO") or Text.Contains(base, "REMUNER") then "Compensacion y oferta"
+				                else if Text.Contains(base, "JEFE") or Text.Contains(base, "LIDER") or Text.Contains(base, "LIDERAZGO") or Text.Contains(base, "TRATO") or Text.Contains(base, "RETROALIMENT") or Text.Contains(base, "EQUIPO") then "Liderazgo y equipo"
+				                else if Text.Contains(base, "CRECIM") or Text.Contains(base, "DESARROL") or Text.Contains(base, "CARRERA") or Text.Contains(base, "ASCENS") then "Crecimiento y desarrollo"
+				                else if Text.Contains(base, "CARGA") or Text.Contains(base, "HORARIO") or Text.Contains(base, "TURNO") or Text.Contains(base, "JORNADA") then "Carga y horario"
+				                else if Text.Contains(base, "CLIMA") or Text.Contains(base, "AMBIENTE") or Text.Contains(base, "CULTURA") then "Clima y cultura"
+				                else if Text.Contains(base, "ROL") or Text.Contains(base, "CARGO") or Text.Contains(base, "FUNCION") or Text.Contains(base, "RESPONSABIL") then "Rol y expectativas"
+				                else if Text.Contains(base, "BIENESTAR") or Text.Contains(base, "SALUD") or Text.Contains(base, "CONDICION") or Text.Contains(base, "CASINO") then "Bienestar y condiciones"
+				                else if Text.Contains(base, "SELECCION") or Text.Contains(base, "CONTRAT") or Text.Contains(base, "ONBOARDING") or Text.Contains(base, "ENTRENAMIENTO") or Text.Contains(base, "CAPACIT") or Text.Contains(base, "PROCESO") then "Proceso interno"
+				                else if Text.Contains(base, "PERSONAL") or Text.Contains(base, "FAMIL") or Text.Contains(base, "TRASLADO") then "Personal o familiar"
+				                else "Otros"
+				        in
+				            result,
+				    FxSiNo = (value as nullable text) as text =>
+				        let
+				            base = FxSearch(value),
+				            result =
+				                if base = null then "Por validar"
+				                else if Text.StartsWith(base, "SI") or Text.StartsWith(base, "SÍ") or Text.Contains(base, "PREVENIBLE") then "Si"
+				                else if Text.StartsWith(base, "NO") or Text.Contains(base, "NO APLICA") then "No"
+				                else "Por validar"
+				        in
+				            result,
+				    FxValido = (autorizacion as nullable text) as logical =>
+				        let aut = FxUpper(autorizacion)
+				        in aut <> null and Text.StartsWith(aut, "ACEPTA") and not Text.Contains(aut, "NO ACEPTA"),
+				    FxMap = (row as record, fuente as text, unidadDefault as nullable text) as record =>
+				        let
+				            fecha = FxDate(row, {"Hora de inicio"}),
+				            anio = if fecha = null then null else Date.Year(fecha),
+				            mes = if fecha = null then null else Date.Month(fecha),
+				            periodo = if fecha = null then null else Text.From(anio) & "-" & Text.PadStart(Text.From(mes), 2, "0"),
+				            id = FxGet(row, {"Id"}),
+				            idx = try Text.From(Record.Field(row, "_IndexRetiro")) otherwise "0",
+				            aut = FxGet(row, {"Autorización tratamiento de datos", "Autorización tratamiento de datos#(lf)"}),
+				            valido = FxValido(aut),
+				            unidadRaw = FxGet(row, {"Unidad de negocio a la que pertenecía el colaborador", "Indique el negocio al que hace parte el colaborador retirado"}),
+				            unidad = if unidadRaw <> null then unidadRaw else if unidadDefault <> null then unidadDefault else "No informado",
+				            empresa = FxGet(row, {"Empresa / razón social o marca empleadora", "Empresa / razón social o marca empleadora1"}),
+				            tipoRaw = FxGet(row, {"Tipo de retiro"}),
+				            motivo = FxGet(row, {"Motivo principal de retiro", "Motivo principal de retiro1", "Motivo de retiro:"}),
+				            motivoFinal = if motivo <> null then motivo else "No informado",
+				            detalle = FxGet(row, {"Detalle del motivo de retiro", "Detalle del motivo de retiro ", "Mejor Oferta - Detalle del motivo de retiro"}),
+				            tipo = FxTipoRetiro(tipoRaw, motivoFinal),
+				            categoria = FxCategoria(motivoFinal, detalle),
+				            causaRaw = FxGet(row, {"Causa potencialmente prevenible", "Según lo manifestado durante la entrevista, ¿la salida pudo haberse prevenido con alguna acción de la organización?"}),
+				            causa = FxSiNo(causaRaw),
+				            proceso = FxGet(row, {"Proceso responsable de revisión", "¿Qué proceso interno generó mayor fricción durante la experiencia del colaborador?"}),
+				            procesoFinal = if proceso <> null then proceso else categoria,
+				            oportunidad = FxGet(row, {"¿Qué habría tenido que cambiar para que la salida pudiera prevenirse o el colaborador considerara permanecer?", "Qué cambios propones para mejorar el lugar de trabajo", "¿Hay algo más que quieras compartir de tu experiencia en la compañía?", "¿Hay algo importante que no hayamos preguntado y considere relevante compartir?"}),
+				            planAccion = FxGet(row, {"Requiere plan de acción"}),
+				            keyBase = FxFuenteKey(fuente) & "-" & (if id <> null then id else idx)
+				        in
+				            [
+				                EntrevistaRetiro_Key = keyBase,
+				                FuenteEntrevista_Key = FxFuenteKey(fuente),
+				                Fuente_Entrevista = fuente,
+				                Fecha_Entrevista = fecha,
+				                Anio = anio,
+				                Mes = mes,
+				                Periodo = periodo,
+				                AnioMes = periodo,
+				                UnidadNegocio_Key = FxKey(unidad),
+				                UnidadNegocio_Homologada = unidad,
+				                Empresa_Homologada = if empresa <> null then empresa else unidad,
+				                TipoRetiro_Key = FxKey(tipo),
+				                TipoRetiro_Homologado = tipo,
+				                MotivoRetiro_Key = FxKey(motivoFinal),
+				                MotivoRetiro_Homologado = motivoFinal,
+				                DetalleMotivo_Homologado = detalle,
+				                CategoriaMotivo_Key = FxKey(categoria),
+				                CategoriaPrincipalMotivo = categoria,
+				                SubcategoriaMotivo = if detalle <> null then detalle else motivoFinal,
+				                CausaPrevenible_Key = FxKey(causa),
+				                CausaPrevenible = causa,
+				                ProcesoRetiro_Key = FxKey(procesoFinal),
+				                ProcesoRelacionado = procesoFinal,
+				                AutorizacionTratamiento = aut,
+				                RegistroValido = if valido then "Valido" else "No valido",
+				                RegistroValido_Flag = if valido then 1 else 0,
+				                OportunidadMejora = oportunidad,
+				                RequierePlanAccion = FxSiNo(planAccion)
+				            ],
+				    FxNormalize = (tbl as table, fuente as text, unidadDefault as nullable text) as table =>
+				        let
+				            withIndex = Table.AddIndexColumn(tbl, "_IndexRetiro", 1, 1, Int64.Type),
+				            records = List.Transform(Table.ToRecords(withIndex), each FxMap(_, fuente, unidadDefault)),
+				            normalized = Table.FromRecords(records, OutputColumns, MissingField.UseNull)
+				        in
+				            normalized,
+				    V1 = FxNormalize(Fct_EntrevistaRetiro_V1, "Entrevista V1", null),
+				    V2 = FxNormalize(Fct_EntrevistaRetiro_V2, "Entrevista V2", "CHALLENGER"),
+				    Corporativa = FxNormalize(Fct_EntrevistaRetiro_Corporativa, "Entrevista Corporativa", null),
+				    Combined = Table.Combine({V1, V2, Corporativa}),
+				    Typed = Table.TransformColumnTypes(Combined, {
+				        {"EntrevistaRetiro_Key", type text}, {"FuenteEntrevista_Key", type text}, {"Fuente_Entrevista", type text}, {"Fecha_Entrevista", type date},
+				        {"Anio", Int64.Type}, {"Mes", Int64.Type}, {"Periodo", type text}, {"AnioMes", type text}, {"UnidadNegocio_Key", type text},
+				        {"UnidadNegocio_Homologada", type text}, {"Empresa_Homologada", type text}, {"TipoRetiro_Key", type text}, {"TipoRetiro_Homologado", type text},
+				        {"MotivoRetiro_Key", type text}, {"MotivoRetiro_Homologado", type text}, {"DetalleMotivo_Homologado", type text},
+				        {"CategoriaMotivo_Key", type text}, {"CategoriaPrincipalMotivo", type text}, {"SubcategoriaMotivo", type text},
+				        {"CausaPrevenible_Key", type text}, {"CausaPrevenible", type text}, {"ProcesoRetiro_Key", type text}, {"ProcesoRelacionado", type text},
+				        {"AutorizacionTratamiento", type text}, {"RegistroValido", type text}, {"RegistroValido_Flag", Int64.Type}, {"OportunidadMejora", type text}, {"RequierePlanAccion", type text}
+				    })
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table

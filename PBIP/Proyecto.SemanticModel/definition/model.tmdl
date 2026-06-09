@@ -6,11 +6,15 @@ model Model
 		legacyRedirects
 		returnErrorValuesAsNull
 
+queryGroup EntrevistaRetiro
+
+	annotation PBI_QueryGroupOrder = 0
+
 annotation __PBI_TimeIntelligenceEnabled = 0
 
 annotation PBI_ProTooling = ["DevMode"]
 
-annotation PBI_QueryOrder = ["Fct_PlanFormacion","Fct_AsistenciaFormacion","Fct_EncuestaFormacion","Fct_InduccionColaborador_antes_de_UC_2025","Fct_InduccionColaborador_UC_2025","Fct_InduccionColaborador_UC_2026","Dim_ColaboradorHC","Fct_Seguimiento_PDI"]
+annotation PBI_QueryOrder = ["Fct_PlanFormacion","Fct_AsistenciaFormacion","Fct_EncuestaFormacion","Fct_InduccionColaborador_antes_de_UC_2025","Fct_InduccionColaborador_UC_2025","Fct_InduccionColaborador_UC_2026","Dim_ColaboradorHC","Fct_Seguimiento_PDI","Fct_EntrevistaRetiro_V1","Fct_EntrevistaRetiro_V2","Fct_EntrevistaRetiro_Corporativa","Fct_EntrevistaRetiro_Unificada"]
 
 ref table Dim_Calendario
 ref table Fct_PlanFormacion
@@ -34,6 +38,17 @@ ref table Dim_ColaboradorHC
 ref table Fct_Seguimiento_PDI
 ref table Dim_MotivoPDI
 ref table Dim_EstadoPDI
+ref table Fct_EntrevistaRetiro_V1
+ref table Fct_EntrevistaRetiro_V2
+ref table Fct_EntrevistaRetiro_Corporativa
+ref table Fct_EntrevistaRetiro_Unificada
+ref table Dim_FuenteEntrevistaRetiro
+ref table Dim_UnidadNegocioRetiro
+ref table Dim_TipoRetiro
+ref table Dim_MotivoRetiro
+ref table Dim_CategoriaMotivoRetiro
+ref table Dim_ProcesoRetiro
+ref table Dim_Frente_Home
 
 ref cultureInfo es-ES
 

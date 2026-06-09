@@ -1,0 +1,942 @@
+table Fct_EntrevistaRetiro_V1
+	lineageTag: 18af218d-0cce-40b4-89f8-c55c2e5f4169
+
+	column Id
+		dataType: int64
+		formatString: 0
+		lineageTag: 49f2b0f6-1b8c-45a9-b6d1-5b6ba25fffb9
+		summarizeBy: count
+		sourceColumn: Id
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Hora de inicio'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 9c6a183d-38dd-472c-b4ac-864caa6bc3cf
+		summarizeBy: none
+		sourceColumn: Hora de inicio
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Hora de finalización'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: a26686fb-62ef-4f9a-b0d1-1df3f63513af
+		summarizeBy: none
+		sourceColumn: Hora de finalización
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Correo electrónico'
+		dataType: string
+		lineageTag: 40b2e54c-bddd-4f3e-a38a-8d9c3eb02963
+		summarizeBy: none
+		sourceColumn: Correo electrónico
+
+		annotation SummarizationSetBy = Automatic
+
+	column Nombre
+		dataType: string
+		lineageTag: 01ceb6b0-cebe-4299-a5ec-61d4a3766e62
+		summarizeBy: none
+		sourceColumn: Nombre
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Total de puntos'
+		dataType: string
+		lineageTag: 2db8d4fb-b7c0-49e6-be8d-70976e9649a7
+		summarizeBy: none
+		sourceColumn: Total de puntos
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Comentarios del cuestionario'
+		dataType: string
+		lineageTag: 338a2733-0efb-4976-b759-d2cb34028340
+		summarizeBy: none
+		sourceColumn: Comentarios del cuestionario
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Hora de publicación de la calificación'
+		dataType: string
+		lineageTag: 010c52f3-46ca-475d-9879-81b1b7086d18
+		summarizeBy: none
+		sourceColumn: Hora de publicación de la calificación
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Autorización tratamiento de datos'
+		dataType: string
+		lineageTag: f795e679-7402-4269-a2c2-04c5ab838877
+		summarizeBy: none
+		sourceColumn: Autorización tratamiento de datos
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Puntos: Autorización tratamiento de datos'
+		dataType: string
+		lineageTag: 6d0ea7a5-df37-4cda-b509-832883c0d78f
+		summarizeBy: none
+		sourceColumn: Puntos: Autorización tratamiento de datos
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Comentarios: Autorización tratamiento de datos'
+		dataType: string
+		lineageTag: 856dc5fe-e538-4e33-ae8b-d4d90f9fe3bf
+		summarizeBy: none
+		sourceColumn: Comentarios: Autorización tratamiento de datos
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Número de documento'
+		dataType: string
+		lineageTag: 4dadf14f-3118-464d-bb7e-91f97814c817
+		summarizeBy: none
+		sourceColumn: Número de documento
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Puntos: Número de documento'
+		dataType: string
+		lineageTag: 598e845e-3d38-4327-88be-d1aa0b0c3371
+		summarizeBy: none
+		sourceColumn: Puntos: Número de documento
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Comentarios: Número de documento'
+		dataType: string
+		lineageTag: 02bf2359-775b-4710-8bcb-0a0541aa4179
+		summarizeBy: none
+		sourceColumn: Comentarios: Número de documento
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Indique el negocio al que hace parte el colaborador retirado'
+		dataType: string
+		lineageTag: 7f5d7a4d-402d-4279-8e19-b2cfbe7f6c15
+		summarizeBy: none
+		sourceColumn: Indique el negocio al que hace parte el colaborador retirado
+
+		annotation SummarizationSetBy = Automatic
+
+	column |
+		dataType: string
+		lineageTag: fbf69310-6529-4e65-a8c5-1b4658c7b682
+		summarizeBy: none
+		sourceColumn: |
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Comentarios: Indique el negocio al que hace parte el colaborador retirado'
+		dataType: string
+		lineageTag: c2843239-382c-4f65-ac18-5be20a88644d
+		summarizeBy: none
+		sourceColumn: Comentarios: Indique el negocio al que hace parte el colaborador retirado
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Cédula de ciudadanía'
+		dataType: int64
+		formatString: 0
+		lineageTag: 559cecd0-8397-4142-8f02-29efe71db939
+		summarizeBy: sum
+		sourceColumn: Cédula de ciudadanía
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Puntos: Cédula de ciudadanía'
+		dataType: string
+		lineageTag: b5fa0151-d1d1-4401-8771-7b43d9cecf60
+		summarizeBy: none
+		sourceColumn: Puntos: Cédula de ciudadanía
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Comentarios: Cédula de ciudadanía'
+		dataType: string
+		lineageTag: ecaea2ba-c5bd-4953-be3c-0f90bdf145d5
+		summarizeBy: none
+		sourceColumn: Comentarios: Cédula de ciudadanía
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Nombre Completo'
+		dataType: string
+		lineageTag: c36111b7-9ba4-461a-ab48-9f3718869c8a
+		summarizeBy: none
+		sourceColumn: Nombre Completo
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Puntos: Nombre Completo'
+		dataType: string
+		lineageTag: fe170c11-b6e0-4c8c-b482-c0124dc2c50d
+		summarizeBy: none
+		sourceColumn: Puntos: Nombre Completo
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Comentarios: Nombre Completo'
+		dataType: string
+		lineageTag: 68dcd5b9-c33c-465f-b684-3560a21e1634
+		summarizeBy: none
+		sourceColumn: Comentarios: Nombre Completo
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Nombres y apellidos Jefe Inmediato:'
+		dataType: string
+		lineageTag: 4d4ea9fa-4216-44a8-9274-f73468cfdea2
+		summarizeBy: none
+		sourceColumn: Nombres y apellidos Jefe Inmediato:
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Puntos: Nombres y apellidos Jefe Inmediato:'
+		dataType: string
+		lineageTag: fff467ed-cb29-4fa5-814e-d79fa4345203
+		summarizeBy: none
+		sourceColumn: Puntos: Nombres y apellidos Jefe Inmediato:
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Comentarios: Nombres y apellidos Jefe Inmediato:'
+		dataType: string
+		lineageTag: a2cc75c1-d4de-4b05-be48-69cdb75de06e
+		summarizeBy: none
+		sourceColumn: Comentarios: Nombres y apellidos Jefe Inmediato:
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Motivo de retiro:'
+		dataType: string
+		lineageTag: 0b6532dc-6e9b-48e3-b92a-d6eb4b2c9e0d
+		summarizeBy: none
+		sourceColumn: Motivo de retiro:
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Puntos: Motivo de retiro:'
+		dataType: string
+		lineageTag: 08329b03-fd85-4723-a3de-4c0ce10d7994
+		summarizeBy: none
+		sourceColumn: Puntos: Motivo de retiro:
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Comentarios: Motivo de retiro:'
+		dataType: string
+		lineageTag: 57cf7210-e976-4cb6-9670-fb8898659108
+		summarizeBy: none
+		sourceColumn: Comentarios: Motivo de retiro:
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Mejor Oferta - Detalle del motivo de retiro'
+		dataType: double
+		lineageTag: b74369e3-be12-4f9e-8b0a-fc5975bf8a2f
+		summarizeBy: sum
+		sourceColumn: Mejor Oferta - Detalle del motivo de retiro
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Puntos: Mejor Oferta - Detalle del motivo de retiro'
+		dataType: string
+		lineageTag: d837cf08-d4c6-4b58-9af3-f3a9ea07b503
+		summarizeBy: none
+		sourceColumn: Puntos: Mejor Oferta - Detalle del motivo de retiro
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Comentarios: Mejor Oferta - Detalle del motivo de retiro'
+		dataType: string
+		lineageTag: b5066578-67f2-49dd-941d-0707fbf7d8d4
+		summarizeBy: none
+		sourceColumn: Comentarios: Mejor Oferta - Detalle del motivo de retiro
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Detalle del motivo de retiro'
+		dataType: string
+		lineageTag: f929d20e-8818-4908-9128-f12ecb7faa5c
+		summarizeBy: none
+		sourceColumn: Detalle del motivo de retiro
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Puntos: Detalle del motivo de retiro'
+		dataType: string
+		lineageTag: e5c6d340-3af7-4fb9-aeac-cfc4ccb17d8e
+		summarizeBy: none
+		sourceColumn: Puntos: Detalle del motivo de retiro
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Comentarios: Detalle del motivo de retiro'
+		dataType: string
+		lineageTag: 9b301e54-d1eb-40a6-a8f8-f1a7a1d4e563
+		summarizeBy: none
+		sourceColumn: Comentarios: Detalle del motivo de retiro
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Puntos: Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho'
+		dataType: string
+		lineageTag: dcf87334-807b-44f1-819b-bfdcc5d87481
+		summarizeBy: none
+		sourceColumn: Puntos: Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Comentarios: Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho'
+		dataType: string
+		lineageTag: dedd156a-49b0-4d82-aab9-ee9a26fa94dd
+		summarizeBy: none
+		sourceColumn: Comentarios: Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Inducción Corporativa'
+		dataType: int64
+		formatString: 0
+		lineageTag: 69d156cd-ce18-41d0-a6b6-ebec1f17ab19
+		summarizeBy: sum
+		sourceColumn: Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Inducción Corporativa
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Puntos: Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Inducción Corporativa'
+		dataType: string
+		lineageTag: 1b123f04-b968-482e-98c4-b378650e3b0e
+		summarizeBy: none
+		sourceColumn: Puntos: Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Inducción Corporativa
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Comentarios: Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Inducción Corporativa'
+		dataType: string
+		lineageTag: a4f838b0-5d19-43dd-b94a-83fb9f31d10e
+		summarizeBy: none
+		sourceColumn: Comentarios: Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Inducción Corporativa
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Programas de formación y capacitación'
+		dataType: int64
+		formatString: 0
+		lineageTag: 2cc3cf92-b3b8-441a-a5c4-562651e81a80
+		summarizeBy: sum
+		sourceColumn: Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Programas de formación y capacitación
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Puntos: Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Programas de formación y capacitación'
+		dataType: string
+		lineageTag: fbe81e86-ed39-4ad9-b8ad-dce07935894b
+		summarizeBy: none
+		sourceColumn: Puntos: Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Programas de formación y capacitación
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Comentarios: Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Programas de formación y capacitación'
+		dataType: string
+		lineageTag: 9ce48c5a-14b3-44fc-938f-74a048bbe854
+		summarizeBy: none
+		sourceColumn: Comentarios: Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Programas de formación y capacitación
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Clima laboral de la empresa en general'
+		dataType: int64
+		formatString: 0
+		lineageTag: f8086c06-eec8-431b-af16-51fb28786b98
+		summarizeBy: sum
+		sourceColumn: Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Clima laboral de la empresa en general
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Puntos: Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Clima laboral de la empresa en general'
+		dataType: string
+		lineageTag: 4cc79cd2-d6ef-4449-85a2-d9647bf9afde
+		summarizeBy: none
+		sourceColumn: Puntos: Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Clima laboral de la empresa en general
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Comentarios: Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Clima laboral de la empresa en general'
+		dataType: string
+		lineageTag: fd9ef521-ca04-4e42-a2fd-2d5a6340cc42
+		summarizeBy: none
+		sourceColumn: Comentarios: Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Clima laboral de la empresa en general
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Clima laboral del área'
+		dataType: int64
+		formatString: 0
+		lineageTag: 292d14a6-17e6-4f98-9c5d-d00ab6f5904c
+		summarizeBy: sum
+		sourceColumn: Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Clima laboral del área
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Puntos: Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Clima laboral del área'
+		dataType: string
+		lineageTag: 08800f13-6783-4bce-8746-042e9f8bdf10
+		summarizeBy: none
+		sourceColumn: Puntos: Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Clima laboral del área
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Comentarios: Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Clima laboral del área'
+		dataType: string
+		lineageTag: fd3dc7aa-95ec-4c36-beed-86e1c123fa67
+		summarizeBy: none
+		sourceColumn: Comentarios: Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Clima laboral del área
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Condiciones físicas y ambiente de trabajo   (Instalaciones, herramienta'
+		dataType: int64
+		formatString: 0
+		lineageTag: 6cb5433b-ac68-4f12-bb1b-9b656ee09ba8
+		summarizeBy: sum
+		sourceColumn: Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Condiciones físicas y ambiente de trabajo   (Instalaciones, herramienta
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Puntos: Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Condiciones físicas y ambiente de trabajo   (Instalaciones, herramienta'
+		dataType: string
+		lineageTag: d41aa5c8-3e26-4d34-839c-6ed10b555e95
+		summarizeBy: none
+		sourceColumn: Puntos: Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Condiciones físicas y ambiente de trabajo   (Instalaciones, herramienta
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Comentarios: Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Condiciones físicas y ambiente de trabajo   (Instalaciones, herramienta'
+		dataType: string
+		lineageTag: 82933d72-e3e3-4e4c-8d10-2ed794fe7d3b
+		summarizeBy: none
+		sourceColumn: Comentarios: Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Condiciones físicas y ambiente de trabajo   (Instalaciones, herramienta
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Carga laboral y horario'
+		dataType: int64
+		formatString: 0
+		lineageTag: d3685a21-e0e5-4acf-879d-8c94c3676a63
+		summarizeBy: sum
+		sourceColumn: Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Carga laboral y horario
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Puntos: Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Carga laboral y horario'
+		dataType: string
+		lineageTag: 5eb328df-4786-4635-b2dd-412838cda0a8
+		summarizeBy: none
+		sourceColumn: Puntos: Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Carga laboral y horario
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Comentarios: Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Carga laboral y horario'
+		dataType: string
+		lineageTag: 8c0ee9e6-ce2e-44b3-8666-6ab7f890b78f
+		summarizeBy: none
+		sourceColumn: Comentarios: Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Carga laboral y horario
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Actividades de Bienestar de tipo cultural y   social '
+		dataType: int64
+		formatString: 0
+		lineageTag: 6e006dad-52a3-4103-a77b-c0bac67ac1cc
+		summarizeBy: sum
+		sourceColumn: "Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Actividades de Bienestar de tipo cultural y   social "
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Puntos: Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Actividades de Bienestar de tipo cultural y   social '
+		dataType: string
+		lineageTag: 751d1012-cd47-462d-8a82-a2e177da9e22
+		summarizeBy: none
+		sourceColumn: "Puntos: Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Actividades de Bienestar de tipo cultural y   social "
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Comentarios: Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Actividades de Bienestar de tipo cultural y   social '
+		dataType: string
+		lineageTag: f8051d62-f1ea-4630-843f-dcda1194113e
+		summarizeBy: none
+		sourceColumn: "Comentarios: Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Actividades de Bienestar de tipo cultural y   social "
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Nivel de compensación '
+		dataType: int64
+		formatString: 0
+		lineageTag: 4cfcd44a-f37a-4592-85c4-dc1e281fe675
+		summarizeBy: sum
+		sourceColumn: "Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Nivel de compensación "
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Puntos: Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Nivel de compensación '
+		dataType: string
+		lineageTag: 065f7134-8b1e-47c9-915b-5766a55562ac
+		summarizeBy: none
+		sourceColumn: "Puntos: Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Nivel de compensación "
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Comentarios: Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Nivel de compensación '
+		dataType: string
+		lineageTag: 229b93c7-8e36-4f62-9976-e71745ff9c9a
+		summarizeBy: none
+		sourceColumn: "Comentarios: Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Nivel de compensación "
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Salario emocional (beneficios y reconocimientos)'
+		dataType: int64
+		formatString: 0
+		lineageTag: 3dc6a136-e28d-4b30-94bc-0de277091990
+		summarizeBy: sum
+		sourceColumn: Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Salario emocional (beneficios y reconocimientos)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Puntos: Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Salario emocional (beneficios y reconocimientos)'
+		dataType: string
+		lineageTag: 506d8b37-b770-4c54-b245-f2e7141e063d
+		summarizeBy: none
+		sourceColumn: Puntos: Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Salario emocional (beneficios y reconocimientos)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Comentarios: Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Salario emocional (beneficios y reconocimientos)'
+		dataType: string
+		lineageTag: e52355fb-29e4-4535-b9b0-299f303304b6
+		summarizeBy: none
+		sourceColumn: Comentarios: Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Salario emocional (beneficios y reconocimientos)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Posibilidades de crecimiento y desarrollo   profesional'
+		dataType: int64
+		formatString: 0
+		lineageTag: c2ff9144-a802-4485-9a30-d1012468a67f
+		summarizeBy: sum
+		sourceColumn: Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Posibilidades de crecimiento y desarrollo   profesional
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Puntos: Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Posibilidades de crecimiento y desarrollo   profesional'
+		dataType: string
+		lineageTag: 7c4a5ef7-3088-48a1-9a32-a77dbe4ba604
+		summarizeBy: none
+		sourceColumn: Puntos: Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Posibilidades de crecimiento y desarrollo   profesional
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Comentarios: Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Posibilidades de crecimiento y desarrollo   profesional'
+		dataType: string
+		lineageTag: 9adaad97-8e4e-42c0-86ef-82fde4f9c5b3
+		summarizeBy: none
+		sourceColumn: Comentarios: Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Posibilidades de crecimiento y desarrollo   profesional
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Entrenamiento a su cargo'
+		dataType: int64
+		formatString: 0
+		lineageTag: 1cd35c98-6759-491e-ad3c-1cf9b404349e
+		summarizeBy: sum
+		sourceColumn: Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Entrenamiento a su cargo
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Puntos: Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Entrenamiento a su cargo'
+		dataType: string
+		lineageTag: 0ef6fce1-6143-49a1-a53c-d583d31f308c
+		summarizeBy: none
+		sourceColumn: Puntos: Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Entrenamiento a su cargo
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Comentarios: Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Entrenamiento a su cargo'
+		dataType: string
+		lineageTag: e9e138a1-b27b-4ce1-813e-746624045c31
+		summarizeBy: none
+		sourceColumn: Comentarios: Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Entrenamiento a su cargo
+
+		annotation SummarizationSetBy = Automatic
+
+	column Observaciones
+		dataType: string
+		lineageTag: 9e53a5eb-1ac5-41d1-b3ac-4dd43a2af3aa
+		summarizeBy: none
+		sourceColumn: Observaciones
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Puntos: Observaciones'
+		dataType: string
+		lineageTag: 7f6ffcdb-6cf6-4003-bbe8-9b47d42510f7
+		summarizeBy: none
+		sourceColumn: Puntos: Observaciones
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Comentarios: Observaciones'
+		dataType: string
+		lineageTag: 718f7b90-76bf-4c5d-97f9-ea23eaae9695
+		summarizeBy: none
+		sourceColumn: Comentarios: Observaciones
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Puntos: Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho1'
+		dataType: string
+		lineageTag: 34864e5a-6325-45ac-bdbf-df3206c7b478
+		summarizeBy: none
+		sourceColumn: Puntos: Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho1
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Comentarios: Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho1'
+		dataType: string
+		lineageTag: 1e197b8d-d7be-41b9-bfdd-2a46f4663e02
+		summarizeBy: none
+		sourceColumn: Comentarios: Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho1
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Jefe inmediato'
+		dataType: int64
+		formatString: 0
+		lineageTag: 57598337-f81d-4e83-b956-4dedc580808f
+		summarizeBy: sum
+		sourceColumn: Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Jefe inmediato
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Puntos: Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Jefe inmediato'
+		dataType: string
+		lineageTag: 2e27ff0f-50d3-41c2-90ca-8c39718b7c89
+		summarizeBy: none
+		sourceColumn: Puntos: Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Jefe inmediato
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Comentarios: Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Jefe inmediato'
+		dataType: string
+		lineageTag: 29b8c240-9f02-40fc-a77b-5507e3721fa3
+		summarizeBy: none
+		sourceColumn: Comentarios: Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Jefe inmediato
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Líderes diferentes a jefe inmediato'
+		dataType: int64
+		formatString: 0
+		lineageTag: 453ba117-91e5-4653-99d6-43af2ecefaa8
+		summarizeBy: sum
+		sourceColumn: Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Líderes diferentes a jefe inmediato
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Puntos: Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Líderes diferentes a jefe inmediato'
+		dataType: string
+		lineageTag: f5429599-846c-4df6-985f-8a1a084f0cbe
+		summarizeBy: none
+		sourceColumn: Puntos: Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Líderes diferentes a jefe inmediato
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Comentarios: Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Líderes diferentes a jefe inmediato'
+		dataType: string
+		lineageTag: 9081c557-041a-4957-9e59-12f1071d4518
+		summarizeBy: none
+		sourceColumn: Comentarios: Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Líderes diferentes a jefe inmediato
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Pares y compañeros'
+		dataType: int64
+		formatString: 0
+		lineageTag: 93b2db12-7616-499a-b35d-c30661e6f615
+		summarizeBy: sum
+		sourceColumn: Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Pares y compañeros
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Puntos: Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Pares y compañeros'
+		dataType: string
+		lineageTag: 027fa1cc-4d00-46e1-9977-c5b8bd3e113a
+		summarizeBy: none
+		sourceColumn: Puntos: Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Pares y compañeros
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Comentarios: Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Pares y compañeros'
+		dataType: string
+		lineageTag: ad17aaf7-5cda-49d3-ad07-5bacb9a8c574
+		summarizeBy: none
+		sourceColumn: Comentarios: Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Pares y compañeros
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Puntos: Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho2'
+		dataType: string
+		lineageTag: fd24034e-05b7-4227-b195-4645afc2c22d
+		summarizeBy: none
+		sourceColumn: Puntos: Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho2
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Comentarios: Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho2'
+		dataType: string
+		lineageTag: 1ca4a9d3-2983-4131-a1a3-24ba8f7ac4c4
+		summarizeBy: none
+		sourceColumn: Comentarios: Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho2
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Colaboradores a cargo'
+		dataType: int64
+		formatString: 0
+		lineageTag: daad9d27-2376-4800-8efa-8801a20057eb
+		summarizeBy: sum
+		sourceColumn: Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Colaboradores a cargo
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Puntos: Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Colaboradores a cargo'
+		dataType: string
+		lineageTag: 1b5a2a4c-695b-445e-b35d-a75a7f2dcaff
+		summarizeBy: none
+		sourceColumn: Puntos: Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Colaboradores a cargo
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Comentarios: Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Colaboradores a cargo'
+		dataType: string
+		lineageTag: 92eeb34d-c717-47ea-90c8-9525f4ae9703
+		summarizeBy: none
+		sourceColumn: Comentarios: Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Colaboradores a cargo
+
+		annotation SummarizationSetBy = Automatic
+
+	column Observaciones1
+		dataType: string
+		lineageTag: 03fe3e8d-ba40-4431-b57b-479073496a02
+		summarizeBy: none
+		sourceColumn: Observaciones1
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Puntos: Observaciones1'
+		dataType: string
+		lineageTag: 52e3f318-40b7-4ded-a3f3-77bf7b493462
+		summarizeBy: none
+		sourceColumn: Puntos: Observaciones1
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Comentarios: Observaciones1'
+		dataType: string
+		lineageTag: 22c46f24-921b-4aea-a9c5-b5100978bb1f
+		summarizeBy: none
+		sourceColumn: Comentarios: Observaciones1
+
+		annotation SummarizationSetBy = Automatic
+
+	column '¿Consideras que el estilo de liderazgo de tu jefe inmediato fue adecuado? '
+		dataType: string
+		lineageTag: 4a210b65-7e06-4d44-8aa4-29f8bf22d8de
+		summarizeBy: none
+		sourceColumn: "¿Consideras que el estilo de liderazgo de tu jefe inmediato fue adecuado? "
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Puntos: ¿Consideras que el estilo de liderazgo de tu jefe inmediato fue adecuado? '
+		dataType: string
+		lineageTag: 91dcd95a-5f0d-4afd-9444-ce6eebed5d4b
+		summarizeBy: none
+		sourceColumn: "Puntos: ¿Consideras que el estilo de liderazgo de tu jefe inmediato fue adecuado? "
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Comentarios: ¿Consideras que el estilo de liderazgo de tu jefe inmediato fue adecuado? '
+		dataType: string
+		lineageTag: 008b437d-1fbc-4be3-8d8c-67cf46e131ac
+		summarizeBy: none
+		sourceColumn: "Comentarios: ¿Consideras que el estilo de liderazgo de tu jefe inmediato fue adecuado? "
+
+		annotation SummarizationSetBy = Automatic
+
+	column '¿Por qué? '
+		dataType: string
+		lineageTag: cf848402-c1ae-4a97-9c96-6e0b4944f418
+		summarizeBy: none
+		sourceColumn: "¿Por qué? "
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Puntos: ¿Por qué? '
+		dataType: string
+		lineageTag: 35024309-5d5b-4527-baab-f370ab8d1e0d
+		summarizeBy: none
+		sourceColumn: "Puntos: ¿Por qué? "
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Comentarios: ¿Por qué? '
+		dataType: string
+		lineageTag: 49053120-e83d-4663-adcf-bbbc1f2fdf78
+		summarizeBy: none
+		sourceColumn: "Comentarios: ¿Por qué? "
+
+		annotation SummarizationSetBy = Automatic
+
+	column '¿Recomendarías a alguien más trabajar en la organización?'
+		dataType: string
+		lineageTag: 3d2ea8bd-6ea0-4274-bf55-93aafc4ae9c1
+		summarizeBy: none
+		sourceColumn: ¿Recomendarías a alguien más trabajar en la organización?
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Puntos: ¿Recomendarías a alguien más trabajar en la organización?'
+		dataType: string
+		lineageTag: 42cb2bbc-b933-457f-94ad-dd77e85e95c1
+		summarizeBy: none
+		sourceColumn: Puntos: ¿Recomendarías a alguien más trabajar en la organización?
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Comentarios: ¿Recomendarías a alguien más trabajar en la organización?'
+		dataType: string
+		lineageTag: 7b88b0a0-b667-478a-957e-ba8a75461c8f
+		summarizeBy: none
+		sourceColumn: Comentarios: ¿Recomendarías a alguien más trabajar en la organización?
+
+		annotation SummarizationSetBy = Automatic
+
+	column '¿Por qué?'
+		dataType: string
+		lineageTag: 203eaa1b-8b49-40c9-b9f0-bea5873f1a61
+		summarizeBy: none
+		sourceColumn: ¿Por qué?
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Puntos: ¿Por qué?'
+		dataType: string
+		lineageTag: e8fe63b3-48d7-40ec-87e7-d9916ea667db
+		summarizeBy: none
+		sourceColumn: Puntos: ¿Por qué?
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Comentarios: ¿Por qué?'
+		dataType: string
+		lineageTag: 05573e10-bc51-4065-b7bb-7a9aee7697be
+		summarizeBy: none
+		sourceColumn: Comentarios: ¿Por qué?
+
+		annotation SummarizationSetBy = Automatic
+
+	column '¿Hay algo más que quieras compartir de tu experiencia en la compañía?'
+		dataType: string
+		lineageTag: 91b118a8-7da2-491b-b01a-20d8eab5120e
+		summarizeBy: none
+		sourceColumn: ¿Hay algo más que quieras compartir de tu experiencia en la compañía?
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Puntos: ¿Hay algo más que quieras compartir de tu experiencia en la compañía?'
+		dataType: string
+		lineageTag: 7a0accef-6c58-4f03-aef0-e32c566a213b
+		summarizeBy: none
+		sourceColumn: Puntos: ¿Hay algo más que quieras compartir de tu experiencia en la compañía?
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Comentarios: ¿Hay algo más que quieras compartir de tu experiencia en la compañía?'
+		dataType: string
+		lineageTag: 9ccf4ccd-54ae-4795-99fa-97d4d5927622
+		summarizeBy: none
+		sourceColumn: Comentarios: ¿Hay algo más que quieras compartir de tu experiencia en la compañía?
+
+		annotation SummarizationSetBy = Automatic
+
+	column Entrevistador
+		dataType: string
+		lineageTag: 7939cf59-3b98-4d55-a848-6bb40b687ced
+		summarizeBy: none
+		sourceColumn: Entrevistador
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Puntos: Entrevistador'
+		dataType: string
+		lineageTag: 2f475c19-f82a-4f2d-8262-430806beb86a
+		summarizeBy: none
+		sourceColumn: Puntos: Entrevistador
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Comentarios: Entrevistador'
+		dataType: string
+		lineageTag: 1592857f-0da6-425d-b369-a097e954f5ef
+		summarizeBy: none
+		sourceColumn: Comentarios: Entrevistador
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Observaciones finales del entrevistador:'
+		dataType: string
+		lineageTag: 276b250c-880f-49b8-814c-f923c94e13ee
+		summarizeBy: none
+		sourceColumn: Observaciones finales del entrevistador:
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Puntos: Observaciones finales del entrevistador:'
+		dataType: string
+		lineageTag: f3c1cb89-9399-4248-a550-92e6f370fb76
+		summarizeBy: none
+		sourceColumn: Puntos: Observaciones finales del entrevistador:
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Comentarios: Observaciones finales del entrevistador:'
+		dataType: string
+		lineageTag: 284afb5b-d678-4cb4-971d-aed5d8f9f630
+		summarizeBy: none
+		sourceColumn: Comentarios: Observaciones finales del entrevistador:
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Fct_EntrevistaRetiro_V1 = m
+		mode: import
+		queryGroup: EntrevistaRetiro
+		source =
+				let
+				    Origen = Excel.Workbook(Web.Contents("https://lemcosas-my.sharepoint.com/personal/david_tivaquicha_challenger_co/Documents/Entrevista%20de%20Retiro/Entrevista%20de%20Retiro.xlsx"), null, true),
+				    OfficeForms.Table_Table = Origen{[Item="OfficeForms.Table",Kind="Table"]}[Data],
+				    #"Tipo cambiado" = Table.TransformColumnTypes(OfficeForms.Table_Table,{{"Id", Int64.Type}, {"Hora de inicio", type datetime}, {"Hora de finalización", type datetime}, {"Correo electrónico", type text}, {"Nombre", type any}, {"Total de puntos", type any}, {"Comentarios del cuestionario", type any}, {"Hora de publicación de la calificación", type any}, {"Autorización tratamiento de datos", type text}, {"Puntos: Autorización tratamiento de datos", type any}, {"Comentarios: Autorización tratamiento de datos", type any}, {"Número de documento", type any}, {"Puntos: Número de documento", type any}, {"Comentarios: Número de documento", type any}, {"Indique el negocio al que hace parte el colaborador retirado", type text}, {"|", type any}, {"Comentarios: Indique el negocio al que hace parte el colaborador retirado", type any}, {"Cédula de ciudadanía", Int64.Type}, {"Puntos: Cédula de ciudadanía", type any}, {"Comentarios: Cédula de ciudadanía", type any}, {"Nombre Completo", type text}, {"Puntos: Nombre Completo", type any}, {"Comentarios: Nombre Completo", type any}, {"Nombres y apellidos Jefe Inmediato:", type text}, {"Puntos: Nombres y apellidos Jefe Inmediato:", type any}, {"Comentarios: Nombres y apellidos Jefe Inmediato:", type any}, {"Motivo de retiro:", type text}, {"Puntos: Motivo de retiro:", type any}, {"Comentarios: Motivo de retiro:", type any}, {"Mejor Oferta - Detalle del motivo de retiro", type number}, {"Puntos: Mejor Oferta - Detalle del motivo de retiro", type any}, {"Comentarios: Mejor Oferta - Detalle del motivo de retiro", type any}, {"Detalle del motivo de retiro", type text}, {"Puntos: Detalle del motivo de retiro", type any}, {"Comentarios: Detalle del motivo de retiro", type any}, {"Puntos: Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho", type any}, {"Comentarios: Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho", type any}, {"Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Inducción Corporativa", Int64.Type}, {"Puntos: Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Inducción Corporativa", type any}, {"Comentarios: Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Inducción Corporativa", type any}, {"Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Programas de formación y capacitación", Int64.Type}, {"Puntos: Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Programas de formación y capacitación", type any}, {"Comentarios: Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Programas de formación y capacitación", type any}, {"Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Clima laboral de la empresa en general", Int64.Type}, {"Puntos: Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Clima laboral de la empresa en general", type any}, {"Comentarios: Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Clima laboral de la empresa en general", type any}, {"Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Clima laboral del área", Int64.Type}, {"Puntos: Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Clima laboral del área", type any}, {"Comentarios: Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Clima laboral del área", type any}, {"Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Condiciones físicas y ambiente de trabajo   (Instalaciones, herramienta", Int64.Type}, {"Puntos: Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Condiciones físicas y ambiente de trabajo   (Instalaciones, herramienta", type any}, {"Comentarios: Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Condiciones físicas y ambiente de trabajo   (Instalaciones, herramienta", type any}, {"Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Carga laboral y horario", Int64.Type}, {"Puntos: Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Carga laboral y horario", type any}, {"Comentarios: Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Carga laboral y horario", type any}, {"Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Actividades de Bienestar de tipo cultural y   social ", Int64.Type}, {"Puntos: Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Actividades de Bienestar de tipo cultural y   social ", type any}, {"Comentarios: Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Actividades de Bienestar de tipo cultural y   social ", type any}, {"Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Nivel de compensación ", Int64.Type}, {"Puntos: Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Nivel de compensación ", type any}, {"Comentarios: Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Nivel de compensación ", type any}, {"Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Salario emocional (beneficios y reconocimientos)", Int64.Type}, {"Puntos: Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Salario emocional (beneficios y reconocimientos)", type any}, {"Comentarios: Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Salario emocional (beneficios y reconocimientos)", type any}, {"Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Posibilidades de crecimiento y desarrollo   profesional", Int64.Type}, {"Puntos: Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Posibilidades de crecimiento y desarrollo   profesional", type any}, {"Comentarios: Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Posibilidades de crecimiento y desarrollo   profesional", type any}, {"Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Entrenamiento a su cargo", Int64.Type}, {"Puntos: Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Entrenamiento a su cargo", type any}, {"Comentarios: Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Entrenamiento a su cargo", type any}, {"Observaciones", type text}, {"Puntos: Observaciones", type any}, {"Comentarios: Observaciones", type any}, {"Puntos: Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho1", type any}, {"Comentarios: Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho1", type any}, {"Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Jefe inmediato", Int64.Type}, {"Puntos: Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Jefe inmediato", type any}, {"Comentarios: Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Jefe inmediato", type any}, {"Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Líderes diferentes a jefe inmediato", Int64.Type}, {"Puntos: Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Líderes diferentes a jefe inmediato", type any}, {"Comentarios: Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Líderes diferentes a jefe inmediato", type any}, {"Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Pares y compañeros", Int64.Type}, {"Puntos: Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Pares y compañeros", type any}, {"Comentarios: Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Pares y compañeros", type any}, {"Puntos: Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho2", type any}, {"Comentarios: Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho2", type any}, {"Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Colaboradores a cargo", Int64.Type}, {"Puntos: Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Colaboradores a cargo", type any}, {"Comentarios: Indique su nivel de satisfacción teniendo en cuenta que uno (1) es Totalmente Insatisfecho y cuatro (4) es Totalmente Satisfecho.Colaboradores a cargo", type any}, {"Observaciones1", type text}, {"Puntos: Observaciones1", type any}, {"Comentarios: Observaciones1", type any}, {"¿Consideras que el estilo de liderazgo de tu jefe inmediato fue adecuado? ", type text}, {"Puntos: ¿Consideras que el estilo de liderazgo de tu jefe inmediato fue adecuado? ", type any}, {"Comentarios: ¿Consideras que el estilo de liderazgo de tu jefe inmediato fue adecuado? ", type any}, {"¿Por qué? ", type text}, {"Puntos: ¿Por qué? ", type any}, {"Comentarios: ¿Por qué? ", type any}, {"¿Recomendarías a alguien más trabajar en la organización?", type text}, {"Puntos: ¿Recomendarías a alguien más trabajar en la organización?", type any}, {"Comentarios: ¿Recomendarías a alguien más trabajar en la organización?", type any}, {"¿Por qué?", type text}, {"Puntos: ¿Por qué?", type any}, {"Comentarios: ¿Por qué?", type any}, {"¿Hay algo más que quieras compartir de tu experiencia en la compañía?", type text}, {"Puntos: ¿Hay algo más que quieras compartir de tu experiencia en la compañía?", type any}, {"Comentarios: ¿Hay algo más que quieras compartir de tu experiencia en la compañía?", type any}, {"Entrevistador", type text}, {"Puntos: Entrevistador", type any}, {"Comentarios: Entrevistador", type any}, {"Observaciones finales del entrevistador:", type text}, {"Puntos: Observaciones finales del entrevistador:", type any}, {"Comentarios: Observaciones finales del entrevistador:", type any}})
+				in
+				    #"Tipo cambiado"
+
+	annotation PBI_NavigationStepName = Navegación
+
+	annotation PBI_ResultType = Table

@@ -1,0 +1,32 @@
+table Dim_Frente_Home
+	lineageTag: f0a1b2c3-d4e5-6789-abcd-ef0123456789
+
+	column Frente
+		lineageTag: 06e5c4af-8584-4c06-8dfa-23a744cf527d
+		isNameInferred
+		sourceColumn: [Frente]
+
+	column Orden
+		lineageTag: 8428b041-97ed-4013-8461-13965440ba77
+		isNameInferred
+		sourceColumn: [Orden]
+
+	column Estado
+		lineageTag: 78c02e13-bb90-48f5-8831-59d0cd003dcf
+		isNameInferred
+		sourceColumn: [Estado]
+
+	partition Dim_Frente_Home = calculated
+		mode: import
+		source =
+				DATATABLE(
+				    "Frente", STRING,
+				    "Orden", INTEGER,
+				    "Estado", STRING,
+				    {
+				        {"Aprendizaje", 1, "Activo"},
+				        {"Desarrollo", 2, "En construccion"},
+				        {"Desempeno", 3, "Proxima fase"},
+				        {"Bienestar y Clima", 4, "En construccion"}
+				    }
+				)

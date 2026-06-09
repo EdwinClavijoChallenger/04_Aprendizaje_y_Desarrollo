@@ -1,0 +1,541 @@
+table Fct_EntrevistaRetiro_Corporativa
+	lineageTag: 7c1178dc-0585-4758-bbb7-5a534853e463
+
+	column Id
+		dataType: int64
+		formatString: 0
+		lineageTag: b3ba0cb7-c762-426e-8610-2a03f85210ca
+		summarizeBy: count
+		sourceColumn: Id
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Hora de inicio'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 6bc1aa71-e69a-4a11-ac1f-b426cbc54487
+		summarizeBy: none
+		sourceColumn: Hora de inicio
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Hora de finalización'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: ca6e2820-514d-439d-9e2a-4d093149aa37
+		summarizeBy: none
+		sourceColumn: Hora de finalización
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Correo electrónico'
+		dataType: string
+		lineageTag: b619c374-331f-4599-b3a9-675ff1fce826
+		summarizeBy: none
+		sourceColumn: Correo electrónico
+
+		annotation SummarizationSetBy = Automatic
+
+	column Nombre
+		dataType: string
+		lineageTag: 92b8d9df-95a5-443b-9812-97af02095027
+		summarizeBy: none
+		sourceColumn: Nombre
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Autorización tratamiento de datos'
+		dataType: string
+		lineageTag: 3eb72a9a-57dc-4856-aa14-484f4acc4731
+		summarizeBy: none
+		sourceColumn: Autorización tratamiento de datos
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Cierre por no autorización'
+		dataType: string
+		lineageTag: cd52cf83-ecdd-4098-949b-fc1a7b253aaf
+		summarizeBy: none
+		sourceColumn: Cierre por no autorización
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Unidad de negocio a la que pertenecía el colaborador'
+		dataType: string
+		lineageTag: 7df252a9-28f5-4be8-8afd-83ca323e2913
+		summarizeBy: none
+		sourceColumn: Unidad de negocio a la que pertenecía el colaborador
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Empresa / razón social o marca empleadora'
+		dataType: string
+		lineageTag: fc8554f3-1dd3-4ce5-bf16-0ba4179c8e1a
+		summarizeBy: none
+		sourceColumn: Empresa / razón social o marca empleadora
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Empresa / razón social o marca empleadora1'
+		dataType: string
+		lineageTag: bff46017-6a48-4170-9825-486c8952c233
+		summarizeBy: none
+		sourceColumn: Empresa / razón social o marca empleadora1
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Nombre completo del colaborador'
+		dataType: string
+		lineageTag: fb488d4d-8d9e-4421-b81b-63dff30b0bcc
+		summarizeBy: none
+		sourceColumn: Nombre completo del colaborador
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Número de documento'
+		dataType: string
+		lineageTag: 9fa01070-4bbb-4c5f-978e-6a6b254cab34
+		summarizeBy: none
+		sourceColumn: Número de documento
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Nombre del jefe o líder directo '
+		dataType: string
+		lineageTag: 09675899-c351-4a26-b6c8-101b1fd49687
+		summarizeBy: none
+		sourceColumn: "Nombre del jefe o líder directo "
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Tipo de retiro'
+		dataType: string
+		lineageTag: 7d7e42b3-9bf1-4003-b900-a3de9a9ad230
+		summarizeBy: none
+		sourceColumn: Tipo de retiro
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Canal de aplicación de la encuesta'
+		dataType: string
+		lineageTag: ab79bb72-df67-446b-b209-a6783ca81cf6
+		summarizeBy: none
+		sourceColumn: Canal de aplicación de la encuesta
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Motivo principal de retiro'
+		dataType: string
+		lineageTag: 3627d138-ba76-45a6-9bdd-f46b8792357b
+		summarizeBy: none
+		sourceColumn: Motivo principal de retiro
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Motivo principal de retiro1'
+		dataType: string
+		lineageTag: f161478c-254e-426f-8602-076efa9b8b22
+		summarizeBy: none
+		sourceColumn: Motivo principal de retiro1
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Detalle del motivo de retiro '
+		dataType: string
+		lineageTag: 7845c58f-6114-4ef8-b155-6a231b9b6af5
+		summarizeBy: none
+		sourceColumn: "Detalle del motivo de retiro "
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Según lo manifestado durante la entrevista, ¿la salida pudo haberse prevenido con alguna acción de la organización?'
+		dataType: string
+		lineageTag: 04625b0f-5b9e-412e-8125-043c5cb8ce94
+		summarizeBy: none
+		sourceColumn: Según lo manifestado durante la entrevista, ¿la salida pudo haberse prevenido con alguna acción de la organización?
+
+		annotation SummarizationSetBy = Automatic
+
+	column '¿Qué habría tenido que cambiar para que la salida pudiera prevenirse o el colaborador considerara permanecer?'
+		dataType: string
+		lineageTag: 88cf6bd1-1e1b-4b34-8080-2fd53ce3ea96
+		summarizeBy: none
+		sourceColumn: ¿Qué habría tenido que cambiar para que la salida pudiera prevenirse o el colaborador considerara permanecer?
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Indique el nivel de valoración del colaborador frente a los siguientes aspectos del rol.  .1. Las funciones y responsabilidades del cargo fueron claras.'
+		dataType: int64
+		formatString: 0
+		lineageTag: 15de4415-00f7-426b-8d31-7c380c6568dc
+		summarizeBy: sum
+		sourceColumn: Indique el nivel de valoración del colaborador frente a los siguientes aspectos del rol.  .1. Las funciones y responsabilidades del cargo fueron claras.
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Indique el nivel de valoración del colaborador frente a los siguientes aspectos del rol.  .2. La carga laboral fue razonable.'
+		dataType: int64
+		formatString: 0
+		lineageTag: 48ea0d25-2453-4b18-ab54-b54dad1c95f0
+		summarizeBy: sum
+		sourceColumn: Indique el nivel de valoración del colaborador frente a los siguientes aspectos del rol.  .2. La carga laboral fue razonable.
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Indique el nivel de valoración del colaborador frente a los siguientes aspectos del rol.  .3. Los horarios, turnos o jornada fueron adecuados frente a las necesidades del cargo.'
+		dataType: int64
+		formatString: 0
+		lineageTag: bc55368d-2230-4d89-809d-87e541132bf3
+		summarizeBy: sum
+		sourceColumn: Indique el nivel de valoración del colaborador frente a los siguientes aspectos del rol.  .3. Los horarios, turnos o jornada fueron adecuados frente a las necesidades del cargo.
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Indique el nivel de valoración del colaborador frente a los siguientes aspectos del rol.  .4. Contó con los recursos, herramientas y sistemas necesarios para realizar el trabajo.'
+		dataType: int64
+		formatString: 0
+		lineageTag: f7f95106-ce5a-4ddf-86d6-4b062f7893dc
+		summarizeBy: sum
+		sourceColumn: Indique el nivel de valoración del colaborador frente a los siguientes aspectos del rol.  .4. Contó con los recursos, herramientas y sistemas necesarios para realizar el trabajo.
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Indique el nivel de valoración del colaborador frente a los siguientes aspectos del rol.  .5. El entrenamiento específico para el cargo fue suficiente para realizar las funciones asignadas. '
+		dataType: int64
+		formatString: 0
+		lineageTag: d5c88172-eccd-4db3-b29f-6ce5ae9fc3bb
+		summarizeBy: sum
+		sourceColumn: "Indique el nivel de valoración del colaborador frente a los siguientes aspectos del rol.  .5. El entrenamiento específico para el cargo fue suficiente para realizar las funciones asignadas. "
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Indique el nivel de valoración del colaborador frente a los siguientes aspectos del rol.  .6. La realidad del cargo coincidió con lo informado o esperado al ingreso.'
+		dataType: int64
+		formatString: 0
+		lineageTag: edabe0e8-c131-4b17-b71b-a0c9a57e52b0
+		summarizeBy: sum
+		sourceColumn: Indique el nivel de valoración del colaborador frente a los siguientes aspectos del rol.  .6. La realidad del cargo coincidió con lo informado o esperado al ingreso.
+
+		annotation SummarizationSetBy = Automatic
+
+	column '¿Qué fue lo más desafiante del rol en la práctica?'
+		dataType: string
+		lineageTag: a3be7afc-aced-4e2c-931f-abeb9e1e7b39
+		summarizeBy: none
+		sourceColumn: ¿Qué fue lo más desafiante del rol en la práctica?
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Indique el nivel de satisfacción del colaborador frente a los siguientes aspectos de liderazgo y equipo. .1. El colaborador se sintió acompañado por su jefe inmediato.'
+		dataType: int64
+		formatString: 0
+		lineageTag: 4bc8ef09-eeec-45ab-ad99-fe176cac99f5
+		summarizeBy: sum
+		sourceColumn: Indique el nivel de satisfacción del colaborador frente a los siguientes aspectos de liderazgo y equipo. .1. El colaborador se sintió acompañado por su jefe inmediato.
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Indique el nivel de satisfacción del colaborador frente a los siguientes aspectos de liderazgo y equipo. .2. La comunicación del jefe inmediato fue clara y oportuna.'
+		dataType: int64
+		formatString: 0
+		lineageTag: c749540a-4b71-4dc5-9533-2cc563da5a8a
+		summarizeBy: sum
+		sourceColumn: Indique el nivel de satisfacción del colaborador frente a los siguientes aspectos de liderazgo y equipo. .2. La comunicación del jefe inmediato fue clara y oportuna.
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Indique el nivel de satisfacción del colaborador frente a los siguientes aspectos de liderazgo y equipo. .3. Recibió retroalimentación útil sobre su desempeño.'
+		dataType: int64
+		formatString: 0
+		lineageTag: d3b30a31-3587-485b-95ea-ccfe7d737db6
+		summarizeBy: sum
+		sourceColumn: Indique el nivel de satisfacción del colaborador frente a los siguientes aspectos de liderazgo y equipo. .3. Recibió retroalimentación útil sobre su desempeño.
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Indique el nivel de satisfacción del colaborador frente a los siguientes aspectos de liderazgo y equipo. .4. El trato recibido por el jefe inmediato fue adecuado.'
+		dataType: int64
+		formatString: 0
+		lineageTag: 4fe75f82-e402-4581-9378-19dd819dcb65
+		summarizeBy: sum
+		sourceColumn: Indique el nivel de satisfacción del colaborador frente a los siguientes aspectos de liderazgo y equipo. .4. El trato recibido por el jefe inmediato fue adecuado.
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Indique el nivel de satisfacción del colaborador frente a los siguientes aspectos de liderazgo y equipo. .5. El clima del equipo fue saludable.'
+		dataType: int64
+		formatString: 0
+		lineageTag: e16218b1-3943-4d81-be04-6cf187971d77
+		summarizeBy: sum
+		sourceColumn: Indique el nivel de satisfacción del colaborador frente a los siguientes aspectos de liderazgo y equipo. .5. El clima del equipo fue saludable.
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Indique el nivel de satisfacción del colaborador frente a los siguientes aspectos de liderazgo y equipo. .6. La relación con los compañeros de trabajo fue adecuada.'
+		dataType: int64
+		formatString: 0
+		lineageTag: 6b30eb3e-63ce-4b93-913d-9044983575d8
+		summarizeBy: sum
+		sourceColumn: Indique el nivel de satisfacción del colaborador frente a los siguientes aspectos de liderazgo y equipo. .6. La relación con los compañeros de trabajo fue adecuada.
+
+		annotation SummarizationSetBy = Automatic
+
+	column '¿Qué aspectos del liderazgo o del equipo impactaron más la experiencia del colaborador?'
+		dataType: string
+		lineageTag: f90d01b8-e122-494e-8116-b087c9d62054
+		summarizeBy: none
+		sourceColumn: ¿Qué aspectos del liderazgo o del equipo impactaron más la experiencia del colaborador?
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Indique el nivel de satisfacción del colaborador frente a los siguientes aspectos del proceso de onboarding e integración. .1. El proceso de onboarding o inducción inicial fue adecuado.'
+		dataType: int64
+		formatString: 0
+		lineageTag: 711f4ca3-621f-41dd-bd5f-23ea64383d92
+		summarizeBy: sum
+		sourceColumn: Indique el nivel de satisfacción del colaborador frente a los siguientes aspectos del proceso de onboarding e integración. .1. El proceso de onboarding o inducción inicial fue adecuado.
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Indique el nivel de satisfacción del colaborador frente a los siguientes aspectos del proceso de onboarding e integración. .2. Hubo claridad inicial sobre funciones, responsabilidades y expectativas.'
+		dataType: int64
+		formatString: 0
+		lineageTag: 9c6252cf-b4c3-4e4c-b0d0-756517a83b51
+		summarizeBy: sum
+		sourceColumn: Indique el nivel de satisfacción del colaborador frente a los siguientes aspectos del proceso de onboarding e integración. .2. Hubo claridad inicial sobre funciones, responsabilidades y expectativas.
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Indique el nivel de satisfacción del colaborador frente a los siguientes aspectos del proceso de onboarding e integración. .3. Recibió acompañamiento suficiente durante los primeros días o semanas.'
+		dataType: int64
+		formatString: 0
+		lineageTag: 997e8c76-bf5f-47b8-8007-e99478dd1534
+		summarizeBy: sum
+		sourceColumn: Indique el nivel de satisfacción del colaborador frente a los siguientes aspectos del proceso de onboarding e integración. .3. Recibió acompañamiento suficiente durante los primeros días o semanas.
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Indique el nivel de satisfacción del colaborador frente a los siguientes aspectos del proceso de onboarding e integración. .4. La capacitación inicial permitió desempeñar el cargo con seguridad.'
+		dataType: int64
+		formatString: 0
+		lineageTag: b8dd36d4-5fbb-43d5-b064-ca5de63442ed
+		summarizeBy: sum
+		sourceColumn: Indique el nivel de satisfacción del colaborador frente a los siguientes aspectos del proceso de onboarding e integración. .4. La capacitación inicial permitió desempeñar el cargo con seguridad.
+
+		annotation SummarizationSetBy = Automatic
+
+	column '¿Qué hubiera mejorado la integración inicial a la organización o al cargo?'
+		dataType: string
+		lineageTag: ea5cd02a-c625-46d5-b904-05ad94dda0f8
+		summarizeBy: none
+		sourceColumn: ¿Qué hubiera mejorado la integración inicial a la organización o al cargo?
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Indique el nivel de satisfacción del colaborador frente a los siguientes procesos internos.  .Selección | La información brindada durante el proceso de selección fue clara y coherente con las condicio'
+		dataType: string
+		lineageTag: 81afcc58-ba8d-4dcd-b84f-49c0a866a3d0
+		summarizeBy: none
+		sourceColumn: Indique el nivel de satisfacción del colaborador frente a los siguientes procesos internos.  .Selección | La información brindada durante el proceso de selección fue clara y coherente con las condicio
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Indique el nivel de satisfacción del colaborador frente a los siguientes procesos internos.  .Contratación | El proceso de contratación e ingreso a la compañía fue claro, ágil y acompañado.'
+		dataType: string
+		lineageTag: 064582cd-5471-42f3-8aeb-a37254120b3c
+		summarizeBy: none
+		sourceColumn: Indique el nivel de satisfacción del colaborador frente a los siguientes procesos internos.  .Contratación | El proceso de contratación e ingreso a la compañía fue claro, ágil y acompañado.
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Indique el nivel de satisfacción del colaborador frente a los siguientes procesos internos.  .Entrenamiento | La formación e inducción recibidas fueron suficientes para asumir las funciones.'
+		dataType: string
+		lineageTag: f41d0253-1ac9-40f0-9b45-329b747fe78e
+		summarizeBy: none
+		sourceColumn: Indique el nivel de satisfacción del colaborador frente a los siguientes procesos internos.  .Entrenamiento | La formación e inducción recibidas fueron suficientes para asumir las funciones.
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Indique el nivel de satisfacción del colaborador frente a los siguientes procesos internos.  .Onboarding | El proceso de onboarding facilitó la integración a la compañía y al equipo de trabajo.'
+		dataType: string
+		lineageTag: 92d43b5a-7558-4f11-a180-18e9c40d3003
+		summarizeBy: none
+		sourceColumn: Indique el nivel de satisfacción del colaborador frente a los siguientes procesos internos.  .Onboarding | El proceso de onboarding facilitó la integración a la compañía y al equipo de trabajo.
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Indique el nivel de satisfacción del colaborador frente a los siguientes procesos internos.  .Capacitación y Universidad Corporativa | Las oportunidades de capacitación y desarrollo fueron adecuadas.'
+		dataType: string
+		lineageTag: 9050004b-875d-4a56-bd12-e9bbbeddec5f
+		summarizeBy: none
+		sourceColumn: Indique el nivel de satisfacción del colaborador frente a los siguientes procesos internos.  .Capacitación y Universidad Corporativa | Las oportunidades de capacitación y desarrollo fueron adecuadas.
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Indique el nivel de satisfacción del colaborador frente a los siguientes procesos internos.  .Bienestar | Las actividades, programas y beneficios de bienestar aportaron valor a la experiencia del cola'
+		dataType: string
+		lineageTag: 54ee683c-7e85-4264-9512-43f6ec830a56
+		summarizeBy: none
+		sourceColumn: Indique el nivel de satisfacción del colaborador frente a los siguientes procesos internos.  .Bienestar | Las actividades, programas y beneficios de bienestar aportaron valor a la experiencia del cola
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Indique el nivel de satisfacción del colaborador frente a los siguientes procesos internos.  .Bienestar personal, familiar y laboral | La compañía brindó apoyo al bienestar personal, familiar y labora'
+		dataType: string
+		lineageTag: cdc3901c-1d66-48e0-896a-bce966c039d2
+		summarizeBy: none
+		sourceColumn: Indique el nivel de satisfacción del colaborador frente a los siguientes procesos internos.  .Bienestar personal, familiar y laboral | La compañía brindó apoyo al bienestar personal, familiar y labora
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Indique el nivel de satisfacción del colaborador frente a los siguientes procesos internos.  .Clima organizacional | El acompañamiento recibido durante los primeros meses facilitó la comprensión del r'
+		dataType: string
+		lineageTag: a5540dd4-8ded-4d52-9e81-23fdd457ef4f
+		summarizeBy: none
+		sourceColumn: Indique el nivel de satisfacción del colaborador frente a los siguientes procesos internos.  .Clima organizacional | El acompañamiento recibido durante los primeros meses facilitó la comprensión del r
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Indique el nivel de satisfacción del colaborador frente a los siguientes procesos internos.  .Casino | La calidad de los alimentos y el servicio del casino fueron adecuados.'
+		dataType: string
+		lineageTag: 19d9201e-9168-40e1-aa57-a92e77bcfedb
+		summarizeBy: none
+		sourceColumn: Indique el nivel de satisfacción del colaborador frente a los siguientes procesos internos.  .Casino | La calidad de los alimentos y el servicio del casino fueron adecuados.
+
+		annotation SummarizationSetBy = Automatic
+
+	column '¿Qué proceso interno generó mayor fricción durante la experiencia del colaborador?'
+		dataType: string
+		lineageTag: 65a37ced-2865-4b36-a58a-7ba891a3ffc0
+		summarizeBy: none
+		sourceColumn: ¿Qué proceso interno generó mayor fricción durante la experiencia del colaborador?
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Describa brevemente la fricción o dificultad presentada con ese proceso'
+		dataType: string
+		lineageTag: ac81bfd6-c3fc-4269-b434-96cb0b272e12
+		summarizeBy: none
+		sourceColumn: Describa brevemente la fricción o dificultad presentada con ese proceso
+
+		annotation SummarizationSetBy = Automatic
+
+	column '¿Alguna herramienta, sistema o recurso dificultó el trabajo?'
+		dataType: string
+		lineageTag: 4e943504-6528-40b3-991a-0dac38246893
+		summarizeBy: none
+		sourceColumn: ¿Alguna herramienta, sistema o recurso dificultó el trabajo?
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Si aplica, ¿qué herramienta, sistema o recurso debería mejorarse?'
+		dataType: string
+		lineageTag: 167a40a2-398a-4792-817b-e04970315c94
+		summarizeBy: none
+		sourceColumn: Si aplica, ¿qué herramienta, sistema o recurso debería mejorarse?
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Si pudiera cambiar una sola práctica, política o regla de la organización, ¿cuál sería y por qué?'
+		dataType: string
+		lineageTag: be531bac-61e8-4f9c-990a-5170bcb16534
+		summarizeBy: none
+		sourceColumn: Si pudiera cambiar una sola práctica, política o regla de la organización, ¿cuál sería y por qué?
+
+		annotation SummarizationSetBy = Automatic
+
+	column '¿El colaborador comunicó sus inquietudes antes de tomar la decisión de salir?'
+		dataType: string
+		lineageTag: d6dc1071-581a-47e2-abb5-c4a81a530ec1
+		summarizeBy: none
+		sourceColumn: ¿El colaborador comunicó sus inquietudes antes de tomar la decisión de salir?
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Si no las comunicó o lo hizo parcialmente, ¿qué lo dificultó?'
+		dataType: string
+		lineageTag: adebb675-d237-4e7d-833e-aac06b009fef
+		summarizeBy: none
+		sourceColumn: Si no las comunicó o lo hizo parcialmente, ¿qué lo dificultó?
+
+		annotation SummarizationSetBy = Automatic
+
+	column '¿Recomendaría la organización como un buen lugar para trabajar?'
+		dataType: int64
+		formatString: 0
+		lineageTag: 63e2ad53-b7ab-4e41-8608-87825690fbef
+		summarizeBy: sum
+		sourceColumn: ¿Recomendaría la organización como un buen lugar para trabajar?
+
+		annotation SummarizationSetBy = Automatic
+
+	column '¿Qué fue lo que más valoró de su experiencia en la organización?'
+		dataType: string
+		lineageTag: 5c3046d8-a341-4b1c-b63b-ae2cd862adfb
+		summarizeBy: none
+		sourceColumn: ¿Qué fue lo que más valoró de su experiencia en la organización?
+
+		annotation SummarizationSetBy = Automatic
+
+	column '¿Hay algo importante que no hayamos preguntado y considere relevante compartir?'
+		dataType: string
+		lineageTag: 3a56b19a-280b-4229-aac8-8252bd61571d
+		summarizeBy: none
+		sourceColumn: ¿Hay algo importante que no hayamos preguntado y considere relevante compartir?
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Observaciones finales del entrevistador'
+		dataType: string
+		lineageTag: 26a40d30-853c-4384-b927-86e19c13196b
+		summarizeBy: none
+		sourceColumn: Observaciones finales del entrevistador
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Causa potencialmente prevenible'
+		dataType: string
+		lineageTag: fac8e937-7a17-466a-a3e8-44f8af27eb25
+		summarizeBy: none
+		sourceColumn: Causa potencialmente prevenible
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Rotación lamentable'
+		dataType: string
+		lineageTag: aba68d67-88d0-4eff-b68e-1237e5ca47e8
+		summarizeBy: none
+		sourceColumn: Rotación lamentable
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Proceso responsable de revisión'
+		dataType: string
+		lineageTag: 7450235e-e99e-49ae-bdb5-5c2395ac53f7
+		summarizeBy: none
+		sourceColumn: Proceso responsable de revisión
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Requiere plan de acción'
+		dataType: string
+		lineageTag: 5e7cc4f4-dea4-45da-82cf-e6e798678009
+		summarizeBy: none
+		sourceColumn: Requiere plan de acción
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Fct_EntrevistaRetiro_Corporativa = m
+		mode: import
+		queryGroup: EntrevistaRetiro
+		source =
+				let
+				    Origen = Excel.Workbook(Web.Contents("https://lemcosas.sharepoint.com/sites/TalentoHumanoGrupoLemco/Documentos%20compartidos/5.%20People%20analytics/01_Entrevista_de_retiro/Data/Entrevista%20Corporativa%20de%20Retiro.xlsx"), null, true),
+				    OfficeForms.Table_Table = Origen{[Item="OfficeForms.Table",Kind="Table"]}[Data],
+				    #"Tipo cambiado" = Table.TransformColumnTypes(OfficeForms.Table_Table,{{"Id", Int64.Type}, {"Hora de inicio", type datetime}, {"Hora de finalización", type datetime}, {"Correo electrónico", type text}, {"Nombre", type text}, {"Autorización tratamiento de datos#(lf)", type text}, {"Cierre por no autorización", type text}, {"Unidad de negocio a la que pertenecía el colaborador", type text}, {"Empresa / razón social o marca empleadora", type text}, {"Empresa / razón social o marca empleadora1", type text}, {"Nombre completo del colaborador#(lf)", type text}, {"Número de documento#(lf)", type any}, {"Nombre del jefe o líder directo ", type text}, {"Tipo de retiro", type text}, {"Canal de aplicación de la encuesta", type text}, {"Motivo principal de retiro", type text}, {"Motivo principal de retiro1", type any}, {"Detalle del motivo de retiro ", type text}, {"Según lo manifestado durante la entrevista, ¿la salida pudo haberse prevenido con alguna acción de la organización?", type text}, {"¿Qué habría tenido que cambiar para que la salida pudiera prevenirse o el colaborador considerara permanecer?", type text}, {"Indique el nivel de valoración del colaborador frente a los siguientes aspectos del rol.  .1. Las funciones y responsabilidades del cargo fueron claras.", Int64.Type}, {"Indique el nivel de valoración del colaborador frente a los siguientes aspectos del rol.  .2. La carga laboral fue razonable.", Int64.Type}, {"Indique el nivel de valoración del colaborador frente a los siguientes aspectos del rol.  .3. Los horarios, turnos o jornada fueron adecuados frente a las necesidades del cargo.", Int64.Type}, {"Indique el nivel de valoración del colaborador frente a los siguientes aspectos del rol.  .4. Contó con los recursos, herramientas y sistemas necesarios para realizar el trabajo.", Int64.Type}, {"Indique el nivel de valoración del colaborador frente a los siguientes aspectos del rol.  .5. El entrenamiento específico para el cargo fue suficiente para realizar las funciones asignadas. ", Int64.Type}, {"Indique el nivel de valoración del colaborador frente a los siguientes aspectos del rol.  .6. La realidad del cargo coincidió con lo informado o esperado al ingreso.", Int64.Type}, {"¿Qué fue lo más desafiante del rol en la práctica?", type text}, {"Indique el nivel de satisfacción del colaborador frente a los siguientes aspectos de liderazgo y equipo. .1. El colaborador se sintió acompañado por su jefe inmediato.", Int64.Type}, {"Indique el nivel de satisfacción del colaborador frente a los siguientes aspectos de liderazgo y equipo. .2. La comunicación del jefe inmediato fue clara y oportuna.", Int64.Type}, {"Indique el nivel de satisfacción del colaborador frente a los siguientes aspectos de liderazgo y equipo. .3. Recibió retroalimentación útil sobre su desempeño.", Int64.Type}, {"Indique el nivel de satisfacción del colaborador frente a los siguientes aspectos de liderazgo y equipo. .4. El trato recibido por el jefe inmediato fue adecuado.", Int64.Type}, {"Indique el nivel de satisfacción del colaborador frente a los siguientes aspectos de liderazgo y equipo. .5. El clima del equipo fue saludable.", Int64.Type}, {"Indique el nivel de satisfacción del colaborador frente a los siguientes aspectos de liderazgo y equipo. .6. La relación con los compañeros de trabajo fue adecuada.", Int64.Type}, {"¿Qué aspectos del liderazgo o del equipo impactaron más la experiencia del colaborador?", type text}, {"Indique el nivel de satisfacción del colaborador frente a los siguientes aspectos del proceso de onboarding e integración. .1. El proceso de onboarding o inducción inicial fue adecuado.", Int64.Type}, {"Indique el nivel de satisfacción del colaborador frente a los siguientes aspectos del proceso de onboarding e integración. .2. Hubo claridad inicial sobre funciones, responsabilidades y expectativas.", Int64.Type}, {"Indique el nivel de satisfacción del colaborador frente a los siguientes aspectos del proceso de onboarding e integración. .3. Recibió acompañamiento suficiente durante los primeros días o semanas.", Int64.Type}, {"Indique el nivel de satisfacción del colaborador frente a los siguientes aspectos del proceso de onboarding e integración. .4. La capacitación inicial permitió desempeñar el cargo con seguridad.", Int64.Type}, {"¿Qué hubiera mejorado la integración inicial a la organización o al cargo?", type text}, {"Indique el nivel de satisfacción del colaborador frente a los siguientes procesos internos.  .Selección | La información brindada durante el proceso de selección fue clara y coherente con las condicio", type any}, {"Indique el nivel de satisfacción del colaborador frente a los siguientes procesos internos.  .Contratación | El proceso de contratación e ingreso a la compañía fue claro, ágil y acompañado.", type any}, {"Indique el nivel de satisfacción del colaborador frente a los siguientes procesos internos.  .Entrenamiento | La formación e inducción recibidas fueron suficientes para asumir las funciones.", type any}, {"Indique el nivel de satisfacción del colaborador frente a los siguientes procesos internos.  .Onboarding | El proceso de onboarding facilitó la integración a la compañía y al equipo de trabajo.", type any}, {"Indique el nivel de satisfacción del colaborador frente a los siguientes procesos internos.  .Capacitación y Universidad Corporativa | Las oportunidades de capacitación y desarrollo fueron adecuadas.", type any}, {"Indique el nivel de satisfacción del colaborador frente a los siguientes procesos internos.  .Bienestar | Las actividades, programas y beneficios de bienestar aportaron valor a la experiencia del cola", type any}, {"Indique el nivel de satisfacción del colaborador frente a los siguientes procesos internos.  .Bienestar personal, familiar y laboral | La compañía brindó apoyo al bienestar personal, familiar y labora", type any}, {"Indique el nivel de satisfacción del colaborador frente a los siguientes procesos internos.  .Clima organizacional | El acompañamiento recibido durante los primeros meses facilitó la comprensión del r", type any}, {"Indique el nivel de satisfacción del colaborador frente a los siguientes procesos internos.  .Casino | La calidad de los alimentos y el servicio del casino fueron adecuados.", type any}, {"¿Qué proceso interno generó mayor fricción durante la experiencia del colaborador?", type text}, {"Describa brevemente la fricción o dificultad presentada con ese proceso", type text}, {"¿Alguna herramienta, sistema o recurso dificultó el trabajo?", type text}, {"Si aplica, ¿qué herramienta, sistema o recurso debería mejorarse?", type text}, {"Si pudiera cambiar una sola práctica, política o regla de la organización, ¿cuál sería y por qué?", type text}, {"¿El colaborador comunicó sus inquietudes antes de tomar la decisión de salir?", type text}, {"Si no las comunicó o lo hizo parcialmente, ¿qué lo dificultó?", type text}, {"¿Recomendaría la organización como un buen lugar para trabajar?", Int64.Type}, {"¿Qué fue lo que más valoró de su experiencia en la organización?", type text}, {"¿Hay algo importante que no hayamos preguntado y considere relevante compartir?", type text}, {"Observaciones finales del entrevistador", type text}, {"Causa potencialmente prevenible", type text}, {"Rotación lamentable", type text}, {"Proceso responsable de revisión", type text}, {"Requiere plan de acción", type text}})
+				in
+				    #"Tipo cambiado"
+
+	annotation PBI_NavigationStepName = Navegación
+
+	annotation PBI_ResultType = Table

@@ -1,0 +1,30 @@
+table Dim_ProcesoRetiro
+	lineageTag: 4f167842-2382-4146-b17a-84cd01aa2f1f
+
+	column ProcesoRetiro_Key
+		dataType: string
+		isHidden
+		lineageTag: 1eacf2b4-1b4a-4e08-92f8-b128247399e6
+		sourceColumn: [ProcesoRetiro_Key]
+
+	column Proceso_Relacionado
+		dataType: string
+		lineageTag: 01a5b07b-58d0-428d-8820-33297f48166d
+		sourceColumn: [Proceso_Relacionado]
+
+	partition Dim_ProcesoRetiro = calculated
+		mode: import
+		source =
+				VAR _Tabla =
+				    FILTER(
+				        DISTINCT(
+				            SELECTCOLUMNS(
+				                'Fct_EntrevistaRetiro_Unificada',
+				                "ProcesoRetiro_Key", 'Fct_EntrevistaRetiro_Unificada'[ProcesoRetiro_Key],
+				                "Proceso_Relacionado", 'Fct_EntrevistaRetiro_Unificada'[ProcesoRelacionado]
+				            )
+				        ),
+				        NOT ISBLANK([ProcesoRetiro_Key]) && [ProcesoRetiro_Key] <> ""
+				    )
+				RETURN
+				    _Tabla

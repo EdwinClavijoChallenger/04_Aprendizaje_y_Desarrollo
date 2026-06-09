@@ -18,6 +18,10 @@ La tabla de medidas principal es `Medidas_AD`.
 | `Fct_InduccionColaborador_UC_2026` | Fuente base de induccion UC 2026. | Un colaborador en seguimiento de induccion. |
 | `Fct_Induccion` | Fact consolidada de induccion, onboarding y entrenamiento. | Un colaborador consolidado en seguimiento de induccion. |
 | `Fct_Seguimiento_PDI` | Seguimiento de Planes de Desarrollo Individual del frente Desarrollo. | Un PDI por colaborador y plan de desarrollo. |
+| `Fct_EntrevistaRetiro_V1` | Fuente historica de la primera version de entrevista de retiro. | Una respuesta de entrevista de retiro. |
+| `Fct_EntrevistaRetiro_V2` | Fuente historica de la segunda version de entrevista de retiro. | Una respuesta de entrevista de retiro. |
+| `Fct_EntrevistaRetiro_Corporativa` | Fuente corporativa nueva para unificar el proceso de entrevista de retiro. | Una respuesta de entrevista de retiro. |
+| `Fct_EntrevistaRetiro_Unificada` | Fact homologada para analisis agregado de entrevista de retiro en Bienestar y Clima. | Una entrevista de retiro homologada, con trazabilidad de fuente. |
 
 ## Observaciones por fuente
 
@@ -26,6 +30,7 @@ La tabla de medidas principal es `Medidas_AD`.
 - `Fct_EncuestaFormacion` contiene respuestas de percepcion y calificaciones. Los campos personales como correo o nombre pueden venir anonimizados o vacios, por lo que las metricas deben enfocarse en respuestas, favorabilidad y percepcion agregada.
 - Las tablas base de induccion se consolidan en `Fct_Induccion` para evitar analisis fragmentados por cohorte.
 - `Fct_Seguimiento_PDI` es la fuente inicial del frente Desarrollo; movilidad, sucesion y cargos criticos quedan pendientes de fuentes adicionales.
+- Las fuentes de entrevista de retiro tienen estructuras diferentes entre versiones. Para analisis gerencial se crea `Fct_EntrevistaRetiro_Unificada`, conservando la trazabilidad con `Fuente_Entrevista`.
 - Los conteos historicos documentados en versiones anteriores deben tratarse como referencia de construccion y validarse nuevamente despues de cada refresh.
 
 ## Dimensiones
@@ -45,6 +50,12 @@ La tabla de medidas principal es `Medidas_AD`.
 | `Dim_ColaboradorHC` | Headcount mensual para atributos del colaborador, especialmente `Tipo_Cargo`. |
 | `Dim_MotivoPDI` | Analisis de motivos de apertura de Planes de Desarrollo Individual. |
 | `Dim_EstadoPDI` | Analisis de estados de Planes de Desarrollo Individual. |
+| `Dim_FuenteEntrevistaRetiro` | Analisis por version u origen de entrevista de retiro. |
+| `Dim_UnidadNegocioRetiro` | Analisis de entrevista de retiro por unidad de negocio homologada. |
+| `Dim_TipoRetiro` | Analisis por tipo de retiro homologado. |
+| `Dim_MotivoRetiro` | Analisis por motivo principal de retiro. |
+| `Dim_CategoriaMotivoRetiro` | Agrupacion ejecutiva de motivos de retiro. |
+| `Dim_ProcesoRetiro` | Analisis de procesos asociados a oportunidades de mejora. |
 
 ## Criterios de homologacion
 
@@ -53,6 +64,7 @@ La tabla de medidas principal es `Medidas_AD`.
 - `Dim_Area` integra areas del plan y dependencias de induccion/PDI cuando la fuente no usa exactamente la misma nomenclatura.
 - `Dim_TemaFormacion` homologa temas o nombres de formacion entre plan, asistencia y encuesta mediante llaves tecnicas normalizadas.
 - Las dimensiones de estado, modalidad, tipo de formacion, motivo PDI y segmento UC se mantienen separadas para evitar relaciones ambiguas y mejorar la lectura ejecutiva.
+- Las dimensiones de entrevista de retiro se derivan de `Fct_EntrevistaRetiro_Unificada` para no alterar las fuentes originales y mantener un modelo escalable para versiones futuras.
 
 ## Relaciones principales
 
@@ -67,6 +79,7 @@ Relaciones de calendario:
 - `Fct_EncuestaFormacion[Fecha_Encuesta]` -> `Dim_Calendario[Date]`
 - `Fct_Induccion[Fecha_Ingreso]` -> `Dim_Calendario[Date]`
 - `Fct_Seguimiento_PDI[Fecha_Inicio]` -> `Dim_Calendario[Date]`
+- `Fct_EntrevistaRetiro_Unificada[Fecha_Entrevista]` -> `Dim_Calendario[Date]`
 
 Relaciones de negocio:
 
@@ -88,6 +101,12 @@ Relaciones de negocio:
 - `Fct_Induccion[SegmentoUC_Key]` -> `Dim_SegmentoUC[SegmentoUC_Key]`
 - `Fct_Seguimiento_PDI[MotivoPDI_Key]` -> `Dim_MotivoPDI[MotivoPDI_Key]`
 - `Fct_Seguimiento_PDI[EstadoPDI_Key]` -> `Dim_EstadoPDI[EstadoPDI_Key]`
+- `Fct_EntrevistaRetiro_Unificada[FuenteEntrevista_Key]` -> `Dim_FuenteEntrevistaRetiro[FuenteEntrevista_Key]`
+- `Fct_EntrevistaRetiro_Unificada[UnidadNegocio_Key]` -> `Dim_UnidadNegocioRetiro[UnidadNegocio_Key]`
+- `Fct_EntrevistaRetiro_Unificada[TipoRetiro_Key]` -> `Dim_TipoRetiro[TipoRetiro_Key]`
+- `Fct_EntrevistaRetiro_Unificada[MotivoRetiro_Key]` -> `Dim_MotivoRetiro[MotivoRetiro_Key]`
+- `Fct_EntrevistaRetiro_Unificada[CategoriaMotivo_Key]` -> `Dim_CategoriaMotivoRetiro[CategoriaMotivo_Key]`
+- `Fct_EntrevistaRetiro_Unificada[ProcesoRetiro_Key]` -> `Dim_ProcesoRetiro[ProcesoRetiro_Key]`
 
 Relacion de headcount:
 
@@ -172,6 +191,48 @@ La fact consolidada tambien incorpora:
 - estado de entrenamiento.
 
 Se excluyen filas tecnicamente vacias sin colaborador o sin fecha de ingreso. Tambien pueden existir documentos repetidos entre cohortes, por lo que deben diferenciarse las medidas de registros de induccion y las medidas de colaboradores unicos.
+
+## Logica de `Fct_EntrevistaRetiro_Unificada`
+
+`Fct_EntrevistaRetiro_Unificada` consolida tres versiones de entrevista de retiro:
+
+- `Fct_EntrevistaRetiro_V1`;
+- `Fct_EntrevistaRetiro_V2`;
+- `Fct_EntrevistaRetiro_Corporativa`.
+
+La tabla unificada conserva trazabilidad con:
+
+- `FuenteEntrevista_Key`;
+- `Fuente_Entrevista`.
+
+Los campos personales como nombre, correo, cedula, documento y jefe inmediato no se llevan a la tabla unificada ni a la pagina gerencial, para evitar exposicion innecesaria de datos sensibles.
+
+La regla principal de validez es:
+
+```text
+Autorizacion tratamiento de datos inicia por "Acepta"
+y no contiene "No acepta"
+```
+
+Los registros se clasifican con:
+
+- `RegistroValido`: `Valido` o `No valido`;
+- `RegistroValido_Flag`: 1 o 0.
+
+Las diferencias entre versiones se homologan en campos tecnicos:
+
+- `UnidadNegocio_Homologada`;
+- `TipoRetiro_Homologado`;
+- `MotivoRetiro_Homologado`;
+- `CategoriaPrincipalMotivo`;
+- `SubcategoriaMotivo`;
+- `CausaPrevenible`;
+- `ProcesoRelacionado`;
+- `RequierePlanAccion`.
+
+En `Fct_EntrevistaRetiro_V2` no se identifico un campo explicito de unidad de negocio. Para la integracion inicial se asigna `CHALLENGER` como valor por defecto, dado el uso principal informado para esa version.
+
+La categorizacion de motivos se realiza mediante reglas de palabras clave orientadas a lectura ejecutiva. Esta clasificacion debe validarse con Gestion Humana cuando se formalice el frente Bienestar y Clima.
 
 ## Medidas DAX clave
 
@@ -301,6 +362,30 @@ Estas medidas soportan el analisis de asistencia por `Tipo_Cargo` desde `Dim_Col
 
 `PDI Alertas Criticas` identifica planes con avance cero, bajo avance o vencidos, y se usa en la pagina `D04 Focos de Gestion Desarrollo`.
 
+### Entrevista de retiro
+
+- `EntrevistaRetiro Total`
+- `EntrevistaRetiro Total Validas`
+- `EntrevistaRetiro Total No Validas`
+- `EntrevistaRetiro Porcentaje Validas`
+- `EntrevistaRetiro Total Voluntarios`
+- `EntrevistaRetiro Total Involuntarios`
+- `EntrevistaRetiro Porcentaje Voluntarios`
+- `EntrevistaRetiro Porcentaje Involuntarios`
+- `EntrevistaRetiro Total Fuentes`
+- `EntrevistaRetiro Motivo Principal`
+- `EntrevistaRetiro Total Motivos Distintos`
+- `EntrevistaRetiro Participacion Motivo`
+- `EntrevistaRetiro Participacion UnidadNegocio`
+- `EntrevistaRetiro UnidadNegocio Top`
+- `EntrevistaRetiro Causas Prevenibles`
+- `EntrevistaRetiro Porcentaje Causas Prevenibles`
+- `EntrevistaRetiro Variacion Mensual`
+- `EntrevistaRetiro Variacion Mensual Porcentaje`
+- `EntrevistaRetiro Registros Requieren Plan`
+
+Las medidas gerenciales usan registros validos como base principal, aplicando `RegistroValido_Flag = 1`.
+
 ### KPI gerencial
 
 `KPI Indice Aprendizaje` promedia los principales indicadores del bloque, excluyendo valores en blanco:
@@ -322,6 +407,7 @@ Estas medidas soportan el analisis de asistencia por `Tipo_Cargo` desde `Dim_Col
 - `Fct_AsistenciaFormacion` permite analizar asistencia real y se conecta con `Dim_ColaboradorHC` para lectura por tipo de cargo.
 - `Fct_EncuestaFormacion` soporta satisfaccion, favorabilidad y percepcion de calidad.
 - `Fct_Induccion` es la fuente gerencial consolidada para onboarding, entrenamiento y segmentacion UC.
+- `Fct_EntrevistaRetiro_Unificada` es la fuente gerencial inicial del bloque Bienestar y Clima para motivos de salida, tendencias y oportunidades de mejora.
 - `Dim_ColaboradorHC` debe mantenerse actualizada por corte mensual para que el analisis de tipo de cargo sea confiable.
 - `Fct_Seguimiento_PDI` es la fuente inicial del frente Desarrollo; los componentes de movilidad, sucesion y cargos criticos quedan como pendientes de fuente.
 
@@ -333,3 +419,5 @@ Estas medidas soportan el analisis de asistencia por `Tipo_Cargo` desde `Dim_Col
 - La tasa de respuesta de encuesta se calcula contra registros de asistencia disponibles; debe interpretarse como una tasa operacional sobre asistencia registrada, no como tasa oficial de convocados.
 - En induccion pueden existir duplicados de documento entre cohortes; por eso el modelo mantiene medidas diferenciadas para registros y colaboradores unicos.
 - La fecha activa de PDI es `Fecha_Inicio`. Las alertas por vencimiento usan `Fecha_Fin` dentro de las medidas para evitar una segunda relacion activa con calendario.
+- La entrevista de retiro se analiza de forma agregada. Los textos abiertos deben tratarse con cautela por posible sensibilidad y no deben exponerse en visuales de detalle sin revision previa.
+- La clasificacion de `CategoriaPrincipalMotivo` y `ProcesoRelacionado` es una primera homologacion tecnica basada en palabras clave; requiere validacion funcional antes de usarse como taxonomia oficial.

@@ -1,0 +1,30 @@
+table Dim_FuenteEntrevistaRetiro
+	lineageTag: b10c70a3-fb96-4b9d-bf37-19aa9f6590a5
+
+	column FuenteEntrevista_Key
+		dataType: string
+		isHidden
+		lineageTag: a3d1ec8f-89e5-4053-9869-588d0023da3b
+		sourceColumn: [FuenteEntrevista_Key]
+
+	column Fuente_Entrevista
+		dataType: string
+		lineageTag: 624250b4-8081-4357-9114-4881c6877709
+		sourceColumn: [Fuente_Entrevista]
+
+	partition Dim_FuenteEntrevistaRetiro = calculated
+		mode: import
+		source =
+				VAR _Tabla =
+				    FILTER(
+				        DISTINCT(
+				            SELECTCOLUMNS(
+				                'Fct_EntrevistaRetiro_Unificada',
+				                "FuenteEntrevista_Key", 'Fct_EntrevistaRetiro_Unificada'[FuenteEntrevista_Key],
+				                "Fuente_Entrevista", 'Fct_EntrevistaRetiro_Unificada'[Fuente_Entrevista]
+				            )
+				        ),
+				        NOT ISBLANK([FuenteEntrevista_Key]) && [FuenteEntrevista_Key] <> ""
+				    )
+				RETURN
+				    _Tabla

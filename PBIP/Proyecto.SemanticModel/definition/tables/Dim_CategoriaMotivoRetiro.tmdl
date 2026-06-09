@@ -1,0 +1,30 @@
+table Dim_CategoriaMotivoRetiro
+	lineageTag: 5f0c1e32-6cb0-42b1-8bda-3c61c5eaee40
+
+	column CategoriaMotivo_Key
+		dataType: string
+		isHidden
+		lineageTag: f2cfb43f-5bbf-4fc9-b768-1a73d71a5eeb
+		sourceColumn: [CategoriaMotivo_Key]
+
+	column Categoria_Motivo
+		dataType: string
+		lineageTag: cd7ba0f2-9b39-492a-b618-7b46d04821a9
+		sourceColumn: [Categoria_Motivo]
+
+	partition Dim_CategoriaMotivoRetiro = calculated
+		mode: import
+		source =
+				VAR _Tabla =
+				    FILTER(
+				        DISTINCT(
+				            SELECTCOLUMNS(
+				                'Fct_EntrevistaRetiro_Unificada',
+				                "CategoriaMotivo_Key", 'Fct_EntrevistaRetiro_Unificada'[CategoriaMotivo_Key],
+				                "Categoria_Motivo", 'Fct_EntrevistaRetiro_Unificada'[CategoriaPrincipalMotivo]
+				            )
+				        ),
+				        NOT ISBLANK([CategoriaMotivo_Key]) && [CategoriaMotivo_Key] <> ""
+				    )
+				RETURN
+				    _Tabla

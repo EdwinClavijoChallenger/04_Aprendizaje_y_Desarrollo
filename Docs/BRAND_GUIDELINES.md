@@ -49,7 +49,7 @@ Este documento resume la aplicacion del Manual Marca Grupo LEMCO al dashboard Po
 ### Implementacion actual
 
 - El reporte usa un menu inferior compacto para no competir con la franja superior de filtros.
-- `00 Inicio Corporativo` incluye accesos por bloque: Inicio, Aprendizaje, Desarrollo, Desempeno y Bienestar y Clima. Los bloques sin desarrollo activo deben verse como placeholders deshabilitados.
+- `00 Inicio Corporativo` incluye accesos por bloque: Inicio, Aprendizaje, Desarrollo, Desempeno y Bienestar y Clima. Los bloques sin desarrollo activo deben verse como placeholders deshabilitados; los frentes iniciados, como Desarrollo y Bienestar y Clima, deben verse como modulos navegables con componentes activos o roadmap visible.
 - Las paginas del frente Aprendizaje incluyen acceso a Inicio, paginas principales del frente y entrada al frente Desarrollo.
 - Las paginas del frente Desarrollo incluyen acceso a Inicio, entrada al frente Aprendizaje y paginas principales del frente Desarrollo.
 - El estado activo usa naranja `#F7931E`; los accesos inactivos usan fondo blanco con azul corporativo; los placeholders usan gris neutro.

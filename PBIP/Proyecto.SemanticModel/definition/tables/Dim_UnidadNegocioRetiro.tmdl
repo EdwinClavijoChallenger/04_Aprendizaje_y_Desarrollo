@@ -1,0 +1,30 @@
+table Dim_UnidadNegocioRetiro
+	lineageTag: 7db1fbcb-2495-45cc-a044-3aeecabdbb48
+
+	column UnidadNegocio_Key
+		dataType: string
+		isHidden
+		lineageTag: 56fa232a-8b4c-498d-a25f-5c70dc5529a9
+		sourceColumn: [UnidadNegocio_Key]
+
+	column Unidad_Negocio
+		dataType: string
+		lineageTag: f0666515-e8e1-4c85-a9d3-c875fc99587d
+		sourceColumn: [Unidad_Negocio]
+
+	partition Dim_UnidadNegocioRetiro = calculated
+		mode: import
+		source =
+				VAR _Tabla =
+				    FILTER(
+				        DISTINCT(
+				            SELECTCOLUMNS(
+				                'Fct_EntrevistaRetiro_Unificada',
+				                "UnidadNegocio_Key", 'Fct_EntrevistaRetiro_Unificada'[UnidadNegocio_Key],
+				                "Unidad_Negocio", 'Fct_EntrevistaRetiro_Unificada'[UnidadNegocio_Homologada]
+				            )
+				        ),
+				        NOT ISBLANK([UnidadNegocio_Key]) && [UnidadNegocio_Key] <> ""
+				    )
+				RETURN
+				    _Tabla
