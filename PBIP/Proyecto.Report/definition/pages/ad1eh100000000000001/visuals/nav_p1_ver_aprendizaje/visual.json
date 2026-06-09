@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
-  "name": "nav_p1_desarrollo",
+  "name": "nav_p1_ver_aprendizaje",
   "position": {
-    "x": 664,
-    "y": 457,
-    "z": 11000,
-    "height": 223,
-    "width": 292,
-    "tabOrder": 11000
+    "x": 56,
+    "y": 620,
+    "z": 13000,
+    "height": 42,
+    "width": 548,
+    "tabOrder": 13000
   },
   "visual": {
     "visualType": "actionButton",
@@ -82,7 +82,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#E6EEF5'"
+                      "Value": "'#FFFFFF'"
                     }
                   }
                 }
@@ -201,7 +201,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Ir a Desarrollo'"
+                  "Value": "'Ir al resumen del frente seleccionado'"
                 }
               }
             }
@@ -227,15 +227,25 @@
             },
             "navigationSection": {
               "expr": {
-                "Literal": {
-                  "Value": "'ad1ed100000000000001'"
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medidas_AD"
+                    }
+                  },
+                  "Property": "Home Pagina Resumen Frente"
                 }
               }
             },
             "tooltip": {
               "expr": {
-                "Literal": {
-                  "Value": "'Ir a Desarrollo'"
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medidas_AD"
+                    }
+                  },
+                  "Property": "Home Tooltip Resumen Frente"
                 }
               }
             },

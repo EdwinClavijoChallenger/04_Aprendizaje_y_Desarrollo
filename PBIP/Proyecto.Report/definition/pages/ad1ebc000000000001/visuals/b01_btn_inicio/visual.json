@@ -4,10 +4,10 @@
   "position": {
     "x": 1096,
     "y": 676,
-    "z": 90000,
+    "z": 21000,
     "height": 30,
     "width": 154,
-    "tabOrder": 90000
+    "tabOrder": 21000
   },
   "visual": {
     "visualType": "actionButton",
@@ -134,7 +134,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#003494'"
+                      "Value": "'#1B487F'"
                     }
                   }
                 }
@@ -194,7 +194,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#003494'"
+                      "Value": "'#1B487F'"
                     }
                   }
                 }
@@ -297,7 +297,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#003494'"
+                      "Value": "'#1B487F'"
                     }
                   }
                 }
@@ -373,7 +373,7 @@
             "navigationSection": {
               "expr": {
                 "Literal": {
-                  "Value": "'ad1e0000000000000000'"
+                  "Value": "'ad1eh100000000000001'"
                 }
               }
             },

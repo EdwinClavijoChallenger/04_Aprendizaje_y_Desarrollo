@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
-  "name": "nav_p1_desarrollo",
+  "name": "nav_p1_sub_cobertura",
   "position": {
-    "x": 664,
-    "y": 457,
-    "z": 11000,
-    "height": 223,
-    "width": 292,
-    "tabOrder": 11000
+    "x": 807.5,
+    "y": 335,
+    "z": 15000,
+    "height": 23.75,
+    "width": 122.5,
+    "tabOrder": 15000
   },
   "visual": {
     "visualType": "actionButton",
@@ -82,7 +82,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#E6EEF5'"
+                      "Value": "'#FFFFFF'"
                     }
                   }
                 }
@@ -201,7 +201,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Ir a Desarrollo'"
+                  "Value": "'Ir a A03 Cobertura y Participacion'"
                 }
               }
             }
@@ -228,14 +228,14 @@
             "navigationSection": {
               "expr": {
                 "Literal": {
-                  "Value": "'ad1ed100000000000001'"
+                  "Value": "'ad1e0300000000000003'"
                 }
               }
             },
             "tooltip": {
               "expr": {
                 "Literal": {
-                  "Value": "'Ir a Desarrollo'"
+                  "Value": "'Ir a A03 Cobertura y Participacion'"
                 }
               }
             },

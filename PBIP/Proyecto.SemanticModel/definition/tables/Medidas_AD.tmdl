@@ -747,6 +747,15 @@ table Medidas_AD
 			VAR _PDIAlt = IF(ISBLANK([PDI Alertas Criticas]), "-", FORMAT([PDI Alertas Criticas], "#,0"))
 			VAR _Acomp = IF(ISBLANK([PDI Cumplimiento Acompanamientos]), "-", FORMAT([PDI Cumplimiento Acompanamientos], "0.0%"))
 			VAR _IDes = IF(ISBLANK([KPI Indice Desarrollo]), "-", FORMAT([KPI Indice Desarrollo], "0.0%"))
+			VAR _CtaTexto =
+			    SWITCH(
+			        _FA,
+			        "Aprendizaje", "Ver tablero completo de Aprendizaje",
+			        "Desarrollo", "Ver resumen ejecutivo de Desarrollo",
+			        "Bienestar y Clima", "Ver Entrevista de Retiro",
+			        "Desempeno", "Ver frente Desempe&ntilde;o",
+			        "Ver tablero completo de Aprendizaje"
+			    )
 			VAR _LeftContent =
 			    IF(_FA = "Aprendizaje",
 			        "<div style='font-size:11px;color:#F7931E;font-weight:800;text-transform:uppercase;letter-spacing:1.4px;'>Frente activo</div>" &
@@ -760,7 +769,7 @@ table Medidas_AD
 			        "</div><div style='display:flex;gap:10px;margin-top:11px;'>" &
 			        "<div style='flex:1;background:#0B1C35;color:#fff;border-radius:8px;padding:11px 13px;'><div style='font-size:10px;color:#b8c8de;'>Entrenamiento neto</div><div style='font-size:21px;font-weight:800;'>" & _Ent & "</div></div>" &
 			        "<div style='flex:1;background:#1B487F;color:#fff;border-radius:8px;padding:11px 13px;'><div style='font-size:10px;color:#b8c8de;'>Indice Aprendizaje</div><div style='font-size:21px;font-weight:800;'>" & _IApz & "</div></div>" &
-			        "</div><div style='margin-top:12px;text-align:center;background:#F7931E;color:#fff;border-radius:8px;padding:9px;font-size:11px;font-weight:800;'>Ver tablero completo de Aprendizaje</div>",
+			        "</div><div style='position:absolute;left:22px;bottom:26px;width:548px;text-align:center;background:#F7931E;color:#fff;border-radius:8px;padding:9px;font-size:11px;font-weight:800;box-sizing:border-box;'>" & _CtaTexto & "</div>",
 			    IF(_FA = "Desarrollo",
 			        "<div style='font-size:11px;color:#F7931E;font-weight:800;text-transform:uppercase;letter-spacing:1.4px;'>Frente activo</div>" &
 			        "<div style='font-size:30px;font-weight:800;margin-top:4px;color:#000032;'>Desarrollo</div>" &
@@ -773,7 +782,7 @@ table Medidas_AD
 			        "</div><div style='display:flex;gap:10px;margin-top:11px;'>" &
 			        "<div style='flex:1;background:#0B1C35;color:#fff;border-radius:8px;padding:11px 13px;'><div style='font-size:10px;color:#b8c8de;'>Indice Desarrollo</div><div style='font-size:21px;font-weight:800;'>" & _IDes & "</div></div>" &
 			        "<div style='flex:1;background:#1B487F;color:#fff;border-radius:8px;padding:11px 13px;'><div style='font-size:10px;color:#b8c8de;'>Avance PDI</div><div style='font-size:21px;font-weight:800;'>" & _PDIAvz & "</div></div>" &
-			        "</div><div style='margin-top:12px;text-align:center;background:#F7931E;color:#fff;border-radius:8px;padding:9px;font-size:11px;font-weight:800;'>Ver tablero completo de Desarrollo</div>",
+			        "</div><div style='position:absolute;left:22px;bottom:26px;width:548px;text-align:center;background:#F7931E;color:#fff;border-radius:8px;padding:9px;font-size:11px;font-weight:800;box-sizing:border-box;'>" & _CtaTexto & "</div>",
 			        "<div style='font-size:11px;color:#1B487F;font-weight:800;text-transform:uppercase;letter-spacing:1.4px;'>" & IF(_FA = "Desempeno", "Proxima fase", "Frente iniciado") & "</div>" &
 			        "<div style='font-size:30px;font-weight:800;margin-top:4px;color:#1A3059;'>" & IF(_FA = "Desempeno", "Desempe&ntilde;o", "Bienestar y Clima") & "</div>" &
 			        "<div style='font-size:12px;color:#53657D;line-height:17px;margin-top:7px;'>" & IF(_FA = "Desempeno", "Evaluaci&oacute;n de desempe&ntilde;o, metas y seguimiento gerencial.", "Entrevista de Retiro activa con roadmap de clima laboral, eNPS y plan de bienestar.") & "</div>" &
@@ -781,7 +790,8 @@ table Medidas_AD
 			        "<div style='font-size:40px;'>" & IF(_FA = "Desempeno", "&#128200;", "&#127774;") & "</div>" &
 			        "<div style='font-size:17px;font-weight:800;color:#1A3059;margin-top:12px;'>" & IF(_FA = "Desempeno", "En preparacion", "Entrevista de Retiro activa") & "</div>" &
 			        "<div style='font-size:12px;color:#53657D;margin-top:9px;line-height:17px;'>" & IF(_FA = "Desempeno", "Este frente forma parte del roadmap corporativo 2026 y estara disponible en la siguiente fase de implementacion.", "Incluye Entrevista de Retiro, Planes de trabajo de Clima Laboral, eNPS de actividades de Bienestar y Cumplimiento del Plan de Bienestar.") & "</div>" &
-			        "<div style='margin-top:22px;display:inline-block;border:1.5px solid #1B487F;border-radius:20px;padding:7px 20px;font-size:11px;color:#1B487F;font-weight:700;'>" & IF(_FA = "Desempeno", "Roadmap 2026", "Bienestar en construccion") & "</div></div>"
+			        "<div style='margin-top:18px;display:inline-block;border:1.5px solid #1B487F;border-radius:20px;padding:7px 20px;font-size:11px;color:#1B487F;font-weight:700;'>" & IF(_FA = "Desempeno", "Roadmap 2026", "Bienestar en construccion") & "</div></div>" &
+			        "<div style='position:absolute;left:22px;bottom:26px;width:548px;text-align:center;background:#F7931E;color:#fff;border-radius:8px;padding:9px;font-size:11px;font-weight:800;box-sizing:border-box;'>" & _CtaTexto & "</div>"
 			    ))
 			VAR _LeftBg = IF(_FA = "Aprendizaje" || _FA = "Desarrollo" || _FA = "Bienestar y Clima", "#ffffff", "#F9FAFC")
 			VAR _LeftBorder = IF(_FA = "Aprendizaje" || _FA = "Desarrollo" || _FA = "Bienestar y Clima", "#F7931E", "#DCE5F2")
@@ -792,7 +802,7 @@ table Medidas_AD
 			VAR _CByC = IF(_FA = "Bienestar y Clima", "<div style='background:#1A3059;color:#fff;border-radius:10px;padding:20px;border:2px solid #F7931E;box-shadow:0 8px 22px rgba(26,48,89,.18);'>", "<div style='background:#fff;border:1px solid #DCE5F2;border-radius:10px;padding:20px;'>")
 			VAR _Right =
 			    "<div style='position:absolute;left:650px;top:190px;width:598px;height:494px;display:grid;grid-template-columns:1fr 1fr;gap:16px;'>" &
-			    _CApz & "<div style='font-size:11px;color:#F7931E;font-weight:800;'>01</div><div style='font-size:19px;font-weight:800;margin-top:7px;" & IF(_FA="Aprendizaje","color:#fff;","color:#1A3059;") & "'>Aprendizaje</div><div style='font-size:10px;line-height:15px;margin-top:8px;" & IF(_FA="Aprendizaje","color:#cbd8e8;","color:#53657D;") & "'>MVP operativo con indicadores activos y lectura ejecutiva.</div><div style='margin-top:13px;height:4px;background:" & IF(_FA="Aprendizaje","#F7931E","#DCE5F2") & ";border-radius:4px;'></div><div style='margin-top:8px;display:inline-block;background:#F7931E;color:#fff;border-radius:12px;padding:3px 9px;font-size:10px;font-weight:700;'>Activo</div></div>" &
+			    _CApz & "<div style='font-size:11px;color:#F7931E;font-weight:800;'>01</div><div style='font-size:19px;font-weight:800;margin-top:7px;" & IF(_FA="Aprendizaje","color:#fff;","color:#1A3059;") & "'>Aprendizaje</div><div style='font-size:10px;line-height:15px;margin-top:8px;" & IF(_FA="Aprendizaje","color:#cbd8e8;","color:#53657D;") & "'>MVP operativo con indicadores activos y lectura ejecutiva.</div><div style='margin-top:13px;height:4px;background:" & IF(_FA="Aprendizaje","#F7931E","#DCE5F2") & ";border-radius:4px;'></div><div style='margin-top:9px;display:grid;grid-template-columns:1fr 1fr;gap:6px;'><div style='background:#F7931E;color:#fff;border-radius:12px;padding:5px 9px;font-size:9px;font-weight:800;text-align:center;'>Plan</div><div style='background:rgba(255,255,255,.12);color:" & IF(_FA="Aprendizaje","#fff","#1A3059") & ";border:1px solid " & IF(_FA="Aprendizaje","rgba(255,255,255,.22)","#DCE5F2") & ";border-radius:12px;padding:5px 9px;font-size:9px;font-weight:800;text-align:center;'>Cobertura</div><div style='background:rgba(255,255,255,.12);color:" & IF(_FA="Aprendizaje","#fff","#1A3059") & ";border:1px solid " & IF(_FA="Aprendizaje","rgba(255,255,255,.22)","#DCE5F2") & ";border-radius:12px;padding:5px 9px;font-size:9px;font-weight:800;text-align:center;'>Satisfacci&oacute;n</div><div style='background:rgba(255,255,255,.12);color:" & IF(_FA="Aprendizaje","#fff","#1A3059") & ";border:1px solid " & IF(_FA="Aprendizaje","rgba(255,255,255,.22)","#DCE5F2") & ";border-radius:12px;padding:5px 9px;font-size:9px;font-weight:800;text-align:center;'>Inducci&oacute;n</div><div style='grid-column:1 / span 2;background:rgba(255,255,255,.12);color:" & IF(_FA="Aprendizaje","#fff","#1A3059") & ";border:1px solid " & IF(_FA="Aprendizaje","rgba(255,255,255,.22)","#DCE5F2") & ";border-radius:12px;padding:5px 9px;font-size:9px;font-weight:800;text-align:center;'>Focos</div></div></div>" &
 			    _CDep & "<div style='font-size:11px;color:" & IF(_FA="Desempeno","#F7931E","#1B487F") & ";font-weight:800;'>02</div><div style='font-size:19px;font-weight:800;margin-top:7px;" & IF(_FA="Desempeno","color:#fff;","color:#1A3059;") & "'>Desempe&ntilde;o</div><div style='font-size:10px;line-height:15px;margin-top:8px;" & IF(_FA="Desempeno","color:#d9e4f2;","color:#53657D;") & "'>Medicion y seguimiento gerencial de resultados.</div><div style='margin-top:16px;display:inline-block;border:1px solid " & IF(_FA="Desempeno","#d9e4f2","#DCE5F2") & ";border-radius:12px;padding:3px 9px;font-size:10px;color:" & IF(_FA="Desempeno","#d9e4f2","#1A3059") & ";'>Roadmap</div></div>" &
 			    _CDes & "<div style='font-size:11px;color:#F7931E;font-weight:800;'>03</div><div style='font-size:19px;font-weight:800;margin-top:7px;" & IF(_FA="Desarrollo","color:#fff;","color:#1A3059;") & "'>Desarrollo</div><div style='font-size:10px;line-height:15px;margin-top:8px;" & IF(_FA="Desarrollo","color:#d9e4f2;","color:#53657D;") & "'>PDI activos. Avance: " & _PDIAvz & ".</div><div style='margin-top:16px;display:inline-block;background:#FFF2E5;color:#9D5600;border-radius:12px;padding:3px 9px;font-size:10px;font-weight:700;'>En construccion</div></div>" &
 			    _CByC & "<div style='font-size:11px;color:" & IF(_FA="Bienestar y Clima","#F7931E","#1B487F") & ";font-weight:800;'>04</div><div style='font-size:19px;font-weight:800;margin-top:7px;" & IF(_FA="Bienestar y Clima","color:#fff;","color:#1A3059;") & "'>Bienestar y Clima</div><div style='font-size:10px;line-height:15px;margin-top:8px;" & IF(_FA="Bienestar y Clima","color:#d9e4f2;","color:#53657D;") & "'>Entrevista de Retiro, Clima Laboral, eNPS y Plan de Bienestar.</div><div style='display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:12px;'><div style='border-left:3px solid #F7931E;background:" & IF(_FA="Bienestar y Clima","rgba(255,255,255,.10)","#F7F9FC") & ";border-radius:7px;padding:6px 7px;font-size:9px;'>Entrevista de Retiro</div><div style='background:" & IF(_FA="Bienestar y Clima","rgba(255,255,255,.10)","#F7F9FC") & ";border-radius:7px;padding:6px 7px;font-size:9px;'>Planes Clima Laboral</div><div style='background:" & IF(_FA="Bienestar y Clima","rgba(255,255,255,.10)","#F7F9FC") & ";border-radius:7px;padding:6px 7px;font-size:9px;'>eNPS Bienestar</div><div style='background:" & IF(_FA="Bienestar y Clima","rgba(255,255,255,.10)","#F7F9FC") & ";border-radius:7px;padding:6px 7px;font-size:9px;'>Plan Bienestar</div></div></div>" &
@@ -802,7 +812,17 @@ table Medidas_AD
 			"<div style='height:88px;background:#0B1C35;color:#fff;padding:20px 34px;box-sizing:border-box;display:flex;justify-content:space-between;align-items:center;'>" &
 			"<div><div style='font-size:11px;letter-spacing:1.8px;text-transform:uppercase;color:#F7931E;font-weight:700;'>Dashboard Corporativo &middot; Grupo LEMCO</div><div style='font-size:25px;line-height:29px;font-weight:800;margin-top:5px;'>Inicio Corporativo</div></div>" &
 			"<div style='font-size:10px;color:#7A9EC2;'>Selecciona un frente &rarr;</div></div>" &
-			"<div style='position:absolute;left:26px;top:96px;width:1226px;height:76px;background:#F7F9FC;border:1px solid #DCE5F2;border-radius:10px;box-sizing:border-box;'><div style='position:absolute;left:16px;top:50%;transform:translateY(-50%);font-size:10px;font-weight:800;color:#1A3059;text-transform:uppercase;letter-spacing:.7px;'>Filtros</div></div>" &
+			"<div style='position:absolute;left:34px;top:104px;width:1214px;height:82px;background:#ffffff;border:1px solid #DCE5F2;border-radius:14px;box-sizing:border-box;box-shadow:0 10px 28px rgba(11,28,53,.07);overflow:hidden;'>" &
+			"<div style='position:absolute;left:0;top:0;width:7px;height:82px;background:#F7931E;'></div>" &
+			"<div style='position:absolute;left:22px;top:17px;width:178px;'><div style='font-size:10px;font-weight:900;color:#0B1C35;text-transform:uppercase;letter-spacing:1px;'>Contexto de an&aacute;lisis</div><div style='font-size:9px;color:#6B7D93;line-height:13px;margin-top:5px;'>Filtros activos para la lectura ejecutiva del home.</div></div>" &
+			"<div style='position:absolute;left:214px;top:12px;width:96px;height:58px;background:#F7F9FC;border:1px solid #E6EEF5;border-radius:8px;box-sizing:border-box;padding:7px 9px;'><div style='font-size:9px;color:#1A3059;font-weight:800;'>A&ntilde;o</div></div>" &
+			"<div style='position:absolute;left:322px;top:12px;width:110px;height:58px;background:#F7F9FC;border:1px solid #E6EEF5;border-radius:8px;box-sizing:border-box;padding:7px 9px;'><div style='font-size:9px;color:#1A3059;font-weight:800;'>Mes</div></div>" &
+			"<div style='position:absolute;left:444px;top:12px;width:136px;height:58px;background:#F7F9FC;border:1px solid #E6EEF5;border-radius:8px;box-sizing:border-box;padding:7px 9px;'><div style='font-size:9px;color:#1A3059;font-weight:800;'>Empresa</div></div>" &
+			"<div style='position:absolute;left:592px;top:12px;width:136px;height:58px;background:#F7F9FC;border:1px solid #E6EEF5;border-radius:8px;box-sizing:border-box;padding:7px 9px;'><div style='font-size:9px;color:#1A3059;font-weight:800;'>Area</div></div>" &
+			"<div style='position:absolute;left:740px;top:12px;width:144px;height:58px;background:#F7F9FC;border:1px solid #E6EEF5;border-radius:8px;box-sizing:border-box;padding:7px 9px;'><div style='font-size:9px;color:#1A3059;font-weight:800;'>Tipo formaci&oacute;n</div></div>" &
+			"<div style='position:absolute;left:896px;top:12px;width:144px;height:58px;background:#F7F9FC;border:1px solid #E6EEF5;border-radius:8px;box-sizing:border-box;padding:7px 9px;'><div style='font-size:9px;color:#1A3059;font-weight:800;'>Modalidad</div></div>" &
+			"<div style='position:absolute;left:1052px;top:12px;width:186px;height:58px;background:#F7F9FC;border:1px solid #E6EEF5;border-radius:8px;box-sizing:border-box;padding:7px 9px;'><div style='font-size:9px;color:#1A3059;font-weight:800;'>Segmento UC</div></div>" &
+			"</div>" &
 			_Left &
 			_Right &
 			"</div>"
@@ -982,7 +1002,7 @@ table Medidas_AD
 
 	measure 'HTML Entrevista Retiro Shell' =
 			"<div style='font-family: Outfit, Poppins, Segoe UI, Arial; width:1280px; height:720px; background:#F7F9FC; color:#0B1C35; position:relative; overflow:hidden;'>" &
-			"<div style='position:absolute; left:0; top:0; width:1280px; height:92px; background:#003494;'></div>" &
+			"<div style='position:absolute; left:0; top:0; width:1280px; height:92px; background:#1B487F;'></div>" &
 			"<div style='position:absolute; left:34px; top:20px; color:#F7931E; font-size:11px; font-weight:800; letter-spacing:2px;'>BIENESTAR Y CLIMA</div>" &
 			"<div style='position:absolute; left:34px; top:39px; color:#FFFFFF; font-size:28px; font-weight:800;'>Entrevista de Retiro</div>" &
 			"<div style='position:absolute; left:34px; top:68px; color:#D8E4F2; font-size:11px;'>Motivos de salida, oportunidades de mejora y senales para Gestion Humana</div>" &
@@ -999,6 +1019,64 @@ table Medidas_AD
 			"</div>"
 		displayFolder: 11 HTML Propuestas
 		lineageTag: 941825c0-80a2-4d05-ad36-af2d02475fca
+
+	measure 'HTML BC00 Resumen Bienestar y Clima' =
+			"<div style='font-family:Outfit,Poppins,Segoe UI,Arial; width:1280px; height:720px; background:#F7F9FC; color:#0B1C35; position:relative; overflow:hidden;'>" &
+			"<div style='position:absolute; left:0; top:0; width:1280px; height:92px; background:linear-gradient(135deg,#1A3059,#1B487F);'></div>" &
+			"<div style='position:absolute; left:34px; top:18px; color:#F7931E; font-size:11px; font-weight:800; letter-spacing:2px;'>BIENESTAR Y CLIMA</div>" &
+			"<div style='position:absolute; left:34px; top:37px; color:#FFFFFF; font-size:26px; font-weight:800;'>Resumen Ejecutivo</div>" &
+			"<div style='position:absolute; left:34px; top:68px; color:#D8E4F2; font-size:11px;'>Frentes de gestion disponibles en el bloque Bienestar y Clima</div>" &
+			"<div style='position:absolute; right:36px; top:24px; padding:9px 16px; background:#F7931E; color:#0B1C35; border-radius:18px; font-size:11px; font-weight:800;'>Inicio Corporativo</div>" &
+			"<div style='position:absolute; left:34px; top:106px; right:34px; height:24px; color:#5E6B7A; font-size:11px; line-height:24px;'>Selecciona un frente para explorar los analisis disponibles.</div>" &
+			"<div style='position:absolute; left:34px; top:144px; width:592px; height:230px; background:#0B1C35; border:2px solid #F7931E; border-radius:10px; padding:22px 24px;'>" &
+			"<div style='display:flex; align-items:center; margin-bottom:10px;'><span style='background:#F7931E; color:#fff; font-size:10px; font-weight:700; padding:3px 10px; border-radius:20px; letter-spacing:1px; margin-right:10px;'>ACTIVO</span><span style='color:#94A3B8; font-size:10px;'>Modulo 01</span></div>" &
+			"<div style='color:#FFFFFF; font-size:17px; font-weight:700; margin-bottom:8px;'>Entrevista de Retiro</div>" &
+			"<div style='color:#94A3B8; font-size:12px; line-height:1.55;'>Analisis de causas de desvinculacion, tendencias por unidad y tipologia de salida. Datos anonimizados con autorizacion valida.</div>" &
+			"<div style='position:absolute; bottom:18px; left:24px; color:#F7931E; font-size:11px; font-weight:600;'>Ver analisis →</div>" &
+			"</div>" &
+			"<div style='position:absolute; left:654px; top:144px; width:592px; height:230px; background:#FFFFFF; border:1px solid #DDE7F1; border-radius:10px; padding:22px 24px;'>" &
+			"<div style='display:flex; align-items:center; margin-bottom:10px;'><span style='background:#F59E0B; color:#fff; font-size:10px; font-weight:700; padding:3px 10px; border-radius:20px; letter-spacing:1px; margin-right:10px;'>EN CONSTRUCCION</span><span style='color:#94A3B8; font-size:10px;'>Modulo 02</span></div>" &
+			"<div style='color:#1A3059; font-size:17px; font-weight:700; margin-bottom:8px;'>Planes Clima Laboral</div>" &
+			"<div style='color:#6B7280; font-size:12px; line-height:1.55;'>Seguimiento a planes de trabajo de clima organizacional, indicadores de ambiente laboral y acciones correctivas en curso.</div>" &
+			"<div style='position:absolute; bottom:18px; left:24px; color:#9CA3AF; font-size:11px; font-style:italic;'>Disponible proxima fase</div>" &
+			"</div>" &
+			"<div style='position:absolute; left:34px; top:394px; width:592px; height:218px; background:#FFFFFF; border:1px solid #DDE7F1; border-radius:10px; padding:22px 24px;'>" &
+			"<div style='display:flex; align-items:center; margin-bottom:10px;'><span style='background:#F59E0B; color:#fff; font-size:10px; font-weight:700; padding:3px 10px; border-radius:20px; letter-spacing:1px; margin-right:10px;'>EN CONSTRUCCION</span><span style='color:#94A3B8; font-size:10px;'>Modulo 03</span></div>" &
+			"<div style='color:#1A3059; font-size:17px; font-weight:700; margin-bottom:8px;'>eNPS Actividades Bienestar</div>" &
+			"<div style='color:#6B7280; font-size:12px; line-height:1.55;'>Net Promoter Score de actividades de bienestar, participacion y cobertura de programas corporativos.</div>" &
+			"<div style='position:absolute; bottom:18px; left:24px; color:#9CA3AF; font-size:11px; font-style:italic;'>Disponible proxima fase</div>" &
+			"</div>" &
+			"<div style='position:absolute; left:654px; top:394px; width:592px; height:218px; background:#FFFFFF; border:1px solid #DDE7F1; border-radius:10px; padding:22px 24px;'>" &
+			"<div style='display:flex; align-items:center; margin-bottom:10px;'><span style='background:#F59E0B; color:#fff; font-size:10px; font-weight:700; padding:3px 10px; border-radius:20px; letter-spacing:1px; margin-right:10px;'>EN CONSTRUCCION</span><span style='color:#94A3B8; font-size:10px;'>Modulo 04</span></div>" &
+			"<div style='color:#1A3059; font-size:17px; font-weight:700; margin-bottom:8px;'>Cumplimiento Plan Bienestar</div>" &
+			"<div style='color:#6B7280; font-size:12px; line-height:1.55;'>Avance frente al plan anual de bienestar, porcentaje de cumplimiento y actividades pendientes.</div>" &
+			"<div style='position:absolute; bottom:18px; left:24px; color:#9CA3AF; font-size:11px; font-style:italic;'>Disponible proxima fase</div>" &
+			"</div>" &
+			"<div style='position:absolute; left:34px; top:630px; color:#9CA3AF; font-size:10px;'>Dashboard Corporativo Grupo LEMCO — Bienestar y Clima</div>" &
+			"</div>"
+		displayFolder: 12 HTML Bienestar
+		lineageTag: bc001234-5678-90ab-cdef-bc0012345678
+
+	measure 'Home Pagina Resumen Frente' =
+			VAR _Frente = SELECTEDVALUE('Dim_Frente_Home'[Frente], "Aprendizaje")
+			RETURN
+			    SWITCH(
+			        _Frente,
+			        "Aprendizaje", "A01 Resumen Ejecutivo Aprendizaje",
+			        "Desarrollo", "D01 Resumen Ejecutivo Desarrollo",
+			        "Bienestar y Clima", "BC00 Resumen Ejecutivo Bienestar y Clima",
+			        "Desempeno", "E01 Desempeno - Proxima Fase",
+			        "A01 Resumen Ejecutivo Aprendizaje"
+			    )
+		displayFolder: 00 Home Corporativo
+		lineageTag: 1c4f494b-a83d-4be8-a952-9f52118d950e
+
+	measure 'Home Tooltip Resumen Frente' =
+			VAR _Frente = SELECTEDVALUE('Dim_Frente_Home'[Frente], "Aprendizaje")
+			RETURN
+			    "Ir a " & [Home Pagina Resumen Frente]
+		displayFolder: 00 Home Corporativo
+		lineageTag: 2771f7ad-7ef2-45bd-9881-9ef6aaf7f9e1
 
 	column Indice
 		dataType: int64
