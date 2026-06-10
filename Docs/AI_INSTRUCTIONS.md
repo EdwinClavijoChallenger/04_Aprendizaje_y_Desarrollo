@@ -29,6 +29,8 @@ Este documento define reglas obligatorias para cualquier IA o asistente que trab
 - No cambiar nombres internos de paginas ni su orden sin informar primero el impacto y recibir autorizacion cuando el cambio afecte navegacion o experiencia de usuario.
 - Validar que los archivos TMDL queden en UTF-8 sin BOM. Si un TMDL fue editado fuera de PBI Desktop con una herramienta que use Latin-1, puede generar doble codificacion (patron visible: `Ã©`, `Ã³`, `Â¿` en lugar de caracteres correctos). Corregir con reemplazo directo en el archivo antes de abrir en PBI Desktop.
 - En medidas TMDL, las propiedades `displayFolder` y `lineageTag` deben estar a 2 tabs (nivel de propiedad de medida). Si quedan a 3 tabs o mas quedan dentro del cuerpo DAX y PBI Desktop genera error de parse al abrir la medida.
+- Las medidas HTML de tipo shell deben seguir la nomenclatura `HTML Shell {CodigoFrente} {TituloPagina}`. Las medidas de inicio corporativo usan `HTML Inicio Corporativo Propuesta {N}`. Todas las medidas HTML deben estar en la carpeta de display `11 HTML Content` del modelo semantico.
+- El esqueleto estandar de medidas HTML Shell tiene: canvas 1280x720, fondo `#F7F9FC`, encabezado oscuro `#0B1C35` de 100px, supra `DASHBOARD CORPORATIVO - GRUPO LEMCO` en naranja `#F7931E`, barra de filtros a `top:112px` alto `76px`, grid de 6 slots a `left:238px top:121px`, contenedor principal a `top:198px` alto `468px` y barra inferior a `top:674px` alto `40px`.
 
 ## Documentacion
 

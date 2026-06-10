@@ -28,6 +28,7 @@ tipo(alcance): descripcion breve en espanol
 - `data`
 - `docs`
 - `config`
+- `pbip`
 
 Tambien se puede usar un alcance funcional cuando aporte claridad, por ejemplo `aprendizaje`.
 

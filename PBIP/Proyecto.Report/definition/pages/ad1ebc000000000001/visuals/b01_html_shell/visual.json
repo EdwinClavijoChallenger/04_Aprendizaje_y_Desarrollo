@@ -23,11 +23,11 @@
                       "Entity": "Medidas_AD"
                     }
                   },
-                  "Property": "HTML Entrevista Retiro Shell"
+                  "Property": "HTML Shell BC01 Entrevista de Retiro"
                 }
               },
-              "queryRef": "Medidas_AD.HTML Entrevista Retiro Shell",
-              "nativeQueryRef": "HTML Entrevista Retiro Shell"
+              "queryRef": "Medidas_AD.HTML Shell BC01 Entrevista de Retiro",
+              "nativeQueryRef": "HTML Shell BC01 Entrevista de Retiro"
             }
           ]
         },
@@ -41,11 +41,11 @@
                       "Entity": "Medidas_AD"
                     }
                   },
-                  "Property": "HTML Entrevista Retiro Shell"
+                  "Property": "HTML Shell BC01 Entrevista de Retiro"
                 }
               },
-              "queryRef": "Medidas_AD.HTML Entrevista Retiro Shell",
-              "nativeQueryRef": "HTML Entrevista Retiro Shell"
+              "queryRef": "Medidas_AD.HTML Shell BC01 Entrevista de Retiro",
+              "nativeQueryRef": "HTML Shell BC01 Entrevista de Retiro"
             }
           ]
         }

@@ -23,11 +23,11 @@
                       "Entity": "Medidas_AD"
                     }
                   },
-                  "Property": "HTML BC00 Resumen Bienestar y Clima"
+                  "Property": "HTML Shell BC01 Resumen Ejecutivo Bienestar y Clima"
                 }
               },
-              "queryRef": "Medidas_AD.HTML BC00 Resumen Bienestar y Clima",
-              "nativeQueryRef": "HTML BC00 Resumen Bienestar y Clima"
+              "queryRef": "Medidas_AD.HTML Shell BC01 Resumen Ejecutivo Bienestar y Clima",
+              "nativeQueryRef": "HTML Shell BC01 Resumen Ejecutivo Bienestar y Clima"
             }
           ]
         },
@@ -41,11 +41,11 @@
                       "Entity": "Medidas_AD"
                     }
                   },
-                  "Property": "HTML BC00 Resumen Bienestar y Clima"
+                  "Property": "HTML Shell BC01 Resumen Ejecutivo Bienestar y Clima"
                 }
               },
-              "queryRef": "Medidas_AD.HTML BC00 Resumen Bienestar y Clima",
-              "nativeQueryRef": "HTML BC00 Resumen Bienestar y Clima"
+              "queryRef": "Medidas_AD.HTML Shell BC01 Resumen Ejecutivo Bienestar y Clima",
+              "nativeQueryRef": "HTML Shell BC01 Resumen Ejecutivo Bienestar y Clima"
             }
           ]
         }

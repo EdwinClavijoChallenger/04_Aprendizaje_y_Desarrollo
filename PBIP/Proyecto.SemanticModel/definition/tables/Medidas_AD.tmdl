@@ -826,7 +826,7 @@ table Medidas_AD
 			_Left &
 			_Right &
 			"</div>"
-		displayFolder: 11 HTML Propuestas
+		displayFolder: 11 HTML Content
 		lineageTag: 1cb83d75-76db-4da5-b3ad-558aa192e4d5
 
 	measure 'HTML Inicio Corporativo Propuesta 2' =
@@ -859,7 +859,7 @@ table Medidas_AD
 			"<div style='background:" & IF(_FA = "Desarrollo", "#1B487F", "#ffffff") & ";color:" & IF(_FA = "Desarrollo", "#ffffff", "#0B1C35") & ";border:2px solid #F7931E;border-radius:16px;padding:20px;'><div style='font-size:12px;color:#F7931E;font-weight:800;'>En construcci&oacute;n</div><div style='font-size:23px;font-weight:850;margin-top:9px;'>Desarrollo</div><div style='font-size:12px;color:" & IF(_FA = "Desarrollo", "#d9e4f2", "#53657D") & ";line-height:17px;margin-top:8px;'>PDI y acompa&ntilde;amientos en seguimiento.</div></div>" &
 			"<div style='background:" & IF(_FA = "Bienestar y Clima", "#1A3059", "#ffffff") & ";color:" & IF(_FA = "Bienestar y Clima", "#ffffff", "#0B1C35") & ";border:" & IF(_FA = "Bienestar y Clima", "2px solid #F7931E", "1px solid #DCE5F2") & ";border-radius:16px;padding:18px;'><div style='font-size:12px;color:#F7931E;font-weight:800;'>Frente iniciado</div><div style='font-size:23px;font-weight:850;margin-top:7px;'>Bienestar y Clima</div><div style='display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:12px;font-size:10px;color:" & IF(_FA = "Bienestar y Clima", "#ffffff", "#1A3059") & ";'><div style='border-left:3px solid #F7931E;background:" & IF(_FA = "Bienestar y Clima", "rgba(255,255,255,.10)", "#F7F9FC") & ";border-radius:7px;padding:7px;'>Entrevista de Retiro</div><div style='background:" & IF(_FA = "Bienestar y Clima", "rgba(255,255,255,.10)", "#F7F9FC") & ";border-radius:7px;padding:7px;'>Planes Clima Laboral</div><div style='background:" & IF(_FA = "Bienestar y Clima", "rgba(255,255,255,.10)", "#F7F9FC") & ";border-radius:7px;padding:7px;'>eNPS Bienestar</div><div style='background:" & IF(_FA = "Bienestar y Clima", "rgba(255,255,255,.10)", "#F7F9FC") & ";border-radius:7px;padding:7px;'>Plan Bienestar</div></div></div></div>" &
 			"<div style='position:absolute;left:42px;bottom:26px;width:1210px;height:42px;background:#ffffff;border:1px solid #E1E8F2;border-radius:12px;display:flex;align-items:center;padding:0 18px;box-sizing:border-box;color:#53657D;font-size:12px;'><span style='display:inline-block;width:8px;height:8px;background:#F7931E;border-radius:50%;margin-right:10px;'></span>Lectura sugerida: validar cobertura y satisfacci&oacute;n del frente activo antes de avanzar a focos de gesti&oacute;n.</div></div>"
-		displayFolder: 11 HTML Propuestas
+		displayFolder: 11 HTML Content
 		lineageTag: b0132c21-8cd4-4669-8432-92927a52be84
 
 	measure 'HTML Inicio Corporativo Propuesta 3' =
@@ -892,7 +892,7 @@ table Medidas_AD
 			"<div style='background:" & IF(_FA = "Bienestar y Clima", "#1A3059", "#F7F9FC") & ";color:" & IF(_FA = "Bienestar y Clima", "#ffffff", "#1A3059") & ";border:" & IF(_FA = "Bienestar y Clima", "2px solid #F7931E", "1px solid #DCE5F2") & ";border-radius:12px;padding:16px;'><div style='font-size:20px;font-weight:850;'>Bienestar y Clima</div><div style='font-size:11px;color:#F7931E;font-weight:800;margin-top:7px;'>Entrevista de Retiro activa</div><div style='font-size:10px;color:" & IF(_FA = "Bienestar y Clima", "#d9e4f2", "#53657D") & ";line-height:14px;margin-top:8px;'>Planes Clima Laboral &bull; eNPS Bienestar &bull; Plan Bienestar</div></div></div></div>" &
 			"<div style='background:#0B1C35;color:#ffffff;border-radius:14px;padding:24px;'><div style='font-size:12px;color:#F7931E;text-transform:uppercase;font-weight:800;letter-spacing:1px;'>Foco ejecutivo</div><div style='font-size:25px;line-height:30px;font-weight:850;margin-top:12px;'>" & _FocoTitulo & "</div><div style='font-size:13px;line-height:19px;color:#d9e4f2;margin-top:12px;'>" & _FocoDetalle & "</div><div style='margin-top:24px;background:#F7931E;color:#0B1C35;border-radius:22px;padding:9px 14px;display:inline-block;font-size:12px;font-weight:850;'>Ir a decisiones del bloque</div></div></div>" &
 			"<div style='position:absolute;left:276px;top:616px;width:956px;height:58px;background:#F7F9FC;border:1px solid #DCE5F2;border-radius:14px;display:flex;align-items:center;gap:18px;padding:0 22px;box-sizing:border-box;'><div style='font-size:12px;color:#53657D;'>Escalabilidad futura</div><div style='height:26px;width:1px;background:#DCE5F2;'></div><div style='font-size:12px;color:#1A3059;font-weight:750;'>Los frentes pendientes se mantienen visibles como roadmap para evitar una portada aislada del programa corporativo.</div></div></div>"
-		displayFolder: 11 HTML Propuestas
+		displayFolder: 11 HTML Content
 		lineageTag: c9f46c0b-dd6c-4f12-bfec-4558f16abf2f
 
 	measure 'EntrevistaRetiro Total' = COUNTROWS('Fct_EntrevistaRetiro_Unificada')
@@ -1012,27 +1012,30 @@ table Medidas_AD
 		displayFolder: 13 Entrevista Retiro
 		lineageTag: 2252ede9-0a9f-4428-ba44-f1e21971f379
 
-	measure 'HTML Entrevista Retiro Shell' =
+	measure 'HTML Shell BC01 Entrevista de Retiro' =
 			VAR _Html =
 				"<div style='font-family:Outfit,Poppins,Segoe UI,Arial,sans-serif;width:1280px;height:720px;background:#F7F9FC;color:#0B1C35;position:relative;overflow:hidden;'>" &
 				"<div style='position:absolute;left:0;top:0;width:1280px;height:100px;background:#0B1C35;'></div>" &
-				"<div style='position:absolute;left:48px;top:24px;color:#F7931E;font-size:11px;font-weight:850;letter-spacing:2px;text-transform:uppercase;'>BIENESTAR Y CLIMA</div>" &
-				"<div style='position:absolute;left:48px;top:48px;color:#FFFFFF;font-size:25px;font-weight:850;'>Entrevista de Retiro</div>" &
-				"<div style='position:absolute;left:48px;top:78px;color:#D8E4F2;font-size:11px;'>Motivos de salida, oportunidades de mejora y se&ntilde;ales para Gestion Humana.</div>" &
+				"<div style='position:absolute;left:48px;top:24px;color:#F7931E;font-size:11px;font-weight:850;letter-spacing:2px;text-transform:uppercase;'>DASHBOARD CORPORATIVO - GRUPO LEMCO</div>" &
+				"<div style='position:absolute;left:48px;top:48px;color:#FFFFFF;font-size:25px;font-weight:850;line-height:28px;'>Entrevista de Retiro</div>" &
+				"<div style='position:absolute;left:48px;top:78px;color:#D8E4F2;font-size:11px;line-height:14px;'>Motivos de salida, oportunidades de mejora y se&ntilde;ales para Gestion Humana.</div>" &
 				"<div style='position:absolute;right:48px;top:32px;background:#F7931E;color:#0B1C35;border-radius:18px;padding:8px 16px;font-size:11px;font-weight:850;'>Bloque Bienestar y Clima</div>" &
-				"<div style='position:absolute;left:34px;top:106px;width:1212px;height:62px;background:#FFFFFF;border:1px solid #DCE5F2;border-radius:14px;box-shadow:0 6px 18px rgba(11,28,53,0.06);'></div>" &
-				"<div style='position:absolute;left:34px;top:106px;width:7px;height:62px;background:#F7931E;border-radius:14px 0 0 14px;'></div>" &
-				"<div style='position:absolute;left:46px;top:123px;color:#0B1C35;font-size:10px;font-weight:850;letter-spacing:1.2px;text-transform:uppercase;'>Contexto de analisis</div>" &
-				"<div style='position:absolute;left:34px;top:176px;width:1212px;height:72px;background:#FFFFFF;border:1px solid #E1E8F2;border-radius:10px;'></div>" &
-				"<div style='position:absolute;left:34px;top:266px;width:1212px;height:398px;background:#FFFFFF;border:1px solid #E1E8F2;border-radius:10px;'></div>" &
-				"<div style='position:absolute;right:32px;bottom:10px;color:#6B778A;font-size:9.5px;'>Analisis agregado de registros validos. Evitar exposicion de datos personales.</div>" &
+				"<div style='position:absolute;left:48px;top:112px;width:1200px;height:76px;background:#FFFFFF;border:1px solid #DCE5F2;border-radius:14px;box-shadow:0 6px 18px rgba(11,28,53,0.06);'></div>" &
+				"<div style='position:absolute;left:48px;top:112px;width:7px;height:76px;background:#F7931E;border-radius:14px 0 0 14px;'></div>" &
+				"<div style='position:absolute;left:68px;top:127px;color:#0B1C35;font-size:10px;font-weight:850;letter-spacing:1.5px;text-transform:uppercase;'>Contexto de analisis</div>" &
+				"<div style='position:absolute;left:68px;top:148px;width:150px;color:#6B778A;font-size:9.5px;line-height:12px;'>Tipo de retiro, motivo y unidad de negocio.</div>" &
+				"<div style='position:absolute;left:238px;top:121px;width:1050px;height:58px;display:grid;grid-template-columns:repeat(6,1fr);gap:12px;'>" &
+				"<div style='background:#F7FAFD;border:1px solid #E6EEF7;border-radius:8px;'></div><div style='background:#F7FAFD;border:1px solid #E6EEF7;border-radius:8px;'></div><div style='background:#F7FAFD;border:1px solid #E6EEF7;border-radius:8px;'></div><div style='background:#F7FAFD;border:1px solid #E6EEF7;border-radius:8px;'></div><div style='background:#F7FAFD;border:1px solid #E6EEF7;border-radius:8px;'></div><div style='background:#F7FAFD;border:1px solid #E6EEF7;border-radius:8px;'></div>" &
+				"</div>" &
+				"<div style='position:absolute;left:32px;top:198px;width:1216px;height:468px;background:#FFFFFF;border:1px solid #E1E8F2;border-radius:10px;'></div>" &
+				"<div style='position:absolute;left:32px;top:674px;width:1005px;height:40px;background:#FFFFFF;border:1px solid #DCE5F2;border-radius:9px;'></div>" &
 				"</div>"
 			RETURN
 				_Html
-		displayFolder: 12 HTML Plantilla Transversal
+		displayFolder: 11 HTML Content
 		lineageTag: 7c2750e7-b88c-412b-ae31-489e5fab52af
 
-	measure 'HTML BC00 Resumen Bienestar y Clima' =
+	measure 'HTML Shell BC01 Resumen Ejecutivo Bienestar y Clima' =
 			VAR _Html =
 				"<div style='font-family:Outfit,Poppins,Segoe UI,Arial,sans-serif;width:1280px;height:720px;background:#F7F9FC;color:#0B1C35;position:relative;overflow:hidden;'>" &
 				"<div style='position:absolute;left:0;top:0;width:1280px;height:100px;background:#0B1C35;'></div>" &
@@ -1052,7 +1055,7 @@ table Medidas_AD
 				"</div>"
 			RETURN
 				_Html
-		displayFolder: 12 HTML Bienestar
+		displayFolder: 11 HTML Content
 		lineageTag: 92537134-87d1-4c44-b4bb-14e8eb0b754d
 
 	measure 'Home Pagina Resumen Frente' =
@@ -1096,7 +1099,7 @@ table Medidas_AD
 				"</div>"
 			RETURN
 				_Html
-		displayFolder: 12 HTML Plantilla Transversal
+		displayFolder: 11 HTML Content
 		lineageTag: 0e6d34c7-b4c6-4484-a2cd-93ccab223d1b
 
 	measure 'HTML Shell A02 Plan y Ejecucion' =
@@ -1119,7 +1122,7 @@ table Medidas_AD
 				"</div>"
 			RETURN
 				_Html
-		displayFolder: 12 HTML Plantilla Transversal
+		displayFolder: 11 HTML Content
 		lineageTag: b4294c5a-ba94-4a41-a0f6-0d506e4da92b
 
 	measure 'HTML Shell A03 Cobertura y Participacion' =
@@ -1142,7 +1145,7 @@ table Medidas_AD
 				"</div>"
 			RETURN
 				_Html
-		displayFolder: 12 HTML Plantilla Transversal
+		displayFolder: 11 HTML Content
 		lineageTag: f29b2714-cfde-47b1-90be-a445736a3ae0
 
 	measure 'HTML Shell A04 Satisfaccion y Eficacia' =
@@ -1165,7 +1168,7 @@ table Medidas_AD
 				"</div>"
 			RETURN
 				_Html
-		displayFolder: 12 HTML Plantilla Transversal
+		displayFolder: 11 HTML Content
 		lineageTag: ee7c5a55-bcf4-459c-9749-6f9368183eba
 
 	measure 'HTML Shell A05 Induccion y Entrenamiento' =
@@ -1188,7 +1191,7 @@ table Medidas_AD
 				"</div>"
 			RETURN
 				_Html
-		displayFolder: 12 HTML Plantilla Transversal
+		displayFolder: 11 HTML Content
 		lineageTag: 9bb69acb-81c5-4f49-a406-c76eb83f12a8
 
 	measure 'HTML Shell A06 Focos de Gestion' =
@@ -1211,7 +1214,7 @@ table Medidas_AD
 				"</div>"
 			RETURN
 				_Html
-		displayFolder: 12 HTML Plantilla Transversal
+		displayFolder: 11 HTML Content
 		lineageTag: 765d2109-f8a5-4453-8030-c59ed06403f9
 
 	measure 'HTML Shell D01 Resumen Ejecutivo Desarrollo' =
@@ -1234,7 +1237,7 @@ table Medidas_AD
 				"</div>"
 			RETURN
 				_Html
-		displayFolder: 12 HTML Plantilla Transversal
+		displayFolder: 11 HTML Content
 		lineageTag: f66aaec9-4fe0-49bb-aa54-54d10d41637a
 
 	measure 'HTML Shell D02 Estado y Avance PDI' =
@@ -1257,7 +1260,7 @@ table Medidas_AD
 				"</div>"
 			RETURN
 				_Html
-		displayFolder: 12 HTML Plantilla Transversal
+		displayFolder: 11 HTML Content
 		lineageTag: 5c9de129-6d0c-4282-93d6-529ba5e2f3f4
 
 	measure 'HTML Shell D03 Motivos y Seguimiento' =
@@ -1280,7 +1283,7 @@ table Medidas_AD
 				"</div>"
 			RETURN
 				_Html
-		displayFolder: 12 HTML Plantilla Transversal
+		displayFolder: 11 HTML Content
 		lineageTag: a790124c-6ea0-4bff-b73d-210b00cae1fe
 
 	measure 'HTML Shell D04 Focos de Gestion Desarrollo' =
@@ -1303,10 +1306,10 @@ table Medidas_AD
 				"</div>"
 			RETURN
 				_Html
-		displayFolder: 12 HTML Plantilla Transversal
+		displayFolder: 11 HTML Content
 		lineageTag: 6b19d692-c794-4087-a45d-467f947939a8
 
-	measure 'HTML E01 Desempeno Proxima Fase' =
+	measure 'HTML Shell E01 Desempeno Proxima Fase' =
 			VAR _Html =
 				"<div style='font-family:Outfit,Poppins,Segoe UI,Arial,sans-serif;width:1280px;height:720px;background:#F7F9FC;color:#0B1C35;position:relative;overflow:hidden;'>" &
 				"<div style='position:absolute;left:0;top:0;width:1280px;height:100px;background:#0B1C35;'></div>" &
@@ -1320,7 +1323,7 @@ table Medidas_AD
 				"</div>"
 			RETURN
 				_Html
-		displayFolder: 12 HTML Plantilla Transversal
+		displayFolder: 11 HTML Content
 		lineageTag: da689f66-7a5f-4a4e-97f9-8916735a7b97
 
 	column Indice
