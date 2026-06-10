@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "d03a0000000000000003",
   "position": {
-    "x": 158,
-    "y": 42,
-    "z": 3000,
-    "height": 46,
-    "width": 132,
-    "tabOrder": 3000
+    "x": 416,
+    "y": 146,
+    "z": 2000,
+    "height": 38,
+    "width": 156,
+    "tabOrder": 2000
   },
   "visual": {
     "visualType": "slicer",
@@ -26,9 +26,9 @@
                   "Property": "MesNombreCorto"
                 }
               },
+              "queryRef": "Dim_Calendario.MesNombreCorto",
               "nativeQueryRef": "MesNombreCorto",
-              "active": true,
-              "queryRef": "Dim_Calendario.MesNombreCorto"
+              "active": true
             }
           ]
         }

@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "409d75a889fef9ec7c63",
   "position": {
-    "x": 32,
-    "y": 18,
-    "z": 0,
-    "height": 60,
-    "width": 176,
-    "tabOrder": 0
+    "x": 248,
+    "y": 146,
+    "z": 1000,
+    "height": 38,
+    "width": 156,
+    "tabOrder": 1000
   },
   "visual": {
     "visualType": "slicer",
@@ -23,11 +23,11 @@
                       "Entity": "Dim_Calendario"
                     }
                   },
-                  "Property": "Anio"
+                  "Property": "Año"
                 }
               },
-              "queryRef": "Dim_Calendario.Anio",
-              "nativeQueryRef": "Anio",
+              "queryRef": "Dim_Calendario.Año",
+              "nativeQueryRef": "Año",
               "active": true
             }
           ]
@@ -99,7 +99,7 @@
                                   "Source": "d"
                                 }
                               },
-                              "Property": "Anio"
+                              "Property": "Año"
                             }
                           }
                         ],

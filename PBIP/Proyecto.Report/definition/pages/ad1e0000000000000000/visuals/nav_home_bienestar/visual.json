@@ -4,10 +4,10 @@
   "position": {
     "x": 904,
     "y": 680,
-    "z": 90005,
+    "z": 41000,
     "height": 30,
     "width": 344,
-    "tabOrder": 90005
+    "tabOrder": 41000
   },
   "visual": {
     "visualType": "actionButton",
@@ -359,7 +359,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Navegacion: Entrevista de Retiro'"
+                  "Value": "'Navegacion: Bienestar y Clima'"
                 }
               }
             }
@@ -386,14 +386,14 @@
             "navigationSection": {
               "expr": {
                 "Literal": {
-                  "Value": "'ad1ebc000000000001'"
+                  "Value": "'ad1ebc000000000000'"
                 }
               }
             },
             "tooltip": {
               "expr": {
                 "Literal": {
-                  "Value": "'Ir a Entrevista de Retiro'"
+                  "Value": "'Ir a Bienestar y Clima'"
                 }
               }
             },

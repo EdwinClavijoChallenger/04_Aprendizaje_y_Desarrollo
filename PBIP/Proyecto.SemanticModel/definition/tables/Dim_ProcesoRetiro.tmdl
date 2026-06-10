@@ -28,3 +28,4 @@ table Dim_ProcesoRetiro
 				    )
 				RETURN
 				    _Tabla
+

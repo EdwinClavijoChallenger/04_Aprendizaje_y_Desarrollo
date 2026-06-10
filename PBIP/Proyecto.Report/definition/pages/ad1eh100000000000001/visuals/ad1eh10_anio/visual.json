@@ -6,7 +6,7 @@
     "y": 143.81494400587479,
     "z": 1000,
     "height": 28.1990086286029,
-    "width": 80.367174591518264,
+    "width": 97.286579768680014,
     "tabOrder": 1000
   },
   "visual": {
@@ -23,11 +23,11 @@
                       "Entity": "Dim_Calendario"
                     }
                   },
-                  "Property": "Anio"
+                  "Property": "Año"
                 }
               },
-              "queryRef": "Dim_Calendario.Anio",
-              "nativeQueryRef": "Anio",
+              "queryRef": "Dim_Calendario.Año",
+              "nativeQueryRef": "Año",
               "active": true
             }
           ]
@@ -106,7 +106,7 @@
                                   "Source": "d"
                                 }
                               },
-                              "Property": "Anio"
+                              "Property": "Año"
                             }
                           }
                         ],

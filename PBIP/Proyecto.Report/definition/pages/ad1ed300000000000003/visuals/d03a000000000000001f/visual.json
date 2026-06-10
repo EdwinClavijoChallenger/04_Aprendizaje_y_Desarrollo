@@ -3,11 +3,11 @@
   "name": "d03a000000000000001f",
   "position": {
     "x": 658,
-    "y": 208,
-    "z": 10000,
-    "height": 214,
+    "y": 288,
+    "z": 14000,
+    "height": 194,
     "width": 590,
-    "tabOrder": 10000
+    "tabOrder": 14000
   },
   "visual": {
     "visualType": "barChart",
@@ -26,9 +26,9 @@
                   "Property": "Jefe_Inmediato"
                 }
               },
+              "queryRef": "Fct_Seguimiento_PDI.Jefe_Inmediato",
               "nativeQueryRef": "Jefe_Inmediato",
-              "active": true,
-              "queryRef": "Fct_Seguimiento_PDI.Jefe_Inmediato"
+              "active": true
             }
           ]
         },
@@ -45,8 +45,8 @@
                   "Property": "PDI Total"
                 }
               },
-              "nativeQueryRef": "PDI Total",
-              "queryRef": "Medidas_AD.PDI Total"
+              "queryRef": "Medidas_AD.PDI Total",
+              "nativeQueryRef": "PDI Total"
             }
           ]
         }

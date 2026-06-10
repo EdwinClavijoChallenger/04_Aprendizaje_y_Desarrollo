@@ -11,6 +11,46 @@
   },
   "visual": {
     "visualType": "htmlContent443BE3AD55E043BF878BED274D3A6855",
+    "query": {
+      "queryState": {
+        "content": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medidas_AD"
+                    }
+                  },
+                  "Property": "HTML E01 Desempeno Proxima Fase"
+                }
+              },
+              "queryRef": "Medidas_AD.HTML E01 Desempeno Proxima Fase",
+              "nativeQueryRef": "HTML E01 Desempeno Proxima Fase"
+            }
+          ]
+        },
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medidas_AD"
+                    }
+                  },
+                  "Property": "HTML E01 Desempeno Proxima Fase"
+                }
+              },
+              "queryRef": "Medidas_AD.HTML E01 Desempeno Proxima Fase",
+              "nativeQueryRef": "HTML E01 Desempeno Proxima Fase"
+            }
+          ]
+        }
+      }
+    },
     "objects": {
       "contentFormatting": [
         {

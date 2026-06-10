@@ -3,11 +3,11 @@
   "name": "d03a000000000000001e",
   "position": {
     "x": 32,
-    "y": 208,
-    "z": 9000,
-    "height": 214,
+    "y": 288,
+    "z": 13000,
+    "height": 194,
     "width": 590,
-    "tabOrder": 9000
+    "tabOrder": 13000
   },
   "visual": {
     "visualType": "barChart",
@@ -26,9 +26,9 @@
                   "Property": "Motivo_PDI"
                 }
               },
+              "queryRef": "Dim_MotivoPDI.Motivo_PDI",
               "nativeQueryRef": "Motivo_PDI",
-              "active": true,
-              "queryRef": "Dim_MotivoPDI.Motivo_PDI"
+              "active": true
             }
           ]
         },
@@ -45,8 +45,8 @@
                   "Property": "PDI Total"
                 }
               },
-              "nativeQueryRef": "PDI Total",
-              "queryRef": "Medidas_AD.PDI Total"
+              "queryRef": "Medidas_AD.PDI Total",
+              "nativeQueryRef": "PDI Total"
             }
           ]
         }

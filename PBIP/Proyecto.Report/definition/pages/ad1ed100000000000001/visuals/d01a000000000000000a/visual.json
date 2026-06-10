@@ -3,11 +3,11 @@
   "name": "d01a000000000000000a",
   "position": {
     "x": 32,
-    "y": 108,
-    "z": 8000,
+    "y": 206,
+    "z": 7000,
     "height": 58,
     "width": 188,
-    "tabOrder": 8000
+    "tabOrder": 7000
   },
   "visual": {
     "visualType": "card",
@@ -26,8 +26,8 @@
                   "Property": "PDI Total"
                 }
               },
-              "nativeQueryRef": "PDI Total",
-              "queryRef": "Medidas_AD.PDI Total"
+              "queryRef": "Medidas_AD.PDI Total",
+              "nativeQueryRef": "PDI Total"
             }
           ]
         }

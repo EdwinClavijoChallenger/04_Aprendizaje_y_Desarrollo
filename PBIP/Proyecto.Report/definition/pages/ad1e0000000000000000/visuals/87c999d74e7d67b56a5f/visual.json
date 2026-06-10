@@ -1,87 +1,87 @@
 {
-    "$schema":  "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
-    "name":  "87c999d74e7d67b56a5f",
-    "position":  {
-                     "x":  958,
-                     "y":  438,
-                     "z":  32000,
-                     "height":  36,
-                     "width":  270,
-                     "tabOrder":  32000
-                 },
-    "visual":  {
-                   "visualType":  "textbox",
-                   "drillFilterOtherVisuals":  true,
-                   "visualContainerObjects":  {
-                                                  "title":  [
-                                                                {
-                                                                    "properties":  {
-                                                                                       "show":  {
-                                                                                                    "expr":  {
-                                                                                                                 "Literal":  {
-                                                                                                                                 "Value":  "true"
-                                                                                                                             }
-                                                                                                             }
-                                                                                                },
-                                                                                       "text":  {
-                                                                                                    "expr":  {
-                                                                                                                 "Literal":  {
-                                                                                                                                 "Value":  "\u0027\u0027"
-                                                                                                                             }
-                                                                                                             }
-                                                                                                }
-                                                                                   }
-                                                                }
-                                                            ],
-                                                  "visualHeader":  [
-                                                                       {
-                                                                           "properties":  {
-                                                                                              "show":  {
-                                                                                                           "expr":  {
-                                                                                                                        "Literal":  {
-                                                                                                                                        "Value":  "true"
-                                                                                                                                    }
-                                                                                                                    }
-                                                                                                       }
-                                                                                          }
-                                                                       }
-                                                                   ],
-                                                  "visualTooltip":  [
-                                                                        {
-                                                                            "properties":  {
-                                                                                               "show":  {
-                                                                                                            "expr":  {
-                                                                                                                         "Literal":  {
-                                                                                                                                         "Value":  "true"
-                                                                                                                                     }
-                                                                                                                     }
-                                                                                                        }
-                                                                                           }
-                                                                        }
-                                                                    ]
-                                              },
-                   "objects":  {
-                                   "general":  [
-                                                   {
-                                                       "properties":  {
-                                                                          "paragraphs":  [
-                                                                                             {
-                                                                                                 "textRuns":  [
-                                                                                                                  {
-                                                                                                                      "value":  "eNPS de actividades de Bienestar",
-                                                                                                                      "textStyle":  {
-                                                                                                                                        "fontSize":  "9pt",
-                                                                                                                                        "color":  "#1A3059",
-                                                                                                                                        "fontFamily":  "Segoe UI"
-                                                                                                                                    }
-                                                                                                                  }
-                                                                                                              ],
-                                                                                                 "horizontalTextAlignment":  "left"
-                                                                                             }
-                                                                                         ]
-                                                                      }
-                                                   }
-                                               ]
-                               }
-               }
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "87c999d74e7d67b56a5f",
+  "position": {
+    "x": 958,
+    "y": 438,
+    "z": 30000,
+    "height": 36,
+    "width": 270,
+    "tabOrder": 30000
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "eNPS de actividades de Bienestar",
+                    "textStyle": {
+                      "fontSize": "9pt",
+                      "color": "#1A3059",
+                      "fontFamily": "Segoe UI"
+                    }
+                  }
+                ],
+                "horizontalTextAlignment": "left"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "''"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "visualHeader": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "visualTooltip": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
 }

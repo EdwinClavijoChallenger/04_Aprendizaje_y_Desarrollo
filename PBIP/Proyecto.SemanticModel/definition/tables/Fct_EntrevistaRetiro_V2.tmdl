@@ -952,3 +952,4 @@ table Fct_EntrevistaRetiro_V2
 	annotation PBI_NavigationStepName = Navegación
 
 	annotation PBI_ResultType = Table
+

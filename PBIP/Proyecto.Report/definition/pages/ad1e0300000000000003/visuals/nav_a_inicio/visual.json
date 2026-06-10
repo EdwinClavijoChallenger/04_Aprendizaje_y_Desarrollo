@@ -3,9 +3,9 @@
   "name": "nav_a_inicio",
   "position": {
     "x": 32,
-    "y": 680,
+    "y": 684,
     "z": 16000,
-    "height": 30,
+    "height": 28,
     "width": 92,
     "tabOrder": 16000
   },

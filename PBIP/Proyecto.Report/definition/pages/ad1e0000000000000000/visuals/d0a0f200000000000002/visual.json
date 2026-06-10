@@ -4,10 +4,10 @@
   "position": {
     "x": 332,
     "y": 424,
-    "z": 38000,
+    "z": 36000,
     "height": 126,
     "width": 290,
-    "tabOrder": 38000
+    "tabOrder": 36000
   },
   "visual": {
     "visualType": "barChart",
@@ -26,9 +26,9 @@
                   "Property": "Estado_PDI"
                 }
               },
+              "queryRef": "Dim_EstadoPDI.Estado_PDI",
               "nativeQueryRef": "Estado_PDI",
-              "active": true,
-              "queryRef": "Dim_EstadoPDI.Estado_PDI"
+              "active": true
             }
           ]
         },
@@ -45,8 +45,8 @@
                   "Property": "PDI Avance Promedio"
                 }
               },
-              "nativeQueryRef": "PDI Avance Promedio",
-              "queryRef": "Medidas_AD.PDI Avance Promedio"
+              "queryRef": "Medidas_AD.PDI Avance Promedio",
+              "nativeQueryRef": "PDI Avance Promedio"
             }
           ]
         }

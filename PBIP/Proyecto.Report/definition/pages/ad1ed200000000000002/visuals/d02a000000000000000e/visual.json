@@ -3,11 +3,11 @@
   "name": "d02a000000000000000e",
   "position": {
     "x": 848,
-    "y": 108,
-    "z": 8004,
+    "y": 206,
+    "z": 11000,
     "height": 58,
     "width": 188,
-    "tabOrder": 8004
+    "tabOrder": 11000
   },
   "visual": {
     "visualType": "card",
@@ -26,8 +26,8 @@
                   "Property": "PDI Proximos A Vencer"
                 }
               },
-              "nativeQueryRef": "PDI Proximos A Vencer",
-              "queryRef": "Medidas_AD.PDI Proximos A Vencer"
+              "queryRef": "Medidas_AD.PDI Proximos A Vencer",
+              "nativeQueryRef": "PDI Proximos A Vencer"
             }
           ]
         }

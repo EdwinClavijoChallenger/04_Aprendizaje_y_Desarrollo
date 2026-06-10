@@ -539,3 +539,4 @@ table Fct_EntrevistaRetiro_Corporativa
 	annotation PBI_NavigationStepName = Navegación
 
 	annotation PBI_ResultType = Table
+

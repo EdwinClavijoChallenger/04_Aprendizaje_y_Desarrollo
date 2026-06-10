@@ -4,10 +4,10 @@
   "position": {
     "x": 44,
     "y": 510,
-    "z": 3003,
+    "z": 18000,
     "height": 142,
     "width": 360,
-    "tabOrder": 3003
+    "tabOrder": 18000
   },
   "visual": {
     "visualType": "barChart",

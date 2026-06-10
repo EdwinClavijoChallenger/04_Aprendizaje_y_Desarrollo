@@ -24,9 +24,11 @@ Este documento define reglas obligatorias para cualquier IA o asistente que trab
 - Evitar cambios masivos si una correccion puntual es suficiente.
 - Validar que los JSON queden en UTF-8 sin BOM.
 - Validar que los JSON parseen correctamente despues de ediciones manuales.
-- Mantener nomenclatura de paginas por frente: `A` para Aprendizaje, `D` para Desarrollo y `00` para Inicio Corporativo, salvo instruccion explicita distinta.
+- Mantener nomenclatura de paginas por frente: `A` para Aprendizaje, `D` para Desarrollo, `BC` para Bienestar y Clima y `00` para Inicio Corporativo, salvo instruccion explicita distinta.
 - Cada vez que se agregue una pagina nueva, revisar si debe incorporarse al menu de navegacion, al home corporativo o a un acceso secundario. No dejar paginas nuevas sin acceso claro para el usuario final.
 - No cambiar nombres internos de paginas ni su orden sin informar primero el impacto y recibir autorizacion cuando el cambio afecte navegacion o experiencia de usuario.
+- Validar que los archivos TMDL queden en UTF-8 sin BOM. Si un TMDL fue editado fuera de PBI Desktop con una herramienta que use Latin-1, puede generar doble codificacion (patron visible: `Ã©`, `Ã³`, `Â¿` en lugar de caracteres correctos). Corregir con reemplazo directo en el archivo antes de abrir en PBI Desktop.
+- En medidas TMDL, las propiedades `displayFolder` y `lineageTag` deben estar a 2 tabs (nivel de propiedad de medida). Si quedan a 3 tabs o mas quedan dentro del cuerpo DAX y PBI Desktop genera error de parse al abrir la medida.
 
 ## Documentacion
 

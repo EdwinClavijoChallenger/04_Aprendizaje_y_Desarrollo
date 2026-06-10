@@ -3,11 +3,11 @@
   "name": "d01a000000000000000f",
   "position": {
     "x": 1052,
-    "y": 108,
-    "z": 8005,
+    "y": 206,
+    "z": 12000,
     "height": 58,
     "width": 188,
-    "tabOrder": 8005
+    "tabOrder": 12000
   },
   "visual": {
     "visualType": "card",
@@ -26,8 +26,8 @@
                   "Property": "PDI Alertas Criticas"
                 }
               },
-              "nativeQueryRef": "PDI Alertas Criticas",
-              "queryRef": "Medidas_AD.PDI Alertas Criticas"
+              "queryRef": "Medidas_AD.PDI Alertas Criticas",
+              "nativeQueryRef": "PDI Alertas Criticas"
             }
           ]
         }

@@ -63,9 +63,10 @@ El frente Desarrollo inicia con cuatro paginas:
 - `D03 Motivos y Seguimiento`
 - `D04 Focos de Gestion Desarrollo`
 
-El frente Bienestar y Clima inicia con:
+El frente Bienestar y Clima inicia con dos paginas:
 
-- `B01 Entrevista de Retiro`
+- `BC01 Resumen Ejecutivo Bienestar y Clima`
+- `BC01 Entrevista de Retiro`
 
 El modelo incluye dimensiones gerenciales, tabla de medidas `Medidas_AD`, fact consolidada de induccion, relacion entre `Fct_AsistenciaFormacion` y `Dim_ColaboradorHC`, estructura inicial para `Fct_Seguimiento_PDI` y fact homologada `Fct_EntrevistaRetiro_Unificada`.
 

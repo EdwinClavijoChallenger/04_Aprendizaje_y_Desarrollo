@@ -3,9 +3,9 @@
   "name": "7b86ed4fe7e7a3db370f",
   "position": {
     "x": 32,
-    "y": 208,
+    "y": 288,
     "z": 12000,
-    "height": 214,
+    "height": 194,
     "width": 760,
     "tabOrder": 12000
   },
@@ -23,11 +23,11 @@
                       "Entity": "Dim_Calendario"
                     }
                   },
-                  "Property": "AnioMes"
+                  "Property": "AñoMes"
                 }
               },
-              "queryRef": "Dim_Calendario.AnioMes",
-              "nativeQueryRef": "AnioMes",
+              "queryRef": "Dim_Calendario.AñoMes",
+              "nativeQueryRef": "AñoMes",
               "active": true
             }
           ]

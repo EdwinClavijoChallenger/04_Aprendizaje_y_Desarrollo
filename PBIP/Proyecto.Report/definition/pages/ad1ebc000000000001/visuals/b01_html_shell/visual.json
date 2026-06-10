@@ -30,6 +30,24 @@
               "nativeQueryRef": "HTML Entrevista Retiro Shell"
             }
           ]
+        },
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medidas_AD"
+                    }
+                  },
+                  "Property": "HTML Entrevista Retiro Shell"
+                }
+              },
+              "queryRef": "Medidas_AD.HTML Entrevista Retiro Shell",
+              "nativeQueryRef": "HTML Entrevista Retiro Shell"
+            }
+          ]
         }
       }
     },

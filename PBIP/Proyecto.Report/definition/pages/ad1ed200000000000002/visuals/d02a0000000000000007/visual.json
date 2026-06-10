@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "d02a0000000000000007",
   "position": {
-    "x": 840,
-    "y": 42,
-    "z": 7000,
-    "height": 46,
-    "width": 220,
-    "tabOrder": 7000
+    "x": 1088,
+    "y": 146,
+    "z": 6000,
+    "height": 38,
+    "width": 156,
+    "tabOrder": 6000
   },
   "visual": {
     "visualType": "slicer",
@@ -26,9 +26,9 @@
                   "Property": "Motivo_PDI"
                 }
               },
+              "queryRef": "Dim_MotivoPDI.Motivo_PDI",
               "nativeQueryRef": "Motivo_PDI",
-              "active": true,
-              "queryRef": "Dim_MotivoPDI.Motivo_PDI"
+              "active": true
             }
           ]
         }

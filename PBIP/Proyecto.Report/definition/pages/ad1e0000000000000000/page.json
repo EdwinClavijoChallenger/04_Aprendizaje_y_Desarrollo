@@ -4,5 +4,6 @@
   "displayName": "00 Inicio Corporativo - Version anterior",
   "displayOption": "FitToPage",
   "height": 720,
-  "width": 1280
+  "width": 1280,
+  "visibility": "HiddenInViewMode"
 }

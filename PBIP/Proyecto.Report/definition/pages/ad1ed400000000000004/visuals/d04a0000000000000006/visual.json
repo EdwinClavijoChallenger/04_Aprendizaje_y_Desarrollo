@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "d04a0000000000000006",
   "position": {
-    "x": 660,
-    "y": 42,
-    "z": 6000,
-    "height": 46,
-    "width": 170,
-    "tabOrder": 6000
+    "x": 920,
+    "y": 146,
+    "z": 5000,
+    "height": 38,
+    "width": 156,
+    "tabOrder": 5000
   },
   "visual": {
     "visualType": "slicer",
@@ -26,9 +26,9 @@
                   "Property": "Estado_PDI"
                 }
               },
+              "queryRef": "Dim_EstadoPDI.Estado_PDI",
               "nativeQueryRef": "Estado_PDI",
-              "active": true,
-              "queryRef": "Dim_EstadoPDI.Estado_PDI"
+              "active": true
             }
           ]
         }

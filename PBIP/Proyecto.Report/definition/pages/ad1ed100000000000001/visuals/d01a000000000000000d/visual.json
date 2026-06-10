@@ -3,11 +3,11 @@
   "name": "d01a000000000000000d",
   "position": {
     "x": 644,
-    "y": 108,
-    "z": 8003,
+    "y": 206,
+    "z": 10000,
     "height": 58,
     "width": 188,
-    "tabOrder": 8003
+    "tabOrder": 10000
   },
   "visual": {
     "visualType": "card",
@@ -26,8 +26,8 @@
                   "Property": "PDI Avance Promedio"
                 }
               },
-              "nativeQueryRef": "PDI Avance Promedio",
-              "queryRef": "Medidas_AD.PDI Avance Promedio"
+              "queryRef": "Medidas_AD.PDI Avance Promedio",
+              "nativeQueryRef": "PDI Avance Promedio"
             }
           ]
         }

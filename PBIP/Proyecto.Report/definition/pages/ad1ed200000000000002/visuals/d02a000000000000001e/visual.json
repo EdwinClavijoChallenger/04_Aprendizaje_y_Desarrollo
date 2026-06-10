@@ -3,11 +3,11 @@
   "name": "d02a000000000000001e",
   "position": {
     "x": 32,
-    "y": 208,
-    "z": 9000,
-    "height": 214,
+    "y": 288,
+    "z": 13000,
+    "height": 194,
     "width": 590,
-    "tabOrder": 9000
+    "tabOrder": 13000
   },
   "visual": {
     "visualType": "barChart",
@@ -26,9 +26,9 @@
                   "Property": "Empresa"
                 }
               },
+              "queryRef": "Dim_Empresa.Empresa",
               "nativeQueryRef": "Empresa",
-              "active": true,
-              "queryRef": "Dim_Empresa.Empresa"
+              "active": true
             }
           ]
         },
@@ -45,8 +45,8 @@
                   "Property": "PDI Avance Promedio"
                 }
               },
-              "nativeQueryRef": "PDI Avance Promedio",
-              "queryRef": "Medidas_AD.PDI Avance Promedio"
+              "queryRef": "Medidas_AD.PDI Avance Promedio",
+              "nativeQueryRef": "PDI Avance Promedio"
             }
           ]
         }

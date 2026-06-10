@@ -136,7 +136,7 @@ table Medidas_AD
 			VAR _Suma =
 			    SUM('Fct_EncuestaFormacion'[¿Qué tan satisfecho te encuentras con el dominio del tema por parte del facilitador?]) +
 			    SUM('Fct_EncuestaFormacion'[¿Qué tan satisfecho te encuentras con la habilidad para comunicarse y transmitir ideas por parte del facilitador?]) +
-			    SUM('Fct_EncuestaFormacion'[¿Qué tan satisfecho te encuentras con las actividades o ejercicios por parte del facilitador?]) +
+			    SUM('Fct_EncuestaFormacion'[¿Qué tan satisfecho te encuentras con las actividades o ejercicios por parte del facilitador?]) +
 			    SUM('Fct_EncuestaFormacion'[¿Qué tan satisfecho te encuentras con el uso de ayudas didácticas por parte del facilitador?]) +
 			    SUM('Fct_EncuestaFormacion'[¿Qué tan satisfecho te encuentras con la resolución de dudas u observaciones del facilitador?]) +
 			    SUM('Fct_EncuestaFormacion'[¿Qué tan satisfecho te encuentras con el cumplimiento del programa propuesto?]) +
@@ -144,12 +144,12 @@ table Medidas_AD
 			    SUM('Fct_EncuestaFormacion'[¿Qué tan oportuna fue la información respecto a fechas, horarios y lugar?]) +
 			    SUM('Fct_EncuestaFormacion'[¿Qué tan satisfecho te encuentras con el logro de los objetivos propuestos?]) +
 			    SUM('Fct_EncuestaFormacion'[¿Qué tan satisfecho te encuentras con la contribución del programa para tu desarrollo personal y/o profesional?]) +
-			    SUM('Fct_EncuestaFormacion'[¿Qué tan satisfecho te encuentras con el acompañamiento de la Universidad Challenger en tu desarrollo personal y/o profesional?]) +
+			    SUM('Fct_EncuestaFormacion'[¿Qué tan satisfecho te encuentras con el acompañamiento de la Universidad Challenger en tu desarrollo personal y/o profesional?]) +
 			    SUM('Fct_EncuestaFormacion'[En general, ¿Qué tan satisfecho te encuentras con la formación recibida?])
 			VAR _Conteo =
 			    COUNT('Fct_EncuestaFormacion'[¿Qué tan satisfecho te encuentras con el dominio del tema por parte del facilitador?]) +
 			    COUNT('Fct_EncuestaFormacion'[¿Qué tan satisfecho te encuentras con la habilidad para comunicarse y transmitir ideas por parte del facilitador?]) +
-			    COUNT('Fct_EncuestaFormacion'[¿Qué tan satisfecho te encuentras con las actividades o ejercicios por parte del facilitador?]) +
+			    COUNT('Fct_EncuestaFormacion'[¿Qué tan satisfecho te encuentras con las actividades o ejercicios por parte del facilitador?]) +
 			    COUNT('Fct_EncuestaFormacion'[¿Qué tan satisfecho te encuentras con el uso de ayudas didácticas por parte del facilitador?]) +
 			    COUNT('Fct_EncuestaFormacion'[¿Qué tan satisfecho te encuentras con la resolución de dudas u observaciones del facilitador?]) +
 			    COUNT('Fct_EncuestaFormacion'[¿Qué tan satisfecho te encuentras con el cumplimiento del programa propuesto?]) +
@@ -157,7 +157,7 @@ table Medidas_AD
 			    COUNT('Fct_EncuestaFormacion'[¿Qué tan oportuna fue la información respecto a fechas, horarios y lugar?]) +
 			    COUNT('Fct_EncuestaFormacion'[¿Qué tan satisfecho te encuentras con el logro de los objetivos propuestos?]) +
 			    COUNT('Fct_EncuestaFormacion'[¿Qué tan satisfecho te encuentras con la contribución del programa para tu desarrollo personal y/o profesional?]) +
-			    COUNT('Fct_EncuestaFormacion'[¿Qué tan satisfecho te encuentras con el acompañamiento de la Universidad Challenger en tu desarrollo personal y/o profesional?]) +
+			    COUNT('Fct_EncuestaFormacion'[¿Qué tan satisfecho te encuentras con el acompañamiento de la Universidad Challenger en tu desarrollo personal y/o profesional?]) +
 			    COUNT('Fct_EncuestaFormacion'[En general, ¿Qué tan satisfecho te encuentras con la formación recibida?])
 			RETURN
 			    DIVIDE(_Suma, _Conteo)
@@ -752,7 +752,7 @@ table Medidas_AD
 			        _FA,
 			        "Aprendizaje", "Ver tablero completo de Aprendizaje",
 			        "Desarrollo", "Ver resumen ejecutivo de Desarrollo",
-			        "Bienestar y Clima", "Ver Entrevista de Retiro",
+			        "Bienestar y Clima", "Ver Bienestar y Clima",
 			        "Desempeno", "Ver frente Desempe&ntilde;o",
 			        "Ver tablero completo de Aprendizaje"
 			    )
@@ -830,33 +830,40 @@ table Medidas_AD
 		lineageTag: 1cb83d75-76db-4da5-b3ad-558aa192e4d5
 
 	measure 'HTML Inicio Corporativo Propuesta 2' =
+			VAR _FA = SELECTEDVALUE('Dim_Frente_Home'[Frente], "Aprendizaje")
 			VAR _Horas = IF(ISBLANK([Plan Horas Formacion]), "-", FORMAT([Plan Horas Formacion], "#,0"))
 			VAR _Cobertura = IF(ISBLANK([% Cobertura]), "-", FORMAT([% Cobertura], "0.0%"))
 			VAR _Satisfaccion = IF(ISBLANK([Encuesta Favorabilidad]), "-", FORMAT([Encuesta Favorabilidad], "0.0%"))
 			VAR _Entrenamiento = IF(ISBLANK([Induccion Porcentaje Entrenamiento Neto]), "-", FORMAT([Induccion Porcentaje Entrenamiento Neto], "0.0%"))
 			VAR _IndiceAprendizaje = IF(ISBLANK([KPI Indice Aprendizaje]), "-", FORMAT([KPI Indice Aprendizaje], "0.0%"))
 			VAR _IndiceDesarrollo = IF(ISBLANK([KPI Indice Desarrollo]), "-", FORMAT([KPI Indice Desarrollo], "0.0%"))
+			VAR _FrenteTitulo = SWITCH(_FA, "Desempeno", "Desempe&ntilde;o", "Bienestar y Clima", "Bienestar y Clima", "Desarrollo", "Desarrollo", "Aprendizaje")
+			VAR _FrenteEstado = SWITCH(_FA, "Aprendizaje", "Frente activo", "Desarrollo", "En construcci&oacute;n", "Bienestar y Clima", "Frente iniciado", "Desempeno", "Pr&oacute;xima fase", "Frente activo")
+			VAR _FrenteDesc = SWITCH(_FA, "Aprendizaje", "Indicadores de formaci&oacute;n, cobertura, satisfacci&oacute;n y entrenamiento.", "Desarrollo", "Seguimiento de PDI, avance, acompa&ntilde;amientos y alertas.", "Bienestar y Clima", "Entrevista de Retiro, clima laboral, eNPS y plan de bienestar.", "Desempeno", "Espacio reservado para evaluaci&oacute;n y seguimiento gerencial.", "Indicadores corporativos del frente seleccionado.")
+			VAR _ValorPrincipal = SWITCH(_FA, "Aprendizaje", _IndiceAprendizaje, "Desarrollo", _IndiceDesarrollo, "Bienestar y Clima", "Activo", "Desempeno", "Roadmap", _IndiceAprendizaje)
+			VAR _ValorSecundario = SWITCH(_FA, "Aprendizaje", _Entrenamiento, "Desarrollo", _IndiceDesarrollo, "Bienestar y Clima", "Retiro", "Desempeno", "2026", _Entrenamiento)
 			RETURN
 			"<div style='width:1280px;height:720px;box-sizing:border-box;position:relative;background:#F4F7FB;font-family:Outfit,Segoe UI,Arial,sans-serif;color:#0B1C35;overflow:hidden;'>" &
 			"<div style='position:absolute;left:0;top:0;width:1280px;height:220px;background:linear-gradient(135deg,#000032 0%,#1A3059 54%,#1B487F 100%);color:#ffffff;'>" &
 			"<div style='position:absolute;left:42px;top:26px;width:600px;'><div style='font-size:12px;color:#F7931E;letter-spacing:2px;text-transform:uppercase;font-weight:800;'>Grupo LEMCO | People Analytics</div><div style='font-size:35px;line-height:41px;font-weight:850;margin-top:8px;'>Dashboard Corporativo de Desarrollo Organizacional</div><div style='font-size:14px;line-height:20px;color:#dbe6f5;margin-top:12px;width:86%;'>Portada ejecutiva para monitorear frentes de gesti&oacute;n humana con lectura r&aacute;pida, comparaci&oacute;n y priorizaci&oacute;n.</div></div>" &
-			"<div style='position:absolute;right:42px;top:34px;width:320px;height:138px;background:rgba(255,255,255,.11);border:1px solid rgba(255,255,255,.25);border-radius:14px;padding:18px;box-sizing:border-box;'><div style='font-size:12px;color:#F7931E;font-weight:800;'>Frente activo</div><div style='font-size:28px;font-weight:850;margin-top:4px;'>Aprendizaje</div><div style='display:flex;gap:10px;margin-top:18px;'><div style='flex:1;'><div style='font-size:10px;color:#bfd0e4;'>Indice</div><div style='font-size:22px;font-weight:800;'>" & _IndiceAprendizaje & "</div></div><div style='flex:1;'><div style='font-size:10px;color:#bfd0e4;'>Desarrollo</div><div style='font-size:22px;font-weight:800;'>" & _IndiceDesarrollo & "</div></div></div></div></div>" &
+			"<div style='position:absolute;right:42px;top:34px;width:320px;height:138px;background:rgba(255,255,255,.11);border:1px solid rgba(255,255,255,.25);border-radius:14px;padding:18px;box-sizing:border-box;'><div style='font-size:12px;color:#F7931E;font-weight:800;'>" & _FrenteEstado & "</div><div style='font-size:28px;font-weight:850;margin-top:4px;'>" & _FrenteTitulo & "</div><div style='display:flex;gap:10px;margin-top:18px;'><div style='flex:1;'><div style='font-size:10px;color:#bfd0e4;'>Indicador</div><div style='font-size:22px;font-weight:800;'>" & _ValorPrincipal & "</div></div><div style='flex:1;'><div style='font-size:10px;color:#bfd0e4;'>Estado</div><div style='font-size:22px;font-weight:800;'>" & _ValorSecundario & "</div></div></div></div></div>" &
 			"<div style='position:absolute;left:36px;top:136px;width:1212px;height:92px;background:#ffffff;border-radius:14px;box-shadow:0 14px 38px rgba(11,28,53,.16);border:1px solid #DCE5F2;'><div style='position:absolute;left:18px;top:12px;font-size:12px;font-weight:800;color:#1A3059;text-transform:uppercase;letter-spacing:.8px;'>Explorar por</div></div>" &
 			"<div style='position:absolute;left:42px;top:256px;width:1210px;height:164px;display:grid;grid-template-columns:1.2fr .8fr .8fr .8fr;gap:16px;'>" &
-			"<div style='background:#ffffff;border-radius:14px;border:1px solid #E1E8F2;padding:22px;box-shadow:0 8px 24px rgba(11,28,53,.07);'><div style='font-size:13px;color:#F7931E;font-weight:800;'>Aprendizaje</div><div style='font-size:25px;font-weight:850;margin-top:4px;'>Gestion activa del MVP</div><div style='font-size:13px;color:#53657D;line-height:18px;margin-top:8px;'>Indicadores de formaci&oacute;n, cobertura, satisfacci&oacute;n y entrenamiento.</div><div style='height:7px;background:#E8EEF6;border-radius:8px;margin-top:22px;'><div style='width:78%;height:7px;background:#F7931E;border-radius:8px;'></div></div></div>" &
+			"<div style='background:#ffffff;border-radius:14px;border:1px solid #E1E8F2;padding:22px;box-shadow:0 8px 24px rgba(11,28,53,.07);'><div style='font-size:13px;color:#F7931E;font-weight:800;'>" & _FrenteTitulo & "</div><div style='font-size:25px;font-weight:850;margin-top:4px;'>" & SWITCH(_FA, "Aprendizaje", "Gesti&oacute;n activa del MVP", "Desarrollo", "Desarrollo en construcci&oacute;n", "Bienestar y Clima", "Escucha y clima iniciado", "Desempeno", "Roadmap de desempe&ntilde;o", "Gesti&oacute;n corporativa") & "</div><div style='font-size:13px;color:#53657D;line-height:18px;margin-top:8px;'>" & _FrenteDesc & "</div><div style='height:7px;background:#E8EEF6;border-radius:8px;margin-top:22px;'><div style='width:" & SWITCH(_FA, "Aprendizaje", "78%", "Desarrollo", "42%", "Bienestar y Clima", "35%", "Desempeno", "18%", "78%") & ";height:7px;background:#F7931E;border-radius:8px;'></div></div></div>" &
 			"<div style='background:#ffffff;border-radius:14px;border:1px solid #E1E8F2;padding:20px;'><div style='font-size:12px;color:#53657D;'>Horas</div><div style='font-size:34px;font-weight:850;color:#1B487F;'>" & _Horas & "</div><div style='font-size:12px;color:#53657D;margin-top:8px;'>Formaci&oacute;n planificada y ejecutada.</div></div>" &
 			"<div style='background:#ffffff;border-radius:14px;border:1px solid #E1E8F2;padding:20px;'><div style='font-size:12px;color:#53657D;'>Cobertura</div><div style='font-size:34px;font-weight:850;color:#1B487F;'>" & _Cobertura & "</div><div style='font-size:12px;color:#53657D;margin-top:8px;'>Asistencia frente al p&uacute;blico objetivo.</div></div>" &
 			"<div style='background:#ffffff;border-radius:14px;border:1px solid #E1E8F2;padding:20px;'><div style='font-size:12px;color:#53657D;'>Satisfacci&oacute;n</div><div style='font-size:34px;font-weight:850;color:#1B487F;'>" & _Satisfaccion & "</div><div style='font-size:12px;color:#53657D;margin-top:8px;'>Favorabilidad de las respuestas.</div></div></div>" &
 			"<div style='position:absolute;left:42px;top:448px;width:1210px;height:164px;display:grid;grid-template-columns:repeat(4,1fr);gap:16px;'>" &
-			"<div style='background:#0B1C35;color:#ffffff;border-radius:16px;padding:20px;'><div style='font-size:12px;color:#F7931E;font-weight:800;'>Activo</div><div style='font-size:23px;font-weight:850;margin-top:9px;'>Aprendizaje</div><div style='font-size:12px;color:#cbd8e8;line-height:17px;margin-top:8px;'>Entrenamiento neto: " & _Entrenamiento & ".</div></div>" &
-			"<div style='background:#ffffff;border:1px solid #DCE5F2;border-radius:16px;padding:20px;'><div style='font-size:12px;color:#1B487F;font-weight:800;'>Pr&oacute;xima fase</div><div style='font-size:23px;font-weight:850;margin-top:9px;'>Desempe&ntilde;o</div><div style='font-size:12px;color:#53657D;line-height:17px;margin-top:8px;'>Espacio reservado para evaluaci&oacute;n y seguimiento.</div></div>" &
-			"<div style='background:#ffffff;border:1px solid #F7931E;border-radius:16px;padding:20px;'><div style='font-size:12px;color:#F7931E;font-weight:800;'>En construcci&oacute;n</div><div style='font-size:23px;font-weight:850;margin-top:9px;'>Desarrollo</div><div style='font-size:12px;color:#53657D;line-height:17px;margin-top:8px;'>PDI y acompa&ntilde;amientos en seguimiento.</div></div>" &
-			"<div style='background:#ffffff;border:1px solid #DCE5F2;border-radius:16px;padding:18px;'><div style='font-size:12px;color:#F7931E;font-weight:800;'>Frente iniciado</div><div style='font-size:23px;font-weight:850;margin-top:7px;'>Bienestar y Clima</div><div style='display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:12px;font-size:10px;color:#1A3059;'><div style='border-left:3px solid #F7931E;background:#F7F9FC;border-radius:7px;padding:7px;'>Entrevista de Retiro</div><div style='background:#F7F9FC;border-radius:7px;padding:7px;'>Planes Clima Laboral</div><div style='background:#F7F9FC;border-radius:7px;padding:7px;'>eNPS Bienestar</div><div style='background:#F7F9FC;border-radius:7px;padding:7px;'>Plan Bienestar</div></div></div></div>" &
+			"<div style='background:" & IF(_FA = "Aprendizaje", "#0B1C35", "#ffffff") & ";color:" & IF(_FA = "Aprendizaje", "#ffffff", "#0B1C35") & ";border:" & IF(_FA = "Aprendizaje", "2px solid #F7931E", "1px solid #DCE5F2") & ";border-radius:16px;padding:20px;'><div style='font-size:12px;color:#F7931E;font-weight:800;'>" & IF(_FA = "Aprendizaje", "Activo", "MVP") & "</div><div style='font-size:23px;font-weight:850;margin-top:9px;'>Aprendizaje</div><div style='font-size:12px;color:" & IF(_FA = "Aprendizaje", "#cbd8e8", "#53657D") & ";line-height:17px;margin-top:8px;'>Entrenamiento neto: " & _Entrenamiento & ".</div></div>" &
+			"<div style='background:" & IF(_FA = "Desempeno", "#1A3059", "#ffffff") & ";color:" & IF(_FA = "Desempeno", "#ffffff", "#0B1C35") & ";border:" & IF(_FA = "Desempeno", "2px solid #F7931E", "1px solid #DCE5F2") & ";border-radius:16px;padding:20px;'><div style='font-size:12px;color:" & IF(_FA = "Desempeno", "#F7931E", "#1B487F") & ";font-weight:800;'>Pr&oacute;xima fase</div><div style='font-size:23px;font-weight:850;margin-top:9px;'>Desempe&ntilde;o</div><div style='font-size:12px;color:" & IF(_FA = "Desempeno", "#d9e4f2", "#53657D") & ";line-height:17px;margin-top:8px;'>Espacio reservado para evaluaci&oacute;n y seguimiento.</div></div>" &
+			"<div style='background:" & IF(_FA = "Desarrollo", "#1B487F", "#ffffff") & ";color:" & IF(_FA = "Desarrollo", "#ffffff", "#0B1C35") & ";border:2px solid #F7931E;border-radius:16px;padding:20px;'><div style='font-size:12px;color:#F7931E;font-weight:800;'>En construcci&oacute;n</div><div style='font-size:23px;font-weight:850;margin-top:9px;'>Desarrollo</div><div style='font-size:12px;color:" & IF(_FA = "Desarrollo", "#d9e4f2", "#53657D") & ";line-height:17px;margin-top:8px;'>PDI y acompa&ntilde;amientos en seguimiento.</div></div>" &
+			"<div style='background:" & IF(_FA = "Bienestar y Clima", "#1A3059", "#ffffff") & ";color:" & IF(_FA = "Bienestar y Clima", "#ffffff", "#0B1C35") & ";border:" & IF(_FA = "Bienestar y Clima", "2px solid #F7931E", "1px solid #DCE5F2") & ";border-radius:16px;padding:18px;'><div style='font-size:12px;color:#F7931E;font-weight:800;'>Frente iniciado</div><div style='font-size:23px;font-weight:850;margin-top:7px;'>Bienestar y Clima</div><div style='display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:12px;font-size:10px;color:" & IF(_FA = "Bienestar y Clima", "#ffffff", "#1A3059") & ";'><div style='border-left:3px solid #F7931E;background:" & IF(_FA = "Bienestar y Clima", "rgba(255,255,255,.10)", "#F7F9FC") & ";border-radius:7px;padding:7px;'>Entrevista de Retiro</div><div style='background:" & IF(_FA = "Bienestar y Clima", "rgba(255,255,255,.10)", "#F7F9FC") & ";border-radius:7px;padding:7px;'>Planes Clima Laboral</div><div style='background:" & IF(_FA = "Bienestar y Clima", "rgba(255,255,255,.10)", "#F7F9FC") & ";border-radius:7px;padding:7px;'>eNPS Bienestar</div><div style='background:" & IF(_FA = "Bienestar y Clima", "rgba(255,255,255,.10)", "#F7F9FC") & ";border-radius:7px;padding:7px;'>Plan Bienestar</div></div></div></div>" &
 			"<div style='position:absolute;left:42px;bottom:26px;width:1210px;height:42px;background:#ffffff;border:1px solid #E1E8F2;border-radius:12px;display:flex;align-items:center;padding:0 18px;box-sizing:border-box;color:#53657D;font-size:12px;'><span style='display:inline-block;width:8px;height:8px;background:#F7931E;border-radius:50%;margin-right:10px;'></span>Lectura sugerida: validar cobertura y satisfacci&oacute;n del frente activo antes de avanzar a focos de gesti&oacute;n.</div></div>"
 		displayFolder: 11 HTML Propuestas
 		lineageTag: b0132c21-8cd4-4669-8432-92927a52be84
 
 	measure 'HTML Inicio Corporativo Propuesta 3' =
+			VAR _FA = SELECTEDVALUE('Dim_Frente_Home'[Frente], "Aprendizaje")
 			VAR _Horas = IF(ISBLANK([Plan Horas Formacion]), "-", FORMAT([Plan Horas Formacion], "#,0"))
 			VAR _Cobertura = IF(ISBLANK([% Cobertura]), "-", FORMAT([% Cobertura], "0.0%"))
 			VAR _Satisfaccion = IF(ISBLANK([Encuesta Favorabilidad]), "-", FORMAT([Encuesta Favorabilidad], "0.0%"))
@@ -864,21 +871,26 @@ table Medidas_AD
 			VAR _Entrenamiento = IF(ISBLANK([Induccion Porcentaje Entrenamiento Neto]), "-", FORMAT([Induccion Porcentaje Entrenamiento Neto], "0.0%"))
 			VAR _PDI = IF(ISBLANK([PDI Total]), "-", FORMAT([PDI Total], "#,0"))
 			VAR _AlertasPDI = IF(ISBLANK([PDI Alertas Criticas]), "-", FORMAT([PDI Alertas Criticas], "#,0"))
+			VAR _FrenteTitulo = SWITCH(_FA, "Desempeno", "Desempe&ntilde;o", "Bienestar y Clima", "Bienestar y Clima", "Desarrollo", "Desarrollo", "Aprendizaje")
+			VAR _FrenteDesc = SWITCH(_FA, "Aprendizaje", "Lectura integrada de formaci&oacute;n, cobertura, satisfacci&oacute;n, onboarding y entrenamiento.", "Desarrollo", "Planes de Desarrollo Individual, avance, acompa&ntilde;amientos y alertas.", "Bienestar y Clima", "Entrevista de Retiro activa, clima laboral, eNPS y plan de bienestar.", "Desempeno", "Evaluaci&oacute;n de desempe&ntilde;o, metas y seguimiento gerencial.", "Lectura integrada del frente seleccionado.")
+			VAR _EstadoActual = SWITCH(_FA, "Aprendizaje", "Aprendizaje MVP", "Desarrollo", "Desarrollo en construcci&oacute;n", "Bienestar y Clima", "Bienestar iniciado", "Desempeno", "Desempe&ntilde;o roadmap", "Aprendizaje MVP")
+			VAR _FocoTitulo = SWITCH(_FA, "Aprendizaje", "Priorizar brechas del frente activo", "Desarrollo", "Acelerar seguimiento PDI", "Bienestar y Clima", "Escuchar motivos de retiro y clima", "Desempeno", "Preparar modelo de seguimiento", "Priorizar brechas del frente activo")
+			VAR _FocoDetalle = SWITCH(_FA, "Aprendizaje", "Entrenamiento neto " & _Entrenamiento & ", cobertura " & _Cobertura & " y satisfacci&oacute;n " & _Satisfaccion & " deben orientar la conversaci&oacute;n gerencial.", "Desarrollo", _PDI & " PDI activos y " & _AlertasPDI & " alertas requieren lectura priorizada por &aacute;rea, motivo y jefe.", "Bienestar y Clima", "La entrevista de retiro debe alimentar oportunidades de mejora, clima laboral, eNPS y plan de bienestar.", "Desempeno", "Este frente se conserva como roadmap para la siguiente fase de medici&oacute;n y seguimiento.", "Revisar indicadores del frente seleccionado.")
 			RETURN
 			"<div style='width:1280px;height:720px;box-sizing:border-box;position:relative;background:#ffffff;font-family:Outfit,Segoe UI,Arial,sans-serif;color:#0B1C35;overflow:hidden;'>" &
-			"<div style='position:absolute;left:0;top:0;width:250px;height:720px;background:#0B1C35;color:#ffffff;padding:32px 24px;box-sizing:border-box;'><div style='font-size:11px;color:#F7931E;letter-spacing:1.7px;text-transform:uppercase;font-weight:800;'>Home estrategico</div><div style='font-size:28px;line-height:32px;font-weight:850;margin-top:12px;'>Mapa de frentes</div><div style='font-size:13px;color:#c8d6e8;line-height:19px;margin-top:16px;'>Una vista madre para navegar la evoluci&oacute;n del Dashboard Corporativo.</div><div style='position:absolute;bottom:34px;left:24px;right:24px;border-top:1px solid rgba(255,255,255,.18);padding-top:18px;font-size:12px;color:#c8d6e8;'>Estado actual<br><span style='color:#F7931E;font-size:20px;font-weight:850;'>Aprendizaje MVP</span></div></div>" &
+			"<div style='position:absolute;left:0;top:0;width:250px;height:720px;background:#0B1C35;color:#ffffff;padding:32px 24px;box-sizing:border-box;'><div style='font-size:11px;color:#F7931E;letter-spacing:1.7px;text-transform:uppercase;font-weight:800;'>Home estrategico</div><div style='font-size:28px;line-height:32px;font-weight:850;margin-top:12px;'>Mapa de frentes</div><div style='font-size:13px;color:#c8d6e8;line-height:19px;margin-top:16px;'>Una vista madre para navegar la evoluci&oacute;n del Dashboard Corporativo.</div><div style='position:absolute;bottom:34px;left:24px;right:24px;border-top:1px solid rgba(255,255,255,.18);padding-top:18px;font-size:12px;color:#c8d6e8;'>Estado actual<br><span style='color:#F7931E;font-size:20px;font-weight:850;'>" & _EstadoActual & "</span></div></div>" &
 			"<div style='position:absolute;left:276px;top:26px;width:956px;height:76px;background:#F7F9FC;border:1px solid #DCE5F2;border-radius:14px;box-sizing:border-box;'><div style='position:absolute;left:20px;top:10px;font-size:12px;font-weight:800;color:#1A3059;text-transform:uppercase;letter-spacing:.8px;'>Filtros para lectura corporativa</div></div>" &
 			"<div style='position:absolute;left:276px;top:126px;width:956px;height:168px;display:grid;grid-template-columns:1.15fr 1fr 1fr;gap:16px;'>" &
-			"<div style='background:#1A3059;color:#ffffff;border-radius:14px;padding:22px;box-shadow:0 12px 30px rgba(11,28,53,.14);'><div style='font-size:12px;color:#F7931E;font-weight:800;'>Frente activo</div><div style='font-size:30px;font-weight:850;margin-top:6px;'>Aprendizaje</div><div style='font-size:12px;color:#d9e4f2;line-height:18px;margin-top:8px;'>Lectura integrada de formaci&oacute;n, cobertura, satisfacci&oacute;n, onboarding y entrenamiento.</div></div>" &
+			"<div style='background:#1A3059;color:#ffffff;border-radius:14px;padding:22px;box-shadow:0 12px 30px rgba(11,28,53,.14);'><div style='font-size:12px;color:#F7931E;font-weight:800;'>" & SWITCH(_FA, "Aprendizaje", "Frente activo", "Desarrollo", "En construcci&oacute;n", "Bienestar y Clima", "Frente iniciado", "Desempeno", "Pr&oacute;xima fase", "Frente activo") & "</div><div style='font-size:30px;font-weight:850;margin-top:6px;'>" & _FrenteTitulo & "</div><div style='font-size:12px;color:#d9e4f2;line-height:18px;margin-top:8px;'>" & _FrenteDesc & "</div></div>" &
 			"<div style='background:#ffffff;border:1px solid #DCE5F2;border-radius:14px;padding:20px;'><div style='font-size:12px;color:#53657D;'>Horas de formaci&oacute;n</div><div style='font-size:34px;font-weight:850;color:#1B487F;margin-top:8px;'>" & _Horas & "</div><div style='height:5px;background:#F7931E;border-radius:8px;margin-top:18px;width:72%;'></div></div>" &
 			"<div style='background:#ffffff;border:1px solid #DCE5F2;border-radius:14px;padding:20px;'><div style='font-size:12px;color:#53657D;'>Cobertura / satisfacci&oacute;n</div><div style='display:flex;gap:20px;margin-top:14px;'><div><div style='font-size:27px;font-weight:850;color:#1B487F;'>" & _Cobertura & "</div><div style='font-size:11px;color:#53657D;'>Cobertura</div></div><div><div style='font-size:27px;font-weight:850;color:#1B487F;'>" & _Satisfaccion & "</div><div style='font-size:11px;color:#53657D;'>Satisfacci&oacute;n</div></div></div></div></div>" &
 			"<div style='position:absolute;left:276px;top:320px;width:956px;height:268px;display:grid;grid-template-columns:1.05fr 1fr;gap:18px;'>" &
 			"<div style='background:#ffffff;border:1px solid #E1E8F2;border-radius:14px;padding:24px;box-shadow:0 10px 28px rgba(11,28,53,.06);'><div style='font-size:12px;color:#F7931E;text-transform:uppercase;font-weight:800;letter-spacing:1px;'>Ruta corporativa</div><div style='display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:18px;'>" &
-			"<div style='background:#0B1C35;color:#ffffff;border-radius:12px;padding:18px;'><div style='font-size:20px;font-weight:850;'>Aprendizaje</div><div style='font-size:11px;color:#cbd8e8;margin-top:7px;'>Activo | " & _Onboarding & " onboarding</div></div>" &
-			"<div style='background:#F7F9FC;border:1px solid #DCE5F2;border-radius:12px;padding:18px;'><div style='font-size:20px;font-weight:850;color:#1A3059;'>Desempe&ntilde;o</div><div style='font-size:11px;color:#53657D;margin-top:7px;'>Pr&oacute;xima fase</div></div>" &
-			"<div style='background:#FFF7EE;border:1px solid #F7931E;border-radius:12px;padding:18px;'><div style='font-size:20px;font-weight:850;color:#1A3059;'>Desarrollo</div><div style='font-size:11px;color:#9D5600;margin-top:7px;'>" & _PDI & " PDI | " & _AlertasPDI & " alertas</div></div>" &
-			"<div style='background:#F7F9FC;border:1px solid #DCE5F2;border-radius:12px;padding:16px;'><div style='font-size:20px;font-weight:850;color:#1A3059;'>Bienestar y Clima</div><div style='font-size:11px;color:#F7931E;font-weight:800;margin-top:7px;'>Entrevista de Retiro activa</div><div style='font-size:10px;color:#53657D;line-height:14px;margin-top:8px;'>Planes Clima Laboral &bull; eNPS Bienestar &bull; Plan Bienestar</div></div></div></div>" &
-			"<div style='background:#0B1C35;color:#ffffff;border-radius:14px;padding:24px;'><div style='font-size:12px;color:#F7931E;text-transform:uppercase;font-weight:800;letter-spacing:1px;'>Foco ejecutivo</div><div style='font-size:25px;line-height:30px;font-weight:850;margin-top:12px;'>Priorizar brechas del frente activo</div><div style='font-size:13px;line-height:19px;color:#d9e4f2;margin-top:12px;'>Entrenamiento neto " & _Entrenamiento & ", cobertura " & _Cobertura & " y satisfacci&oacute;n " & _Satisfaccion & " deben orientar la conversaci&oacute;n gerencial.</div><div style='margin-top:24px;background:#F7931E;color:#0B1C35;border-radius:22px;padding:9px 14px;display:inline-block;font-size:12px;font-weight:850;'>Ir a decisiones del bloque</div></div></div>" &
+			"<div style='background:" & IF(_FA = "Aprendizaje", "#0B1C35", "#F7F9FC") & ";color:" & IF(_FA = "Aprendizaje", "#ffffff", "#1A3059") & ";border:" & IF(_FA = "Aprendizaje", "2px solid #F7931E", "1px solid #DCE5F2") & ";border-radius:12px;padding:18px;'><div style='font-size:20px;font-weight:850;'>Aprendizaje</div><div style='font-size:11px;color:" & IF(_FA = "Aprendizaje", "#cbd8e8", "#53657D") & ";margin-top:7px;'>Activo | " & _Onboarding & " onboarding</div></div>" &
+			"<div style='background:" & IF(_FA = "Desempeno", "#1A3059", "#F7F9FC") & ";color:" & IF(_FA = "Desempeno", "#ffffff", "#1A3059") & ";border:" & IF(_FA = "Desempeno", "2px solid #F7931E", "1px solid #DCE5F2") & ";border-radius:12px;padding:18px;'><div style='font-size:20px;font-weight:850;'>Desempe&ntilde;o</div><div style='font-size:11px;color:" & IF(_FA = "Desempeno", "#d9e4f2", "#53657D") & ";margin-top:7px;'>Pr&oacute;xima fase</div></div>" &
+			"<div style='background:" & IF(_FA = "Desarrollo", "#1B487F", "#FFF7EE") & ";color:" & IF(_FA = "Desarrollo", "#ffffff", "#1A3059") & ";border:2px solid #F7931E;border-radius:12px;padding:18px;'><div style='font-size:20px;font-weight:850;'>Desarrollo</div><div style='font-size:11px;color:" & IF(_FA = "Desarrollo", "#d9e4f2", "#9D5600") & ";margin-top:7px;'>" & _PDI & " PDI | " & _AlertasPDI & " alertas</div></div>" &
+			"<div style='background:" & IF(_FA = "Bienestar y Clima", "#1A3059", "#F7F9FC") & ";color:" & IF(_FA = "Bienestar y Clima", "#ffffff", "#1A3059") & ";border:" & IF(_FA = "Bienestar y Clima", "2px solid #F7931E", "1px solid #DCE5F2") & ";border-radius:12px;padding:16px;'><div style='font-size:20px;font-weight:850;'>Bienestar y Clima</div><div style='font-size:11px;color:#F7931E;font-weight:800;margin-top:7px;'>Entrevista de Retiro activa</div><div style='font-size:10px;color:" & IF(_FA = "Bienestar y Clima", "#d9e4f2", "#53657D") & ";line-height:14px;margin-top:8px;'>Planes Clima Laboral &bull; eNPS Bienestar &bull; Plan Bienestar</div></div></div></div>" &
+			"<div style='background:#0B1C35;color:#ffffff;border-radius:14px;padding:24px;'><div style='font-size:12px;color:#F7931E;text-transform:uppercase;font-weight:800;letter-spacing:1px;'>Foco ejecutivo</div><div style='font-size:25px;line-height:30px;font-weight:850;margin-top:12px;'>" & _FocoTitulo & "</div><div style='font-size:13px;line-height:19px;color:#d9e4f2;margin-top:12px;'>" & _FocoDetalle & "</div><div style='margin-top:24px;background:#F7931E;color:#0B1C35;border-radius:22px;padding:9px 14px;display:inline-block;font-size:12px;font-weight:850;'>Ir a decisiones del bloque</div></div></div>" &
 			"<div style='position:absolute;left:276px;top:616px;width:956px;height:58px;background:#F7F9FC;border:1px solid #DCE5F2;border-radius:14px;display:flex;align-items:center;gap:18px;padding:0 22px;box-sizing:border-box;'><div style='font-size:12px;color:#53657D;'>Escalabilidad futura</div><div style='height:26px;width:1px;background:#DCE5F2;'></div><div style='font-size:12px;color:#1A3059;font-weight:750;'>Los frentes pendientes se mantienen visibles como roadmap para evitar una portada aislada del programa corporativo.</div></div></div>"
 		displayFolder: 11 HTML Propuestas
 		lineageTag: c9f46c0b-dd6c-4f12-bfec-4558f16abf2f
@@ -1001,61 +1013,47 @@ table Medidas_AD
 		lineageTag: 2252ede9-0a9f-4428-ba44-f1e21971f379
 
 	measure 'HTML Entrevista Retiro Shell' =
-			"<div style='font-family: Outfit, Poppins, Segoe UI, Arial; width:1280px; height:720px; background:#F7F9FC; color:#0B1C35; position:relative; overflow:hidden;'>" &
-			"<div style='position:absolute; left:0; top:0; width:1280px; height:92px; background:#1B487F;'></div>" &
-			"<div style='position:absolute; left:34px; top:20px; color:#F7931E; font-size:11px; font-weight:800; letter-spacing:2px;'>BIENESTAR Y CLIMA</div>" &
-			"<div style='position:absolute; left:34px; top:39px; color:#FFFFFF; font-size:28px; font-weight:800;'>Entrevista de Retiro</div>" &
-			"<div style='position:absolute; left:34px; top:68px; color:#D8E4F2; font-size:11px;'>Motivos de salida, oportunidades de mejora y senales para Gestion Humana</div>" &
-			"<div style='position:absolute; right:36px; top:24px; padding:9px 15px; background:#F7931E; color:#0B1C35; border-radius:18px; font-size:11px; font-weight:800;'>Bloque Bienestar y Clima</div>" &
-			"<div style='position:absolute; left:28px; top:106px; width:1224px; height:58px; background:#FFFFFF; border:1px solid #DDE7F1; border-radius:7px;'></div>" &
-			"<div style='position:absolute; left:34px; top:174px; width:1220px; height:77px; background:#FFFFFF; border:1px solid #DDE7F1; border-radius:7px;'></div>" &
-			"<div style='position:absolute; left:34px; top:265px; width:390px; height:218px; background:#FFFFFF; border:1px solid #DDE7F1; border-radius:7px;'></div>" &
-			"<div style='position:absolute; left:444px; top:265px; width:390px; height:218px; background:#FFFFFF; border:1px solid #DDE7F1; border-radius:7px;'></div>" &
-			"<div style='position:absolute; left:854px; top:265px; width:398px; height:218px; background:#FFFFFF; border:1px solid #DDE7F1; border-radius:7px;'></div>" &
-			"<div style='position:absolute; left:34px; top:500px; width:390px; height:166px; background:#FFFFFF; border:1px solid #DDE7F1; border-radius:7px;'></div>" &
-			"<div style='position:absolute; left:444px; top:500px; width:390px; height:166px; background:#FFFFFF; border:1px solid #DDE7F1; border-radius:7px;'></div>" &
-			"<div style='position:absolute; left:854px; top:500px; width:398px; height:166px; background:#FFFFFF; border:1px solid #DDE7F1; border-radius:7px;'></div>" &
-			"<div style='position:absolute; left:34px; top:683px; color:#5E6B7A; font-size:10px;'>Analisis agregado. La pagina evita exponer datos personales y usa registros validos con autorizacion aceptada.</div>" &
-			"</div>"
-		displayFolder: 11 HTML Propuestas
-		lineageTag: 941825c0-80a2-4d05-ad36-af2d02475fca
+			VAR _Html =
+				"<div style='font-family:Outfit,Poppins,Segoe UI,Arial,sans-serif;width:1280px;height:720px;background:#F7F9FC;color:#0B1C35;position:relative;overflow:hidden;'>" &
+				"<div style='position:absolute;left:0;top:0;width:1280px;height:100px;background:#0B1C35;'></div>" &
+				"<div style='position:absolute;left:48px;top:24px;color:#F7931E;font-size:11px;font-weight:850;letter-spacing:2px;text-transform:uppercase;'>BIENESTAR Y CLIMA</div>" &
+				"<div style='position:absolute;left:48px;top:48px;color:#FFFFFF;font-size:25px;font-weight:850;'>Entrevista de Retiro</div>" &
+				"<div style='position:absolute;left:48px;top:78px;color:#D8E4F2;font-size:11px;'>Motivos de salida, oportunidades de mejora y se&ntilde;ales para Gestion Humana.</div>" &
+				"<div style='position:absolute;right:48px;top:32px;background:#F7931E;color:#0B1C35;border-radius:18px;padding:8px 16px;font-size:11px;font-weight:850;'>Bloque Bienestar y Clima</div>" &
+				"<div style='position:absolute;left:34px;top:106px;width:1212px;height:62px;background:#FFFFFF;border:1px solid #DCE5F2;border-radius:14px;box-shadow:0 6px 18px rgba(11,28,53,0.06);'></div>" &
+				"<div style='position:absolute;left:34px;top:106px;width:7px;height:62px;background:#F7931E;border-radius:14px 0 0 14px;'></div>" &
+				"<div style='position:absolute;left:46px;top:123px;color:#0B1C35;font-size:10px;font-weight:850;letter-spacing:1.2px;text-transform:uppercase;'>Contexto de analisis</div>" &
+				"<div style='position:absolute;left:34px;top:176px;width:1212px;height:72px;background:#FFFFFF;border:1px solid #E1E8F2;border-radius:10px;'></div>" &
+				"<div style='position:absolute;left:34px;top:266px;width:1212px;height:398px;background:#FFFFFF;border:1px solid #E1E8F2;border-radius:10px;'></div>" &
+				"<div style='position:absolute;right:32px;bottom:10px;color:#6B778A;font-size:9.5px;'>Analisis agregado de registros validos. Evitar exposicion de datos personales.</div>" &
+				"</div>"
+			RETURN
+				_Html
+		displayFolder: 12 HTML Plantilla Transversal
+		lineageTag: 7c2750e7-b88c-412b-ae31-489e5fab52af
 
 	measure 'HTML BC00 Resumen Bienestar y Clima' =
-			"<div style='font-family:Outfit,Poppins,Segoe UI,Arial; width:1280px; height:720px; background:#F7F9FC; color:#0B1C35; position:relative; overflow:hidden;'>" &
-			"<div style='position:absolute; left:0; top:0; width:1280px; height:92px; background:linear-gradient(135deg,#1A3059,#1B487F);'></div>" &
-			"<div style='position:absolute; left:34px; top:18px; color:#F7931E; font-size:11px; font-weight:800; letter-spacing:2px;'>BIENESTAR Y CLIMA</div>" &
-			"<div style='position:absolute; left:34px; top:37px; color:#FFFFFF; font-size:26px; font-weight:800;'>Resumen Ejecutivo</div>" &
-			"<div style='position:absolute; left:34px; top:68px; color:#D8E4F2; font-size:11px;'>Frentes de gestion disponibles en el bloque Bienestar y Clima</div>" &
-			"<div style='position:absolute; right:36px; top:24px; padding:9px 16px; background:#F7931E; color:#0B1C35; border-radius:18px; font-size:11px; font-weight:800;'>Inicio Corporativo</div>" &
-			"<div style='position:absolute; left:34px; top:106px; right:34px; height:24px; color:#5E6B7A; font-size:11px; line-height:24px;'>Selecciona un frente para explorar los analisis disponibles.</div>" &
-			"<div style='position:absolute; left:34px; top:144px; width:592px; height:230px; background:#0B1C35; border:2px solid #F7931E; border-radius:10px; padding:22px 24px;'>" &
-			"<div style='display:flex; align-items:center; margin-bottom:10px;'><span style='background:#F7931E; color:#fff; font-size:10px; font-weight:700; padding:3px 10px; border-radius:20px; letter-spacing:1px; margin-right:10px;'>ACTIVO</span><span style='color:#94A3B8; font-size:10px;'>Modulo 01</span></div>" &
-			"<div style='color:#FFFFFF; font-size:17px; font-weight:700; margin-bottom:8px;'>Entrevista de Retiro</div>" &
-			"<div style='color:#94A3B8; font-size:12px; line-height:1.55;'>Analisis de causas de desvinculacion, tendencias por unidad y tipologia de salida. Datos anonimizados con autorizacion valida.</div>" &
-			"<div style='position:absolute; bottom:18px; left:24px; color:#F7931E; font-size:11px; font-weight:600;'>Ver analisis →</div>" &
-			"</div>" &
-			"<div style='position:absolute; left:654px; top:144px; width:592px; height:230px; background:#FFFFFF; border:1px solid #DDE7F1; border-radius:10px; padding:22px 24px;'>" &
-			"<div style='display:flex; align-items:center; margin-bottom:10px;'><span style='background:#F59E0B; color:#fff; font-size:10px; font-weight:700; padding:3px 10px; border-radius:20px; letter-spacing:1px; margin-right:10px;'>EN CONSTRUCCION</span><span style='color:#94A3B8; font-size:10px;'>Modulo 02</span></div>" &
-			"<div style='color:#1A3059; font-size:17px; font-weight:700; margin-bottom:8px;'>Planes Clima Laboral</div>" &
-			"<div style='color:#6B7280; font-size:12px; line-height:1.55;'>Seguimiento a planes de trabajo de clima organizacional, indicadores de ambiente laboral y acciones correctivas en curso.</div>" &
-			"<div style='position:absolute; bottom:18px; left:24px; color:#9CA3AF; font-size:11px; font-style:italic;'>Disponible proxima fase</div>" &
-			"</div>" &
-			"<div style='position:absolute; left:34px; top:394px; width:592px; height:218px; background:#FFFFFF; border:1px solid #DDE7F1; border-radius:10px; padding:22px 24px;'>" &
-			"<div style='display:flex; align-items:center; margin-bottom:10px;'><span style='background:#F59E0B; color:#fff; font-size:10px; font-weight:700; padding:3px 10px; border-radius:20px; letter-spacing:1px; margin-right:10px;'>EN CONSTRUCCION</span><span style='color:#94A3B8; font-size:10px;'>Modulo 03</span></div>" &
-			"<div style='color:#1A3059; font-size:17px; font-weight:700; margin-bottom:8px;'>eNPS Actividades Bienestar</div>" &
-			"<div style='color:#6B7280; font-size:12px; line-height:1.55;'>Net Promoter Score de actividades de bienestar, participacion y cobertura de programas corporativos.</div>" &
-			"<div style='position:absolute; bottom:18px; left:24px; color:#9CA3AF; font-size:11px; font-style:italic;'>Disponible proxima fase</div>" &
-			"</div>" &
-			"<div style='position:absolute; left:654px; top:394px; width:592px; height:218px; background:#FFFFFF; border:1px solid #DDE7F1; border-radius:10px; padding:22px 24px;'>" &
-			"<div style='display:flex; align-items:center; margin-bottom:10px;'><span style='background:#F59E0B; color:#fff; font-size:10px; font-weight:700; padding:3px 10px; border-radius:20px; letter-spacing:1px; margin-right:10px;'>EN CONSTRUCCION</span><span style='color:#94A3B8; font-size:10px;'>Modulo 04</span></div>" &
-			"<div style='color:#1A3059; font-size:17px; font-weight:700; margin-bottom:8px;'>Cumplimiento Plan Bienestar</div>" &
-			"<div style='color:#6B7280; font-size:12px; line-height:1.55;'>Avance frente al plan anual de bienestar, porcentaje de cumplimiento y actividades pendientes.</div>" &
-			"<div style='position:absolute; bottom:18px; left:24px; color:#9CA3AF; font-size:11px; font-style:italic;'>Disponible proxima fase</div>" &
-			"</div>" &
-			"<div style='position:absolute; left:34px; top:630px; color:#9CA3AF; font-size:10px;'>Dashboard Corporativo Grupo LEMCO — Bienestar y Clima</div>" &
-			"</div>"
+			VAR _Html =
+				"<div style='font-family:Outfit,Poppins,Segoe UI,Arial,sans-serif;width:1280px;height:720px;background:#F7F9FC;color:#0B1C35;position:relative;overflow:hidden;'>" &
+				"<div style='position:absolute;left:0;top:0;width:1280px;height:100px;background:#0B1C35;'></div>" &
+				"<div style='position:absolute;left:48px;top:24px;color:#F7931E;font-size:11px;font-weight:850;letter-spacing:2px;text-transform:uppercase;'>DASHBOARD CORPORATIVO - GRUPO LEMCO</div>" &
+				"<div style='position:absolute;left:48px;top:48px;color:#FFFFFF;font-size:25px;font-weight:850;'>Bienestar y Clima</div>" &
+				"<div style='position:absolute;left:48px;top:78px;color:#D8E4F2;font-size:11px;'>Resumen de modulos disponibles y roadmap del frente.</div>" &
+				"<div style='position:absolute;right:48px;top:32px;background:#F7931E;color:#0B1C35;border-radius:18px;padding:8px 16px;font-size:11px;font-weight:850;'>Frente iniciado</div>" &
+				"<div style='position:absolute;left:54px;top:132px;width:560px;height:260px;background:#0B1C35;border:2px solid #F7931E;border-radius:12px;padding:28px;box-sizing:border-box;color:#FFFFFF;'>" &
+				"<div style='font-size:12px;color:#F7931E;font-weight:850;letter-spacing:1.5px;text-transform:uppercase;'>Modulo activo</div><div style='font-size:28px;font-weight:850;margin-top:18px;'>Entrevista de Retiro</div><div style='font-size:13px;line-height:19px;color:#D8E4F2;margin-top:12px;'>Analisis de motivos de salida, unidad de negocio, tendencias y oportunidades de mejora.</div><div style='margin-top:28px;background:#F7931E;color:#0B1C35;border-radius:20px;padding:9px 16px;display:inline-block;font-size:12px;font-weight:850;'>Ir al analisis</div>" &
+				"</div>" &
+				"<div style='position:absolute;left:654px;top:132px;width:560px;height:260px;background:#FFFFFF;border:1px solid #DCE5F2;border-radius:12px;padding:28px;box-sizing:border-box;'>" &
+				"<div style='font-size:12px;color:#F7931E;font-weight:850;letter-spacing:1.5px;text-transform:uppercase;'>Roadmap</div><div style='font-size:24px;font-weight:850;margin-top:16px;color:#0B1C35;'>Clima, eNPS y Plan de Bienestar</div><div style='font-size:13px;line-height:19px;color:#53657D;margin-top:12px;'>Componentes previstos para consolidar la lectura del frente de bienestar corporativo.</div><div style='display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:26px;'><div style='background:#F7FAFD;border-radius:8px;padding:10px;border-left:3px solid #F7931E;font-size:11px;font-weight:800;'>Planes Clima Laboral</div><div style='background:#F7FAFD;border-radius:8px;padding:10px;font-size:11px;font-weight:800;'>eNPS Bienestar</div><div style='background:#F7FAFD;border-radius:8px;padding:10px;font-size:11px;font-weight:800;'>Plan Bienestar</div><div style='background:#F7FAFD;border-radius:8px;padding:10px;font-size:11px;font-weight:800;'>Acciones GH</div></div>" &
+				"</div>" &
+				"<div style='position:absolute;left:54px;top:430px;width:1160px;height:132px;background:#FFFFFF;border:1px solid #DCE5F2;border-radius:12px;padding:22px 28px;box-sizing:border-box;'>" &
+				"<div style='font-size:12px;color:#F7931E;font-weight:850;letter-spacing:1.5px;text-transform:uppercase;'>Lectura ejecutiva</div><div style='font-size:18px;font-weight:850;margin-top:10px;color:#0B1C35;'>Priorizar causas prevenibles y oportunidades de mejora por unidad de negocio.</div><div style='font-size:12px;color:#53657D;margin-top:9px;'>La pagina de entrevista de retiro queda como primer modulo activo del frente Bienestar y Clima.</div>" &
+				"</div>" &
+				"</div>"
+			RETURN
+				_Html
 		displayFolder: 12 HTML Bienestar
-		lineageTag: bc001234-5678-90ab-cdef-bc0012345678
+		lineageTag: 92537134-87d1-4c44-b4bb-14e8eb0b754d
 
 	measure 'Home Pagina Resumen Frente' =
 			VAR _Frente = SELECTEDVALUE('Dim_Frente_Home'[Frente], "Aprendizaje")
@@ -1064,7 +1062,7 @@ table Medidas_AD
 			        _Frente,
 			        "Aprendizaje", "A01 Resumen Ejecutivo Aprendizaje",
 			        "Desarrollo", "D01 Resumen Ejecutivo Desarrollo",
-			        "Bienestar y Clima", "BC00 Resumen Ejecutivo Bienestar y Clima",
+			        "Bienestar y Clima", "BC01 Resumen Ejecutivo Bienestar y Clima",
 			        "Desempeno", "E01 Desempeno - Proxima Fase",
 			        "A01 Resumen Ejecutivo Aprendizaje"
 			    )
@@ -1077,6 +1075,253 @@ table Medidas_AD
 			    "Ir a " & [Home Pagina Resumen Frente]
 		displayFolder: 00 Home Corporativo
 		lineageTag: 2771f7ad-7ef2-45bd-9881-9ef6aaf7f9e1
+
+	measure 'HTML Shell A01 Resumen Ejecutivo Aprendizaje' =
+			VAR _Html =
+				"<div style='font-family:Outfit,Poppins,Segoe UI,Arial,sans-serif;width:1280px;height:720px;background:#F7F9FC;color:#0B1C35;position:relative;overflow:hidden;'>" &
+				"<div style='position:absolute;left:0;top:0;width:1280px;height:100px;background:#0B1C35;'></div>" &
+				"<div style='position:absolute;left:48px;top:24px;color:#F7931E;font-size:11px;font-weight:850;letter-spacing:2px;text-transform:uppercase;'>DASHBOARD CORPORATIVO - GRUPO LEMCO</div>" &
+				"<div style='position:absolute;left:48px;top:48px;color:#FFFFFF;font-size:25px;font-weight:850;line-height:28px;'>Resumen Ejecutivo Aprendizaje</div>" &
+				"<div style='position:absolute;left:48px;top:78px;color:#D8E4F2;font-size:11px;line-height:14px;'>Lectura integral de plan, cobertura, satisfaccion, onboarding y focos de gestion.</div>" &
+				"<div style='position:absolute;right:48px;top:32px;background:#F7931E;color:#0B1C35;border-radius:18px;padding:8px 16px;font-size:11px;font-weight:850;'>Bloque Aprendizaje</div>" &
+				"<div style='position:absolute;left:48px;top:112px;width:1200px;height:76px;background:#FFFFFF;border:1px solid #DCE5F2;border-radius:14px;box-shadow:0 6px 18px rgba(11,28,53,0.06);'></div>" &
+				"<div style='position:absolute;left:48px;top:112px;width:7px;height:76px;background:#F7931E;border-radius:14px 0 0 14px;'></div>" &
+				"<div style='position:absolute;left:68px;top:127px;color:#0B1C35;font-size:10px;font-weight:850;letter-spacing:1.5px;text-transform:uppercase;'>Contexto de analisis</div>" &
+				"<div style='position:absolute;left:68px;top:148px;width:150px;color:#6B778A;font-size:9.5px;line-height:12px;'>Filtros activos para la lectura ejecutiva.</div>" &
+				"<div style='position:absolute;left:238px;top:121px;width:1050px;height:58px;display:grid;grid-template-columns:repeat(6,1fr);gap:12px;'>" &
+				"<div style='background:#F7FAFD;border:1px solid #E6EEF7;border-radius:8px;'></div><div style='background:#F7FAFD;border:1px solid #E6EEF7;border-radius:8px;'></div><div style='background:#F7FAFD;border:1px solid #E6EEF7;border-radius:8px;'></div><div style='background:#F7FAFD;border:1px solid #E6EEF7;border-radius:8px;'></div><div style='background:#F7FAFD;border:1px solid #E6EEF7;border-radius:8px;'></div><div style='background:#F7FAFD;border:1px solid #E6EEF7;border-radius:8px;'></div>" &
+				"</div>" &
+				"<div style='position:absolute;left:32px;top:198px;width:1216px;height:468px;background:#FFFFFF;border:1px solid #E1E8F2;border-radius:10px;'></div>" &
+				"<div style='position:absolute;left:32px;top:674px;width:1005px;height:40px;background:#FFFFFF;border:1px solid #DCE5F2;border-radius:9px;'></div>" &
+				"</div>"
+			RETURN
+				_Html
+		displayFolder: 12 HTML Plantilla Transversal
+		lineageTag: 0e6d34c7-b4c6-4484-a2cd-93ccab223d1b
+
+	measure 'HTML Shell A02 Plan y Ejecucion' =
+			VAR _Html =
+				"<div style='font-family:Outfit,Poppins,Segoe UI,Arial,sans-serif;width:1280px;height:720px;background:#F7F9FC;color:#0B1C35;position:relative;overflow:hidden;'>" &
+				"<div style='position:absolute;left:0;top:0;width:1280px;height:100px;background:#0B1C35;'></div>" &
+				"<div style='position:absolute;left:48px;top:24px;color:#F7931E;font-size:11px;font-weight:850;letter-spacing:2px;text-transform:uppercase;'>DASHBOARD CORPORATIVO - GRUPO LEMCO</div>" &
+				"<div style='position:absolute;left:48px;top:48px;color:#FFFFFF;font-size:25px;font-weight:850;line-height:28px;'>Plan y Ejecuci&oacute;n</div>" &
+				"<div style='position:absolute;left:48px;top:78px;color:#D8E4F2;font-size:11px;line-height:14px;'>Seguimiento del plan de formacion, cumplimiento mensual y brechas de ejecucion.</div>" &
+				"<div style='position:absolute;right:48px;top:32px;background:#F7931E;color:#0B1C35;border-radius:18px;padding:8px 16px;font-size:11px;font-weight:850;'>Bloque Aprendizaje</div>" &
+				"<div style='position:absolute;left:48px;top:112px;width:1200px;height:76px;background:#FFFFFF;border:1px solid #DCE5F2;border-radius:14px;box-shadow:0 6px 18px rgba(11,28,53,0.06);'></div>" &
+				"<div style='position:absolute;left:48px;top:112px;width:7px;height:76px;background:#F7931E;border-radius:14px 0 0 14px;'></div>" &
+				"<div style='position:absolute;left:68px;top:127px;color:#0B1C35;font-size:10px;font-weight:850;letter-spacing:1.5px;text-transform:uppercase;'>Contexto de analisis</div>" &
+				"<div style='position:absolute;left:68px;top:148px;width:150px;color:#6B778A;font-size:9.5px;line-height:12px;'>Periodo, empresa y variables de formacion.</div>" &
+				"<div style='position:absolute;left:238px;top:121px;width:1050px;height:58px;display:grid;grid-template-columns:repeat(6,1fr);gap:12px;'>" &
+				"<div style='background:#F7FAFD;border:1px solid #E6EEF7;border-radius:8px;'></div><div style='background:#F7FAFD;border:1px solid #E6EEF7;border-radius:8px;'></div><div style='background:#F7FAFD;border:1px solid #E6EEF7;border-radius:8px;'></div><div style='background:#F7FAFD;border:1px solid #E6EEF7;border-radius:8px;'></div><div style='background:#F7FAFD;border:1px solid #E6EEF7;border-radius:8px;'></div><div style='background:#F7FAFD;border:1px solid #E6EEF7;border-radius:8px;'></div>" &
+				"</div>" &
+				"<div style='position:absolute;left:32px;top:198px;width:1216px;height:468px;background:#FFFFFF;border:1px solid #E1E8F2;border-radius:10px;'></div>" &
+				"<div style='position:absolute;left:32px;top:674px;width:1005px;height:40px;background:#FFFFFF;border:1px solid #DCE5F2;border-radius:9px;'></div>" &
+				"</div>"
+			RETURN
+				_Html
+		displayFolder: 12 HTML Plantilla Transversal
+		lineageTag: b4294c5a-ba94-4a41-a0f6-0d506e4da92b
+
+	measure 'HTML Shell A03 Cobertura y Participacion' =
+			VAR _Html =
+				"<div style='font-family:Outfit,Poppins,Segoe UI,Arial,sans-serif;width:1280px;height:720px;background:#F7F9FC;color:#0B1C35;position:relative;overflow:hidden;'>" &
+				"<div style='position:absolute;left:0;top:0;width:1280px;height:100px;background:#0B1C35;'></div>" &
+				"<div style='position:absolute;left:48px;top:24px;color:#F7931E;font-size:11px;font-weight:850;letter-spacing:2px;text-transform:uppercase;'>DASHBOARD CORPORATIVO - GRUPO LEMCO</div>" &
+				"<div style='position:absolute;left:48px;top:48px;color:#FFFFFF;font-size:25px;font-weight:850;line-height:28px;'>Cobertura y Participaci&oacute;n</div>" &
+				"<div style='position:absolute;left:48px;top:78px;color:#D8E4F2;font-size:11px;line-height:14px;'>Analisis de asistencia, cobertura, participacion y comportamiento por segmentos.</div>" &
+				"<div style='position:absolute;right:48px;top:32px;background:#F7931E;color:#0B1C35;border-radius:18px;padding:8px 16px;font-size:11px;font-weight:850;'>Bloque Aprendizaje</div>" &
+				"<div style='position:absolute;left:48px;top:112px;width:1200px;height:76px;background:#FFFFFF;border:1px solid #DCE5F2;border-radius:14px;box-shadow:0 6px 18px rgba(11,28,53,0.06);'></div>" &
+				"<div style='position:absolute;left:48px;top:112px;width:7px;height:76px;background:#F7931E;border-radius:14px 0 0 14px;'></div>" &
+				"<div style='position:absolute;left:68px;top:127px;color:#0B1C35;font-size:10px;font-weight:850;letter-spacing:1.5px;text-transform:uppercase;'>Contexto de analisis</div>" &
+				"<div style='position:absolute;left:68px;top:148px;width:150px;color:#6B778A;font-size:9.5px;line-height:12px;'>Filtros de cobertura y participacion.</div>" &
+				"<div style='position:absolute;left:238px;top:121px;width:1050px;height:58px;display:grid;grid-template-columns:repeat(6,1fr);gap:12px;'>" &
+				"<div style='background:#F7FAFD;border:1px solid #E6EEF7;border-radius:8px;'></div><div style='background:#F7FAFD;border:1px solid #E6EEF7;border-radius:8px;'></div><div style='background:#F7FAFD;border:1px solid #E6EEF7;border-radius:8px;'></div><div style='background:#F7FAFD;border:1px solid #E6EEF7;border-radius:8px;'></div><div style='background:#F7FAFD;border:1px solid #E6EEF7;border-radius:8px;'></div><div style='background:#F7FAFD;border:1px solid #E6EEF7;border-radius:8px;'></div>" &
+				"</div>" &
+				"<div style='position:absolute;left:32px;top:198px;width:1216px;height:468px;background:#FFFFFF;border:1px solid #E1E8F2;border-radius:10px;'></div>" &
+				"<div style='position:absolute;left:32px;top:674px;width:1005px;height:40px;background:#FFFFFF;border:1px solid #DCE5F2;border-radius:9px;'></div>" &
+				"</div>"
+			RETURN
+				_Html
+		displayFolder: 12 HTML Plantilla Transversal
+		lineageTag: f29b2714-cfde-47b1-90be-a445736a3ae0
+
+	measure 'HTML Shell A04 Satisfaccion y Eficacia' =
+			VAR _Html =
+				"<div style='font-family:Outfit,Poppins,Segoe UI,Arial,sans-serif;width:1280px;height:720px;background:#F7F9FC;color:#0B1C35;position:relative;overflow:hidden;'>" &
+				"<div style='position:absolute;left:0;top:0;width:1280px;height:100px;background:#0B1C35;'></div>" &
+				"<div style='position:absolute;left:48px;top:24px;color:#F7931E;font-size:11px;font-weight:850;letter-spacing:2px;text-transform:uppercase;'>DASHBOARD CORPORATIVO - GRUPO LEMCO</div>" &
+				"<div style='position:absolute;left:48px;top:48px;color:#FFFFFF;font-size:25px;font-weight:850;line-height:28px;'>Satisfacci&oacute;n y Eficacia</div>" &
+				"<div style='position:absolute;left:48px;top:78px;color:#D8E4F2;font-size:11px;line-height:14px;'>Lectura de percepcion, favorabilidad, eficacia y oportunidades de mejora.</div>" &
+				"<div style='position:absolute;right:48px;top:32px;background:#F7931E;color:#0B1C35;border-radius:18px;padding:8px 16px;font-size:11px;font-weight:850;'>Bloque Aprendizaje</div>" &
+				"<div style='position:absolute;left:48px;top:112px;width:1200px;height:76px;background:#FFFFFF;border:1px solid #DCE5F2;border-radius:14px;box-shadow:0 6px 18px rgba(11,28,53,0.06);'></div>" &
+				"<div style='position:absolute;left:48px;top:112px;width:7px;height:76px;background:#F7931E;border-radius:14px 0 0 14px;'></div>" &
+				"<div style='position:absolute;left:68px;top:127px;color:#0B1C35;font-size:10px;font-weight:850;letter-spacing:1.5px;text-transform:uppercase;'>Contexto de analisis</div>" &
+				"<div style='position:absolute;left:68px;top:148px;width:150px;color:#6B778A;font-size:9.5px;line-height:12px;'>Filtros de calidad y percepcion.</div>" &
+				"<div style='position:absolute;left:238px;top:121px;width:1050px;height:58px;display:grid;grid-template-columns:repeat(6,1fr);gap:12px;'>" &
+				"<div style='background:#F7FAFD;border:1px solid #E6EEF7;border-radius:8px;'></div><div style='background:#F7FAFD;border:1px solid #E6EEF7;border-radius:8px;'></div><div style='background:#F7FAFD;border:1px solid #E6EEF7;border-radius:8px;'></div><div style='background:#F7FAFD;border:1px solid #E6EEF7;border-radius:8px;'></div><div style='background:#F7FAFD;border:1px solid #E6EEF7;border-radius:8px;'></div><div style='background:#F7FAFD;border:1px solid #E6EEF7;border-radius:8px;'></div>" &
+				"</div>" &
+				"<div style='position:absolute;left:32px;top:198px;width:1216px;height:468px;background:#FFFFFF;border:1px solid #E1E8F2;border-radius:10px;'></div>" &
+				"<div style='position:absolute;left:32px;top:674px;width:1005px;height:40px;background:#FFFFFF;border:1px solid #DCE5F2;border-radius:9px;'></div>" &
+				"</div>"
+			RETURN
+				_Html
+		displayFolder: 12 HTML Plantilla Transversal
+		lineageTag: ee7c5a55-bcf4-459c-9749-6f9368183eba
+
+	measure 'HTML Shell A05 Induccion y Entrenamiento' =
+			VAR _Html =
+				"<div style='font-family:Outfit,Poppins,Segoe UI,Arial,sans-serif;width:1280px;height:720px;background:#F7F9FC;color:#0B1C35;position:relative;overflow:hidden;'>" &
+				"<div style='position:absolute;left:0;top:0;width:1280px;height:100px;background:#0B1C35;'></div>" &
+				"<div style='position:absolute;left:48px;top:24px;color:#F7931E;font-size:11px;font-weight:850;letter-spacing:2px;text-transform:uppercase;'>DASHBOARD CORPORATIVO - GRUPO LEMCO</div>" &
+				"<div style='position:absolute;left:48px;top:48px;color:#FFFFFF;font-size:25px;font-weight:850;line-height:28px;'>Inducci&oacute;n y Entrenamiento</div>" &
+				"<div style='position:absolute;left:48px;top:78px;color:#D8E4F2;font-size:11px;line-height:14px;'>Seguimiento a onboarding, entrenamiento inicial y segmentos Universidad Challenger.</div>" &
+				"<div style='position:absolute;right:48px;top:32px;background:#F7931E;color:#0B1C35;border-radius:18px;padding:8px 16px;font-size:11px;font-weight:850;'>Bloque Aprendizaje</div>" &
+				"<div style='position:absolute;left:48px;top:112px;width:1200px;height:76px;background:#FFFFFF;border:1px solid #DCE5F2;border-radius:14px;box-shadow:0 6px 18px rgba(11,28,53,0.06);'></div>" &
+				"<div style='position:absolute;left:48px;top:112px;width:7px;height:76px;background:#F7931E;border-radius:14px 0 0 14px;'></div>" &
+				"<div style='position:absolute;left:68px;top:127px;color:#0B1C35;font-size:10px;font-weight:850;letter-spacing:1.5px;text-transform:uppercase;'>Contexto de analisis</div>" &
+				"<div style='position:absolute;left:68px;top:148px;width:150px;color:#6B778A;font-size:9.5px;line-height:12px;'>Periodo, segmento UC y atributos clave.</div>" &
+				"<div style='position:absolute;left:238px;top:121px;width:1050px;height:58px;display:grid;grid-template-columns:repeat(6,1fr);gap:12px;'>" &
+				"<div style='background:#F7FAFD;border:1px solid #E6EEF7;border-radius:8px;'></div><div style='background:#F7FAFD;border:1px solid #E6EEF7;border-radius:8px;'></div><div style='background:#F7FAFD;border:1px solid #E6EEF7;border-radius:8px;'></div><div style='background:#F7FAFD;border:1px solid #E6EEF7;border-radius:8px;'></div><div style='background:#F7FAFD;border:1px solid #E6EEF7;border-radius:8px;'></div><div style='background:#F7FAFD;border:1px solid #E6EEF7;border-radius:8px;'></div>" &
+				"</div>" &
+				"<div style='position:absolute;left:32px;top:198px;width:1216px;height:468px;background:#FFFFFF;border:1px solid #E1E8F2;border-radius:10px;'></div>" &
+				"<div style='position:absolute;left:32px;top:674px;width:1005px;height:40px;background:#FFFFFF;border:1px solid #DCE5F2;border-radius:9px;'></div>" &
+				"</div>"
+			RETURN
+				_Html
+		displayFolder: 12 HTML Plantilla Transversal
+		lineageTag: 9bb69acb-81c5-4f49-a406-c76eb83f12a8
+
+	measure 'HTML Shell A06 Focos de Gestion' =
+			VAR _Html =
+				"<div style='font-family:Outfit,Poppins,Segoe UI,Arial,sans-serif;width:1280px;height:720px;background:#F7F9FC;color:#0B1C35;position:relative;overflow:hidden;'>" &
+				"<div style='position:absolute;left:0;top:0;width:1280px;height:100px;background:#0B1C35;'></div>" &
+				"<div style='position:absolute;left:48px;top:24px;color:#F7931E;font-size:11px;font-weight:850;letter-spacing:2px;text-transform:uppercase;'>DASHBOARD CORPORATIVO - GRUPO LEMCO</div>" &
+				"<div style='position:absolute;left:48px;top:48px;color:#FFFFFF;font-size:25px;font-weight:850;line-height:28px;'>Focos de Gesti&oacute;n</div>" &
+				"<div style='position:absolute;left:48px;top:78px;color:#D8E4F2;font-size:11px;line-height:14px;'>Alertas, rankings y prioridades ejecutivas para toma de decisiones.</div>" &
+				"<div style='position:absolute;right:48px;top:32px;background:#F7931E;color:#0B1C35;border-radius:18px;padding:8px 16px;font-size:11px;font-weight:850;'>Bloque Aprendizaje</div>" &
+				"<div style='position:absolute;left:48px;top:112px;width:1200px;height:76px;background:#FFFFFF;border:1px solid #DCE5F2;border-radius:14px;box-shadow:0 6px 18px rgba(11,28,53,0.06);'></div>" &
+				"<div style='position:absolute;left:48px;top:112px;width:7px;height:76px;background:#F7931E;border-radius:14px 0 0 14px;'></div>" &
+				"<div style='position:absolute;left:68px;top:127px;color:#0B1C35;font-size:10px;font-weight:850;letter-spacing:1.5px;text-transform:uppercase;'>Contexto de analisis</div>" &
+				"<div style='position:absolute;left:68px;top:148px;width:150px;color:#6B778A;font-size:9.5px;line-height:12px;'>Filtros para priorizacion gerencial.</div>" &
+				"<div style='position:absolute;left:238px;top:121px;width:1050px;height:58px;display:grid;grid-template-columns:repeat(6,1fr);gap:12px;'>" &
+				"<div style='background:#F7FAFD;border:1px solid #E6EEF7;border-radius:8px;'></div><div style='background:#F7FAFD;border:1px solid #E6EEF7;border-radius:8px;'></div><div style='background:#F7FAFD;border:1px solid #E6EEF7;border-radius:8px;'></div><div style='background:#F7FAFD;border:1px solid #E6EEF7;border-radius:8px;'></div><div style='background:#F7FAFD;border:1px solid #E6EEF7;border-radius:8px;'></div><div style='background:#F7FAFD;border:1px solid #E6EEF7;border-radius:8px;'></div>" &
+				"</div>" &
+				"<div style='position:absolute;left:32px;top:198px;width:1216px;height:468px;background:#FFFFFF;border:1px solid #E1E8F2;border-radius:10px;'></div>" &
+				"<div style='position:absolute;left:32px;top:674px;width:1005px;height:40px;background:#FFFFFF;border:1px solid #DCE5F2;border-radius:9px;'></div>" &
+				"</div>"
+			RETURN
+				_Html
+		displayFolder: 12 HTML Plantilla Transversal
+		lineageTag: 765d2109-f8a5-4453-8030-c59ed06403f9
+
+	measure 'HTML Shell D01 Resumen Ejecutivo Desarrollo' =
+			VAR _Html =
+				"<div style='font-family:Outfit,Poppins,Segoe UI,Arial,sans-serif;width:1280px;height:720px;background:#F7F9FC;color:#0B1C35;position:relative;overflow:hidden;'>" &
+				"<div style='position:absolute;left:0;top:0;width:1280px;height:100px;background:#0B1C35;'></div>" &
+				"<div style='position:absolute;left:48px;top:24px;color:#F7931E;font-size:11px;font-weight:850;letter-spacing:2px;text-transform:uppercase;'>DASHBOARD CORPORATIVO - GRUPO LEMCO</div>" &
+				"<div style='position:absolute;left:48px;top:48px;color:#FFFFFF;font-size:25px;font-weight:850;line-height:28px;'>Resumen Ejecutivo Desarrollo</div>" &
+				"<div style='position:absolute;left:48px;top:78px;color:#D8E4F2;font-size:11px;line-height:14px;'>Vision general de PDI, avance, acompanamientos y alertas del frente.</div>" &
+				"<div style='position:absolute;right:48px;top:32px;background:#F7931E;color:#0B1C35;border-radius:18px;padding:8px 16px;font-size:11px;font-weight:850;'>Bloque Desarrollo</div>" &
+				"<div style='position:absolute;left:48px;top:112px;width:1200px;height:76px;background:#FFFFFF;border:1px solid #DCE5F2;border-radius:14px;box-shadow:0 6px 18px rgba(11,28,53,0.06);'></div>" &
+				"<div style='position:absolute;left:48px;top:112px;width:7px;height:76px;background:#F7931E;border-radius:14px 0 0 14px;'></div>" &
+				"<div style='position:absolute;left:68px;top:127px;color:#0B1C35;font-size:10px;font-weight:850;letter-spacing:1.5px;text-transform:uppercase;'>Contexto de analisis</div>" &
+				"<div style='position:absolute;left:68px;top:148px;width:150px;color:#6B778A;font-size:9.5px;line-height:12px;'>Filtros de PDI por periodo, empresa y estado.</div>" &
+				"<div style='position:absolute;left:238px;top:121px;width:1050px;height:58px;display:grid;grid-template-columns:repeat(6,1fr);gap:12px;'>" &
+				"<div style='background:#F7FAFD;border:1px solid #E6EEF7;border-radius:8px;'></div><div style='background:#F7FAFD;border:1px solid #E6EEF7;border-radius:8px;'></div><div style='background:#F7FAFD;border:1px solid #E6EEF7;border-radius:8px;'></div><div style='background:#F7FAFD;border:1px solid #E6EEF7;border-radius:8px;'></div><div style='background:#F7FAFD;border:1px solid #E6EEF7;border-radius:8px;'></div><div style='background:#F7FAFD;border:1px solid #E6EEF7;border-radius:8px;'></div>" &
+				"</div>" &
+				"<div style='position:absolute;left:32px;top:198px;width:1216px;height:468px;background:#FFFFFF;border:1px solid #E1E8F2;border-radius:10px;'></div>" &
+				"<div style='position:absolute;left:32px;top:674px;width:1005px;height:40px;background:#FFFFFF;border:1px solid #DCE5F2;border-radius:9px;'></div>" &
+				"</div>"
+			RETURN
+				_Html
+		displayFolder: 12 HTML Plantilla Transversal
+		lineageTag: f66aaec9-4fe0-49bb-aa54-54d10d41637a
+
+	measure 'HTML Shell D02 Estado y Avance PDI' =
+			VAR _Html =
+				"<div style='font-family:Outfit,Poppins,Segoe UI,Arial,sans-serif;width:1280px;height:720px;background:#F7F9FC;color:#0B1C35;position:relative;overflow:hidden;'>" &
+				"<div style='position:absolute;left:0;top:0;width:1280px;height:100px;background:#0B1C35;'></div>" &
+				"<div style='position:absolute;left:48px;top:24px;color:#F7931E;font-size:11px;font-weight:850;letter-spacing:2px;text-transform:uppercase;'>DASHBOARD CORPORATIVO - GRUPO LEMCO</div>" &
+				"<div style='position:absolute;left:48px;top:48px;color:#FFFFFF;font-size:25px;font-weight:850;line-height:28px;'>Estado y Avance PDI</div>" &
+				"<div style='position:absolute;left:48px;top:78px;color:#D8E4F2;font-size:11px;line-height:14px;'>Seguimiento de avance, estados, vencimientos y planes criticos.</div>" &
+				"<div style='position:absolute;right:48px;top:32px;background:#F7931E;color:#0B1C35;border-radius:18px;padding:8px 16px;font-size:11px;font-weight:850;'>Bloque Desarrollo</div>" &
+				"<div style='position:absolute;left:48px;top:112px;width:1200px;height:76px;background:#FFFFFF;border:1px solid #DCE5F2;border-radius:14px;box-shadow:0 6px 18px rgba(11,28,53,0.06);'></div>" &
+				"<div style='position:absolute;left:48px;top:112px;width:7px;height:76px;background:#F7931E;border-radius:14px 0 0 14px;'></div>" &
+				"<div style='position:absolute;left:68px;top:127px;color:#0B1C35;font-size:10px;font-weight:850;letter-spacing:1.5px;text-transform:uppercase;'>Contexto de analisis</div>" &
+				"<div style='position:absolute;left:68px;top:148px;width:150px;color:#6B778A;font-size:9.5px;line-height:12px;'>Filtros de avance, estado y motivo PDI.</div>" &
+				"<div style='position:absolute;left:238px;top:121px;width:1050px;height:58px;display:grid;grid-template-columns:repeat(6,1fr);gap:12px;'>" &
+				"<div style='background:#F7FAFD;border:1px solid #E6EEF7;border-radius:8px;'></div><div style='background:#F7FAFD;border:1px solid #E6EEF7;border-radius:8px;'></div><div style='background:#F7FAFD;border:1px solid #E6EEF7;border-radius:8px;'></div><div style='background:#F7FAFD;border:1px solid #E6EEF7;border-radius:8px;'></div><div style='background:#F7FAFD;border:1px solid #E6EEF7;border-radius:8px;'></div><div style='background:#F7FAFD;border:1px solid #E6EEF7;border-radius:8px;'></div>" &
+				"</div>" &
+				"<div style='position:absolute;left:32px;top:198px;width:1216px;height:468px;background:#FFFFFF;border:1px solid #E1E8F2;border-radius:10px;'></div>" &
+				"<div style='position:absolute;left:32px;top:674px;width:1005px;height:40px;background:#FFFFFF;border:1px solid #DCE5F2;border-radius:9px;'></div>" &
+				"</div>"
+			RETURN
+				_Html
+		displayFolder: 12 HTML Plantilla Transversal
+		lineageTag: 5c9de129-6d0c-4282-93d6-529ba5e2f3f4
+
+	measure 'HTML Shell D03 Motivos y Seguimiento' =
+			VAR _Html =
+				"<div style='font-family:Outfit,Poppins,Segoe UI,Arial,sans-serif;width:1280px;height:720px;background:#F7F9FC;color:#0B1C35;position:relative;overflow:hidden;'>" &
+				"<div style='position:absolute;left:0;top:0;width:1280px;height:100px;background:#0B1C35;'></div>" &
+				"<div style='position:absolute;left:48px;top:24px;color:#F7931E;font-size:11px;font-weight:850;letter-spacing:2px;text-transform:uppercase;'>DASHBOARD CORPORATIVO - GRUPO LEMCO</div>" &
+				"<div style='position:absolute;left:48px;top:48px;color:#FFFFFF;font-size:25px;font-weight:850;line-height:28px;'>Motivos y Seguimiento</div>" &
+				"<div style='position:absolute;left:48px;top:78px;color:#D8E4F2;font-size:11px;line-height:14px;'>Analisis de motivos de apertura, acompanamientos y comportamiento por area.</div>" &
+				"<div style='position:absolute;right:48px;top:32px;background:#F7931E;color:#0B1C35;border-radius:18px;padding:8px 16px;font-size:11px;font-weight:850;'>Bloque Desarrollo</div>" &
+				"<div style='position:absolute;left:48px;top:112px;width:1200px;height:76px;background:#FFFFFF;border:1px solid #DCE5F2;border-radius:14px;box-shadow:0 6px 18px rgba(11,28,53,0.06);'></div>" &
+				"<div style='position:absolute;left:48px;top:112px;width:7px;height:76px;background:#F7931E;border-radius:14px 0 0 14px;'></div>" &
+				"<div style='position:absolute;left:68px;top:127px;color:#0B1C35;font-size:10px;font-weight:850;letter-spacing:1.5px;text-transform:uppercase;'>Contexto de analisis</div>" &
+				"<div style='position:absolute;left:68px;top:148px;width:150px;color:#6B778A;font-size:9.5px;line-height:12px;'>Filtros de seguimiento y motivo PDI.</div>" &
+				"<div style='position:absolute;left:238px;top:121px;width:1050px;height:58px;display:grid;grid-template-columns:repeat(6,1fr);gap:12px;'>" &
+				"<div style='background:#F7FAFD;border:1px solid #E6EEF7;border-radius:8px;'></div><div style='background:#F7FAFD;border:1px solid #E6EEF7;border-radius:8px;'></div><div style='background:#F7FAFD;border:1px solid #E6EEF7;border-radius:8px;'></div><div style='background:#F7FAFD;border:1px solid #E6EEF7;border-radius:8px;'></div><div style='background:#F7FAFD;border:1px solid #E6EEF7;border-radius:8px;'></div><div style='background:#F7FAFD;border:1px solid #E6EEF7;border-radius:8px;'></div>" &
+				"</div>" &
+				"<div style='position:absolute;left:32px;top:198px;width:1216px;height:468px;background:#FFFFFF;border:1px solid #E1E8F2;border-radius:10px;'></div>" &
+				"<div style='position:absolute;left:32px;top:674px;width:1005px;height:40px;background:#FFFFFF;border:1px solid #DCE5F2;border-radius:9px;'></div>" &
+				"</div>"
+			RETURN
+				_Html
+		displayFolder: 12 HTML Plantilla Transversal
+		lineageTag: a790124c-6ea0-4bff-b73d-210b00cae1fe
+
+	measure 'HTML Shell D04 Focos de Gestion Desarrollo' =
+			VAR _Html =
+				"<div style='font-family:Outfit,Poppins,Segoe UI,Arial,sans-serif;width:1280px;height:720px;background:#F7F9FC;color:#0B1C35;position:relative;overflow:hidden;'>" &
+				"<div style='position:absolute;left:0;top:0;width:1280px;height:100px;background:#0B1C35;'></div>" &
+				"<div style='position:absolute;left:48px;top:24px;color:#F7931E;font-size:11px;font-weight:850;letter-spacing:2px;text-transform:uppercase;'>DASHBOARD CORPORATIVO - GRUPO LEMCO</div>" &
+				"<div style='position:absolute;left:48px;top:48px;color:#FFFFFF;font-size:25px;font-weight:850;line-height:28px;'>Focos de Gesti&oacute;n Desarrollo</div>" &
+				"<div style='position:absolute;left:48px;top:78px;color:#D8E4F2;font-size:11px;line-height:14px;'>Alertas y focos prioritarios para seguimiento de planes de desarrollo.</div>" &
+				"<div style='position:absolute;right:48px;top:32px;background:#F7931E;color:#0B1C35;border-radius:18px;padding:8px 16px;font-size:11px;font-weight:850;'>Bloque Desarrollo</div>" &
+				"<div style='position:absolute;left:48px;top:112px;width:1200px;height:76px;background:#FFFFFF;border:1px solid #DCE5F2;border-radius:14px;box-shadow:0 6px 18px rgba(11,28,53,0.06);'></div>" &
+				"<div style='position:absolute;left:48px;top:112px;width:7px;height:76px;background:#F7931E;border-radius:14px 0 0 14px;'></div>" &
+				"<div style='position:absolute;left:68px;top:127px;color:#0B1C35;font-size:10px;font-weight:850;letter-spacing:1.5px;text-transform:uppercase;'>Contexto de analisis</div>" &
+				"<div style='position:absolute;left:68px;top:148px;width:150px;color:#6B778A;font-size:9.5px;line-height:12px;'>Filtros para alertas y focos PDI.</div>" &
+				"<div style='position:absolute;left:238px;top:121px;width:1050px;height:58px;display:grid;grid-template-columns:repeat(6,1fr);gap:12px;'>" &
+				"<div style='background:#F7FAFD;border:1px solid #E6EEF7;border-radius:8px;'></div><div style='background:#F7FAFD;border:1px solid #E6EEF7;border-radius:8px;'></div><div style='background:#F7FAFD;border:1px solid #E6EEF7;border-radius:8px;'></div><div style='background:#F7FAFD;border:1px solid #E6EEF7;border-radius:8px;'></div><div style='background:#F7FAFD;border:1px solid #E6EEF7;border-radius:8px;'></div><div style='background:#F7FAFD;border:1px solid #E6EEF7;border-radius:8px;'></div>" &
+				"</div>" &
+				"<div style='position:absolute;left:32px;top:198px;width:1216px;height:468px;background:#FFFFFF;border:1px solid #E1E8F2;border-radius:10px;'></div>" &
+				"<div style='position:absolute;left:32px;top:674px;width:1005px;height:40px;background:#FFFFFF;border:1px solid #DCE5F2;border-radius:9px;'></div>" &
+				"</div>"
+			RETURN
+				_Html
+		displayFolder: 12 HTML Plantilla Transversal
+		lineageTag: 6b19d692-c794-4087-a45d-467f947939a8
+
+	measure 'HTML E01 Desempeno Proxima Fase' =
+			VAR _Html =
+				"<div style='font-family:Outfit,Poppins,Segoe UI,Arial,sans-serif;width:1280px;height:720px;background:#F7F9FC;color:#0B1C35;position:relative;overflow:hidden;'>" &
+				"<div style='position:absolute;left:0;top:0;width:1280px;height:100px;background:#0B1C35;'></div>" &
+				"<div style='position:absolute;left:48px;top:24px;color:#F7931E;font-size:11px;font-weight:850;letter-spacing:2px;text-transform:uppercase;'>DASHBOARD CORPORATIVO - GRUPO LEMCO</div>" &
+				"<div style='position:absolute;left:48px;top:48px;color:#FFFFFF;font-size:25px;font-weight:850;'>Desempe&ntilde;o</div>" &
+				"<div style='position:absolute;left:48px;top:78px;color:#D8E4F2;font-size:11px;'>Frente en preparacion para medicion y seguimiento gerencial de resultados.</div>" &
+				"<div style='position:absolute;right:48px;top:32px;background:#F7931E;color:#0B1C35;border-radius:18px;padding:8px 16px;font-size:11px;font-weight:850;'>Proxima fase</div>" &
+				"<div style='position:absolute;left:160px;top:170px;width:960px;height:360px;background:#FFFFFF;border:1px solid #DCE5F2;border-radius:16px;box-shadow:0 10px 24px rgba(11,28,53,0.08);display:flex;align-items:center;justify-content:center;text-align:center;'>" &
+				"<div><div style='font-size:52px;line-height:60px;'>&#128200;</div><div style='font-size:30px;font-weight:850;margin-top:12px;color:#0B1C35;'>Frente en preparacion</div><div style='font-size:13px;line-height:20px;color:#53657D;margin:14px auto 0;width:520px;'>Este modulo se integrara al Dashboard Corporativo de Desarrollo Organizacional cuando se habiliten las fuentes de desempeno, metas y seguimiento.</div><div style='margin-top:26px;background:#F7931E;color:#0B1C35;border-radius:22px;padding:10px 20px;display:inline-block;font-size:12px;font-weight:850;'>Roadmap 2026</div></div>" &
+				"</div>" &
+				"</div>"
+			RETURN
+				_Html
+		displayFolder: 12 HTML Plantilla Transversal
+		lineageTag: da689f66-7a5f-4a4e-97f9-8916735a7b97
 
 	column Indice
 		dataType: int64

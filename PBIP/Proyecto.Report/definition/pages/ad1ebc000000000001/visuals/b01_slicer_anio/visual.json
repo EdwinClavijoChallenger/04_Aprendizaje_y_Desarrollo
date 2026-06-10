@@ -23,11 +23,11 @@
                       "Entity": "Dim_Calendario"
                     }
                   },
-                  "Property": "Anio"
+                  "Property": "Año"
                 }
               },
-              "queryRef": "Dim_Calendario.Anio",
-              "nativeQueryRef": "Anio",
+              "queryRef": "Dim_Calendario.Año",
+              "nativeQueryRef": "Año",
               "active": true
             }
           ]
@@ -99,7 +99,7 @@
                                   "Source": "d"
                                 }
                               },
-                              "Property": "Anio"
+                              "Property": "Año"
                             }
                           }
                         ],

@@ -30,6 +30,24 @@
               "nativeQueryRef": "HTML Inicio Corporativo Propuesta 2"
             }
           ]
+        },
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medidas_AD"
+                    }
+                  },
+                  "Property": "HTML Inicio Corporativo Propuesta 2"
+                }
+              },
+              "queryRef": "Medidas_AD.HTML Inicio Corporativo Propuesta 2",
+              "nativeQueryRef": "HTML Inicio Corporativo Propuesta 2"
+            }
+          ]
         }
       }
     },

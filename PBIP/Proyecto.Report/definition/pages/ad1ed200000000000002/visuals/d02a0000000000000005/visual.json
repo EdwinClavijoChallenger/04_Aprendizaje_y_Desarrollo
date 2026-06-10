@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "d02a0000000000000005",
   "position": {
-    "x": 480,
-    "y": 42,
-    "z": 5000,
-    "height": 46,
-    "width": 170,
-    "tabOrder": 5000
+    "x": 752,
+    "y": 146,
+    "z": 4000,
+    "height": 38,
+    "width": 156,
+    "tabOrder": 4000
   },
   "visual": {
     "visualType": "slicer",
@@ -26,9 +26,9 @@
                   "Property": "Area"
                 }
               },
+              "queryRef": "Dim_Area.Area",
               "nativeQueryRef": "Area",
-              "active": true,
-              "queryRef": "Dim_Area.Area"
+              "active": true
             }
           ]
         }

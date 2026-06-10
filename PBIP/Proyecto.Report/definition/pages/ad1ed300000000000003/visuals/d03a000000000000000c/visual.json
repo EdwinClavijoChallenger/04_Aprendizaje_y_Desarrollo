@@ -3,11 +3,11 @@
   "name": "d03a000000000000000c",
   "position": {
     "x": 440,
-    "y": 108,
-    "z": 8002,
+    "y": 206,
+    "z": 9000,
     "height": 58,
     "width": 188,
-    "tabOrder": 8002
+    "tabOrder": 9000
   },
   "visual": {
     "visualType": "card",
@@ -26,8 +26,8 @@
                   "Property": "PDI Acompanamientos Programados"
                 }
               },
-              "nativeQueryRef": "PDI Acompanamientos Programados",
-              "queryRef": "Medidas_AD.PDI Acompanamientos Programados"
+              "queryRef": "Medidas_AD.PDI Acompanamientos Programados",
+              "nativeQueryRef": "PDI Acompanamientos Programados"
             }
           ]
         }

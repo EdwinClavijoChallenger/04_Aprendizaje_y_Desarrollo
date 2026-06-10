@@ -405,3 +405,4 @@ table Fct_EntrevistaRetiro_Unificada
 				    Typed
 
 	annotation PBI_ResultType = Table
+

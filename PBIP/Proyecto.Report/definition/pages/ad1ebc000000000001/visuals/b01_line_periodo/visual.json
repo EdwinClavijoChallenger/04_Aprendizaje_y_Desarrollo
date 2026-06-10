@@ -4,10 +4,10 @@
   "position": {
     "x": 864,
     "y": 276,
-    "z": 3002,
+    "z": 17000,
     "height": 194,
     "width": 368,
-    "tabOrder": 3002
+    "tabOrder": 17000
   },
   "visual": {
     "visualType": "lineChart",
@@ -23,11 +23,11 @@
                       "Entity": "Dim_Calendario"
                     }
                   },
-                  "Property": "AnioMes"
+                  "Property": "AñoMes"
                 }
               },
-              "queryRef": "Dim_Calendario.AnioMes",
-              "nativeQueryRef": "AnioMes",
+              "queryRef": "Dim_Calendario.AñoMes",
+              "nativeQueryRef": "AñoMes",
               "active": true
             }
           ]

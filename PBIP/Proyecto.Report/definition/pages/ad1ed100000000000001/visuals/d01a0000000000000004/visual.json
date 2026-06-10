@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "d01a0000000000000004",
   "position": {
-    "x": 300,
-    "y": 42,
-    "z": 4000,
-    "height": 46,
-    "width": 170,
-    "tabOrder": 4000
+    "x": 584,
+    "y": 146,
+    "z": 3000,
+    "height": 38,
+    "width": 156,
+    "tabOrder": 3000
   },
   "visual": {
     "visualType": "slicer",
@@ -26,9 +26,9 @@
                   "Property": "Empresa"
                 }
               },
+              "queryRef": "Dim_Empresa.Empresa",
               "nativeQueryRef": "Empresa",
-              "active": true,
-              "queryRef": "Dim_Empresa.Empresa"
+              "active": true
             }
           ]
         }

@@ -3,11 +3,11 @@
   "name": "d84d7402067dd2fd7eed",
   "position": {
     "x": 658,
-    "y": 452,
-    "z": 15000,
-    "height": 218,
+    "y": 520,
+    "z": 16000,
+    "height": 142,
     "width": 590,
-    "tabOrder": 15000
+    "tabOrder": 16000
   },
   "visual": {
     "visualType": "barChart",
@@ -263,6 +263,19 @@
       ]
     },
     "visualContainerObjects": {
+      "visualTooltip": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
       "title": [
         {
           "properties": {
@@ -276,7 +289,14 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Mix de ejecucion por tipo'"
+                  "Value": "'Mix de ejecución por tipo'"
+                }
+              }
+            },
+            "titleWrap": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
                 }
               }
             },
@@ -291,10 +311,21 @@
                 }
               }
             },
-            "fontFamily": {
+            "background": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#FFFFFF'"
+                    }
+                  }
+                }
+              }
+            },
+            "alignment": {
               "expr": {
                 "Literal": {
-                  "Value": "'Outfit'"
+                  "Value": "'Left'"
                 }
               }
             },
@@ -312,21 +343,24 @@
                 }
               }
             },
-            "alignment": {
+            "italic": {
               "expr": {
                 "Literal": {
-                  "Value": "'Left'"
+                  "Value": "false"
                 }
               }
             },
-            "background": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#FFFFFF'"
-                    }
-                  }
+            "underline": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Outfit'"
                 }
               }
             }
@@ -339,20 +373,7 @@
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
-                }
-              }
-            }
-          }
-        }
-      ],
-      "visualTooltip": [
-        {
-          "properties": {
-            "show": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
+                  "Value": "false"
                 }
               }
             }
@@ -362,13 +383,6 @@
       "background": [
         {
           "properties": {
-            "show": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
-                }
-              }
-            },
             "color": {
               "solid": {
                 "color": {
@@ -386,6 +400,13 @@
                   "Value": "0D"
                 }
               }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
             }
           }
         }
@@ -393,10 +414,10 @@
       "border": [
         {
           "properties": {
-            "show": {
+            "radius": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
+                  "Value": "7D"
                 }
               }
             },
@@ -405,16 +426,9 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#E6EEF5'"
+                      "Value": "'#DCE5F2'"
                     }
                   }
-                }
-              }
-            },
-            "radius": {
-              "expr": {
-                "Literal": {
-                  "Value": "4D"
                 }
               }
             },
@@ -422,6 +436,13 @@
               "expr": {
                 "Literal": {
                   "Value": "1D"
+                }
+              }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
                 }
               }
             }

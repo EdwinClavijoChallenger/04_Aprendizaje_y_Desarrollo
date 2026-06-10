@@ -28,3 +28,4 @@ table Dim_TipoRetiro
 				    )
 				RETURN
 				    _Tabla
+

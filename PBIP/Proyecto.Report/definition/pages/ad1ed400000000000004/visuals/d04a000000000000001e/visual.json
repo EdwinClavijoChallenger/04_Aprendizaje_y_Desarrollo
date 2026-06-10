@@ -3,11 +3,11 @@
   "name": "d04a000000000000001e",
   "position": {
     "x": 32,
-    "y": 208,
-    "z": 9000,
-    "height": 214,
+    "y": 288,
+    "z": 13000,
+    "height": 194,
     "width": 590,
-    "tabOrder": 9000
+    "tabOrder": 13000
   },
   "visual": {
     "visualType": "barChart",
@@ -26,9 +26,9 @@
                   "Property": "Area"
                 }
               },
+              "queryRef": "Dim_Area.Area",
               "nativeQueryRef": "Area",
-              "active": true,
-              "queryRef": "Dim_Area.Area"
+              "active": true
             }
           ]
         },
@@ -45,8 +45,8 @@
                   "Property": "PDI Alertas Criticas"
                 }
               },
-              "nativeQueryRef": "PDI Alertas Criticas",
-              "queryRef": "Medidas_AD.PDI Alertas Criticas"
+              "queryRef": "Medidas_AD.PDI Alertas Criticas",
+              "nativeQueryRef": "PDI Alertas Criticas"
             }
           ]
         }

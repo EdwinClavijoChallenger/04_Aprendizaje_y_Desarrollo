@@ -3,11 +3,11 @@
   "name": "d02a0000000000000020",
   "position": {
     "x": 32,
-    "y": 452,
-    "z": 11000,
-    "height": 218,
+    "y": 512,
+    "z": 15000,
+    "height": 154,
     "width": 590,
-    "tabOrder": 11000
+    "tabOrder": 15000
   },
   "visual": {
     "visualType": "barChart",
@@ -26,9 +26,9 @@
                   "Property": "Estado_PDI"
                 }
               },
+              "queryRef": "Dim_EstadoPDI.Estado_PDI",
               "nativeQueryRef": "Estado_PDI",
-              "active": true,
-              "queryRef": "Dim_EstadoPDI.Estado_PDI"
+              "active": true
             }
           ]
         },
@@ -45,8 +45,8 @@
                   "Property": "PDI Porcentaje Por Estado"
                 }
               },
-              "nativeQueryRef": "PDI Porcentaje Por Estado",
-              "queryRef": "Medidas_AD.PDI Porcentaje Por Estado"
+              "queryRef": "Medidas_AD.PDI Porcentaje Por Estado",
+              "nativeQueryRef": "PDI Porcentaje Por Estado"
             }
           ]
         }

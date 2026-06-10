@@ -3,11 +3,11 @@
   "name": "d02a000000000000001f",
   "position": {
     "x": 658,
-    "y": 208,
-    "z": 10000,
-    "height": 214,
+    "y": 288,
+    "z": 14000,
+    "height": 194,
     "width": 590,
-    "tabOrder": 10000
+    "tabOrder": 14000
   },
   "visual": {
     "visualType": "barChart",
@@ -26,9 +26,9 @@
                   "Property": "Area"
                 }
               },
+              "queryRef": "Dim_Area.Area",
               "nativeQueryRef": "Area",
-              "active": true,
-              "queryRef": "Dim_Area.Area"
+              "active": true
             }
           ]
         },
@@ -45,8 +45,8 @@
                   "Property": "PDI Avance Promedio"
                 }
               },
-              "nativeQueryRef": "PDI Avance Promedio",
-              "queryRef": "Medidas_AD.PDI Avance Promedio"
+              "queryRef": "Medidas_AD.PDI Avance Promedio",
+              "nativeQueryRef": "PDI Avance Promedio"
             }
           ]
         }

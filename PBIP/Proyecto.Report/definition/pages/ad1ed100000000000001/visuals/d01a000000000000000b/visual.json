@@ -3,11 +3,11 @@
   "name": "d01a000000000000000b",
   "position": {
     "x": 236,
-    "y": 108,
-    "z": 8001,
+    "y": 206,
+    "z": 8000,
     "height": 58,
     "width": 188,
-    "tabOrder": 8001
+    "tabOrder": 8000
   },
   "visual": {
     "visualType": "card",
@@ -26,8 +26,8 @@
                   "Property": "PDI Activos"
                 }
               },
-              "nativeQueryRef": "PDI Activos",
-              "queryRef": "Medidas_AD.PDI Activos"
+              "queryRef": "Medidas_AD.PDI Activos",
+              "nativeQueryRef": "PDI Activos"
             }
           ]
         }

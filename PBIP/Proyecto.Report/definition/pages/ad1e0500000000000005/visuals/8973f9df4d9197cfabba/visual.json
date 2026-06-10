@@ -3,11 +3,11 @@
   "name": "8973f9df4d9197cfabba",
   "position": {
     "x": 482,
-    "y": 208,
-    "z": 15000,
-    "height": 214,
+    "y": 288,
+    "z": 16000,
+    "height": 194,
     "width": 480,
-    "tabOrder": 15000
+    "tabOrder": 16000
   },
   "visual": {
     "visualType": "lineChart",
@@ -23,11 +23,11 @@
                       "Entity": "Dim_Calendario"
                     }
                   },
-                  "Property": "AnioMes"
+                  "Property": "AñoMes"
                 }
               },
-              "queryRef": "Dim_Calendario.AnioMes",
-              "nativeQueryRef": "AnioMes",
+              "queryRef": "Dim_Calendario.AñoMes",
+              "nativeQueryRef": "AñoMes",
               "active": true
             }
           ]
