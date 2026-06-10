@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "sel_p2_frente",
   "position": {
-    "x": 228.19618750423987,
-    "y": 165.67668407842072,
+    "x": 1129.3702955755462,
+    "y": 0,
     "z": 8000,
-    "height": 62.519503425819146,
-    "width": 243.82606336069466,
+    "height": 36.658711217183772,
+    "width": 150.86469616302551,
     "tabOrder": 8000
   },
   "visual": {
@@ -149,7 +149,7 @@
                           [
                             {
                               "Literal": {
-                                "Value": "'Desempeno'"
+                                "Value": "'Desempeño'"
                               }
                             }
                           ]

@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "sel_p3_frente",
   "position": {
-    "x": 180,
-    "y": 102,
+    "x": 1129.3702955755462,
+    "y": 19.739306040022029,
     "z": 8000,
-    "height": 62,
-    "width": 840,
+    "height": 36.658711217183772,
+    "width": 150.86469616302551,
     "tabOrder": 8000
   },
   "visual": {
@@ -149,7 +149,7 @@
                           [
                             {
                               "Literal": {
-                                "Value": "'Aprendizaje'"
+                                "Value": "'Desempeño'"
                               }
                             }
                           ]

@@ -26,7 +26,7 @@ table Dim_Frente_Home
 				    {
 				        {"Aprendizaje", 1, "Activo"},
 				        {"Desarrollo", 2, "En construccion"},
-				        {"Desempeno", 3, "Proxima fase"},
+				        {"Desempeño", 3, "Proxima fase"},
 				        {"Bienestar y Clima", 4, "En construccion"}
 				    }
 				)
