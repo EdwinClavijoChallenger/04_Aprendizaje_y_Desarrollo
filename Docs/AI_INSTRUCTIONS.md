@@ -68,9 +68,24 @@ Si aparecen cambios que no fueron hechos por la IA:
 - trabajar con ellos cuando sea posible;
 - pedir confirmacion solo si impiden completar el trabajo de forma segura.
 
-## Scripts y reproducibilidad
+## Scripts y proteccion del PBIP actual
 
-- Los scripts de `Scripts`, como `Scripts/ApplyExecutiveDashboard.ps1`, deben tratarse como herramientas de mantenimiento controlado.
-- Antes de ejecutar scripts que puedan modificar modelo o reporte, validar `git status`, alcance esperado, archivos afectados y si Power BI Desktop esta abierto.
-- Cuando un script tenga modo parcial, por ejemplo `-ReportOnly`, explicar el impacto antes de ejecutarlo.
-- No usar scripts de reconstruccion como sustituto de cambios manuales seguros si el usuario esta trabajando simultaneamente en Power BI Desktop.
+- El PBIP actual debe preservarse. No se deben reconstruir paginas, resetear el reporte, regenerar visuales ni reaplicar estructuras completas sin autorizacion expresa del usuario.
+- El estandar visual vigente del reporte esta gobernado por la pagina `00 Inicio Corporativo - Propuesta 1` aprobada y por el tema JSON del reporte.
+- No se deben ejecutar scripts que dupliquen, contradigan o sobrescriban el branding definido por el tema JSON o por el formato visual ya aprobado.
+- Los cambios sobre paginas existentes deben ser puntuales, controlados y previamente explicados.
+- Antes de ejecutar cualquier script, validar `git status`, alcance esperado, archivos afectados y si Power BI Desktop esta abierto.
+- No ejecutar scripts de reconstruccion, reset o branding masivo sin autorizacion explicita del usuario.
+- Los scripts solo pueden considerarse vigentes si hacen ajustes finos, seguros y acotados, como formato de tarjetas o desactivacion de etiquetas, sin tocar navegacion, estructura ni paginas completas.
+
+### Clasificacion operativa de scripts
+
+- `Scripts/ApplyExecutiveDashboard.ps1`: no operativo / deprecated. No debe usarse porque puede reconstruir paginas y sobrescribir avances actuales del PBIP.
+- `Scripts/ResetToDefault.ps1`: legacy / solo historico o recuperacion controlada. No debe ejecutarse sobre el reporte actual sin autorizacion expresa.
+- `Scripts/ReplaceHomeNivelCargoWithTipoCargo.ps1`: deprecated. Fue un ajuste puntual ya superado.
+- `Scripts/ApplyBrandTheme.ps1`: legacy / no operativo. El branding debe gobernarse desde el tema JSON y la plantilla visual aprobada.
+- `Scripts/ApplyLemcoVisualStyle.ps1`: legacy con posible referencia tecnica. No debe usarse como herramienta operativa de branding masivo.
+- `Scripts/ApplyCardFontSizes.ps1`: utilitario vigente con cautela, solo para ajustes finos de tarjetas.
+- `Scripts/DisableCategoryLabel.ps1`: utilitario vigente con cautela, solo para desactivar etiquetas de categoria en tarjetas.
+
+Si existe duda sobre el impacto de un script, no ejecutarlo. Primero documentar el alcance, proponer el uso y pedir autorizacion.

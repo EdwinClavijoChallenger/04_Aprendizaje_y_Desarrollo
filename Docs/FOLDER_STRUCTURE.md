@@ -43,25 +43,29 @@ Los archivos de datos solo deben versionarse si existe autorizacion explicita y 
 
 ## `Scripts`
 
-Contiene scripts de soporte para automatizar o aplicar ajustes al PBIP.
+Contiene scripts de soporte historicos o utilitarios puntuales para el PBIP.
 
-Usar esta carpeta para:
+La prioridad del proyecto es preservar el PBIP actual. Por tanto, esta carpeta no debe entenderse como una fuente para reconstruir paginas, resetear el reporte o reaplicar branding masivo.
 
-- scripts PowerShell;
-- validaciones de JSON;
-- ajustes de formato;
-- procesos repetibles del modelo o reporte.
+Uso permitido:
 
-Los scripts necesarios para mantenimiento del proyecto deben versionarse.
+- validaciones puntuales;
+- ajustes finos de formato;
+- soporte controlado sobre tarjetas o propiedades visuales especificas;
+- utilidades aprobadas previamente por el usuario.
 
-Los scripts que puedan reconstruir o modificar el reporte, como `Scripts/ApplyExecutiveDashboard.ps1`, deben ejecutarse solo despues de validar estado Git, alcance esperado y posibles cambios abiertos en Power BI Desktop.
+Uso no permitido sin autorizacion expresa:
 
-Ejemplos de ejecucion controlada:
+- reconstruir paginas completas;
+- eliminar o regenerar visuales;
+- resetear el reporte;
+- reaplicar branding masivo;
+- reemplazar la estructura visual aprobada;
+- modificar navegacion o estructura del PBIP.
 
-```powershell
-powershell -NoProfile -ExecutionPolicy Bypass -File ".\Scripts\ApplyExecutiveDashboard.ps1"
-powershell -NoProfile -ExecutionPolicy Bypass -File ".\Scripts\ApplyExecutiveDashboard.ps1" -ReportOnly
-```
+El estandar visual vigente esta definido por la pagina `00 Inicio Corporativo - Propuesta 1` y por el tema JSON del reporte.
+
+La clasificacion detallada de scripts debe mantenerse en `Docs/SCRIPTS_GOVERNANCE.md`.
 
 ## `Assets`
 
