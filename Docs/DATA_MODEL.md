@@ -56,6 +56,7 @@ La tabla de medidas principal es `Medidas_AD`.
 | `Dim_MotivoRetiro` | Analisis por motivo principal de retiro. |
 | `Dim_CategoriaMotivoRetiro` | Agrupacion ejecutiva de motivos de retiro. |
 | `Dim_ProcesoRetiro` | Analisis de procesos asociados a oportunidades de mejora. |
+| `Dim_Frente_Home` | Tabla auxiliar para controlar el frente activo del home corporativo. |
 
 ## Criterios de homologacion
 
@@ -65,6 +66,7 @@ La tabla de medidas principal es `Medidas_AD`.
 - `Dim_TemaFormacion` homologa temas o nombres de formacion entre plan, asistencia y encuesta mediante llaves tecnicas normalizadas.
 - Las dimensiones de estado, modalidad, tipo de formacion, motivo PDI y segmento UC se mantienen separadas para evitar relaciones ambiguas y mejorar la lectura ejecutiva.
 - Las dimensiones de entrevista de retiro se derivan de `Fct_EntrevistaRetiro_Unificada` para no alterar las fuentes originales y mantener un modelo escalable para versiones futuras.
+- `Dim_Frente_Home` no se usa como dimension analitica relacionada con hechos. Soporta la seleccion del frente activo en `00 Inicio Corporativo` mediante el slicer tecnico oculto `sel_p1_frente` y los marcadores del home.
 
 ## Relaciones principales
 

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/bookmarksMetadata/1.0.0/schema.json",
+  "items": [
+    {
+      "name": "BM_Home_Frente_Aprendizaje"
+    },
+    {
+      "name": "BM_Home_Frente_Desempeño"
+    },
+    {
+      "name": "BM_Home_Frente_Desarrollo"
+    },
+    {
+      "name": "BM_Home_Frente_Bienestar"
+    }
+  ]
+}

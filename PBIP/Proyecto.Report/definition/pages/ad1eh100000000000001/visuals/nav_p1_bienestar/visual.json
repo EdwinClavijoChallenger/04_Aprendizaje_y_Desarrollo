@@ -201,7 +201,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Ir a Entrevista de Retiro'"
+                  "Value": "'Seleccionar Bienestar y Clima'"
                 }
               }
             }
@@ -221,21 +221,21 @@
             "type": {
               "expr": {
                 "Literal": {
-                  "Value": "'PageNavigation'"
+                  "Value": "'Bookmark'"
                 }
               }
             },
-            "navigationSection": {
+            "bookmark": {
               "expr": {
                 "Literal": {
-                  "Value": "'ad1ebc000000000000'"
+                  "Value": "'BM_Home_Frente_Bienestar'"
                 }
               }
             },
             "tooltip": {
               "expr": {
                 "Literal": {
-                  "Value": "'Ir a Entrevista de Retiro'"
+                  "Value": "'Seleccionar Bienestar y Clima'"
                 }
               }
             },

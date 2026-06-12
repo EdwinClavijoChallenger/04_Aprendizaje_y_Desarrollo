@@ -9,6 +9,7 @@
     "width": 150,
     "tabOrder": 8000
   },
+  "isHidden": true,
   "visual": {
     "visualType": "slicer",
     "query": {

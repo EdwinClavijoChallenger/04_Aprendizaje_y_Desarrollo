@@ -201,7 +201,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Ir a Desempeno - Proxima Fase'"
+                  "Value": "'Seleccionar Desempeño'"
                 }
               }
             }
@@ -221,21 +221,21 @@
             "type": {
               "expr": {
                 "Literal": {
-                  "Value": "'PageNavigation'"
+                  "Value": "'Bookmark'"
                 }
               }
             },
-            "navigationSection": {
+            "bookmark": {
               "expr": {
                 "Literal": {
-                  "Value": "'ad1edp000000000001'"
+                  "Value": "'BM_Home_Frente_Desempeño'"
                 }
               }
             },
             "tooltip": {
               "expr": {
                 "Literal": {
-                  "Value": "'Ir a Desempeno - Proxima Fase'"
+                  "Value": "'Seleccionar Desempeño'"
                 }
               }
             },

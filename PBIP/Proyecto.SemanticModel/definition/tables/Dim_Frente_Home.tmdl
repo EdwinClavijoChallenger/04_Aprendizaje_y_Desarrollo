@@ -3,18 +3,29 @@ table Dim_Frente_Home
 
 	column Frente
 		lineageTag: 06e5c4af-8584-4c06-8dfa-23a744cf527d
+		summarizeBy: none
 		isNameInferred
 		sourceColumn: [Frente]
+		sortByColumn: Orden
+
+		annotation SummarizationSetBy = Automatic
 
 	column Orden
+		formatString: 0
 		lineageTag: 8428b041-97ed-4013-8461-13965440ba77
+		summarizeBy: sum
 		isNameInferred
 		sourceColumn: [Orden]
 
+		annotation SummarizationSetBy = Automatic
+
 	column Estado
 		lineageTag: 78c02e13-bb90-48f5-8831-59d0cd003dcf
+		summarizeBy: none
 		isNameInferred
 		sourceColumn: [Estado]
+
+		annotation SummarizationSetBy = Automatic
 
 	partition Dim_Frente_Home = calculated
 		mode: import
@@ -25,8 +36,8 @@ table Dim_Frente_Home
 				    "Estado", STRING,
 				    {
 				        {"Aprendizaje", 1, "Activo"},
-				        {"Desarrollo", 2, "En construccion"},
-				        {"Desempeño", 3, "Proxima fase"},
+				        {"Desempeño", 2, "Proxima fase"},
+				        {"Desarrollo", 3, "En construccion"},
 				        {"Bienestar y Clima", 4, "En construccion"}
 				    }
 				)

@@ -811,7 +811,7 @@ table Medidas_AD
 			"<div style='width:1280px;height:720px;box-sizing:border-box;position:relative;background:#ffffff;font-family:Outfit,Segoe UI,Arial,sans-serif;color:#0B1C35;overflow:hidden;'>" &
 			"<div style='height:88px;background:#0B1C35;color:#fff;padding:20px 34px;box-sizing:border-box;display:flex;justify-content:space-between;align-items:center;'>" &
 			"<div><div style='font-size:11px;letter-spacing:1.8px;text-transform:uppercase;color:#F7931E;font-weight:700;'>Dashboard Corporativo &middot; Grupo LEMCO</div><div style='font-size:25px;line-height:29px;font-weight:800;margin-top:5px;'>Inicio Corporativo</div></div>" &
-			"<div style='font-size:10px;color:#7A9EC2;'>Selecciona un frente &rarr;</div></div>" &
+			"<div style='font-size:10px;color:#7A9EC2;'></div></div>" &
 			"<div style='position:absolute;left:34px;top:104px;width:1214px;height:82px;background:#ffffff;border:1px solid #DCE5F2;border-radius:14px;box-sizing:border-box;box-shadow:0 10px 28px rgba(11,28,53,.07);overflow:hidden;'>" &
 			"<div style='position:absolute;left:0;top:0;width:7px;height:82px;background:#F7931E;'></div>" &
 			"<div style='position:absolute;left:22px;top:17px;width:178px;'><div style='font-size:10px;font-weight:900;color:#0B1C35;text-transform:uppercase;letter-spacing:1px;'>Contexto de an&aacute;lisis</div><div style='font-size:9px;color:#6B7D93;line-height:13px;margin-top:5px;'>Filtros activos para la lectura ejecutiva del home.</div></div>" &

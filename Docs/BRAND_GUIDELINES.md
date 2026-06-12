@@ -55,7 +55,12 @@ Todas las paginas analiticas del dashboard deben seguir una plantilla visual com
 ## Navegacion
 
 - La pagina `00 Inicio Corporativo` debe funcionar como entrada principal del dashboard corporativo.
-- La version oficial del home corporativo corresponde al diseno seleccionado de `00 Inicio Corporativo - Propuesta 1`, basado en HTML Content, con selector de frente, contexto de analisis, tarjetas de frente activo, mapa de frentes y accesos de navegacion.
+- La version oficial del home corporativo corresponde al diseno seleccionado de `00 Inicio Corporativo - Propuesta 1`, basado en HTML Content, contexto de analisis, tarjetas de frente activo, mapa de frentes y accesos de navegacion.
+- El estado del frente activo del home se gobierna con `Dim_Frente_Home[Frente]` y el slicer tecnico oculto `sel_p1_frente`.
+- Las tarjetas principales del mapa de frentes deben actuar como selectores mediante marcadores (`Bookmark`) que afecten exclusivamente `sel_p1_frente`; no deben navegar directamente a otra pagina.
+- El CTA de la tarjeta grande izquierda debe conservar la navegacion hacia el resumen o pagina principal del frente seleccionado.
+- Los submenus internos del home deben conservar navegacion especifica hacia paginas del frente cuando aplique.
+- `sel_p1_frente` no debe eliminarse aunque este oculto, porque funciona como estado tecnico del home dinamico.
 - Las paginas del frente Aprendizaje deben mantener prefijo `A` y las paginas del frente Desarrollo deben mantener prefijo `D`, salvo decision aprobada.
 - El menu de navegacion debe agrupar las paginas por frente funcional para que usuarios no tecnicos puedan recorrer el reporte sin depender solo de las pestanas inferiores de Power BI.
 - La navegacion debe ser simple, visible, consistente y con estados activo/inactivo claros.
@@ -71,7 +76,7 @@ Todas las paginas analiticas del dashboard deben seguir una plantilla visual com
 - Las paginas del frente Desarrollo incluyen acceso a Inicio, entrada al frente Aprendizaje y paginas principales del frente Desarrollo.
 - El estado activo usa naranja `#F7931E`; los accesos inactivos usan fondo blanco con azul corporativo; los placeholders usan gris neutro.
 - Los accesos hacia otro frente dentro de un menu de frente deben diferenciarse con relleno azul corporativo y texto blanco, manteniendo el mismo tamano, tipografia y comportamiento de navegacion.
-- La navegacion se implementa con visuales de tipo `actionButton` y accion `PageNavigation`.
+- La navegacion se implementa con visuales de tipo `actionButton`. En menus y CTAs se usa `PageNavigation`; en las tarjetas principales del home se usa `Bookmark` para seleccionar el frente activo sin cambiar de pagina.
 
 ## Composicion
 

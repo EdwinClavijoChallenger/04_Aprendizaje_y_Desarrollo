@@ -201,7 +201,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Ir a Desarrollo'"
+                  "Value": "'Seleccionar Desarrollo'"
                 }
               }
             }
@@ -221,21 +221,21 @@
             "type": {
               "expr": {
                 "Literal": {
-                  "Value": "'PageNavigation'"
+                  "Value": "'Bookmark'"
                 }
               }
             },
-            "navigationSection": {
+            "bookmark": {
               "expr": {
                 "Literal": {
-                  "Value": "'ad1ed100000000000001'"
+                  "Value": "'BM_Home_Frente_Desarrollo'"
                 }
               }
             },
             "tooltip": {
               "expr": {
                 "Literal": {
-                  "Value": "'Ir a Desarrollo'"
+                  "Value": "'Seleccionar Desarrollo'"
                 }
               }
             },
