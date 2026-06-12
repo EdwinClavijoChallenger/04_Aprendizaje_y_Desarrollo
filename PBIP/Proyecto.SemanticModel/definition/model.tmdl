@@ -14,7 +14,7 @@ annotation __PBI_TimeIntelligenceEnabled = 0
 
 annotation PBI_ProTooling = ["DevMode"]
 
-annotation PBI_QueryOrder = ["Fct_PlanFormacion","Fct_AsistenciaFormacion","Fct_EncuestaFormacion","Fct_InduccionColaborador_antes_de_UC_2025","Fct_InduccionColaborador_UC_2025","Fct_InduccionColaborador_UC_2026","Dim_ColaboradorHC","Fct_Seguimiento_PDI","Fct_EntrevistaRetiro_V1","Fct_EntrevistaRetiro_V2","Fct_EntrevistaRetiro_Corporativa","Fct_EntrevistaRetiro_Unificada"]
+annotation PBI_QueryOrder = ["Fct_PlanFormacion","Fct_AsistenciaFormacion","Fct_EncuestaFormacion","Fct_InduccionColaborador_antes_de_UC_2025","Fct_InduccionColaborador_UC_2025","Fct_InduccionColaborador_UC_2026","Dim_ColaboradorHC","Fct_Seguimiento_PDI","Fct_EntrevistaRetiro_V1","Fct_EntrevistaRetiro_V2","Fct_EntrevistaRetiro_Corporativa","Fct_EntrevistaRetiro_Unificada","Stg_Bienestar_Ejecucion","Stg_Bienestar_Planeacion"]
 
 ref table Dim_Calendario
 ref table Fct_PlanFormacion
@@ -49,6 +49,8 @@ ref table Dim_MotivoRetiro
 ref table Dim_CategoriaMotivoRetiro
 ref table Dim_ProcesoRetiro
 ref table Dim_Frente_Home
+ref table Stg_Bienestar_Ejecucion
+ref table Stg_Bienestar_Planeacion
 
 ref cultureInfo es-ES
 

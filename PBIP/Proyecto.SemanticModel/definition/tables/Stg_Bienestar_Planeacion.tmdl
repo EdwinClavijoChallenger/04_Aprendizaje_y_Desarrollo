@@ -1,0 +1,82 @@
+table Stg_Bienestar_Planeacion
+	lineageTag: c20853d2-bfcf-4eee-843e-16b08f69f325
+
+	column DIMENSION
+		dataType: string
+		lineageTag: 5dc17480-7b44-4e1d-8624-12f6a2ec192a
+		summarizeBy: none
+		sourceColumn: DIMENSION
+
+		annotation SummarizationSetBy = Automatic
+
+	column COMPONENTES
+		dataType: string
+		lineageTag: 36cb58d1-1837-4c4c-acc1-8d346d40485d
+		summarizeBy: none
+		sourceColumn: COMPONENTES
+
+		annotation SummarizationSetBy = Automatic
+
+	column OBSERVACION
+		dataType: string
+		lineageTag: 7ef5dbd9-32d2-4fd9-9cb4-1e65b2268f9a
+		summarizeBy: none
+		sourceColumn: OBSERVACION
+
+		annotation SummarizationSetBy = Automatic
+
+	column Mes
+		dataType: string
+		lineageTag: 22dd3235-8d11-4d9c-b851-96d2f8443641
+		summarizeBy: none
+		sourceColumn: Mes
+
+		annotation SummarizationSetBy = Automatic
+
+	column Planeado
+		dataType: string
+		lineageTag: 46391ed9-97d4-4069-bd12-399304fea6a0
+		summarizeBy: none
+		sourceColumn: Planeado
+
+		annotation SummarizationSetBy = Automatic
+
+	column Anio = 2026
+		dataType: int64
+		lineageTag: 67660be9-22f2-4ee9-9764-96d859ab18c9
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column NumeroMes = SWITCH([Mes], "Enero", 1, "Febrero", 2, "Marzo", 3, "Abril", 4, "Mayo", 5, "Junio", 6, "Julio", 7, "Agosto", 8, "Septiembre", 9, "Octubre", 10, "Noviembre", 11, "Diciembre", 12)
+		dataType: int64
+		lineageTag: 87c0ff0d-2aca-47e7-a0d2-4940078e9914
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Stg_Bienestar_Planeacion = m
+		mode: import
+		source =
+				let
+				    Origen = Excel.Workbook(Web.Contents("https://lemcosas.sharepoint.com/sites/TalentoHumanoGrupoLemco/Documentos%20compartidos/5.%20People%20analytics/06_Bienestar/Data/2026/Planeaci%C3%B3n%20Bienestar2026.xlsx"), null, true),
+				    Planeacion_Sheet = Origen{[Item="Planeación",Kind="Sheet"]}[Data],
+				    Encabezados = Table.PromoteHeaders(Planeacion_Sheet, [PromoteAllScalars=true]),
+				    ColNames = Table.ColumnNames(Encabezados),
+				    Meses = {"Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"},
+				    RenombrarFijo = {{ColNames{0},"DIMENSION"},{ColNames{1},"COMPONENTES"},{ColNames{2},"OBSERVACION"}},
+				    RenombrarMeses = List.Transform(List.Positions(Meses), each {ColNames{3 + _}, Meses{_}}),
+				    Renombrado = Table.RenameColumns(Encabezados, List.Combine({RenombrarFijo, RenombrarMeses}), MissingField.Ignore),
+				    TiposTexto = Table.TransformColumnTypes(Renombrado, List.Transform(Table.ColumnNames(Renombrado), each {_, type text})),
+				    RellenarDimension = Table.FillDown(TiposTexto, {"DIMENSION"}),
+				    FiltraryLimpiar = Table.SelectRows(RellenarDimension, each [COMPONENTES] <> null and [COMPONENTES] <> ""),
+				    Despivotado = Table.UnpivotOtherColumns(FiltraryLimpiar, {"DIMENSION","COMPONENTES","OBSERVACION"}, "Mes", "Planeado"),
+				    Reordenado = Table.ReorderColumns(Despivotado, {"DIMENSION","COMPONENTES","OBSERVACION","Mes","Planeado"}),
+				    Resultado = Table.Sort(Reordenado, {{"DIMENSION", Order.Ascending},{"COMPONENTES", Order.Ascending},{"Mes", Order.Ascending}})
+				in
+				    Resultado
+
+	annotation PBI_NavigationStepName = Navegación
+
+	annotation PBI_ResultType = Table
+

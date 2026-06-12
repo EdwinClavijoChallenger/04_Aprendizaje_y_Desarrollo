@@ -1,0 +1,94 @@
+table Stg_Bienestar_Ejecucion
+	lineageTag: 48f0159c-ee73-4101-9bf9-71be97c63df3
+
+	column DIMENSION
+		dataType: string
+		lineageTag: ee881a01-efd4-4748-8564-0affea41a040
+		summarizeBy: none
+		sourceColumn: DIMENSION
+
+		annotation SummarizationSetBy = Automatic
+
+	column COMPONENTES
+		dataType: string
+		lineageTag: 1d58784f-e5d7-41f9-9144-d06669b0edd9
+		summarizeBy: none
+		sourceColumn: COMPONENTES
+
+		annotation SummarizationSetBy = Automatic
+
+	column OBSERVACION
+		dataType: string
+		lineageTag: d7fd6808-1285-417b-b486-9c2efc30a0ff
+		summarizeBy: none
+		sourceColumn: OBSERVACION
+
+		annotation SummarizationSetBy = Automatic
+
+	column Mes
+		dataType: string
+		lineageTag: 8d90d558-5a45-4137-a250-230230fb4094
+		summarizeBy: none
+		sourceColumn: Mes
+
+		annotation SummarizationSetBy = Automatic
+
+	column Planeado
+		dataType: string
+		lineageTag: 7fc466bb-519a-446a-b2f3-fb03e1f73693
+		summarizeBy: none
+		sourceColumn: Planeado
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ejecutado
+		dataType: string
+		lineageTag: 569f8065-57e8-4f45-8084-cd3f633f0141
+		summarizeBy: none
+		sourceColumn: Ejecutado
+
+		annotation SummarizationSetBy = Automatic
+
+	column Anio = 2026
+		dataType: int64
+		lineageTag: 4b1b3b36-78b8-4e79-b695-f0de24a73cae
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column NumeroMes = SWITCH([Mes], "Enero", 1, "Febrero", 2, "Marzo", 3, "Abril", 4, "Mayo", 5, "Junio", 6, "Julio", 7, "Agosto", 8, "Septiembre", 9, "Octubre", 10, "Noviembre", 11, "Diciembre", 12)
+		dataType: int64
+		lineageTag: 18b7b2f1-7f5d-4ad6-9374-64f5ff6f581e
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Stg_Bienestar_Ejecucion = m
+		mode: import
+		source =
+				let
+				    Origen = Excel.Workbook(Web.Contents("https://lemcosas.sharepoint.com/sites/TalentoHumanoGrupoLemco/Documentos%20compartidos/5.%20People%20analytics/06_Bienestar/Data/2026/Planeaci%C3%B3n%20Bienestar2026.xlsx"), null, true),
+				    Ejecucion_Sheet = Origen{[Item="Ejecución",Kind="Sheet"]}[Data],
+				    Encabezados = Table.PromoteHeaders(Ejecucion_Sheet, [PromoteAllScalars=true]),
+				    ColNames = Table.ColumnNames(Encabezados),
+				    Meses = {"Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"},
+				    RenombrarFijo = {{ColNames{0},"DIMENSION"},{ColNames{1},"COMPONENTES"},{ColNames{2},"OBSERVACION"}},
+				    RenombrarMeses = List.Combine(List.Transform(List.Positions(Meses), each {{ColNames{3 + _ * 2}, Meses{_} & "_Planeado"},{ColNames{4 + _ * 2}, Meses{_} & "_Ejecutado"}})),
+				    Renombrado = Table.RenameColumns(Encabezados, List.Combine({RenombrarFijo, RenombrarMeses}), MissingField.Ignore),
+				    TiposTexto = Table.TransformColumnTypes(Renombrado, List.Transform(Table.ColumnNames(Renombrado), each {_, type text})),
+				    RellenarDimension = Table.FillDown(TiposTexto, {"DIMENSION"}),
+				    FiltraryLimpiar = Table.SelectRows(RellenarDimension, each [COMPONENTES] <> null and [COMPONENTES] <> ""),
+				    Despivotado = Table.UnpivotOtherColumns(FiltraryLimpiar, {"DIMENSION","COMPONENTES","OBSERVACION"}, "Atributo", "Valor"),
+				    ConMes = Table.AddColumn(Despivotado, "Mes", each Text.BeforeDelimiter([Atributo], "_", {0, RelativePosition.FromEnd}), type text),
+				    ConTipo = Table.AddColumn(ConMes, "Tipo", each Text.AfterDelimiter([Atributo], "_", {0, RelativePosition.FromEnd}), type text),
+				    SinAtributo = Table.RemoveColumns(ConTipo, {"Atributo"}),
+				    Pivotado = Table.Pivot(SinAtributo, {"Planeado","Ejecutado"}, "Tipo", "Valor", List.First),
+				    Reordenado = Table.ReorderColumns(Pivotado, {"DIMENSION","COMPONENTES","OBSERVACION","Mes","Planeado","Ejecutado"}),
+				    Resultado = Table.Sort(Reordenado, {{"DIMENSION", Order.Ascending},{"COMPONENTES", Order.Ascending},{"Mes", Order.Ascending}})
+				in
+				    Resultado
+
+	annotation PBI_NavigationStepName = Navegación
+
+	annotation PBI_ResultType = Table
+
