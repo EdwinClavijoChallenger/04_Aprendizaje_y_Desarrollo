@@ -188,7 +188,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Ir a Entrevista de Retiro'"
+                  "Value": "'Ir a BC02 Entrevista de Retiro'"
                 }
               }
             }
@@ -222,7 +222,7 @@
             "tooltip": {
               "expr": {
                 "Literal": {
-                  "Value": "'Ir a Entrevista de Retiro'"
+                  "Value": "'Ir a BC02 Entrevista de Retiro'"
                 }
               }
             },

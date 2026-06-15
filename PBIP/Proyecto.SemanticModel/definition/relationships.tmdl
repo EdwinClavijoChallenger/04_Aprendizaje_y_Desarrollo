@@ -122,3 +122,15 @@ relationship BEC_Proceso_EntrevistaRetiro
 	fromColumn: Fct_EntrevistaRetiro_Unificada.ProcesoRetiro_Key
 	toColumn: Dim_ProcesoRetiro.ProcesoRetiro_Key
 
+relationship BC_Calendario_SeguimientoBienestar
+	fromColumn: Fct_SeguimientoBienestar.FechaPeriodo
+	toColumn: Dim_Calendario.Date
+
+relationship BC_DimensionBienestar_Seguimiento
+	fromColumn: Fct_SeguimientoBienestar.DimensionBienestar_Key
+	toColumn: Dim_DimensionBienestar.DimensionBienestar_Key
+
+relationship BC_ActividadBienestar_Seguimiento
+	fromColumn: Fct_SeguimientoBienestar.ActividadBienestar_Key
+	toColumn: Dim_ActividadBienestar.ActividadBienestar_Key
+

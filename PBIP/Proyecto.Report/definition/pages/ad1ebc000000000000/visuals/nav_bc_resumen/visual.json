@@ -359,7 +359,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Navegacion: Resumen BC (activo)'"
+                  "Value": "'Navegacion: BC01 Resumen Ejecutivo Bienestar y Clima'"
                 }
               }
             }
@@ -393,7 +393,7 @@
             "tooltip": {
               "expr": {
                 "Literal": {
-                  "Value": "'Resumen Bienestar y Clima'"
+                  "Value": "'Ir a BC01 Resumen Ejecutivo Bienestar y Clima'"
                 }
               }
             },

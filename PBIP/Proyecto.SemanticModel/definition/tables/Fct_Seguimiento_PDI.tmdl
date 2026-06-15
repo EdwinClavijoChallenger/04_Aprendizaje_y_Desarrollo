@@ -240,11 +240,37 @@ table Fct_Seguimiento_PDI
 		source =
 				let
 				    Origen = Excel.Workbook(Web.Contents("https://lemcosas.sharepoint.com/sites/TalentoHumanoGrupoLemco/Documentos%20compartidos/5.%20People%20analytics/04_Aprendizaje_y_Desarrollo/Data/SeguimientodePlanesdeDesarrolloIndividual.xlsx"), null, true),
-				    #"Gestion PDI_Sheet" = Origen{[Item="Gestion PDI",Kind="Sheet"]}[Data],
-				    #"Encabezados promovidos" = Table.PromoteHeaders(#"Gestion PDI_Sheet", [PromoteAllScalars=true]),
-				    #"Tipo cambiado" = Table.TransformColumnTypes(#"Encabezados promovidos",{{"Nombre Empresa", type text}, {"Identificación colabador ", Int64.Type}, {"Nombres", type text}, {"Apellidos", type text}, {"Dependencia", type text}, {"Área", type text}, {"Cargo ", type text}, {"CC Jefe inmediato", Int64.Type}, {"Jefe Inmediato", type text}, {"Motivo PDI", type text}, {"Fecha inicio ", type date}, {"Fecha fin ", type date}, {"Asignación del plan #(lf)P = Programado#(lf)E= Ejecutado ", type text}, {"Fecha seguimiento 1", type date}, {"Acompañamiento 1#(lf)P=Programado#(lf)E=Ejecutado ", type text}, {"Fecha seguimiento 2", type date}, {"Acompañamiento 2#(lf)P=Programado#(lf)E=Ejecutado ", type text}, {"Fecha seguimiento 3", type date}, {"Acompañamiento 3#(lf)P=Programado#(lf)E=Ejecutado ", type text}, {"% Avance ", type number}, {"Estado ", type text}, {"Monitoreo PDI", type text}, {"Observacioes ", type text}}),
-				    #"Columnas renombradas" = Table.RenameColumns(#"Tipo cambiado",{{"Nombre Empresa", "Nombre_Empresa"}, {"Identificación colabador ", "Identificacion_Colaborador"}, {"Área", "Area"}, {"Cargo ", "Cargo"}, {"CC Jefe inmediato", "CC_Jefe_Inmediato"}, {"Jefe Inmediato", "Jefe_Inmediato"}, {"Motivo PDI", "Motivo_PDI"}, {"Fecha inicio ", "Fecha_Inicio"}, {"Fecha fin ", "Fecha_Fin"}, {"Asignación del plan #(lf)P = Programado#(lf)E= Ejecutado ", "Asignacion_Plan"}, {"Fecha seguimiento 1", "Fecha_Seguimiento_1"}, {"Acompañamiento 1#(lf)P=Programado#(lf)E=Ejecutado ", "Acompanamiento_1"}, {"Fecha seguimiento 2", "Fecha_Seguimiento_2"}, {"Acompañamiento 2#(lf)P=Programado#(lf)E=Ejecutado ", "Acompanamiento_2"}, {"Fecha seguimiento 3", "Fecha_Seguimiento_3"}, {"Acompañamiento 3#(lf)P=Programado#(lf)E=Ejecutado ", "Acompanamiento_3"}, {"% Avance ", "Avance_PDI"}, {"Estado ", "Estado_PDI"}, {"Monitoreo PDI", "Monitoreo_PDI"}, {"Observacioes ", "Observaciones"}}, MissingField.Ignore),
-				    #"Texto limpio" = Table.TransformColumns(#"Columnas renombradas",{{"Nombre_Empresa", each Text.Trim(Text.From(_)), type text}, {"Nombres", each Text.Trim(Text.From(_)), type text}, {"Apellidos", each Text.Trim(Text.From(_)), type text}, {"Dependencia", each Text.Trim(Text.From(_)), type text}, {"Area", each Text.Trim(Text.From(_)), type text}, {"Cargo", each Text.Trim(Text.From(_)), type text}, {"Jefe_Inmediato", each Text.Trim(Text.From(_)), type text}, {"Motivo_PDI", each Text.Trim(Text.From(_)), type text}, {"Asignacion_Plan", each Text.Upper(Text.Trim(Text.From(_))), type text}, {"Acompanamiento_1", each Text.Upper(Text.Trim(Text.From(_))), type text}, {"Acompanamiento_2", each Text.Upper(Text.Trim(Text.From(_))), type text}, {"Acompanamiento_3", each Text.Upper(Text.Trim(Text.From(_))), type text}, {"Estado_PDI", each Text.Trim(Text.From(_)), type text}, {"Monitoreo_PDI", each Text.Trim(Text.From(_)), type text}, {"Observaciones", each Text.Trim(Text.From(_)), type text}})
+				    GestionPDI_Sheet = Origen{[Item="Gestion PDI",Kind="Sheet"]}[Data],
+				    Encabezados = Table.PromoteHeaders(GestionPDI_Sheet, [PromoteAllScalars=true]),
+				    ColNames = Table.ColumnNames(Encabezados),
+				    Renombrar = {
+				        {ColNames{0}, "Nombre_Empresa"},
+				        {ColNames{1}, "Identificacion_Colaborador"},
+				        {ColNames{2}, "Nombres"},
+				        {ColNames{3}, "Apellidos"},
+				        {ColNames{4}, "Dependencia"},
+				        {ColNames{5}, "Area"},
+				        {ColNames{6}, "Cargo"},
+				        {ColNames{7}, "CC_Jefe_Inmediato"},
+				        {ColNames{8}, "Jefe_Inmediato"},
+				        {ColNames{9}, "Motivo_PDI"},
+				        {ColNames{10}, "Fecha_Inicio"},
+				        {ColNames{11}, "Fecha_Fin"},
+				        {ColNames{12}, "Asignacion_Plan"},
+				        {ColNames{13}, "Fecha_Seguimiento_1"},
+				        {ColNames{14}, "Acompanamiento_1"},
+				        {ColNames{15}, "Fecha_Seguimiento_2"},
+				        {ColNames{16}, "Acompanamiento_2"},
+				        {ColNames{17}, "Fecha_Seguimiento_3"},
+				        {ColNames{18}, "Acompanamiento_3"},
+				        {ColNames{19}, "Avance_PDI"},
+				        {ColNames{20}, "Estado_PDI"},
+				        {ColNames{21}, "Monitoreo_PDI"},
+				        {ColNames{22}, "Observaciones"}
+				    },
+				    ColumnasRenombradas = Table.RenameColumns(Encabezados, Renombrar, MissingField.Ignore),
+				    TipoCambiado = Table.TransformColumnTypes(ColumnasRenombradas, {{"Nombre_Empresa", type text}, {"Identificacion_Colaborador", Int64.Type}, {"Nombres", type text}, {"Apellidos", type text}, {"Dependencia", type text}, {"Area", type text}, {"Cargo", type text}, {"CC_Jefe_Inmediato", Int64.Type}, {"Jefe_Inmediato", type text}, {"Motivo_PDI", type text}, {"Fecha_Inicio", type date}, {"Fecha_Fin", type date}, {"Asignacion_Plan", type text}, {"Fecha_Seguimiento_1", type date}, {"Acompanamiento_1", type text}, {"Fecha_Seguimiento_2", type date}, {"Acompanamiento_2", type text}, {"Fecha_Seguimiento_3", type date}, {"Acompanamiento_3", type text}, {"Avance_PDI", type number}, {"Estado_PDI", type text}, {"Monitoreo_PDI", type text}, {"Observaciones", type text}}),
+				    #"Texto limpio" = Table.TransformColumns(TipoCambiado, {{"Nombre_Empresa", each Text.Trim(Text.From(_)), type text}, {"Nombres", each Text.Trim(Text.From(_)), type text}, {"Apellidos", each Text.Trim(Text.From(_)), type text}, {"Dependencia", each Text.Trim(Text.From(_)), type text}, {"Area", each Text.Trim(Text.From(_)), type text}, {"Cargo", each Text.Trim(Text.From(_)), type text}, {"Jefe_Inmediato", each Text.Trim(Text.From(_)), type text}, {"Motivo_PDI", each Text.Trim(Text.From(_)), type text}, {"Asignacion_Plan", each Text.Upper(Text.Trim(Text.From(_))), type text}, {"Acompanamiento_1", each Text.Upper(Text.Trim(Text.From(_))), type text}, {"Acompanamiento_2", each Text.Upper(Text.Trim(Text.From(_))), type text}, {"Acompanamiento_3", each Text.Upper(Text.Trim(Text.From(_))), type text}, {"Estado_PDI", each Text.Trim(Text.From(_)), type text}, {"Monitoreo_PDI", each Text.Trim(Text.From(_)), type text}, {"Observaciones", each Text.Trim(Text.From(_)), type text}})
 				in
 				    #"Texto limpio"
 

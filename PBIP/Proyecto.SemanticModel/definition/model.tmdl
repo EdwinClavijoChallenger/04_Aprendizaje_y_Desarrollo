@@ -3,6 +3,7 @@ model Model
 	defaultPowerBIDataSourceVersion: powerBI_V3
 	sourceQueryCulture: es-CO
 	dataAccessOptions
+		fastCombine
 		legacyRedirects
 		returnErrorValuesAsNull
 
@@ -51,6 +52,9 @@ ref table Dim_ProcesoRetiro
 ref table Dim_Frente_Home
 ref table Stg_Bienestar_Ejecucion
 ref table Stg_Bienestar_Planeacion
+ref table Fct_SeguimientoBienestar
+ref table Dim_ActividadBienestar
+ref table Dim_DimensionBienestar
 
 ref cultureInfo es-ES
 

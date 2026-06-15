@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "b01_btn_bienestar",
   "position": {
-    "x": 928,
+    "x": 724,
     "y": 676,
     "z": 22000,
     "height": 30,
-    "width": 156,
+    "width": 154,
     "tabOrder": 22000
   },
   "visual": {
@@ -57,7 +57,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#F7931E'"
+                      "Value": "'#FFFFFF'"
                     }
                   }
                 }
@@ -82,7 +82,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#F7931E'"
+                      "Value": "'#E6EEF5'"
                     }
                   }
                 }
@@ -118,7 +118,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Resumen B&C'"
+                  "Value": "'Resumen'"
                 }
               }
             },
@@ -141,7 +141,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#FFFFFF'"
+                      "Value": "'#1B487F'"
                     }
                   }
                 }
@@ -178,7 +178,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Resumen B&C'"
+                  "Value": "'Resumen'"
                 }
               }
             },
@@ -201,7 +201,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#FFFFFF'"
+                      "Value": "'#1B487F'"
                     }
                   }
                 }
@@ -304,7 +304,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#F7931E'"
+                      "Value": "'#1B487F'"
                     }
                   }
                 }
@@ -359,7 +359,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Ir a Resumen Bienestar y Clima'"
+                  "Value": "'Navegacion: BC01 Resumen Ejecutivo Bienestar y Clima'"
                 }
               }
             }
@@ -393,7 +393,7 @@
             "tooltip": {
               "expr": {
                 "Literal": {
-                  "Value": "'Ir a Resumen Bienestar y Clima'"
+                  "Value": "'Ir a BC01 Resumen Ejecutivo Bienestar y Clima'"
                 }
               }
             },

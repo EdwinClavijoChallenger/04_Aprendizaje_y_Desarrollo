@@ -136,7 +136,7 @@ table Medidas_AD
 			VAR _Suma =
 			    SUM('Fct_EncuestaFormacion'[¿Qué tan satisfecho te encuentras con el dominio del tema por parte del facilitador?]) +
 			    SUM('Fct_EncuestaFormacion'[¿Qué tan satisfecho te encuentras con la habilidad para comunicarse y transmitir ideas por parte del facilitador?]) +
-			    SUM('Fct_EncuestaFormacion'[¿Qué tan satisfecho te encuentras con las actividades o ejercicios por parte del facilitador?]) +
+			    SUM('Fct_EncuestaFormacion'[¿Qué tan satisfecho te encuentras con las actividades o ejercicios por parte del facilitador?]) +
 			    SUM('Fct_EncuestaFormacion'[¿Qué tan satisfecho te encuentras con el uso de ayudas didácticas por parte del facilitador?]) +
 			    SUM('Fct_EncuestaFormacion'[¿Qué tan satisfecho te encuentras con la resolución de dudas u observaciones del facilitador?]) +
 			    SUM('Fct_EncuestaFormacion'[¿Qué tan satisfecho te encuentras con el cumplimiento del programa propuesto?]) +
@@ -144,12 +144,12 @@ table Medidas_AD
 			    SUM('Fct_EncuestaFormacion'[¿Qué tan oportuna fue la información respecto a fechas, horarios y lugar?]) +
 			    SUM('Fct_EncuestaFormacion'[¿Qué tan satisfecho te encuentras con el logro de los objetivos propuestos?]) +
 			    SUM('Fct_EncuestaFormacion'[¿Qué tan satisfecho te encuentras con la contribución del programa para tu desarrollo personal y/o profesional?]) +
-			    SUM('Fct_EncuestaFormacion'[¿Qué tan satisfecho te encuentras con el acompañamiento de la Universidad Challenger en tu desarrollo personal y/o profesional?]) +
+			    SUM('Fct_EncuestaFormacion'[¿Qué tan satisfecho te encuentras con el acompañamiento de la Universidad Challenger en tu desarrollo personal y/o profesional?]) +
 			    SUM('Fct_EncuestaFormacion'[En general, ¿Qué tan satisfecho te encuentras con la formación recibida?])
 			VAR _Conteo =
 			    COUNT('Fct_EncuestaFormacion'[¿Qué tan satisfecho te encuentras con el dominio del tema por parte del facilitador?]) +
 			    COUNT('Fct_EncuestaFormacion'[¿Qué tan satisfecho te encuentras con la habilidad para comunicarse y transmitir ideas por parte del facilitador?]) +
-			    COUNT('Fct_EncuestaFormacion'[¿Qué tan satisfecho te encuentras con las actividades o ejercicios por parte del facilitador?]) +
+			    COUNT('Fct_EncuestaFormacion'[¿Qué tan satisfecho te encuentras con las actividades o ejercicios por parte del facilitador?]) +
 			    COUNT('Fct_EncuestaFormacion'[¿Qué tan satisfecho te encuentras con el uso de ayudas didácticas por parte del facilitador?]) +
 			    COUNT('Fct_EncuestaFormacion'[¿Qué tan satisfecho te encuentras con la resolución de dudas u observaciones del facilitador?]) +
 			    COUNT('Fct_EncuestaFormacion'[¿Qué tan satisfecho te encuentras con el cumplimiento del programa propuesto?]) +
@@ -157,7 +157,7 @@ table Medidas_AD
 			    COUNT('Fct_EncuestaFormacion'[¿Qué tan oportuna fue la información respecto a fechas, horarios y lugar?]) +
 			    COUNT('Fct_EncuestaFormacion'[¿Qué tan satisfecho te encuentras con el logro de los objetivos propuestos?]) +
 			    COUNT('Fct_EncuestaFormacion'[¿Qué tan satisfecho te encuentras con la contribución del programa para tu desarrollo personal y/o profesional?]) +
-			    COUNT('Fct_EncuestaFormacion'[¿Qué tan satisfecho te encuentras con el acompañamiento de la Universidad Challenger en tu desarrollo personal y/o profesional?]) +
+			    COUNT('Fct_EncuestaFormacion'[¿Qué tan satisfecho te encuentras con el acompañamiento de la Universidad Challenger en tu desarrollo personal y/o profesional?]) +
 			    COUNT('Fct_EncuestaFormacion'[En general, ¿Qué tan satisfecho te encuentras con la formación recibida?])
 			RETURN
 			    DIVIDE(_Suma, _Conteo)
@@ -300,21 +300,21 @@ table Medidas_AD
 		lineageTag: a0bf2452-432c-4a18-8ebe-c63f9fd5271d
 
 	measure 'Hallazgo Plan' =
-			""Plan: "" & FORMAT([Plan Porcentaje Ejecucion], ""0.0%"") &
-			"" de ejecucion; brecha de "" & FORMAT([Plan Brecha Actividades], ""#,0"") & "" actividades.""
+			"Plan: " & FORMAT([Plan Porcentaje Ejecucion], "0.0%") &
+			" de ejecucion; brecha de " & FORMAT([Plan Brecha Actividades], "#,0") & " actividades."
 		displayFolder: 06 Hallazgos
 		lineageTag: c90f3e51-b848-44f7-bfe2-c044e8551ac5
 
 	measure 'Hallazgo Asistencia' =
-			""Asistencia: "" & FORMAT([Asistencia Total Asistentes], ""#,0"") &
-			"" registros y "" & FORMAT([% Cobertura], ""0.0%"") & "" de cobertura registrada en el plan.""
+			"Asistencia: " & FORMAT([Asistencia Total Asistentes], "#,0") &
+			" registros y " & FORMAT([% Cobertura], "0.0%") & " de cobertura registrada en el plan."
 		displayFolder: 06 Hallazgos
 		lineageTag: dd1611ff-cc0b-4c8b-bc5d-2eab245b0df8
 
 	measure 'Hallazgo UC' =
-			""UC: Antes "" & FORMAT([Induccion Cumplimiento Antes UC], ""0.0%"") &
-			"", UC 2025 "" & FORMAT([Induccion Cumplimiento UC 2025], ""0.0%"") &
-			"", UC 2026 "" & FORMAT([Induccion Cumplimiento UC 2026], ""0.0%"") & "".""
+			"UC: Antes " & FORMAT([Induccion Cumplimiento Antes UC], "0.0%") &
+			", UC 2025 " & FORMAT([Induccion Cumplimiento UC 2025], "0.0%") &
+			", UC 2026 " & FORMAT([Induccion Cumplimiento UC 2026], "0.0%") & "."
 		displayFolder: 06 Hallazgos
 		lineageTag: 910b7dbd-062d-48a9-8a26-9c7eda604bea
 
@@ -805,7 +805,7 @@ table Medidas_AD
 			    _CApz & "<div style='font-size:11px;color:#F7931E;font-weight:800;'>01</div><div style='font-size:19px;font-weight:800;margin-top:7px;" & IF(_FA="Aprendizaje","color:#fff;","color:#1A3059;") & "'>Aprendizaje</div><div style='font-size:10px;line-height:15px;margin-top:8px;" & IF(_FA="Aprendizaje","color:#cbd8e8;","color:#53657D;") & "'>MVP operativo con indicadores activos y lectura ejecutiva.</div><div style='margin-top:13px;height:4px;background:" & IF(_FA="Aprendizaje","#F7931E","#DCE5F2") & ";border-radius:4px;'></div><div style='margin-top:9px;display:grid;grid-template-columns:1fr 1fr;gap:6px;'><div style='background:#F7931E;color:#fff;border-radius:12px;padding:5px 9px;font-size:9px;font-weight:800;text-align:center;'>Plan</div><div style='background:rgba(255,255,255,.12);color:" & IF(_FA="Aprendizaje","#fff","#1A3059") & ";border:1px solid " & IF(_FA="Aprendizaje","rgba(255,255,255,.22)","#DCE5F2") & ";border-radius:12px;padding:5px 9px;font-size:9px;font-weight:800;text-align:center;'>Cobertura</div><div style='background:rgba(255,255,255,.12);color:" & IF(_FA="Aprendizaje","#fff","#1A3059") & ";border:1px solid " & IF(_FA="Aprendizaje","rgba(255,255,255,.22)","#DCE5F2") & ";border-radius:12px;padding:5px 9px;font-size:9px;font-weight:800;text-align:center;'>Satisfacci&oacute;n</div><div style='background:rgba(255,255,255,.12);color:" & IF(_FA="Aprendizaje","#fff","#1A3059") & ";border:1px solid " & IF(_FA="Aprendizaje","rgba(255,255,255,.22)","#DCE5F2") & ";border-radius:12px;padding:5px 9px;font-size:9px;font-weight:800;text-align:center;'>Inducci&oacute;n</div><div style='grid-column:1 / span 2;background:rgba(255,255,255,.12);color:" & IF(_FA="Aprendizaje","#fff","#1A3059") & ";border:1px solid " & IF(_FA="Aprendizaje","rgba(255,255,255,.22)","#DCE5F2") & ";border-radius:12px;padding:5px 9px;font-size:9px;font-weight:800;text-align:center;'>Focos</div></div></div>" &
 			    _CDep & "<div style='font-size:11px;color:" & IF(_FA="Desempeño","#F7931E","#1B487F") & ";font-weight:800;'>02</div><div style='font-size:19px;font-weight:800;margin-top:7px;" & IF(_FA="Desempeño","color:#fff;","color:#1A3059;") & "'>Desempe&ntilde;o</div><div style='font-size:10px;line-height:15px;margin-top:8px;" & IF(_FA="Desempeño","color:#d9e4f2;","color:#53657D;") & "'>Medicion y seguimiento gerencial de resultados.</div><div style='margin-top:16px;display:inline-block;border:1px solid " & IF(_FA="Desempeño","#d9e4f2","#DCE5F2") & ";border-radius:12px;padding:3px 9px;font-size:10px;color:" & IF(_FA="Desempeño","#d9e4f2","#1A3059") & ";'>Roadmap</div></div>" &
 			    _CDes & "<div style='font-size:11px;color:#F7931E;font-weight:800;'>03</div><div style='font-size:19px;font-weight:800;margin-top:7px;" & IF(_FA="Desarrollo","color:#fff;","color:#1A3059;") & "'>Desarrollo</div><div style='font-size:10px;line-height:15px;margin-top:8px;" & IF(_FA="Desarrollo","color:#d9e4f2;","color:#53657D;") & "'>PDI activos. Avance: " & _PDIAvz & ".</div><div style='margin-top:16px;display:inline-block;background:#FFF2E5;color:#9D5600;border-radius:12px;padding:3px 9px;font-size:10px;font-weight:700;'>En construccion</div></div>" &
-			    _CByC & "<div style='font-size:11px;color:" & IF(_FA="Bienestar y Clima","#F7931E","#1B487F") & ";font-weight:800;'>04</div><div style='font-size:19px;font-weight:800;margin-top:7px;" & IF(_FA="Bienestar y Clima","color:#fff;","color:#1A3059;") & "'>Bienestar y Clima</div><div style='font-size:10px;line-height:15px;margin-top:8px;" & IF(_FA="Bienestar y Clima","color:#d9e4f2;","color:#53657D;") & "'>Entrevista de Retiro, Clima Laboral, eNPS y Plan de Bienestar.</div><div style='display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:12px;'><div style='border-left:3px solid #F7931E;background:" & IF(_FA="Bienestar y Clima","rgba(255,255,255,.10)","#F7F9FC") & ";border-radius:7px;padding:6px 7px;font-size:9px;'>Entrevista de Retiro</div><div style='background:" & IF(_FA="Bienestar y Clima","rgba(255,255,255,.10)","#F7F9FC") & ";border-radius:7px;padding:6px 7px;font-size:9px;'>Planes Clima Laboral</div><div style='background:" & IF(_FA="Bienestar y Clima","rgba(255,255,255,.10)","#F7F9FC") & ";border-radius:7px;padding:6px 7px;font-size:9px;'>eNPS Bienestar</div><div style='background:" & IF(_FA="Bienestar y Clima","rgba(255,255,255,.10)","#F7F9FC") & ";border-radius:7px;padding:6px 7px;font-size:9px;'>Plan Bienestar</div></div></div>" &
+			    _CByC & "<div style='font-size:11px;color:" & IF(_FA="Bienestar y Clima","#F7931E","#1B487F") & ";font-weight:800;'>04</div><div style='font-size:19px;font-weight:800;margin-top:7px;" & IF(_FA="Bienestar y Clima","color:#fff;","color:#1A3059;") & "'>Bienestar y Clima</div><div style='font-size:10px;line-height:15px;margin-top:8px;" & IF(_FA="Bienestar y Clima","color:#d9e4f2;","color:#53657D;") & "'>Entrevista de Retiro, Clima Laboral, eNPS y Plan de Bienestar.</div><div style='display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:12px;'><div style='background:rgba(255,255,255,.12);color:" & IF(_FA="Bienestar y Clima","#fff","#1A3059") & ";border:1px solid " & IF(_FA="Bienestar y Clima","rgba(255,255,255,.22)","#DCE5F2") & ";border-radius:12px;padding:5px 9px;font-size:9px;font-weight:800;text-align:center;'>Entrevista de Retiro</div><div style='background:rgba(255,255,255,.12);color:" & IF(_FA="Bienestar y Clima","#fff","#1A3059") & ";border:1px solid " & IF(_FA="Bienestar y Clima","rgba(255,255,255,.22)","#DCE5F2") & ";border-radius:12px;padding:5px 9px;font-size:9px;font-weight:800;text-align:center;'>Planes Clima Laboral</div><div style='background:rgba(255,255,255,.12);color:" & IF(_FA="Bienestar y Clima","#fff","#1A3059") & ";border:1px solid " & IF(_FA="Bienestar y Clima","rgba(255,255,255,.22)","#DCE5F2") & ";border-radius:12px;padding:5px 9px;font-size:9px;font-weight:800;text-align:center;'>eNPS Bienestar</div><div style='background:rgba(255,255,255,.12);color:" & IF(_FA="Bienestar y Clima","#fff","#1A3059") & ";border:1px solid " & IF(_FA="Bienestar y Clima","rgba(255,255,255,.22)","#DCE5F2") & ";border-radius:12px;padding:5px 9px;font-size:9px;font-weight:800;text-align:center;'>Plan Bienestar</div></div></div>" &
 			    "</div>"
 			RETURN
 			"<div style='width:1280px;height:720px;box-sizing:border-box;position:relative;background:#ffffff;font-family:Outfit,Segoe UI,Arial,sans-serif;color:#0B1C35;overflow:hidden;'>" &
@@ -1325,6 +1325,264 @@ table Medidas_AD
 				_Html
 		displayFolder: 11 HTML Content
 		lineageTag: da689f66-7a5f-4a4e-97f9-8916735a7b97
+
+	measure 'Bienestar Actividades Totales' = DISTINCTCOUNT('Dim_ActividadBienestar'[ActividadBienestar_Key])
+		formatString: #,0
+		displayFolder: 14 Plan Bienestar
+		lineageTag: f7eb6329-7a9e-4cee-b8a8-b4377148179e
+
+	measure 'Bienestar Programaciones Anuales' = SUM('Fct_SeguimientoBienestar'[PlaneadoOriginal])
+		formatString: #,0
+		displayFolder: 14 Plan Bienestar
+		lineageTag: f6bcae4e-dbaa-466c-92ff-7d965ffc5b44
+
+	measure 'Bienestar Programaciones Registradas Ejecucion' = SUM('Fct_SeguimientoBienestar'[PlaneadoEjecucion])
+		formatString: #,0
+		displayFolder: 14 Plan Bienestar
+		lineageTag: 0c932b3e-ff0e-4350-8a48-3c7c02aea52a
+
+	measure 'Bienestar Ejecutadas' = SUM('Fct_SeguimientoBienestar'[EjecutadoReal])
+		formatString: #,0
+		displayFolder: 14 Plan Bienestar
+		lineageTag: d3434d37-2ed5-40a2-af09-7c605c5b44c2
+
+	measure 'Bienestar Ejecutadas Planeadas' = CALCULATE(SUM('Fct_SeguimientoBienestar'[EjecutadoReal]), 'Fct_SeguimientoBienestar'[PlaneadoOriginal] = 1)
+		formatString: #,0
+		displayFolder: 14 Plan Bienestar
+		lineageTag: 0ac953bc-6421-45e2-a449-4df9b6ac3a89
+
+	measure 'Bienestar Programadas al Corte' =
+			VAR _UltimoPeriodo =
+				CALCULATE(
+					MAX('Fct_SeguimientoBienestar'[FechaPeriodo]),
+					REMOVEFILTERS('Dim_Calendario'),
+					REMOVEFILTERS('Dim_ActividadBienestar'),
+					REMOVEFILTERS('Dim_DimensionBienestar'),
+					'Fct_SeguimientoBienestar'[EjecutadoReal] = 1
+				)
+			RETURN
+				IF(
+					ISBLANK(_UltimoPeriodo),
+					0,
+					CALCULATE(
+						COUNTROWS('Fct_SeguimientoBienestar'),
+						'Fct_SeguimientoBienestar'[PlaneadoEjecucion] = 1,
+						'Fct_SeguimientoBienestar'[FechaPeriodo] <= _UltimoPeriodo
+					)
+				)
+		formatString: #,0
+		displayFolder: 14 Plan Bienestar
+		lineageTag: 0a4d6c84-4a1d-4548-88f9-7fe3f223ddf4
+
+	measure 'Bienestar Ejecutadas al Corte' =
+			VAR _UltimoPeriodo =
+				CALCULATE(
+					MAX('Fct_SeguimientoBienestar'[FechaPeriodo]),
+					REMOVEFILTERS('Dim_Calendario'),
+					REMOVEFILTERS('Dim_ActividadBienestar'),
+					REMOVEFILTERS('Dim_DimensionBienestar'),
+					'Fct_SeguimientoBienestar'[EjecutadoReal] = 1
+				)
+			RETURN
+				IF(
+					ISBLANK(_UltimoPeriodo),
+					0,
+					CALCULATE(
+						SUM('Fct_SeguimientoBienestar'[EjecutadoReal]),
+						'Fct_SeguimientoBienestar'[PlaneadoEjecucion] = 1,
+						'Fct_SeguimientoBienestar'[FechaPeriodo] <= _UltimoPeriodo
+					)
+				)
+		formatString: #,0
+		displayFolder: 14 Plan Bienestar
+		lineageTag: fb6fe021-7a4d-4866-bc28-411fce3f10a0
+
+	measure 'Bienestar Cumplimiento al Corte %' = DIVIDE([Bienestar Ejecutadas al Corte], [Bienestar Programadas al Corte], 0)
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: 14 Plan Bienestar
+		lineageTag: 2e3ad48d-198d-4d0a-bfab-d1897467907a
+
+	measure 'Bienestar Avance Anual %' = DIVIDE([Bienestar Ejecutadas], [Bienestar Programaciones Registradas Ejecucion], 0)
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: 14 Plan Bienestar
+		lineageTag: 190c3cbb-c81e-4b7a-b536-be852a126c19
+
+	measure 'Bienestar Pendientes Vencidos' =
+			VAR _UltimoPeriodo =
+				CALCULATE(
+					MAX('Fct_SeguimientoBienestar'[FechaPeriodo]),
+					REMOVEFILTERS('Dim_Calendario'),
+					REMOVEFILTERS('Dim_ActividadBienestar'),
+					REMOVEFILTERS('Dim_DimensionBienestar'),
+					'Fct_SeguimientoBienestar'[EjecutadoReal] = 1
+				)
+			RETURN
+				IF(
+					ISBLANK(_UltimoPeriodo),
+					0,
+					COALESCE(
+						CALCULATE(
+							COUNTROWS('Fct_SeguimientoBienestar'),
+							'Fct_SeguimientoBienestar'[PlaneadoEjecucion] = 1,
+							'Fct_SeguimientoBienestar'[EjecutadoReal] = 0,
+							'Fct_SeguimientoBienestar'[FechaPeriodo] < _UltimoPeriodo
+						),
+						0
+					)
+				)
+		formatString: #,0
+		displayFolder: 14 Plan Bienestar
+		lineageTag: ee9035e4-a417-4a11-b031-6c8adb544b77
+
+	measure 'Bienestar Pendientes Futuros' =
+			VAR _UltimoPeriodo =
+				CALCULATE(
+					MAX('Fct_SeguimientoBienestar'[FechaPeriodo]),
+					REMOVEFILTERS('Dim_Calendario'),
+					REMOVEFILTERS('Dim_ActividadBienestar'),
+					REMOVEFILTERS('Dim_DimensionBienestar'),
+					'Fct_SeguimientoBienestar'[EjecutadoReal] = 1
+				)
+			RETURN
+				IF(
+					ISBLANK(_UltimoPeriodo),
+					0,
+					CALCULATE(
+						COUNTROWS('Fct_SeguimientoBienestar'),
+						'Fct_SeguimientoBienestar'[PlaneadoEjecucion] = 1,
+						'Fct_SeguimientoBienestar'[EjecutadoReal] = 0,
+						'Fct_SeguimientoBienestar'[FechaPeriodo] > _UltimoPeriodo
+					)
+				)
+		formatString: #,0
+		displayFolder: 14 Plan Bienestar
+		lineageTag: 0d12714e-dbfa-452c-acc9-2b3877c14f67
+
+	measure 'Bienestar Ejecutadas No Planeadas' =
+			CALCULATE(
+				SUM('Fct_SeguimientoBienestar'[EjecutadoReal]),
+				'Fct_SeguimientoBienestar'[PlaneadoOriginal] = 0,
+				'Fct_SeguimientoBienestar'[PlaneadoEjecucion] = 1
+			)
+		formatString: #,0
+		displayFolder: 14 Plan Bienestar
+		lineageTag: eb50ce6f-c576-4281-a415-7347635d3ca1
+
+	measure 'Bienestar Diferencias Programacion' =
+			CALCULATE(
+				COUNTROWS('Fct_SeguimientoBienestar'),
+				'Fct_SeguimientoBienestar'[DiferenciaProgramacion] <> 0
+			)
+		formatString: #,0
+		displayFolder: 14 Plan Bienestar
+		lineageTag: 624d0894-62e8-43f4-a68f-57b235a661e5
+
+	measure 'Bienestar Ultimo Mes Reportado' =
+			VAR _UltimoPeriodo =
+				CALCULATE(
+					MAX('Fct_SeguimientoBienestar'[FechaPeriodo]),
+					REMOVEFILTERS('Dim_Calendario'),
+					REMOVEFILTERS('Dim_ActividadBienestar'),
+					REMOVEFILTERS('Dim_DimensionBienestar'),
+					'Fct_SeguimientoBienestar'[EjecutadoReal] = 1
+				)
+			RETURN
+				IF(
+					ISBLANK(_UltimoPeriodo),
+					BLANK(),
+					FORMAT(_UltimoPeriodo, "mmmm yyyy")
+				)
+		displayFolder: 14 Plan Bienestar
+		lineageTag: c4b6fd10-fd89-4852-aa8e-6fb7acd41208
+
+	measure 'Bienestar Dimensiones Activas' =
+			COUNTROWS(
+				FILTER(
+					VALUES('Dim_DimensionBienestar'[DimensionBienestar_Key]),
+					CALCULATE([Bienestar Programaciones Anuales] + [Bienestar Programaciones Registradas Ejecucion] + [Bienestar Ejecutadas]) > 0
+				)
+			)
+		formatString: #,0
+		displayFolder: 14 Plan Bienestar
+		lineageTag: d2a7aab2-3480-412e-89a8-aee181198ab9
+
+	measure 'HTML Shell BC03 Plan de Bienestar' =
+			VAR _UltimoMesReportado =
+				CALCULATE(
+					[Bienestar Ultimo Mes Reportado],
+					REMOVEFILTERS('Dim_Calendario'),
+					REMOVEFILTERS('Dim_ActividadBienestar'),
+					REMOVEFILTERS('Dim_DimensionBienestar'),
+					REMOVEFILTERS('Fct_SeguimientoBienestar'[EstadoAlCorte])
+				)
+			VAR _TextoCorte = "Ultimo mes reportado: " & COALESCE(_UltimoMesReportado, "Sin dato")
+			VAR _Html =
+				"<div style='font-family:Outfit,Poppins,Segoe UI,Arial,sans-serif;width:1280px;height:720px;background:#F7F9FC;color:#0B1C35;position:relative;overflow:hidden;'>" &
+				"<div style='position:absolute;left:0;top:0;width:1280px;height:100px;background:#0B1C35;'></div>" &
+				"<div style='position:absolute;left:48px;top:24px;color:#F7931E;font-size:11px;font-weight:850;letter-spacing:2px;text-transform:uppercase;'>BC03</div>" &
+				"<div style='position:absolute;left:48px;top:48px;color:#FFFFFF;font-size:25px;font-weight:850;line-height:28px;'>Plan de Bienestar</div>" &
+				"<div style='position:absolute;left:48px;top:78px;color:#D8E4F2;font-size:11px;line-height:14px;'>Seguimiento mensual de actividades, cumplimiento y alertas del plan vigente.</div>" &
+				"<div style='position:absolute;right:48px;top:32px;background:#F7931E;color:#0B1C35;border-radius:18px;padding:8px 16px;font-size:11px;font-weight:850;'>Bloque Bienestar y Clima</div>" &
+				"<div style='position:absolute;left:48px;top:112px;width:1200px;height:76px;background:#FFFFFF;border:1px solid #DCE5F2;border-radius:14px;box-shadow:0 6px 18px rgba(11,28,53,0.06);'></div>" &
+				"<div style='position:absolute;left:48px;top:112px;width:7px;height:76px;background:#F7931E;border-radius:14px 0 0 14px;'></div>" &
+				"<div style='position:absolute;left:68px;top:127px;color:#0B1C35;font-size:10px;font-weight:850;letter-spacing:1.5px;text-transform:uppercase;'>Contexto de analisis</div>" &
+				"<div style='position:absolute;left:68px;top:148px;width:150px;color:#6B778A;font-size:9.5px;line-height:12px;'>Anio, mes, dimension y estado operativo del plan.</div>" &
+				"<div style='position:absolute;left:252px;top:121px;width:756px;height:58px;display:grid;grid-template-columns:repeat(4,1fr);gap:12px;'>" &
+				"<div style='background:#F7FAFD;border:1px solid #E6EEF7;border-radius:8px;'></div><div style='background:#F7FAFD;border:1px solid #E6EEF7;border-radius:8px;'></div><div style='background:#F7FAFD;border:1px solid #E6EEF7;border-radius:8px;'></div><div style='background:#F7FAFD;border:1px solid #E6EEF7;border-radius:8px;'></div>" &
+				"</div>" &
+				"<div style='position:absolute;left:1024px;top:121px;width:188px;height:58px;background:#F7FAFD;border:1px solid #E6EEF7;border-radius:8px;padding:8px 12px;box-sizing:border-box;color:#53657D;font-size:10px;line-height:13px;'>" &
+				"<div style='font-weight:850;color:#1A3059;'>Lectura de corte</div><div style='margin-top:6px;'>" & _TextoCorte & "</div></div>" &
+				"<div style='position:absolute;left:32px;top:198px;width:1216px;height:468px;background:#FFFFFF;border:1px solid #E1E8F2;border-radius:10px;'></div>" &
+				"<div style='position:absolute;left:32px;top:674px;width:1005px;height:40px;background:#FFFFFF;border:1px solid #DCE5F2;border-radius:9px;'></div>" &
+				"</div>"
+			RETURN
+				_Html
+		displayFolder: 11 HTML Content
+		lineageTag: 0ae8a12d-b52a-4db5-ac39-d0adc7b633d1
+
+	measure 'Bienestar Actividades Retiradas Ejecucion' =
+			CALCULATE(
+				COUNTROWS('Fct_SeguimientoBienestar'),
+				'Fct_SeguimientoBienestar'[EstadoProgramacion] = "Retirado de ejecucion"
+			)
+		formatString: #,0
+		displayFolder: 14 Plan Bienestar\Soporte Visual
+		lineageTag: 1f910f3f-1745-4f99-92b3-de85c23aa6c8
+
+	measure 'Bienestar Calendario Estado' =
+			VAR _EstadoCorte = SELECTEDVALUE('Fct_SeguimientoBienestar'[EstadoAlCorte])
+			VAR _EstadoProgramacion = SELECTEDVALUE('Fct_SeguimientoBienestar'[EstadoProgramacion])
+			VAR _Ejecutado = SELECTEDVALUE('Fct_SeguimientoBienestar'[EjecutadoReal], 0)
+			VAR _PlaneadoOriginal = SELECTEDVALUE('Fct_SeguimientoBienestar'[PlaneadoOriginal], 0)
+			RETURN
+				SWITCH(
+					TRUE(),
+					_EstadoCorte = "Ejecutado no planeado" || (_Ejecutado = 1 && _PlaneadoOriginal = 0), "EP",
+					_EstadoCorte = "Ejecutado", "OK",
+					_EstadoCorte = "Retirado de ejecucion" || _EstadoProgramacion = "Retirado de ejecucion", "RET",
+					_EstadoCorte = "Pendiente vencido", "PV",
+					_EstadoCorte = "Pendiente en curso" || _EstadoCorte = "Pendiente sin corte", "PC",
+					_EstadoCorte = "Pendiente futuro", "PF",
+					BLANK()
+				)
+		displayFolder: 14 Plan Bienestar\Soporte Visual
+		lineageTag: 01027286-db60-402a-941a-acd9ee0d18bd
+
+	measure 'Bienestar Calendario Color Fondo' =
+			VAR _Estado = [Bienestar Calendario Estado]
+			RETURN
+				SWITCH(
+					_Estado,
+					"OK", "#D8E4F2",
+					"EP", "#BFD3EA",
+					"RET", "#E9EDF3",
+					"PV", "#F7931E",
+					"PC", "#FBCB95",
+					"PF", "#FFF2E2",
+					"#FFFFFF"
+				)
+		displayFolder: 14 Plan Bienestar\Soporte Visual
+		lineageTag: 5c41241d-8f7a-49dd-bff0-3fc05ac86e42
 
 	column Indice
 		dataType: int64

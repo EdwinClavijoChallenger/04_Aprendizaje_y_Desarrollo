@@ -12195,6 +12195,27 @@ cultureInfo es-ES
 			          }
 			        }
 			      ]
+			    },
+			    "medidas_ad.bienestar_calendario_estado": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Medidas_AD",
+			          "ConceptualProperty": "Bienestar Calendario Estado"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Estado": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
 			    }
 			  },
 			  "Relationships": {

@@ -70,7 +70,9 @@ table Stg_Bienestar_Planeacion
 				    TiposTexto = Table.TransformColumnTypes(Renombrado, List.Transform(Table.ColumnNames(Renombrado), each {_, type text})),
 				    RellenarDimension = Table.FillDown(TiposTexto, {"DIMENSION"}),
 				    FiltraryLimpiar = Table.SelectRows(RellenarDimension, each [COMPONENTES] <> null and [COMPONENTES] <> ""),
-				    Despivotado = Table.UnpivotOtherColumns(FiltraryLimpiar, {"DIMENSION","COMPONENTES","OBSERVACION"}, "Mes", "Planeado"),
+				    ColumnasMes = List.RemoveItems(Table.ColumnNames(FiltraryLimpiar), {"DIMENSION","COMPONENTES","OBSERVACION"}),
+				    SinNulos = Table.ReplaceValue(FiltraryLimpiar, null, "", Replacer.ReplaceValue, ColumnasMes),
+				    Despivotado = Table.UnpivotOtherColumns(SinNulos, {"DIMENSION","COMPONENTES","OBSERVACION"}, "Mes", "Planeado"),
 				    Reordenado = Table.ReorderColumns(Despivotado, {"DIMENSION","COMPONENTES","OBSERVACION","Mes","Planeado"}),
 				    Resultado = Table.Sort(Reordenado, {{"DIMENSION", Order.Ascending},{"COMPONENTES", Order.Ascending},{"Mes", Order.Ascending}})
 				in

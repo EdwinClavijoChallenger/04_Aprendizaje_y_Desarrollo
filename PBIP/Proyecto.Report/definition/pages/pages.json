@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/pagesMetadata/1.0.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/pagesMetadata/1.1.0/schema.json",
   "pageOrder": [
     "ad1e0000000000000000",
     "ad1eh100000000000001",
@@ -17,6 +17,7 @@
     "ad1ed400000000000004",
     "ad1ebc000000000000",
     "ad1ebc000000000001",
+    "ad1ebc000000000002",
     "ad1edp000000000001"
   ],
   "activePageName": "ad1eh100000000000001"

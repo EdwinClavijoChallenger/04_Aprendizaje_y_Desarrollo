@@ -359,7 +359,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Navegacion: Inicio'"
+                  "Value": "'Navegacion: Inicio Corporativo'"
                 }
               }
             }
@@ -393,7 +393,7 @@
             "tooltip": {
               "expr": {
                 "Literal": {
-                  "Value": "'Ir al Inicio Corporativo'"
+                  "Value": "'Ir a Inicio Corporativo'"
                 }
               }
             },

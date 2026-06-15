@@ -22,6 +22,7 @@ La tabla de medidas principal es `Medidas_AD`.
 | `Fct_EntrevistaRetiro_V2` | Fuente historica de la segunda version de entrevista de retiro. | Una respuesta de entrevista de retiro. |
 | `Fct_EntrevistaRetiro_Corporativa` | Fuente corporativa nueva para unificar el proceso de entrevista de retiro. | Una respuesta de entrevista de retiro. |
 | `Fct_EntrevistaRetiro_Unificada` | Fact homologada para analisis agregado de entrevista de retiro en Bienestar y Clima. | Una entrevista de retiro homologada, con trazabilidad de fuente. |
+| `Fct_SeguimientoBienestar` | Seguimiento mensual del plan de actividades de bienestar (planeacion original, planeacion de ejecucion y ejecucion real). Tabla calculada con cruce de actividades por los 12 meses del anio. | Una actividad de bienestar por mes. |
 
 ## Observaciones por fuente
 
@@ -56,6 +57,8 @@ La tabla de medidas principal es `Medidas_AD`.
 | `Dim_MotivoRetiro` | Analisis por motivo principal de retiro. |
 | `Dim_CategoriaMotivoRetiro` | Agrupacion ejecutiva de motivos de retiro. |
 | `Dim_ProcesoRetiro` | Analisis de procesos asociados a oportunidades de mejora. |
+| `Dim_ActividadBienestar` | Catalogo de actividades del plan de bienestar. Clave compuesta `DIMENSION + COMPONENTES`. Calculada desde staging. |
+| `Dim_DimensionBienestar` | Catalogo de dimensiones del plan de bienestar (agrupaciones de actividades). Calculada desde staging. |
 | `Dim_Frente_Home` | Tabla auxiliar para controlar el frente activo del home corporativo. |
 
 ## Criterios de homologacion
@@ -82,6 +85,7 @@ Relaciones de calendario:
 - `Fct_Induccion[Fecha_Ingreso]` -> `Dim_Calendario[Date]`
 - `Fct_Seguimiento_PDI[Fecha_Inicio]` -> `Dim_Calendario[Date]`
 - `Fct_EntrevistaRetiro_Unificada[Fecha_Entrevista]` -> `Dim_Calendario[Date]`
+- `Fct_SeguimientoBienestar[FechaPeriodo]` -> `Dim_Calendario[Date]`
 
 Relaciones de negocio:
 
@@ -109,6 +113,8 @@ Relaciones de negocio:
 - `Fct_EntrevistaRetiro_Unificada[MotivoRetiro_Key]` -> `Dim_MotivoRetiro[MotivoRetiro_Key]`
 - `Fct_EntrevistaRetiro_Unificada[CategoriaMotivo_Key]` -> `Dim_CategoriaMotivoRetiro[CategoriaMotivo_Key]`
 - `Fct_EntrevistaRetiro_Unificada[ProcesoRetiro_Key]` -> `Dim_ProcesoRetiro[ProcesoRetiro_Key]`
+- `Fct_SeguimientoBienestar[DimensionBienestar_Key]` -> `Dim_DimensionBienestar[DimensionBienestar_Key]`
+- `Fct_SeguimientoBienestar[ActividadBienestar_Key]` -> `Dim_ActividadBienestar[ActividadBienestar_Key]`
 
 Relacion de headcount:
 
@@ -193,6 +199,27 @@ La fact consolidada tambien incorpora:
 - estado de entrenamiento.
 
 Se excluyen filas tecnicamente vacias sin colaborador o sin fecha de ingreso. Tambien pueden existir documentos repetidos entre cohortes, por lo que deben diferenciarse las medidas de registros de induccion y las medidas de colaboradores unicos.
+
+## Logica de `Fct_SeguimientoBienestar`
+
+`Fct_SeguimientoBienestar` es la fuente principal del frente Plan de Bienestar. Es una tabla calculada que construye una cuadricula actividad × mes para cada anio en seguimiento.
+
+Las fuentes de entrada son `Stg_Bienestar_Planeacion` (plan original aprobado) y `Stg_Bienestar_Ejecucion` (reprogramacion y ejecucion real). Ambas staging tienen la misma estructura: `DIMENSION`, `COMPONENTES`, `Planeado` (X = planeado), `Ejecutado` (OK = ejecutado), `OBSERVACION`.
+
+La clave de actividad se construye como:
+
+```text
+UPPER(TRIM(DIMENSION)) & "|" & UPPER(TRIM(COMPONENTES))
+```
+
+Los estados calculados son:
+
+- `EstadoProgramacion`: compara planeacion original vs planeacion de ejecucion. Valores: `Sin diferencia`, `Retirado de ejecucion`, `Agregado en ejecucion`, `Sin programacion`.
+- `EstadoAlCorte`: combina el estado de programacion con el punto de corte real (ultimo mes con ejecucion). Valores: `Ejecutado`, `Ejecutado no planeado`, `Retirado de ejecucion`, `Pendiente en curso`, `Pendiente vencido`, `Pendiente futuro`, `No programado`.
+
+El periodo de corte (`_PeriodoCorte`) se calcula como el mayor `FechaPeriodo` donde `EjecutadoReal = 1`, y sirve para clasificar los pendientes.
+
+La granularidad es una fila por actividad y por mes del anio en seguimiento. Las actividades sin dimension o componente valido se excluyen del resultado.
 
 ## Logica de `Fct_EntrevistaRetiro_Unificada`
 
@@ -409,7 +436,8 @@ Las medidas gerenciales usan registros validos como base principal, aplicando `R
 - `Fct_AsistenciaFormacion` permite analizar asistencia real y se conecta con `Dim_ColaboradorHC` para lectura por tipo de cargo.
 - `Fct_EncuestaFormacion` soporta satisfaccion, favorabilidad y percepcion de calidad.
 - `Fct_Induccion` es la fuente gerencial consolidada para onboarding, entrenamiento y segmentacion UC.
-- `Fct_EntrevistaRetiro_Unificada` es la fuente gerencial inicial del bloque Bienestar y Clima para motivos de salida, tendencias y oportunidades de mejora.
+- `Fct_EntrevistaRetiro_Unificada` es la fuente gerencial del modulo de entrevista de retiro en Bienestar y Clima, para motivos de salida, tendencias y oportunidades de mejora.
+- `Fct_SeguimientoBienestar` es la fuente del modulo de plan de bienestar. Su estructura actividad x mes permite lectura mensual de cumplimiento, diferencias de programacion y alertas de pendientes vencidos.
 - `Dim_ColaboradorHC` debe mantenerse actualizada por corte mensual para que el analisis de tipo de cargo sea confiable.
 - `Fct_Seguimiento_PDI` es la fuente inicial del frente Desarrollo; los componentes de movilidad, sucesion y cargos criticos quedan como pendientes de fuente.
 

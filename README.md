@@ -63,12 +63,13 @@ El frente Desarrollo inicia con cuatro paginas:
 - `D03 Motivos y Seguimiento`
 - `D04 Focos de Gestion Desarrollo`
 
-El frente Bienestar y Clima inicia con dos paginas:
+El frente Bienestar y Clima cuenta con tres paginas activas:
 
 - `BC01 Resumen Ejecutivo Bienestar y Clima`
-- `BC01 Entrevista de Retiro`
+- `BC02 Entrevista de Retiro`
+- `BC03 Plan de Bienestar`
 
-El modelo incluye dimensiones gerenciales, tabla de medidas `Medidas_AD`, fact consolidada de induccion, relacion entre `Fct_AsistenciaFormacion` y `Dim_ColaboradorHC`, estructura inicial para `Fct_Seguimiento_PDI` y fact homologada `Fct_EntrevistaRetiro_Unificada`.
+El modelo incluye dimensiones gerenciales, tabla de medidas `Medidas_AD`, fact consolidada de induccion, relacion entre `Fct_AsistenciaFormacion` y `Dim_ColaboradorHC`, estructura inicial para `Fct_Seguimiento_PDI`, fact homologada `Fct_EntrevistaRetiro_Unificada` y `Fct_SeguimientoBienestar` para seguimiento del plan de bienestar.
 
 ## Bloques pendientes del Dashboard Corporativo
 
@@ -77,6 +78,5 @@ Los siguientes bloques estan previstos para fases posteriores:
 - Desempeno
 - Planes de trabajo de Clima Laboral
 - eNPS de actividades de Bienestar
-- Cumplimiento del Plan de Bienestar
 
 Estos frentes deben integrarse respetando la arquitectura corporativa, la navegacion del reporte, la paleta visual LEMCO y los estandares tecnicos documentados en `Docs`.

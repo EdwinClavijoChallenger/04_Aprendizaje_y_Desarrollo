@@ -1,0 +1,96 @@
+table Dim_ActividadBienestar
+	lineageTag: 39df3f9b-fb1b-4634-a0c3-f8246b32ecb0
+
+	column ActividadBienestar_Key
+		dataType: string
+		isHidden
+		lineageTag: 24c7209a-eb62-43c5-875c-1941359628ca
+		sourceColumn: [ActividadBienestar_Key]
+
+	column DimensionBienestar_Key
+		dataType: string
+		isHidden
+		lineageTag: d2790ac4-e825-4661-ac38-20bc37ea351a
+		sourceColumn: [DimensionBienestar_Key]
+
+	column Dimension_Bienestar
+		dataType: string
+		lineageTag: d5faf505-fe4d-4c6d-909d-75bdd6596efa
+		sourceColumn: [Dimension_Bienestar]
+
+	column Actividad_Bienestar
+		dataType: string
+		lineageTag: ddffab85-9666-428a-9a3e-d153a96832ef
+		sourceColumn: [Actividad_Bienestar]
+
+	column Observacion
+		dataType: string
+		lineageTag: b1ce7513-57e0-4d5d-a1ef-739afda38323
+		sourceColumn: [Observacion]
+
+	partition Dim_ActividadBienestar = calculated
+		mode: import
+		source =
+				VAR _ActividadesRaw =
+				    UNION(
+				        SELECTCOLUMNS(
+				            'Stg_Bienestar_Planeacion',
+				            "ActividadBienestar_Key", UPPER(TRIM(COALESCE('Stg_Bienestar_Planeacion'[DIMENSION], ""))) & "|" & UPPER(TRIM(COALESCE('Stg_Bienestar_Planeacion'[COMPONENTES], ""))),
+				            "DimensionBienestar_Key", UPPER(TRIM(COALESCE('Stg_Bienestar_Planeacion'[DIMENSION], ""))),
+				            "Dimension_Bienestar", TRIM(COALESCE('Stg_Bienestar_Planeacion'[DIMENSION], "")),
+				            "Actividad_Bienestar", TRIM(COALESCE('Stg_Bienestar_Planeacion'[COMPONENTES], "")),
+				            "Observacion", TRIM(COALESCE('Stg_Bienestar_Planeacion'[OBSERVACION], ""))
+				        ),
+				        SELECTCOLUMNS(
+				            'Stg_Bienestar_Ejecucion',
+				            "ActividadBienestar_Key", UPPER(TRIM(COALESCE('Stg_Bienestar_Ejecucion'[DIMENSION], ""))) & "|" & UPPER(TRIM(COALESCE('Stg_Bienestar_Ejecucion'[COMPONENTES], ""))),
+				            "DimensionBienestar_Key", UPPER(TRIM(COALESCE('Stg_Bienestar_Ejecucion'[DIMENSION], ""))),
+				            "Dimension_Bienestar", TRIM(COALESCE('Stg_Bienestar_Ejecucion'[DIMENSION], "")),
+				            "Actividad_Bienestar", TRIM(COALESCE('Stg_Bienestar_Ejecucion'[COMPONENTES], "")),
+				            "Observacion", TRIM(COALESCE('Stg_Bienestar_Ejecucion'[OBSERVACION], ""))
+				        )
+				    )
+				VAR _Actividades =
+				    FILTER(
+				        _ActividadesRaw,
+				        NOT ISBLANK([ActividadBienestar_Key]) && [ActividadBienestar_Key] <> "|"
+				    )
+				RETURN
+				    ADDCOLUMNS(
+				        SUMMARIZE(
+				            _Actividades,
+				            [ActividadBienestar_Key],
+				            [DimensionBienestar_Key]
+				        ),
+				        "Dimension_Bienestar",
+				            VAR _Key = [ActividadBienestar_Key]
+				            RETURN
+				                MAXX(
+				                    FILTER(
+				                        _Actividades,
+				                        [ActividadBienestar_Key] = _Key
+				                    ),
+				                    [Dimension_Bienestar]
+				                ),
+				        "Actividad_Bienestar",
+				            VAR _Key = [ActividadBienestar_Key]
+				            RETURN
+				                MAXX(
+				                    FILTER(
+				                        _Actividades,
+				                        [ActividadBienestar_Key] = _Key
+				                    ),
+				                    [Actividad_Bienestar]
+				                ),
+				        "Observacion",
+				            VAR _Key = [ActividadBienestar_Key]
+				            RETURN
+				                MAXX(
+				                    FILTER(
+				                        _Actividades,
+				                        [ActividadBienestar_Key] = _Key
+				                    ),
+				                    [Observacion]
+				                )
+				    )
+

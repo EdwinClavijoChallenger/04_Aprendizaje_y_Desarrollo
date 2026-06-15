@@ -1,0 +1,53 @@
+table Dim_DimensionBienestar
+	lineageTag: 6305a434-4c9a-4303-b48a-775ece2753c3
+
+	column DimensionBienestar_Key
+		dataType: string
+		isHidden
+		lineageTag: 0a1dba12-638c-4ed2-8854-8987796cc44c
+		sourceColumn: [DimensionBienestar_Key]
+
+	column Dimension_Bienestar
+		dataType: string
+		lineageTag: 13d1686b-b90b-43a6-9282-a0a46247a73d
+		sourceColumn: [Dimension_Bienestar]
+
+	partition Dim_DimensionBienestar = calculated
+		mode: import
+		source =
+				VAR _DimensionesRaw =
+				    UNION(
+				        SELECTCOLUMNS(
+				            'Stg_Bienestar_Planeacion',
+				            "DimensionBienestar_Key", UPPER(TRIM(COALESCE('Stg_Bienestar_Planeacion'[DIMENSION], ""))),
+				            "Dimension_Bienestar", TRIM(COALESCE('Stg_Bienestar_Planeacion'[DIMENSION], ""))
+				        ),
+				        SELECTCOLUMNS(
+				            'Stg_Bienestar_Ejecucion',
+				            "DimensionBienestar_Key", UPPER(TRIM(COALESCE('Stg_Bienestar_Ejecucion'[DIMENSION], ""))),
+				            "Dimension_Bienestar", TRIM(COALESCE('Stg_Bienestar_Ejecucion'[DIMENSION], ""))
+				        )
+				    )
+				VAR _Dimensiones =
+				    FILTER(
+				        _DimensionesRaw,
+				        NOT ISBLANK([DimensionBienestar_Key]) && [DimensionBienestar_Key] <> ""
+				    )
+				RETURN
+				    ADDCOLUMNS(
+				        SUMMARIZE(
+				            _Dimensiones,
+				            [DimensionBienestar_Key]
+				        ),
+				        "Dimension_Bienestar",
+				            VAR _Key = [DimensionBienestar_Key]
+				            RETURN
+				                MAXX(
+				                    FILTER(
+				                        _Dimensiones,
+				                        [DimensionBienestar_Key] = _Key
+				                    ),
+				                    [Dimension_Bienestar]
+				                )
+				    )
+

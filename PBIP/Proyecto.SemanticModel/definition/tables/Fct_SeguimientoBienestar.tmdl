@@ -1,0 +1,371 @@
+table Fct_SeguimientoBienestar
+	lineageTag: d277761e-b996-455e-850e-528bcbfdf0f9
+
+	column SeguimientoBienestar_Key
+		dataType: string
+		isHidden
+		lineageTag: c3044335-049b-41f6-b21a-1518f6b5298b
+		summarizeBy: none
+		sourceColumn: [SeguimientoBienestar_Key]
+
+		annotation SummarizationSetBy = Automatic
+
+	column DimensionBienestar_Key
+		dataType: string
+		isHidden
+		lineageTag: 64dbe95a-dc54-4c88-92f4-e6170fbb4c04
+		summarizeBy: none
+		sourceColumn: [DimensionBienestar_Key]
+
+		annotation SummarizationSetBy = Automatic
+
+	column ActividadBienestar_Key
+		dataType: string
+		isHidden
+		lineageTag: 946792ca-20de-4cc9-ab93-5cf666bbdff3
+		summarizeBy: none
+		sourceColumn: [ActividadBienestar_Key]
+
+		annotation SummarizationSetBy = Automatic
+
+	column FechaPeriodo
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 201b2f00-d429-45db-9a50-74841528a035
+		summarizeBy: none
+		sourceColumn: [FechaPeriodo]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Anio
+		dataType: int64
+		formatString: 0
+		lineageTag: 622ef485-bdfe-4a9d-866b-86b521bafb5d
+		summarizeBy: none
+		sourceColumn: [Anio]
+
+		annotation SummarizationSetBy = Automatic
+
+	column NumeroMes
+		dataType: int64
+		formatString: 0
+		lineageTag: a67b15cf-a3c1-41b4-a483-c63547096bdb
+		summarizeBy: none
+		sourceColumn: [NumeroMes]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Mes
+		dataType: string
+		lineageTag: bad8602b-a7db-4bb8-bfa2-da9185a2078a
+		summarizeBy: none
+		sourceColumn: [Mes]
+		sortByColumn: NumeroMes
+
+		annotation SummarizationSetBy = Automatic
+
+	column AnioMes
+		dataType: string
+		lineageTag: 9ac83c5f-de02-4099-aead-89dfb148cf17
+		summarizeBy: none
+		sourceColumn: [AnioMes]
+		sortByColumn: AnioMesOrden
+
+		annotation SummarizationSetBy = Automatic
+
+	column AnioMesOrden
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: da963ee0-de3d-43a1-ad06-ab6ef1619fd9
+		summarizeBy: none
+		sourceColumn: [AnioMesOrden]
+
+		annotation SummarizationSetBy = Automatic
+
+	column PlaneadoOriginal
+		dataType: int64
+		formatString: 0
+		lineageTag: 2024fc44-6aee-41b1-a600-a7dae07db0e2
+		summarizeBy: sum
+		sourceColumn: [PlaneadoOriginal]
+
+		annotation SummarizationSetBy = Automatic
+
+	column PlaneadoEjecucion
+		dataType: int64
+		formatString: 0
+		lineageTag: 0fb3b05b-12ab-42b7-9d22-acede6a64452
+		summarizeBy: sum
+		sourceColumn: [PlaneadoEjecucion]
+
+		annotation SummarizationSetBy = Automatic
+
+	column EjecutadoReal
+		dataType: int64
+		formatString: 0
+		lineageTag: 35d2e3aa-a82a-40d7-8aa3-02f51cfb7de5
+		summarizeBy: sum
+		sourceColumn: [EjecutadoReal]
+
+		annotation SummarizationSetBy = Automatic
+
+	column DiferenciaProgramacion
+		dataType: int64
+		formatString: 0
+		lineageTag: 8c90f264-c87d-4cc6-a125-ca9cb13b5c71
+		summarizeBy: sum
+		sourceColumn: [DiferenciaProgramacion]
+
+		annotation SummarizationSetBy = Automatic
+
+	column EstadoProgramacion
+		dataType: string
+		lineageTag: 1b62486e-639e-4d08-9181-a3398ca06de5
+		summarizeBy: none
+		sourceColumn: [EstadoProgramacion]
+
+		annotation SummarizationSetBy = Automatic
+
+	column EstadoAlCorte
+		dataType: string
+		lineageTag: 946d7e8f-0458-4ba1-b03b-0a4e5aa12fc6
+		summarizeBy: none
+		sourceColumn: [EstadoAlCorte]
+
+		annotation SummarizationSetBy = Automatic
+
+	column ObservacionPlaneacion
+		dataType: string
+		lineageTag: eb9e5e06-f227-4dea-8de7-250cdc41a053
+		summarizeBy: none
+		sourceColumn: [ObservacionPlaneacion]
+
+		annotation SummarizationSetBy = Automatic
+
+	column ObservacionEjecucion
+		dataType: string
+		lineageTag: ee2dd778-da38-4e35-a893-208f3b310cf0
+		summarizeBy: none
+		sourceColumn: [ObservacionEjecucion]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Fct_SeguimientoBienestar = calculated
+		mode: import
+		source =
+				VAR _Planeacion =
+				    SELECTCOLUMNS(
+				        'Stg_Bienestar_Planeacion',
+				        "DimensionBienestar_Key", UPPER(TRIM(COALESCE('Stg_Bienestar_Planeacion'[DIMENSION], ""))),
+				        "ActividadBienestar_Key", UPPER(TRIM(COALESCE('Stg_Bienestar_Planeacion'[DIMENSION], ""))) & "|" & UPPER(TRIM(COALESCE('Stg_Bienestar_Planeacion'[COMPONENTES], ""))),
+				        "Anio", 'Stg_Bienestar_Planeacion'[Anio],
+				        "NumeroMes", 'Stg_Bienestar_Planeacion'[NumeroMes],
+				        "Mes", 'Stg_Bienestar_Planeacion'[Mes],
+				        "PlaneadoOriginal", IF(UPPER(TRIM(COALESCE('Stg_Bienestar_Planeacion'[Planeado], ""))) = "X", 1, 0),
+				        "ObservacionPlaneacion", TRIM(COALESCE('Stg_Bienestar_Planeacion'[OBSERVACION], ""))
+				    )
+				VAR _Ejecucion =
+				    SELECTCOLUMNS(
+				        'Stg_Bienestar_Ejecucion',
+				        "DimensionBienestar_Key", UPPER(TRIM(COALESCE('Stg_Bienestar_Ejecucion'[DIMENSION], ""))),
+				        "ActividadBienestar_Key", UPPER(TRIM(COALESCE('Stg_Bienestar_Ejecucion'[DIMENSION], ""))) & "|" & UPPER(TRIM(COALESCE('Stg_Bienestar_Ejecucion'[COMPONENTES], ""))),
+				        "Anio", 'Stg_Bienestar_Ejecucion'[Anio],
+				        "NumeroMes", 'Stg_Bienestar_Ejecucion'[NumeroMes],
+				        "Mes", 'Stg_Bienestar_Ejecucion'[Mes],
+				        "PlaneadoEjecucion", IF(UPPER(TRIM(COALESCE('Stg_Bienestar_Ejecucion'[Planeado], ""))) = "X", 1, 0),
+				        "EjecutadoReal", IF(UPPER(TRIM(COALESCE('Stg_Bienestar_Ejecucion'[Ejecutado], ""))) = "OK", 1, 0),
+				        "ObservacionEjecucion", TRIM(COALESCE('Stg_Bienestar_Ejecucion'[OBSERVACION], ""))
+				    )
+				VAR _Actividades =
+				    FILTER(
+				        DISTINCT(
+				            UNION(
+				                SELECTCOLUMNS(
+				                    _Planeacion,
+				                    "DimensionBienestar_Key", [DimensionBienestar_Key],
+				                    "ActividadBienestar_Key", [ActividadBienestar_Key]
+				                ),
+				                SELECTCOLUMNS(
+				                    _Ejecucion,
+				                    "DimensionBienestar_Key", [DimensionBienestar_Key],
+				                    "ActividadBienestar_Key", [ActividadBienestar_Key]
+				                )
+				            )
+				        ),
+				        NOT ISBLANK([ActividadBienestar_Key]) && [ActividadBienestar_Key] <> "|"
+				    )
+				VAR _Meses =
+				    DATATABLE(
+				        "Anio", INTEGER,
+				        "NumeroMes", INTEGER,
+				        "Mes", STRING,
+				        {
+				            { 2026, 1, "Enero" },
+				            { 2026, 2, "Febrero" },
+				            { 2026, 3, "Marzo" },
+				            { 2026, 4, "Abril" },
+				            { 2026, 5, "Mayo" },
+				            { 2026, 6, "Junio" },
+				            { 2026, 7, "Julio" },
+				            { 2026, 8, "Agosto" },
+				            { 2026, 9, "Septiembre" },
+				            { 2026, 10, "Octubre" },
+				            { 2026, 11, "Noviembre" },
+				            { 2026, 12, "Diciembre" }
+				        }
+				    )
+				VAR _Keys =
+				    CROSSJOIN(
+				        _Actividades,
+				        _Meses
+				    )
+				VAR _Base =
+				    ADDCOLUMNS(
+				        _Keys,
+				        "SeguimientoBienestar_Key", [ActividadBienestar_Key] & "|" & FORMAT([Anio], "0000") & "-" & FORMAT([NumeroMes], "00"),
+				        "FechaPeriodo", DATE([Anio], [NumeroMes], 1),
+				        "AnioMes", FORMAT(DATE([Anio], [NumeroMes], 1), "YYYY-MM"),
+				        "AnioMesOrden", [Anio] * 100 + [NumeroMes],
+				        "PlaneadoOriginal",
+				            VAR _DimensionKey = [DimensionBienestar_Key]
+				            VAR _ActividadKey = [ActividadBienestar_Key]
+				            VAR _Anio = [Anio]
+				            VAR _NumeroMes = [NumeroMes]
+				            RETURN
+				                COALESCE(
+				                    MAXX(
+				                        FILTER(
+				                            _Planeacion,
+				                            [DimensionBienestar_Key] = _DimensionKey &&
+				                            [ActividadBienestar_Key] = _ActividadKey &&
+				                            [Anio] = _Anio &&
+				                            [NumeroMes] = _NumeroMes
+				                        ),
+				                        [PlaneadoOriginal]
+				                    ),
+				                    0
+				                ),
+				        "PlaneadoEjecucion",
+				            VAR _DimensionKey = [DimensionBienestar_Key]
+				            VAR _ActividadKey = [ActividadBienestar_Key]
+				            VAR _Anio = [Anio]
+				            VAR _NumeroMes = [NumeroMes]
+				            RETURN
+				                COALESCE(
+				                    MAXX(
+				                        FILTER(
+				                            _Ejecucion,
+				                            [DimensionBienestar_Key] = _DimensionKey &&
+				                            [ActividadBienestar_Key] = _ActividadKey &&
+				                            [Anio] = _Anio &&
+				                            [NumeroMes] = _NumeroMes
+				                        ),
+				                        [PlaneadoEjecucion]
+				                    ),
+				                    0
+				                ),
+				        "EjecutadoReal",
+				            VAR _DimensionKey = [DimensionBienestar_Key]
+				            VAR _ActividadKey = [ActividadBienestar_Key]
+				            VAR _Anio = [Anio]
+				            VAR _NumeroMes = [NumeroMes]
+				            RETURN
+				                COALESCE(
+				                    MAXX(
+				                        FILTER(
+				                            _Ejecucion,
+				                            [DimensionBienestar_Key] = _DimensionKey &&
+				                            [ActividadBienestar_Key] = _ActividadKey &&
+				                            [Anio] = _Anio &&
+				                            [NumeroMes] = _NumeroMes
+				                        ),
+				                        [EjecutadoReal]
+				                    ),
+				                    0
+				                ),
+				        "ObservacionPlaneacion",
+				            VAR _DimensionKey = [DimensionBienestar_Key]
+				            VAR _ActividadKey = [ActividadBienestar_Key]
+				            VAR _Anio = [Anio]
+				            VAR _NumeroMes = [NumeroMes]
+				            RETURN
+				                CONCATENATEX(
+				                    DISTINCT(
+				                        SELECTCOLUMNS(
+				                            FILTER(
+				                                _Planeacion,
+				                                [DimensionBienestar_Key] = _DimensionKey &&
+				                                [ActividadBienestar_Key] = _ActividadKey &&
+				                                [Anio] = _Anio &&
+				                                [NumeroMes] = _NumeroMes
+				                            ),
+				                            "Observacion", [ObservacionPlaneacion]
+				                        )
+				                    ),
+				                    [Observacion],
+				                    " | "
+				                ),
+				        "ObservacionEjecucion",
+				            VAR _DimensionKey = [DimensionBienestar_Key]
+				            VAR _ActividadKey = [ActividadBienestar_Key]
+				            VAR _Anio = [Anio]
+				            VAR _NumeroMes = [NumeroMes]
+				            RETURN
+				                CONCATENATEX(
+				                    DISTINCT(
+				                        SELECTCOLUMNS(
+				                            FILTER(
+				                                _Ejecucion,
+				                                [DimensionBienestar_Key] = _DimensionKey &&
+				                                [ActividadBienestar_Key] = _ActividadKey &&
+				                                [Anio] = _Anio &&
+				                                [NumeroMes] = _NumeroMes
+				                            ),
+				                            "Observacion", [ObservacionEjecucion]
+				                        )
+				                    ),
+				                    [Observacion],
+				                    " | "
+				                )
+				    )
+				VAR _PeriodoCorte =
+				    MAXX(
+				        FILTER(
+				            _Base,
+				            [EjecutadoReal] = 1
+				        ),
+				        [FechaPeriodo]
+				    )
+				RETURN
+				    ADDCOLUMNS(
+				        _Base,
+				        "DiferenciaProgramacion", [PlaneadoEjecucion] - [PlaneadoOriginal],
+				        "EstadoProgramacion",
+				            SWITCH(
+				                TRUE(),
+				                [PlaneadoOriginal] = 1 && [PlaneadoEjecucion] = 1, "Sin diferencia",
+				                [PlaneadoOriginal] = 1 && [PlaneadoEjecucion] = 0, "Retirado de ejecucion",
+				                [PlaneadoOriginal] = 0 && [PlaneadoEjecucion] = 1, "Agregado en ejecucion",
+				                "Sin programacion"
+				            ),
+				        "EstadoAlCorte",
+				            VAR _PlanVigente = [PlaneadoEjecucion] = 1
+				            VAR _RetiradoEjecucion = [PlaneadoOriginal] = 1 && [PlaneadoEjecucion] = 0 && [EjecutadoReal] = 0
+				            RETURN
+				                SWITCH(
+				                    TRUE(),
+				                    [PlaneadoOriginal] = 0 && [EjecutadoReal] = 1, "Ejecutado no planeado",
+				                    [EjecutadoReal] = 1, "Ejecutado",
+				                    _RetiradoEjecucion, "Retirado de ejecucion",
+				                    NOT _PlanVigente, "No programado",
+				                    ISBLANK(_PeriodoCorte) && _PlanVigente, "Pendiente sin corte",
+				                    _PlanVigente && [FechaPeriodo] < _PeriodoCorte, "Pendiente vencido",
+				                    _PlanVigente && [FechaPeriodo] = _PeriodoCorte, "Pendiente en curso",
+				                    _PlanVigente && [FechaPeriodo] > _PeriodoCorte, "Pendiente futuro",
+				                    "No programado"
+				                )
+				    )
+
