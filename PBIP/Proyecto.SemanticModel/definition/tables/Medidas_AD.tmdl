@@ -1055,21 +1055,53 @@ table Medidas_AD
 		lineageTag: 7c2750e7-b88c-412b-ae31-489e5fab52af
 
 	measure 'HTML Shell BC01 Resumen Ejecutivo Bienestar y Clima' =
+			VAR _ERet    = IF(ISBLANK([EntrevistaRetiro Total Validas]),                  "-", FORMAT([EntrevistaRetiro Total Validas], "#,0"))
+			VAR _EVolPct = IF(ISBLANK([EntrevistaRetiro Porcentaje Voluntarios]),         "-", FORMAT([EntrevistaRetiro Porcentaje Voluntarios], "0.0%"))
+			VAR _EPrev   = IF(ISBLANK([EntrevistaRetiro Porcentaje Causas Prevenibles]),  "-", FORMAT([EntrevistaRetiro Porcentaje Causas Prevenibles], "0.0%"))
+			VAR _EMotivo = IF(ISBLANK([EntrevistaRetiro Motivo Principal]),               "N/D", [EntrevistaRetiro Motivo Principal])
+			VAR _EUnidad = IF(ISBLANK([EntrevistaRetiro UnidadNegocio Top]),              "N/D", [EntrevistaRetiro UnidadNegocio Top])
+			VAR _BProg   = IF(ISBLANK([Bienestar Programaciones Registradas Ejecucion]), "-", FORMAT([Bienestar Programaciones Registradas Ejecucion], "#,0"))
+			VAR _BEjec   = IF(ISBLANK([Bienestar Ejecutadas]),                           "-", FORMAT([Bienestar Ejecutadas], "#,0"))
+			VAR _BCump   = IF(ISBLANK([Bienestar Cumplimiento al Corte %]),              "-", FORMAT([Bienestar Cumplimiento al Corte %], "0.0%"))
+			VAR _BAvance = IF(ISBLANK([Bienestar Avance Anual %]),                       "-", FORMAT([Bienestar Avance Anual %], "0.0%"))
+			VAR _BPend   = IF(ISBLANK([Bienestar Pendientes Futuros]),                   "-", FORMAT([Bienestar Pendientes Futuros], "#,0"))
 			VAR _Html =
 				"<div style='font-family:Outfit,Poppins,Segoe UI,Arial,sans-serif;width:1280px;height:720px;background:#F7F9FC;color:#0B1C35;position:relative;overflow:hidden;'>" &
 				"<div style='position:absolute;left:0;top:0;width:1280px;height:100px;background:#0B1C35;'></div>" &
-				"<div style='position:absolute;left:48px;top:24px;color:#F7931E;font-size:11px;font-weight:850;letter-spacing:2px;text-transform:uppercase;'>DASHBOARD CORPORATIVO - GRUPO LEMCO</div>" &
-				"<div style='position:absolute;left:48px;top:48px;color:#FFFFFF;font-size:25px;font-weight:850;'>Bienestar y Clima</div>" &
-				"<div style='position:absolute;left:48px;top:78px;color:#D8E4F2;font-size:11px;'>Resumen de modulos disponibles y roadmap del frente.</div>" &
-				"<div style='position:absolute;right:48px;top:32px;background:#F7931E;color:#0B1C35;border-radius:18px;padding:8px 16px;font-size:11px;font-weight:850;'>Frente iniciado</div>" &
-				"<div style='position:absolute;left:54px;top:132px;width:560px;height:260px;background:#0B1C35;border:2px solid #F7931E;border-radius:12px;padding:28px;box-sizing:border-box;color:#FFFFFF;'>" &
-				"<div style='font-size:12px;color:#F7931E;font-weight:850;letter-spacing:1.5px;text-transform:uppercase;'>Modulo activo</div><div style='font-size:28px;font-weight:850;margin-top:18px;'>Entrevista de Retiro</div><div style='font-size:13px;line-height:19px;color:#D8E4F2;margin-top:12px;'>Analisis de motivos de salida, unidad de negocio, tendencias y oportunidades de mejora.</div><div style='margin-top:28px;background:#F7931E;color:#0B1C35;border-radius:20px;padding:9px 16px;display:inline-block;font-size:12px;font-weight:850;'>Ir al analisis</div>" &
+				"<div style='position:absolute;left:48px;top:22px;color:#F7931E;font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;'>DASHBOARD CORPORATIVO - GRUPO LEMCO</div>" &
+				"<div style='position:absolute;left:48px;top:44px;color:#FFFFFF;font-size:24px;font-weight:800;'>Bienestar y Clima</div>" &
+				"<div style='position:absolute;left:48px;top:75px;color:#D8E4F2;font-size:11px;'>Resumen ejecutivo del frente: Entrevista de Retiro y Plan de Bienestar.</div>" &
+				"<div style='position:absolute;right:48px;top:32px;background:#F7931E;color:#0B1C35;border-radius:18px;padding:8px 18px;font-size:11px;font-weight:800;'>Frente iniciado</div>" &
+				"<div style='position:absolute;left:0;top:100px;width:1280px;height:76px;background:#FFFFFF;border-bottom:1px solid #DCE5F2;'></div>" &
+				"<div style='position:absolute;left:32px;top:188px;width:580px;height:268px;background:#FFFFFF;border:1px solid #DCE5F2;border-radius:12px;padding:16px 18px;box-sizing:border-box;'>" &
+				"<div style='font-size:11px;color:#F7931E;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;'>Entrevista de Retiro</div>" &
+				"<div style='display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px;margin-top:10px;'>" &
+				"<div style='background:#F7F9FC;border-radius:7px;padding:9px 11px;border-left:3px solid #003A70;'><div style='font-size:9px;color:#53657D;'>Entrevistas validas</div><div style='font-size:20px;font-weight:800;color:#0B1C35;margin-top:3px;'>" & _ERet & "</div></div>" &
+				"<div style='background:#F7F9FC;border-radius:7px;padding:9px 11px;border-left:3px solid #1B487F;'><div style='font-size:9px;color:#53657D;'>Retiros voluntarios</div><div style='font-size:20px;font-weight:800;color:#1B487F;margin-top:3px;'>" & _EVolPct & "</div></div>" &
+				"<div style='background:#FFF8F0;border-radius:7px;padding:9px 11px;border-left:3px solid #F7931E;'><div style='font-size:9px;color:#53657D;'>Causas prevenibles</div><div style='font-size:20px;font-weight:800;color:#F7931E;margin-top:3px;'>" & _EPrev & "</div></div>" &
 				"</div>" &
-				"<div style='position:absolute;left:654px;top:132px;width:560px;height:260px;background:#FFFFFF;border:1px solid #DCE5F2;border-radius:12px;padding:28px;box-sizing:border-box;'>" &
-				"<div style='font-size:12px;color:#F7931E;font-weight:850;letter-spacing:1.5px;text-transform:uppercase;'>Roadmap</div><div style='font-size:24px;font-weight:850;margin-top:16px;color:#0B1C35;'>Clima, eNPS y Plan de Bienestar</div><div style='font-size:13px;line-height:19px;color:#53657D;margin-top:12px;'>Componentes previstos para consolidar la lectura del frente de bienestar corporativo.</div><div style='display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:26px;'><div style='background:#F7FAFD;border-radius:8px;padding:10px;border-left:3px solid #F7931E;font-size:11px;font-weight:800;'>Planes Clima Laboral</div><div style='background:#F7FAFD;border-radius:8px;padding:10px;font-size:11px;font-weight:800;'>eNPS Bienestar</div><div style='background:#F7FAFD;border-radius:8px;padding:10px;font-size:11px;font-weight:800;'>Plan Bienestar</div><div style='background:#F7FAFD;border-radius:8px;padding:10px;font-size:11px;font-weight:800;'>Acciones GH</div></div>" &
+				"<div style='display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:7px;'>" &
+				"<div style='background:#F7F9FC;border-radius:7px;padding:9px 11px;'><div style='font-size:9px;color:#53657D;'>Motivo principal</div><div style='font-size:12px;font-weight:700;color:#0B1C35;margin-top:4px;line-height:14px;'>" & _EMotivo & "</div></div>" &
+				"<div style='background:#F7F9FC;border-radius:7px;padding:9px 11px;'><div style='font-size:9px;color:#53657D;'>Unidad con mas retiros</div><div style='font-size:12px;font-weight:700;color:#0B1C35;margin-top:4px;line-height:14px;'>" & _EUnidad & "</div></div>" &
 				"</div>" &
-				"<div style='position:absolute;left:54px;top:430px;width:1160px;height:132px;background:#FFFFFF;border:1px solid #DCE5F2;border-radius:12px;padding:22px 28px;box-sizing:border-box;'>" &
-				"<div style='font-size:12px;color:#F7931E;font-weight:850;letter-spacing:1.5px;text-transform:uppercase;'>Lectura ejecutiva</div><div style='font-size:18px;font-weight:850;margin-top:10px;color:#0B1C35;'>Priorizar causas prevenibles y oportunidades de mejora por unidad de negocio.</div><div style='font-size:12px;color:#53657D;margin-top:9px;'>La pagina de entrevista de retiro queda como primer modulo activo del frente Bienestar y Clima.</div>" &
+				"</div>" &
+				"<div style='position:absolute;left:644px;top:188px;width:604px;height:268px;background:#FFFFFF;border:1px solid #DCE5F2;border-radius:12px;padding:16px 18px;box-sizing:border-box;'>" &
+				"<div style='font-size:11px;color:#F7931E;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;'>Plan de Bienestar</div>" &
+				"<div style='display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:10px;'>" &
+				"<div style='background:#F7F9FC;border-radius:7px;padding:8px 11px;border-left:3px solid #003A70;'><div style='font-size:9px;color:#53657D;'>Programaciones vigentes</div><div style='font-size:18px;font-weight:800;color:#0B1C35;margin-top:3px;'>" & _BProg & "</div></div>" &
+				"<div style='background:#F7F9FC;border-radius:7px;padding:8px 11px;border-left:3px solid #1B487F;'><div style='font-size:9px;color:#53657D;'>Actividades ejecutadas</div><div style='font-size:18px;font-weight:800;color:#1B487F;margin-top:3px;'>" & _BEjec & "</div></div>" &
+				"<div style='background:#FFF8F0;border-radius:7px;padding:8px 11px;border-left:3px solid #F7931E;'><div style='font-size:9px;color:#53657D;'>Cumplimiento al corte</div><div style='font-size:18px;font-weight:800;color:#F7931E;margin-top:3px;'>" & _BCump & "</div></div>" &
+				"<div style='background:#F7F9FC;border-radius:7px;padding:8px 11px;border-left:3px solid #1B487F;'><div style='font-size:9px;color:#53657D;'>Avance anual</div><div style='font-size:18px;font-weight:800;color:#1B487F;margin-top:3px;'>" & _BAvance & "</div></div>" &
+				"</div>" &
+				"<div style='background:#F7F9FC;border-radius:7px;padding:8px 11px;margin-top:7px;border-left:3px solid #53657D;'><div style='font-size:9px;color:#53657D;'>Pendientes futuros</div><div style='font-size:18px;font-weight:800;color:#53657D;margin-top:3px;'>" & _BPend & "</div></div>" &
+				"</div>" &
+				"<div style='position:absolute;left:32px;top:464px;width:1216px;height:244px;background:#FFFFFF;border:1px solid #DCE5F2;border-radius:12px;padding:22px 28px;box-sizing:border-box;'>" &
+				"<div style='font-size:11px;color:#F7931E;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;'>Proximos modulos</div>" &
+				"<div style='font-size:12px;color:#53657D;margin-top:6px;'>Componentes en roadmap para el frente Bienestar y Clima.</div>" &
+				"<div style='display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:18px;'>" &
+				"<div style='border:1px dashed #DCE5F2;border-radius:10px;padding:20px 22px;'><div style='font-size:9px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#53657D;'>Proxima fase</div><div style='font-size:18px;font-weight:800;color:#1A3059;margin-top:8px;'>Planes Clima Laboral</div><div style='font-size:11px;color:#8096B0;margin-top:6px;line-height:15px;'>Medicion y seguimiento del clima organizacional por unidad y dimension.</div></div>" &
+				"<div style='border:1px dashed #DCE5F2;border-radius:10px;padding:20px 22px;'><div style='font-size:9px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#53657D;'>Proxima fase</div><div style='font-size:18px;font-weight:800;color:#1A3059;margin-top:8px;'>eNPS Bienestar</div><div style='font-size:11px;color:#8096B0;margin-top:6px;line-height:15px;'>Net Promoter Score de empleados para seguimiento de bienestar organizacional.</div></div>" &
+				"</div>" &
 				"</div>" &
 				"</div>"
 			RETURN

@@ -2,7 +2,7 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "bc01_pb_card_ejecutadas",
   "position": {
-    "x": 944,
+    "x": 2000,
     "y": 264,
     "z": 6600,
     "height": 64,

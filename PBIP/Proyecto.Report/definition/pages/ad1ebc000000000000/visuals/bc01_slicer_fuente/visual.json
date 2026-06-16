@@ -110,6 +110,20 @@
                                 "Value": "'Entrevista Corporativa'"
                               }
                             }
+                          ],
+                          [
+                            {
+                              "Literal": {
+                                "Value": "'Entrevista V1'"
+                              }
+                            }
+                          ],
+                          [
+                            {
+                              "Literal": {
+                                "Value": "'Entrevista V2'"
+                              }
+                            }
                           ]
                         ]
                       }
