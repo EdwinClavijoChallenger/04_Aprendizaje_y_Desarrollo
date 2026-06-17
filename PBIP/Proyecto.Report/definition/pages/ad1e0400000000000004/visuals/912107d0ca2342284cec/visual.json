@@ -23,11 +23,11 @@
                       "Entity": "Dim_Calendario"
                     }
                   },
-                  "Property": "AñoMes"
+                  "Property": "MesNombreCorto"
                 }
               },
-              "queryRef": "Dim_Calendario.AñoMes",
-              "nativeQueryRef": "AñoMes",
+              "queryRef": "Dim_Calendario.MesNombreCorto",
+              "nativeQueryRef": "MesNombreCorto",
               "active": true
             }
           ]
@@ -72,6 +72,11 @@
               }
             }
           }
+        }
+      ],
+      "general": [
+        {
+          "properties": {}
         }
       ]
     },
