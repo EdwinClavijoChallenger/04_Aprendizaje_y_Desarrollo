@@ -744,9 +744,12 @@ table Medidas_AD
 			VAR _IApz = IF(ISBLANK([KPI Indice Aprendizaje]), "-", FORMAT([KPI Indice Aprendizaje], "0.0%"))
 			VAR _PDIAct = IF(ISBLANK([PDI Activos]), "-", FORMAT([PDI Activos], "#,0"))
 			VAR _PDIAvz = IF(ISBLANK([PDI Avance Promedio]), "-", FORMAT([PDI Avance Promedio], "0.0%"))
+			VAR _PDIAvzBar = IF(ISBLANK([PDI Avance Promedio]), "0%", FORMAT(MIN([PDI Avance Promedio], 1), "0.0%"))
 			VAR _PDIAlt = IF(ISBLANK([PDI Alertas Criticas]), "-", FORMAT([PDI Alertas Criticas], "#,0"))
 			VAR _Acomp = IF(ISBLANK([PDI Cumplimiento Acompanamientos]), "-", FORMAT([PDI Cumplimiento Acompanamientos], "0.0%"))
 			VAR _IDes = IF(ISBLANK([KPI Indice Desarrollo]), "-", FORMAT([KPI Indice Desarrollo], "0.0%"))
+			VAR _PDIMot = COALESCE([PDI Motivo Principal], "Sin datos")
+			VAR _PDIEst = COALESCE([PDI Estado Principal], "Sin datos")
 			VAR _ERet = IF(ISBLANK([EntrevistaRetiro Total Validas]), "-", FORMAT([EntrevistaRetiro Total Validas], "#,0"))
 			VAR _EPrev = IF(ISBLANK([EntrevistaRetiro Porcentaje Causas Prevenibles]), "-", FORMAT([EntrevistaRetiro Porcentaje Causas Prevenibles], "0.0%"))
 			VAR _EVolPct = IF(ISBLANK([EntrevistaRetiro Porcentaje Voluntarios]), "-", FORMAT([EntrevistaRetiro Porcentaje Voluntarios], "0.0%"))
@@ -779,15 +782,17 @@ table Medidas_AD
 			    IF(_FA = "Desarrollo",
 			        "<div style='font-size:11px;color:#F7931E;font-weight:800;text-transform:uppercase;letter-spacing:1.4px;'>Frente activo</div>" &
 			        "<div style='font-size:30px;font-weight:800;margin-top:4px;color:#000032;'>Desarrollo</div>" &
-			        "<div style='font-size:12px;color:#53657D;line-height:17px;margin-top:7px;'>Planes de Desarrollo Individual, avance, acompa&ntilde;amientos y alertas.</div>" &
+			        "<div style='font-size:12px;color:#53657D;line-height:17px;margin-top:7px;'>PDI, movilidad, sucesi&oacute;n y cargos cr&iacute;ticos.</div>" &
 			        "<div style='display:grid;grid-template-columns:1fr 1fr;gap:11px;margin-top:15px;'>" &
-			        "<div style='border-left:4px solid #F7931E;background:#F7F9FC;border-radius:8px;padding:11px 13px;'><div style='font-size:10px;color:#53657D;'>PDI activos</div><div style='font-size:25px;font-weight:800;color:#1B487F;'>" & _PDIAct & "</div></div>" &
-			        "<div style='border-left:4px solid #1B487F;background:#F7F9FC;border-radius:8px;padding:11px 13px;'><div style='font-size:10px;color:#53657D;'>Avance promedio</div><div style='font-size:25px;font-weight:800;color:#1B487F;'>" & _PDIAvz & "</div></div>" &
-			        "<div style='border-left:4px solid #1A3059;background:#F7F9FC;border-radius:8px;padding:11px 13px;'><div style='font-size:10px;color:#53657D;'>Acompa&ntilde;amientos</div><div style='font-size:25px;font-weight:800;color:#1B487F;'>" & _Acomp & "</div></div>" &
-			        "<div style='border-left:4px solid #E85D24;background:#FFF4F1;border-radius:8px;padding:11px 13px;'><div style='font-size:10px;color:#9D3B2A;'>Alertas criticas</div><div style='font-size:25px;font-weight:800;color:#E85D24;'>" & _PDIAlt & "</div></div>" &
+			        "<div style='border-left:4px solid #F7931E;background:#F7F9FC;border-radius:8px;padding:11px 13px;overflow:hidden;'><div style='font-size:9px;color:#53657D;text-transform:uppercase;letter-spacing:0.9px;'>Motivo PDI</div><div style='font-size:12px;font-weight:800;color:#1B487F;margin-top:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;'>" & _PDIMot & "</div><div style='margin-top:6px;display:inline-block;background:#F7931E;color:#fff;border-radius:10px;padding:2px 8px;font-size:9px;font-weight:700;'>Principal</div></div>" &
+			        "<div style='border-left:4px solid #1B487F;background:#F7F9FC;border-radius:8px;padding:11px 13px;overflow:hidden;'><div style='font-size:9px;color:#53657D;text-transform:uppercase;letter-spacing:0.9px;'>Estado &middot; Avance</div><div style='display:flex;align-items:center;gap:7px;margin-top:5px;'><span style='background:#1B487F;color:#fff;border-radius:10px;padding:2px 8px;font-size:9px;font-weight:700;white-space:nowrap;overflow:hidden;max-width:110px;'>" & _PDIEst & "</span><span style='font-size:17px;font-weight:800;color:#1B487F;'>" & _PDIAvz & "</span></div><div style='margin-top:6px;height:4px;background:#D8E4F0;border-radius:2px;'><div style='width:" & _PDIAvzBar & ";height:4px;background:#1B487F;border-radius:2px;'></div></div></div>" &
+			        "</div><div style='display:flex;gap:8px;margin-top:11px;'>" &
+			        "<div style='flex:1;background:#F7F9FC;border:1px dashed #B0C4D8;border-radius:8px;padding:9px 11px;'><div style='font-size:10px;color:#53657D;'>Movilidad</div><div style='font-size:12px;color:#9DB5CC;font-style:italic;margin-top:3px;'>Pendiente</div></div>" &
+			        "<div style='flex:1;background:#F7F9FC;border:1px dashed #B0C4D8;border-radius:8px;padding:9px 11px;'><div style='font-size:10px;color:#53657D;'>Sucesi&oacute;n</div><div style='font-size:12px;color:#9DB5CC;font-style:italic;margin-top:3px;'>Pendiente</div></div>" &
+			        "<div style='flex:1;background:#F7F9FC;border:1px dashed #B0C4D8;border-radius:8px;padding:9px 11px;'><div style='font-size:10px;color:#53657D;'>Cargos cr&iacute;ticos</div><div style='font-size:12px;color:#9DB5CC;font-style:italic;margin-top:3px;'>Pendiente</div></div>" &
 			        "</div><div style='display:flex;gap:10px;margin-top:11px;'>" &
-			        "<div style='flex:1;background:#0B1C35;color:#fff;border-radius:8px;padding:11px 13px;'><div style='font-size:10px;color:#b8c8de;'>Indice Desarrollo</div><div style='font-size:21px;font-weight:800;'>" & _IDes & "</div></div>" &
-			        "<div style='flex:1;background:#1B487F;color:#fff;border-radius:8px;padding:11px 13px;'><div style='font-size:10px;color:#b8c8de;'>Avance PDI</div><div style='font-size:21px;font-weight:800;'>" & _PDIAvz & "</div></div>" &
+			        "<div style='flex:1;background:#E85D24;color:#fff;border-radius:8px;padding:11px 13px;'><div style='font-size:10px;color:#ffd4c2;'>Alertas cr&iacute;ticas</div><div style='font-size:21px;font-weight:800;'>" & _PDIAlt & "</div></div>" &
+			        "<div style='flex:1;background:#0B1C35;color:#fff;border-radius:8px;padding:11px 13px;'><div style='font-size:10px;color:#b8c8de;'>KPI Desarrollo</div><div style='font-size:21px;font-weight:800;'>" & _IDes & "</div></div>" &
 			        "</div><div style='position:absolute;left:22px;bottom:26px;width:548px;text-align:center;background:#F7931E;color:#fff;border-radius:8px;padding:9px;font-size:11px;font-weight:800;box-sizing:border-box;'>" & _CtaTexto & "</div>",
 			    IF(_FA = "Bienestar y Clima",
 			        "<div style='font-size:11px;color:#F7931E;font-weight:800;text-transform:uppercase;letter-spacing:1.4px;'>Frente activo</div>" &
@@ -1634,6 +1639,22 @@ table Medidas_AD
 				)
 		displayFolder: 14 Plan Bienestar\Soporte Visual
 		lineageTag: 5c41241d-8f7a-49dd-bff0-3fc05ac86e42
+
+	measure 'PDI Motivo Principal' =
+			VAR _Tabla = ADDCOLUMNS(VALUES('Dim_MotivoPDI'[Motivo_PDI]), "Cnt", CALCULATE([PDI Total]))
+			VAR _Top = TOPN(1, _Tabla, [Cnt], DESC)
+			VAR _Result = CONCATENATEX(_Top, [Motivo_PDI])
+			RETURN IF(_Result = "" || ISBLANK(_Result), "Sin datos", _Result)
+		displayFolder: 09 Desarrollo PDI
+		lineageTag: c3a7b2e1-4f89-4d06-b523-8e7f19d4a062
+
+	measure 'PDI Estado Principal' =
+			VAR _Tabla = ADDCOLUMNS(VALUES('Dim_EstadoPDI'[Estado_PDI]), "Cnt", CALCULATE([PDI Total]))
+			VAR _Top = TOPN(1, _Tabla, [Cnt], DESC)
+			VAR _Result = CONCATENATEX(_Top, [Estado_PDI])
+			RETURN IF(_Result = "" || ISBLANK(_Result), "Sin datos", _Result)
+		displayFolder: 09 Desarrollo PDI
+		lineageTag: d4b8c3f2-5a90-4e17-c634-9f8020e5b173
 
 	column Indice
 		dataType: int64
