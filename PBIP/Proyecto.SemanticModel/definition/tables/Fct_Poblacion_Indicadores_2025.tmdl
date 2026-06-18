@@ -1,0 +1,207 @@
+table Fct_Poblacion_Indicadores_2025
+	lineageTag: 6c6669f9-f482-4085-93bf-9abba854c894
+
+	column CEDULA
+		dataType: int64
+		formatString: 0
+		lineageTag: c0fce4e6-4ed1-41f9-b164-72c60cb0d07c
+		summarizeBy: none
+		sourceColumn: CEDULA
+
+	column 'INDICADOR ACTIVIDAD'
+		dataType: string
+		lineageTag: 2f69efc1-9e3b-49bf-a524-bda77d10fa77
+		summarizeBy: none
+		sourceColumn: INDICADOR ACTIVIDAD
+
+	column 'TIPO CONTRATO'
+		dataType: string
+		lineageTag: 470a078e-f4e9-4988-a2c9-95d4987e5396
+		summarizeBy: none
+		sourceColumn: TIPO CONTRATO
+
+	column 'FECHA INICIO'
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 864a2fbb-9927-4a58-a703-ec8e6746d414
+		summarizeBy: none
+		sourceColumn: FECHA INICIO
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'FECHA FINAL'
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: f72555f4-d976-4497-8c4f-d91f8f2c3df6
+		summarizeBy: none
+		sourceColumn: FECHA FINAL
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'FECHA INGRESO'
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: fd72a58b-6ac3-46bf-af60-ea98082a764d
+		summarizeBy: none
+		sourceColumn: FECHA INGRESO
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'MANO DE OBRA'
+		dataType: string
+		lineageTag: 90e36557-cde7-4e24-8549-a18de5ddecd7
+		summarizeBy: none
+		sourceColumn: MANO DE OBRA
+
+	column GENERO
+		dataType: string
+		lineageTag: fc564fe5-23fd-4cf7-aa4a-c32ca2656152
+		summarizeBy: none
+		sourceColumn: GENERO
+
+	column CARGO
+		dataType: string
+		lineageTag: 7ee090b0-2228-4976-805d-11f92bb06002
+		summarizeBy: none
+		sourceColumn: CARGO
+
+	column 'CENTRO DE COSTOS'
+		dataType: string
+		lineageTag: fa90504b-9dd8-4b13-b639-152dbc9262c8
+		summarizeBy: none
+		sourceColumn: CENTRO DE COSTOS
+
+	column EMPRESA
+		dataType: string
+		lineageTag: 9ccce591-95a3-4ecc-a6bd-c8c90b9d76c7
+		summarizeBy: none
+		sourceColumn: EMPRESA
+
+	column 'NIVEL DEL CARGO'
+		dataType: string
+		lineageTag: ceb7e9fa-1dee-4e36-98bc-492817440261
+		summarizeBy: none
+		sourceColumn: NIVEL DEL CARGO
+
+	column 'No de DIAS'
+		dataType: int64
+		formatString: 0
+		lineageTag: d89ea6cc-1ed7-483a-86e8-6a8f04cd0380
+		summarizeBy: sum
+		sourceColumn: No de DIAS
+
+	column Dias_Corte_45656
+		dataType: int64
+		formatString: 0
+		lineageTag: fdeb5621-4481-4f25-9453-6d452a1f3950
+		summarizeBy: sum
+		sourceColumn: Dias_Corte_45656
+
+	column 'INDICADOR AREA'
+		dataType: string
+		lineageTag: a181e561-3499-42e1-8442-e4b1f2182478
+		summarizeBy: none
+		sourceColumn: INDICADOR AREA
+
+	column 'NIVEL DESEMPEÑO'
+		dataType: string
+		lineageTag: d57c5ff6-653b-4c39-b0c2-17e6b3a36067
+		summarizeBy: none
+		sourceColumn: NIVEL DESEMPEÑO
+
+	column ColaboradorDesempeno_Key
+		dataType: string
+		isHidden
+		lineageTag: 5fe4f84a-341f-4dcd-a88c-269e560f3809
+		summarizeBy: none
+		sourceColumn: ColaboradorDesempeno_Key
+
+	column Es_Poblacion_Activa
+		dataType: boolean
+		lineageTag: 0481774f-a1a3-4d8b-9a90-fdd3d514d829
+		summarizeBy: none
+		sourceColumn: Es_Poblacion_Activa
+
+	column Empresa_Homologada
+		dataType: string
+		lineageTag: 5b6c166d-cacf-45f0-9ec2-1a3581fd2240
+		summarizeBy: none
+		sourceColumn: Empresa_Homologada
+
+	column Empresa_Key
+		dataType: string
+		isHidden
+		lineageTag: 31ea67b7-8403-4ca8-9444-56cc8acf4e23
+		summarizeBy: none
+		sourceColumn: Empresa_Key
+
+	column Nivel_Cargo_Homologado
+		dataType: string
+		lineageTag: 04f780e3-3da6-4219-af8b-6642f0a11d89
+		summarizeBy: none
+		sourceColumn: Nivel_Cargo_Homologado
+
+	column NivelCargo_Key
+		dataType: string
+		isHidden
+		lineageTag: 59148bc0-cead-4dff-ab87-b56de30f32cb
+		summarizeBy: none
+		sourceColumn: NivelCargo_Key
+
+	column Interpretacion_Homologada
+		dataType: string
+		lineageTag: e93dbb84-749f-46b0-8cdd-685cfac7b2fd
+		summarizeBy: none
+		sourceColumn: Interpretacion_Homologada
+
+	column NivelDesempeno_Key
+		dataType: string
+		isHidden
+		lineageTag: d37efb3b-4aab-4cfa-867e-63f796b2233e
+		summarizeBy: none
+		sourceColumn: NivelDesempeno_Key
+
+	partition Fct_Poblacion_Indicadores_2025 = m
+		mode: import
+		queryGroup: Desempeño
+		source =
+				let
+				    Origen = Excel.Workbook(Web.Contents("https://lemcosas.sharepoint.com/sites/TalentoHumanoGrupoLemco/Documentos compartidos/5. People analytics/04_Aprendizaje_y_Desarrollo/Data/Resultados Consolidados Evaluación Desempeño 2025.xlsx"), null, true),
+				    Hoja = Origen{[Item="Indicadores 2025",Kind="Sheet"]}[Data],
+				    Encabezados = Table.PromoteHeaders(Hoja, [PromoteAllScalars=true]),
+				    Seleccion = Table.SelectColumns(Encabezados, {"CEDULA","INDICADOR ACTIVIDAD","TIPO CONTRATO","FECHA INICIO","FECHA FINAL","FECHA INGRESO","MANO DE OBRA","GENERO","CARGO","CENTRO DE COSTOS","EMPRESA","NIVEL DEL CARGO","No de DIAS","45656","INDICADOR AREA","NIVEL DESEMPEÑO"}, MissingField.UseNull),
+				    Renombrar = Table.RenameColumns(Seleccion, {{"45656", "Dias_Corte_45656"}}, MissingField.Ignore),
+				    Tipos = Table.TransformColumnTypes(Renombrar, {{"CEDULA", Int64.Type}, {"INDICADOR ACTIVIDAD", type text}, {"TIPO CONTRATO", type text}, {"FECHA INICIO", type date}, {"FECHA FINAL", type date}, {"FECHA INGRESO", type date}, {"MANO DE OBRA", type text}, {"GENERO", type text}, {"CARGO", type text}, {"CENTRO DE COSTOS", type text}, {"EMPRESA", type text}, {"NIVEL DEL CARGO", type text}, {"No de DIAS", Int64.Type}, {"Dias_Corte_45656", Int64.Type}, {"INDICADOR AREA", type text}, {"NIVEL DESEMPEÑO", type text}}, "es-CO"),
+				    HomologarEmpresa = (valor as nullable any) as nullable text =>
+				        let t = Text.Upper(Text.Trim(Text.From(valor))) in
+				            if t = "" then null
+				            else if t = "LEMCO" or t = "LEMCO SAS" then "LEMCO"
+				            else if t = "UNIDAD HOTELERA" or t = "HOTELES" then "UNIDAD HOTELERA"
+				            else if t = "FUNDACION CHALLENGER" or t = "FUNDACIÓN CHALLENGER" then "FUNDACIÓN CHALLENGER"
+				            else Text.Trim(Text.From(valor)),
+				    HomologarNivelCargo = (valor as nullable any) as nullable text =>
+				        let t = Text.Upper(Text.Trim(Text.From(valor))) in
+				            if t = "" then null
+				            else if t = "BASE ADMINISTRATIVA" then "Base administrativa"
+				            else if t = "JEFE" then "Jefe"
+				            else Text.Trim(Text.From(valor)),
+				    HomologarInterpretacion = (valor as nullable any) as nullable text =>
+				        let t = Text.Upper(Text.Trim(Text.From(valor))) in
+				            if t = "" then null
+				            else if t = "CRITICO" or t = "CRÍTICO" then "Crítico"
+				            else Text.Trim(Text.From(valor)),
+				    LimpiarGenero = Table.TransformColumns(Tipos, {{"GENERO", each if _ = null then "Sin dato" else let t = Text.Upper(Text.Trim(Text.From(_))) in if t = "MASCULINO" then "MASCULINO" else if t = "FEMENINO" then "FEMENINO" else "Sin dato", type text}}),
+				    ConColaboradorKey = Table.AddColumn(LimpiarGenero, "ColaboradorDesempeno_Key", each if [CEDULA] = null then null else Text.From([CEDULA], "es-CO"), type text),
+				    ConActivo = Table.AddColumn(ConColaboradorKey, "Es_Poblacion_Activa", each Text.Upper(Text.Trim(Text.From([INDICADOR ACTIVIDAD]))) = "ACTIVO", type logical),
+				    ConEmpresa = Table.AddColumn(ConActivo, "Empresa_Homologada", each HomologarEmpresa([EMPRESA]), type text),
+				    ConEmpresaKey = Table.AddColumn(ConEmpresa, "Empresa_Key", each if [Empresa_Homologada] = null then null else Text.Upper(Text.Trim([Empresa_Homologada])), type text),
+				    ConNivelCargo = Table.AddColumn(ConEmpresaKey, "Nivel_Cargo_Homologado", each HomologarNivelCargo([NIVEL DEL CARGO]), type text),
+				    ConNivelCargoKey = Table.AddColumn(ConNivelCargo, "NivelCargo_Key", each if [Nivel_Cargo_Homologado] = null then null else Text.Upper(Text.Trim([Nivel_Cargo_Homologado])), type text),
+				    ConInterpretacion = Table.AddColumn(ConNivelCargoKey, "Interpretacion_Homologada", each HomologarInterpretacion([NIVEL DESEMPEÑO]), type text),
+				    Resultado = Table.AddColumn(ConInterpretacion, "NivelDesempeno_Key", each if [Interpretacion_Homologada] = null then null else Text.Upper(Text.Trim([Interpretacion_Homologada])), type text)
+				in
+				    Resultado
+
+	annotation PBI_NavigationStepName = Navegación
+
+	annotation PBI_ResultType = Table

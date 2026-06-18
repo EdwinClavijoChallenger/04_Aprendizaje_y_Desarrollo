@@ -1,0 +1,242 @@
+table Fct_Competencias_2025
+	lineageTag: 2a143cd7-c589-44bd-83c0-5000901cc163
+
+	column 'Código Empresa'
+		dataType: int64
+		formatString: 0
+		lineageTag: 83a5d0de-5c0b-4191-b3f6-26f52e538dee
+		summarizeBy: none
+		sourceColumn: Código Empresa
+
+	column Identificación
+		dataType: int64
+		formatString: 0
+		lineageTag: bc367703-8cf8-4870-bc5d-fcaf5f79f501
+		summarizeBy: none
+		sourceColumn: Identificación
+
+	column 'Cód. Interno'
+		dataType: int64
+		formatString: 0
+		lineageTag: 4d572b5f-7b32-43eb-bec0-cd3312cded3d
+		summarizeBy: none
+		sourceColumn: Cód. Interno
+
+	column Contrato
+		dataType: int64
+		formatString: 0
+		lineageTag: cdf800a1-4dae-461d-800b-9ae3abb740a9
+		summarizeBy: none
+		sourceColumn: Contrato
+
+	column 'Prototipo de Evaluación'
+		dataType: int64
+		formatString: 0
+		lineageTag: b66e6db0-2992-4f41-a910-04b7fac4893c
+		summarizeBy: none
+		sourceColumn: Prototipo de Evaluación
+
+	column 'Nombre Prototipo'
+		dataType: string
+		lineageTag: a9bd6586-eb3f-4960-a3f2-fecc875e18bd
+		summarizeBy: none
+		sourceColumn: Nombre Prototipo
+
+	column 'Fecha Desde'
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: a20263ce-2f23-4be3-88ea-b31d48241a31
+		summarizeBy: none
+		sourceColumn: Fecha Desde
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Fecha Hasta'
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: a65cdae3-de82-4c89-88e2-25bc8fafd82f
+		summarizeBy: none
+		sourceColumn: Fecha Hasta
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Secuencial
+		dataType: int64
+		formatString: 0
+		lineageTag: e6b9438b-a63c-4abe-a4d9-1fdeae737a16
+		summarizeBy: none
+		sourceColumn: Secuencial
+
+	column 'Fecha de Proceso'
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 20a00d9f-31d5-47bc-a246-db1dfc8bcc6f
+		summarizeBy: none
+		sourceColumn: Fecha de Proceso
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Dependencia
+		dataType: string
+		lineageTag: 5a8db81c-0ccc-4a32-afc2-7a420e39cb31
+		summarizeBy: none
+		sourceColumn: Dependencia
+
+	column Registro
+		dataType: int64
+		formatString: 0
+		lineageTag: 0dde9298-0ee0-4496-8187-1d304c889b1e
+		summarizeBy: none
+		sourceColumn: Registro
+
+	column 'Nombre Registro'
+		dataType: string
+		lineageTag: 1401d0a7-9607-4015-a88b-1a52ba46bd78
+		summarizeBy: none
+		sourceColumn: Nombre Registro
+
+	column Requerimiento
+		dataType: int64
+		formatString: 0
+		lineageTag: 21f6e106-5ebb-45db-ba15-e9ee81e329b1
+		summarizeBy: none
+		sourceColumn: Requerimiento
+
+	column 'Nombre Requerimiento'
+		dataType: string
+		lineageTag: 1bea0a2b-ac22-4c08-8145-16569cdfc514
+		summarizeBy: none
+		sourceColumn: Nombre Requerimiento
+
+	column Especificación
+		dataType: int64
+		formatString: 0
+		lineageTag: d2524a27-7ff2-44ff-975c-5ca5bdf78ceb
+		summarizeBy: none
+		sourceColumn: Especificación
+
+	column 'Nombre Especificación'
+		dataType: string
+		lineageTag: 6df71d36-47db-448b-8d9d-6abe6302c67d
+		summarizeBy: none
+		sourceColumn: Nombre Especificación
+
+	column 'Puntaje Obtenido'
+		dataType: double
+		formatString: 0.00
+		lineageTag: 77aff43e-27ad-4c40-a72a-91ef9068b100
+		summarizeBy: sum
+		sourceColumn: Puntaje Obtenido
+
+	column 'Puntaje Requerido'
+		dataType: double
+		formatString: 0.00
+		lineageTag: 4ac99b38-d0fa-4935-9603-f93ed393873b
+		summarizeBy: sum
+		sourceColumn: Puntaje Requerido
+
+	column 'Interpretación Competencia'
+		dataType: string
+		lineageTag: 0e531c0a-0755-4e0a-9d9c-f007f06b6774
+		summarizeBy: none
+		sourceColumn: Interpretación Competencia
+
+	column Brecha
+		dataType: double
+		formatString: 0.00
+		lineageTag: 5162cefa-a708-4b2a-acda-e73fa061262d
+		summarizeBy: sum
+		sourceColumn: Brecha
+
+	column Empresa
+		dataType: string
+		lineageTag: fbb7663b-d1fb-41cc-b80a-72605d2b3f40
+		summarizeBy: none
+		sourceColumn: Empresa
+
+	column ColaboradorDesempeno_Key
+		dataType: string
+		isHidden
+		lineageTag: 5b0e838e-3f4d-4d44-9858-d021adcdd55a
+		summarizeBy: none
+		sourceColumn: ColaboradorDesempeno_Key
+
+	column Empresa_Homologada
+		dataType: string
+		lineageTag: b8ed4495-60e4-4cff-b77a-712a2cf94909
+		summarizeBy: none
+		sourceColumn: Empresa_Homologada
+
+	column Empresa_Key
+		dataType: string
+		isHidden
+		lineageTag: e1ad038c-b653-4ba4-9ce6-8db7553f88a2
+		summarizeBy: none
+		sourceColumn: Empresa_Key
+
+	column Requerimiento_Homologado
+		dataType: string
+		lineageTag: 3a48efab-8234-4f94-8d4c-03954dff748a
+		summarizeBy: none
+		sourceColumn: Requerimiento_Homologado
+
+	column Requerimiento_Key
+		dataType: string
+		isHidden
+		lineageTag: 0ff1788d-ced3-4fc0-822b-35950b4fd6c6
+		summarizeBy: none
+		sourceColumn: Requerimiento_Key
+
+	column Interpretacion_Homologada
+		dataType: string
+		lineageTag: 81c5f8bf-433f-4cfd-8b20-f14f37fb5e49
+		summarizeBy: none
+		sourceColumn: Interpretacion_Homologada
+
+	column NivelDesempeno_Key
+		dataType: string
+		isHidden
+		lineageTag: 8764392b-1074-4038-92d5-570a8cb160cd
+		summarizeBy: none
+		sourceColumn: NivelDesempeno_Key
+
+	partition Fct_Competencias_2025 = m
+		mode: import
+		queryGroup: Desempeño
+		source =
+				let
+				    Origen = Excel.Workbook(Web.Contents("https://lemcosas.sharepoint.com/sites/TalentoHumanoGrupoLemco/Documentos compartidos/5. People analytics/04_Aprendizaje_y_Desarrollo/Data/Resultados Consolidados Evaluación Desempeño 2025.xlsx"), null, true),
+				    Hoja = Origen{[Item="Competencias 2025",Kind="Sheet"]}[Data],
+				    Encabezados = Table.PromoteHeaders(Hoja, [PromoteAllScalars=true]),
+				    Seleccion = Table.SelectColumns(Encabezados, {"Código Empresa","Identificación","Cód. Interno","Contrato","Prototipo de Evaluación","Nombre Prototipo","Fecha Desde","Fecha Hasta","Secuencial","Fecha de Proceso","Dependencia","Registro","Nombre Registro","Requerimiento","Nombre Requerimiento","Especificación","Nombre Especificación","Puntaje Obtenido","Puntaje Requerido","Interpretación Competencia","Brecha","Empresa"}, MissingField.UseNull),
+				    Tipos = Table.TransformColumnTypes(Seleccion, {{"Código Empresa", Int64.Type}, {"Identificación", Int64.Type}, {"Cód. Interno", Int64.Type}, {"Contrato", Int64.Type}, {"Prototipo de Evaluación", Int64.Type}, {"Nombre Prototipo", type text}, {"Fecha Desde", type date}, {"Fecha Hasta", type date}, {"Secuencial", Int64.Type}, {"Fecha de Proceso", type date}, {"Dependencia", type text}, {"Registro", Int64.Type}, {"Nombre Registro", type text}, {"Requerimiento", Int64.Type}, {"Nombre Requerimiento", type text}, {"Especificación", Int64.Type}, {"Nombre Especificación", type text}, {"Puntaje Obtenido", type number}, {"Puntaje Requerido", type number}, {"Interpretación Competencia", type text}, {"Brecha", type number}, {"Empresa", type text}}, "es-CO"),
+				    HomologarEmpresa = (valor as nullable any) as nullable text =>
+				        let t = Text.Upper(Text.Trim(Text.From(valor))) in
+				            if t = "" then null
+				            else if t = "LEMCO" or t = "LEMCO SAS" then "LEMCO"
+				            else if t = "UNIDAD HOTELERA" or t = "HOTELES" then "UNIDAD HOTELERA"
+				            else if t = "FUNDACION CHALLENGER" or t = "FUNDACIÓN CHALLENGER" then "FUNDACIÓN CHALLENGER"
+				            else Text.Trim(Text.From(valor)),
+				    HomologarRequerimiento = (valor as nullable any) as nullable text =>
+				        let t = Text.Upper(Text.Trim(Text.From(valor))) in
+				            if t = "" then null
+				            else if t = "COMPETENCIAS DE LIDERAZGO" or t = "COMPETENCIAS LIDERAZGO" then "Competencias Liderazgo"
+				            else Text.Trim(Text.From(valor)),
+				    HomologarInterpretacion = (valor as nullable any) as nullable text =>
+				        let t = Text.Upper(Text.Trim(Text.From(valor))) in
+				            if t = "" then null
+				            else if t = "CRITICO" or t = "CRÍTICO" then "Crítico"
+				            else Text.Trim(Text.From(valor)),
+				    ConColaboradorKey = Table.AddColumn(Tipos, "ColaboradorDesempeno_Key", each if [Identificación] = null then null else Text.From([Identificación], "es-CO"), type text),
+				    ConEmpresa = Table.AddColumn(ConColaboradorKey, "Empresa_Homologada", each HomologarEmpresa([Empresa]), type text),
+				    ConEmpresaKey = Table.AddColumn(ConEmpresa, "Empresa_Key", each if [Empresa_Homologada] = null then null else Text.Upper(Text.Trim([Empresa_Homologada])), type text),
+				    ConReq = Table.AddColumn(ConEmpresaKey, "Requerimiento_Homologado", each HomologarRequerimiento([Nombre Requerimiento]), type text),
+				    ConReqKey = Table.AddColumn(ConReq, "Requerimiento_Key", each if [Requerimiento_Homologado] = null then null else Text.Upper(Text.Trim([Requerimiento_Homologado])), type text),
+				    ConInterpretacion = Table.AddColumn(ConReqKey, "Interpretacion_Homologada", each HomologarInterpretacion([Interpretación Competencia]), type text),
+				    Resultado = Table.AddColumn(ConInterpretacion, "NivelDesempeno_Key", each if [Interpretacion_Homologada] = null then null else Text.Upper(Text.Trim([Interpretacion_Homologada])), type text)
+				in
+				    Resultado
+
+	annotation PBI_NavigationStepName = Navegación
+
+	annotation PBI_ResultType = Table

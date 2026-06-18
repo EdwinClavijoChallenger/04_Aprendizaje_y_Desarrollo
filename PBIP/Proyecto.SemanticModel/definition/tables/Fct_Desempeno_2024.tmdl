@@ -1,0 +1,139 @@
+table Fct_Desempeno_2024
+	lineageTag: d9242dd2-a72c-4992-bca0-481cfef34d1e
+
+	column Identificación
+		dataType: int64
+		formatString: 0
+		lineageTag: 98abcfd2-3303-48be-b891-331db1c5f868
+		summarizeBy: none
+		sourceColumn: Identificación
+
+	column Cargo
+		dataType: string
+		lineageTag: c9284837-e942-4b93-a2ac-aeb5526e1616
+		summarizeBy: none
+		sourceColumn: Cargo
+
+	column Dependencia
+		dataType: string
+		lineageTag: f28c48aa-6dae-4906-8dad-228a7b89fda4
+		summarizeBy: none
+		sourceColumn: Dependencia
+
+	column 'Grupo Empresa'
+		dataType: string
+		lineageTag: 0295155f-820a-49c9-beec-36c3d28c9beb
+		summarizeBy: none
+		sourceColumn: Grupo Empresa
+
+	column Rol
+		dataType: string
+		lineageTag: bbbab690-21b1-425d-ac52-190e52772139
+		summarizeBy: none
+		sourceColumn: Rol
+
+	column 2024-1
+		dataType: double
+		formatString: 0.00
+		lineageTag: e5abd66f-ada0-4537-9ea1-37f52030d93a
+		summarizeBy: sum
+		sourceColumn: 2024-1
+
+	column 2024-2
+		dataType: double
+		formatString: 0.00
+		lineageTag: 5be9500b-07a7-44cd-8f28-1509b54d4cf2
+		summarizeBy: sum
+		sourceColumn: 2024-2
+
+	column Promedio
+		dataType: double
+		formatString: 0.00
+		lineageTag: 73004cf6-5d05-4129-83ee-23cb143ec75a
+		summarizeBy: sum
+		sourceColumn: Promedio
+
+	column Interpretación
+		dataType: string
+		lineageTag: 4b3e60a4-7490-47be-a45e-23b5b739a3c0
+		summarizeBy: none
+		sourceColumn: Interpretación
+
+	column ColaboradorDesempeno_Key
+		dataType: string
+		isHidden
+		lineageTag: 2d10cfdb-9aef-47d4-bcae-9b994bab56f2
+		summarizeBy: none
+		sourceColumn: ColaboradorDesempeno_Key
+
+	column Empresa_Homologada
+		dataType: string
+		lineageTag: ca98908f-2be8-4dca-bdcf-572f6c93eb35
+		summarizeBy: none
+		sourceColumn: Empresa_Homologada
+
+	column Empresa_Key
+		dataType: string
+		isHidden
+		lineageTag: e53442b4-bb7a-4003-8a78-7ff3176f8af0
+		summarizeBy: none
+		sourceColumn: Empresa_Key
+
+	column Interpretacion_Homologada
+		dataType: string
+		lineageTag: 2331be0d-db7c-4529-a78e-c2adcdef2d83
+		summarizeBy: none
+		sourceColumn: Interpretacion_Homologada
+
+	column NivelDesempeno_Key
+		dataType: string
+		isHidden
+		lineageTag: e9bb178c-cc5c-4a1f-b035-77d5840e7201
+		summarizeBy: none
+		sourceColumn: NivelDesempeno_Key
+
+	column Duplicado_Fila_Completa
+		dataType: boolean
+		lineageTag: 27db6a3e-3474-43d2-9114-1dc4e4e6cdb4
+		summarizeBy: none
+		sourceColumn: Duplicado_Fila_Completa
+
+	partition Fct_Desempeno_2024 = m
+		mode: import
+		queryGroup: Desempeño
+		source =
+				let
+				    Origen = Excel.Workbook(Web.Contents("https://lemcosas.sharepoint.com/sites/TalentoHumanoGrupoLemco/Documentos compartidos/5. People analytics/04_Aprendizaje_y_Desarrollo/Data/Resultados Consolidados Evaluación Desempeño 2025.xlsx"), null, true),
+				    Hoja = Origen{[Item="Consolidado 2024",Kind="Sheet"]}[Data],
+				    Encabezados = Table.PromoteHeaders(Hoja, [PromoteAllScalars=true]),
+				    Seleccion = Table.SelectColumns(Encabezados, {"Identificación","Cargo","Dependencia","Grupo Empresa","Rol","2024-1","2024-2","Promedio","Interpretación"}, MissingField.UseNull),
+				    Tipos = Table.TransformColumnTypes(Seleccion, {{"Identificación", Int64.Type}, {"Cargo", type text}, {"Dependencia", type text}, {"Grupo Empresa", type text}, {"Rol", type text}, {"2024-1", type number}, {"2024-2", type number}, {"Promedio", type number}, {"Interpretación", type text}}, "es-CO"),
+				    HomologarEmpresa = (valor as nullable any) as nullable text =>
+				        let t = Text.Upper(Text.Trim(Text.From(valor))) in
+				            if t = "" then null
+				            else if t = "LEMCO" or t = "LEMCO SAS" then "LEMCO"
+				            else if t = "UNIDAD HOTELERA" or t = "HOTELES" then "UNIDAD HOTELERA"
+				            else if t = "FUNDACION CHALLENGER" or t = "FUNDACIÓN CHALLENGER" then "FUNDACIÓN CHALLENGER"
+				            else Text.Trim(Text.From(valor)),
+				    HomologarInterpretacion = (valor as nullable any) as nullable text =>
+				        let t = Text.Upper(Text.Trim(Text.From(valor))) in
+				            if t = "" then null
+				            else if t = "CRITICO" or t = "CRÍTICO" then "Crítico"
+				            else Text.Trim(Text.From(valor)),
+				    ConColaboradorKey = Table.AddColumn(Tipos, "ColaboradorDesempeno_Key", each if [Identificación] = null then null else Text.From([Identificación], "es-CO"), type text),
+				    ConEmpresa = Table.AddColumn(ConColaboradorKey, "Empresa_Homologada", each HomologarEmpresa([Grupo Empresa]), type text),
+				    ConEmpresaKey = Table.AddColumn(ConEmpresa, "Empresa_Key", each if [Empresa_Homologada] = null then null else Text.Upper(Text.Trim([Empresa_Homologada])), type text),
+				    ConInterpretacion = Table.AddColumn(ConEmpresaKey, "Interpretacion_Homologada", each HomologarInterpretacion([Interpretación]), type text),
+				    ConNivelKey = Table.AddColumn(ConInterpretacion, "NivelDesempeno_Key", each if [Interpretacion_Homologada] = null then null else Text.Upper(Text.Trim([Interpretacion_Homologada])), type text),
+				    ConFirma = Table.AddColumn(ConNivelKey, "Firma_Fila", each Text.Combine(List.Transform(Record.FieldValues(_), each if _ = null then "" else Text.From(_, "es-CO")), "|"), type text),
+				    ConteoFirma = Table.Group(ConFirma, {"Firma_Fila"}, {{"Conteo_Fila_Completa", each Table.RowCount(_), Int64.Type}}),
+				    MergeDuplicados = Table.NestedJoin(ConFirma, {"Firma_Fila"}, ConteoFirma, {"Firma_Fila"}, "Dup", JoinKind.LeftOuter),
+				    ExpandDuplicados = Table.ExpandTableColumn(MergeDuplicados, "Dup", {"Conteo_Fila_Completa"}, {"Conteo_Fila_Completa"}),
+				    MarcaDuplicado = Table.AddColumn(ExpandDuplicados, "Duplicado_Fila_Completa", each [Conteo_Fila_Completa] > 1, type logical),
+				    Resultado = Table.RemoveColumns(MarcaDuplicado, {"Firma_Fila","Conteo_Fila_Completa"})
+				in
+				    Resultado
+
+	annotation PBI_NavigationStepName = Navegación
+
+	annotation PBI_ResultType = Table

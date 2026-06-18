@@ -1,0 +1,126 @@
+table Dim_ColaboradorDesempeno
+	lineageTag: b140deca-5f53-4f74-90ab-f7f31840debc
+
+	column ColaboradorDesempeno_Key
+		dataType: string
+		isHidden
+		lineageTag: 0b3e018d-6119-40a4-b1a3-29e25a4bedbc
+		summarizeBy: none
+		sourceColumn: ColaboradorDesempeno_Key
+
+	column Identificación
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 2cdf4c4a-30b2-4f77-bc3c-4f639fb80b29
+		summarizeBy: none
+		sourceColumn: Identificación
+
+	column 'Tipo Contrato'
+		dataType: string
+		lineageTag: ccbbf0c3-2b74-4ecb-a1b9-29531e050e42
+		summarizeBy: none
+		sourceColumn: Tipo Contrato
+
+	column 'Fecha Inicio'
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: a818cbf1-8b43-4fda-aafd-8b6ee2a6859c
+		summarizeBy: none
+		sourceColumn: Fecha Inicio
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Descripción Cargo'
+		dataType: string
+		lineageTag: fbad8a9c-10cc-487b-bff2-ecd30fe03c18
+		summarizeBy: none
+		sourceColumn: Descripción Cargo
+
+	column 'Nombre Centro Costo'
+		dataType: string
+		lineageTag: 27f0fc7f-47af-4190-83a9-4a055ce869ae
+		summarizeBy: none
+		sourceColumn: Nombre Centro Costo
+
+	column EMPRESA
+		dataType: string
+		lineageTag: 780902b8-7ebd-4102-8d5f-d468a54602cc
+		summarizeBy: none
+		sourceColumn: EMPRESA
+
+	column DEPENDENCIA
+		dataType: string
+		lineageTag: 56be7bbd-ecbc-44d7-9bfa-a007d9ea56c8
+		summarizeBy: none
+		sourceColumn: DEPENDENCIA
+
+	column ÁREA
+		dataType: string
+		lineageTag: a07c84ce-4bc5-4d00-b653-23a524059812
+		summarizeBy: none
+		sourceColumn: ÁREA
+
+	column Empresa_Homologada
+		dataType: string
+		lineageTag: a5d73af0-7d45-41c4-9336-aa36e5c6d4c2
+		summarizeBy: none
+		sourceColumn: Empresa_Homologada
+
+	column Empresa_Key
+		dataType: string
+		isHidden
+		lineageTag: ce0c4e14-bec2-4eb1-842b-8dbd8031dffb
+		summarizeBy: none
+		sourceColumn: Empresa_Key
+
+	column Area_Key
+		dataType: string
+		isHidden
+		lineageTag: bb83fa6a-5fdf-4782-a53c-83ef5f67cddf
+		summarizeBy: none
+		sourceColumn: Area_Key
+
+	column Dependencia_Key
+		dataType: string
+		isHidden
+		lineageTag: 218a6a34-9330-465c-8672-acf7cadc42be
+		summarizeBy: none
+		sourceColumn: Dependencia_Key
+
+	column Cargo_Key
+		dataType: string
+		isHidden
+		lineageTag: 85356e31-79a1-4b7a-921b-367896058a05
+		summarizeBy: none
+		sourceColumn: Cargo_Key
+
+	partition Dim_ColaboradorDesempeno = m
+		mode: import
+		queryGroup: Desempeño
+		source =
+				let
+				    Origen = Excel.Workbook(Web.Contents("https://lemcosas.sharepoint.com/sites/TalentoHumanoGrupoLemco/Documentos compartidos/5. People analytics/04_Aprendizaje_y_Desarrollo/Data/Resultados Consolidados Evaluación Desempeño 2025.xlsx"), null, true),
+				    Hoja = Origen{[Item="bd",Kind="Sheet"]}[Data],
+				    Encabezados = Table.PromoteHeaders(Hoja, [PromoteAllScalars=true]),
+				    Seleccion = Table.SelectColumns(Encabezados, {"Identificación","Tipo Contrato","Fecha Inicio","Descripción Cargo","Nombre Centro Costo","EMPRESA","DEPENDENCIA","ÁREA"}, MissingField.UseNull),
+				    Tipos = Table.TransformColumnTypes(Seleccion, {{"Identificación", Int64.Type}, {"Tipo Contrato", type text}, {"Fecha Inicio", type date}, {"Descripción Cargo", type text}, {"Nombre Centro Costo", type text}, {"EMPRESA", type text}, {"DEPENDENCIA", type text}, {"ÁREA", type text}}, "es-CO"),
+				    HomologarEmpresa = (valor as nullable any) as nullable text =>
+				        let t = Text.Upper(Text.Trim(Text.From(valor))) in
+				            if t = "" then null
+				            else if t = "LEMCO" or t = "LEMCO SAS" then "LEMCO"
+				            else if t = "UNIDAD HOTELERA" or t = "HOTELES" then "UNIDAD HOTELERA"
+				            else if t = "FUNDACION CHALLENGER" or t = "FUNDACIÓN CHALLENGER" then "FUNDACIÓN CHALLENGER"
+				            else Text.Trim(Text.From(valor)),
+				    ConColaboradorKey = Table.AddColumn(Tipos, "ColaboradorDesempeno_Key", each if [Identificación] = null then null else Text.From([Identificación], "es-CO"), type text),
+				    ConEmpresa = Table.AddColumn(ConColaboradorKey, "Empresa_Homologada", each HomologarEmpresa([EMPRESA]), type text),
+				    ConEmpresaKey = Table.AddColumn(ConEmpresa, "Empresa_Key", each if [Empresa_Homologada] = null then null else Text.Upper(Text.Trim([Empresa_Homologada])), type text),
+				    ConAreaKey = Table.AddColumn(ConEmpresaKey, "Area_Key", each if [ÁREA] = null then null else Text.Upper(Text.Trim(Text.From([ÁREA]))), type text),
+				    ConDependenciaKey = Table.AddColumn(ConAreaKey, "Dependencia_Key", each if [DEPENDENCIA] = null then null else Text.Upper(Text.Trim(Text.From([DEPENDENCIA]))), type text),
+				    Resultado = Table.AddColumn(ConDependenciaKey, "Cargo_Key", each if [Descripción Cargo] = null then null else Text.Upper(Text.Trim(Text.From([Descripción Cargo]))), type text)
+				in
+				    Resultado
+
+	annotation PBI_NavigationStepName = Navegación
+
+	annotation PBI_ResultType = Table

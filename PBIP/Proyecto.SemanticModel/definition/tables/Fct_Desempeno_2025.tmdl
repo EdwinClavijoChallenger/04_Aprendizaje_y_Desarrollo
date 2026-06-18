@@ -1,0 +1,257 @@
+table Fct_Desempeno_2025
+	lineageTag: c0706825-62c5-4cd8-a83f-0da6d2214c4d
+
+	column 'Código Empresa'
+		dataType: int64
+		formatString: 0
+		lineageTag: 79982151-55d6-451c-b623-4cfe209f3f32
+		summarizeBy: none
+		sourceColumn: Código Empresa
+
+	column Identificación
+		dataType: int64
+		formatString: 0
+		lineageTag: 65ed06f1-3283-49c6-8636-2fa1e4585236
+		summarizeBy: none
+		sourceColumn: Identificación
+
+	column Contrato
+		dataType: int64
+		formatString: 0
+		lineageTag: 956b1f00-ed41-4746-a4f6-1bc820bfae99
+		summarizeBy: none
+		sourceColumn: Contrato
+
+	column 'Prototipo de Evaluación'
+		dataType: int64
+		formatString: 0
+		lineageTag: 16e34a4c-c98b-44ef-8c63-d16e6593d51d
+		summarizeBy: none
+		sourceColumn: Prototipo de Evaluación
+
+	column 'Fecha Desde'
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 88c17e7f-fce8-45cf-b34a-fcbb83c93917
+		summarizeBy: none
+		sourceColumn: Fecha Desde
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Fecha Hasta'
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 2f46eb6d-62ae-4c9b-a595-859381ff987b
+		summarizeBy: none
+		sourceColumn: Fecha Hasta
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Indicador de Reevaluación'
+		dataType: string
+		lineageTag: eb693835-25e0-4236-b343-246cf044623c
+		summarizeBy: none
+		sourceColumn: Indicador de Reevaluación
+
+	column Secuencial
+		dataType: int64
+		formatString: 0
+		lineageTag: 02313074-d589-4e4a-8211-f9037318b44e
+		summarizeBy: none
+		sourceColumn: Secuencial
+
+	column 'Fecha de Proceso'
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 083162ce-313a-49cd-9faf-0195372572b7
+		summarizeBy: none
+		sourceColumn: Fecha de Proceso
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Cargo
+		dataType: int64
+		formatString: 0
+		lineageTag: b6d642fc-b279-4d9f-9e08-d38658e854d3
+		summarizeBy: none
+		sourceColumn: Cargo
+
+	column Dependencia
+		dataType: string
+		lineageTag: 74f23114-fe8f-4209-9b8c-f3305bdfd200
+		summarizeBy: none
+		sourceColumn: Dependencia
+
+	column 'Calificación Final'
+		dataType: double
+		formatString: 0.00
+		lineageTag: fe9fc469-85a2-4fff-b01f-32b728c93556
+		summarizeBy: sum
+		sourceColumn: Calificación Final
+
+	column Aprobó
+		dataType: string
+		lineageTag: 60885f5d-50c4-428c-b652-37128f4ac3c1
+		summarizeBy: none
+		sourceColumn: Aprobó
+
+	column Rol
+		dataType: int64
+		formatString: 0
+		lineageTag: d59e2111-31fb-4c49-8a84-3e51531b05de
+		summarizeBy: none
+		sourceColumn: Rol
+
+	column Empresa
+		dataType: string
+		lineageTag: 3a1859b6-99f9-44be-a738-34d96ec685df
+		summarizeBy: none
+		sourceColumn: Empresa
+
+	column 'Nombre Centro de Costos'
+		dataType: string
+		lineageTag: 5a46d205-118f-4ac5-af62-d7e6e0af2957
+		summarizeBy: none
+		sourceColumn: Nombre Centro de Costos
+
+	column 'Nombre del Cargo'
+		dataType: string
+		lineageTag: 0fe52f6f-64a3-4a3e-af42-c8bd66048e9e
+		summarizeBy: none
+		sourceColumn: Nombre del Cargo
+
+	column Prototipo
+		dataType: string
+		lineageTag: 9b65021e-0cb1-449d-bb5b-f3776076c5f3
+		summarizeBy: none
+		sourceColumn: Prototipo
+
+	column Interpretación
+		dataType: string
+		lineageTag: 49476c16-f5f8-4c24-b5c4-edb8babe8942
+		summarizeBy: none
+		sourceColumn: Interpretación
+
+	column 'Nombre Cargo Relacionado'
+		dataType: string
+		lineageTag: 6d3cc48d-ce30-4d86-baf5-0ddc07ede6e2
+		summarizeBy: none
+		sourceColumn: Nombre Cargo Relacionado
+
+	column Dependencia2
+		dataType: string
+		lineageTag: e1165e7a-cdc1-453e-9ada-fcde8144c87f
+		summarizeBy: none
+		sourceColumn: Dependencia2
+
+	column Área
+		dataType: string
+		lineageTag: ad278431-38de-42da-a500-e0f2af372f02
+		summarizeBy: none
+		sourceColumn: Área
+
+	column 'Resultado 2024'
+		dataType: string
+		lineageTag: 4ebb82cd-55ed-46b3-9fb9-47b89670ec19
+		summarizeBy: none
+		sourceColumn: Resultado 2024
+
+	column 'Calificación 2024'
+		dataType: double
+		formatString: 0.00
+		lineageTag: 777c778a-7174-4720-b911-c7b4099c3044
+		summarizeBy: sum
+		sourceColumn: Calificación 2024
+
+	column 'puntaje esperado'
+		dataType: double
+		formatString: 0.00
+		lineageTag: a990c29c-3308-423f-81d6-427ed4189f13
+		summarizeBy: sum
+		sourceColumn: puntaje esperado
+
+	column ColaboradorDesempeno_Key
+		dataType: string
+		isHidden
+		lineageTag: 654859f4-bf70-4466-8851-2b54dee59725
+		summarizeBy: none
+		sourceColumn: ColaboradorDesempeno_Key
+
+	column Empresa_Homologada
+		dataType: string
+		lineageTag: c809cc26-15e2-4e95-b2e6-f0851d2a6222
+		summarizeBy: none
+		sourceColumn: Empresa_Homologada
+
+	column Empresa_Key
+		dataType: string
+		isHidden
+		lineageTag: 6449c647-7499-4f24-aa6e-ed7fad847844
+		summarizeBy: none
+		sourceColumn: Empresa_Key
+
+	column Area_Key
+		dataType: string
+		isHidden
+		lineageTag: 5a9253af-40a8-4243-818c-613a323bf3ca
+		summarizeBy: none
+		sourceColumn: Area_Key
+
+	column Interpretacion_Homologada
+		dataType: string
+		lineageTag: 7cd91c9b-cb6f-4ccb-b785-e935d1cb4f86
+		summarizeBy: none
+		sourceColumn: Interpretacion_Homologada
+
+	column NivelDesempeno_Key
+		dataType: string
+		isHidden
+		lineageTag: 3d6e3c0f-1816-4796-b745-45421d0fb66e
+		summarizeBy: none
+		sourceColumn: NivelDesempeno_Key
+
+	column Duplicado_Identificacion
+		dataType: boolean
+		lineageTag: 949462b1-6e89-4f6a-a845-7a8d75fe1388
+		summarizeBy: none
+		sourceColumn: Duplicado_Identificacion
+
+	partition Fct_Desempeno_2025 = m
+		mode: import
+		queryGroup: Desempeño
+		source =
+				let
+				    Origen = Excel.Workbook(Web.Contents("https://lemcosas.sharepoint.com/sites/TalentoHumanoGrupoLemco/Documentos compartidos/5. People analytics/04_Aprendizaje_y_Desarrollo/Data/Resultados Consolidados Evaluación Desempeño 2025.xlsx"), null, true),
+				    Hoja = Origen{[Item="Consolidado 2025",Kind="Sheet"]}[Data],
+				    Encabezados = Table.PromoteHeaders(Hoja, [PromoteAllScalars=true]),
+				    Seleccion = Table.SelectColumns(Encabezados, {"Código Empresa","Identificación","Contrato","Prototipo de Evaluación","Fecha Desde","Fecha Hasta","Indicador de Reevaluación","Secuencial","Fecha de Proceso","Cargo","Dependencia","Calificación Final","Aprobó","Rol","Empresa","Nombre Centro de Costos","Nombre del Cargo","Prototipo","Interpretación","Nombre Cargo Relacionado","Dependencia2","Área","Resultado 2024","Calificación 2024","puntaje esperado"}, MissingField.UseNull),
+				    Tipos = Table.TransformColumnTypes(Seleccion, {{"Código Empresa", Int64.Type}, {"Identificación", Int64.Type}, {"Contrato", Int64.Type}, {"Prototipo de Evaluación", Int64.Type}, {"Fecha Desde", type date}, {"Fecha Hasta", type date}, {"Indicador de Reevaluación", type text}, {"Secuencial", Int64.Type}, {"Fecha de Proceso", type date}, {"Cargo", Int64.Type}, {"Dependencia", type text}, {"Calificación Final", type number}, {"Aprobó", type text}, {"Rol", Int64.Type}, {"Empresa", type text}, {"Nombre Centro de Costos", type text}, {"Nombre del Cargo", type text}, {"Prototipo", type text}, {"Interpretación", type text}, {"Nombre Cargo Relacionado", type text}, {"Dependencia2", type text}, {"Área", type text}, {"Resultado 2024", type text}, {"Calificación 2024", type number}, {"puntaje esperado", type number}}, "es-CO"),
+				    HomologarEmpresa = (valor as nullable any) as nullable text =>
+				        let t = Text.Upper(Text.Trim(Text.From(valor))) in
+				            if t = "" then null
+				            else if t = "LEMCO" or t = "LEMCO SAS" then "LEMCO"
+				            else if t = "UNIDAD HOTELERA" or t = "HOTELES" then "UNIDAD HOTELERA"
+				            else if t = "FUNDACION CHALLENGER" or t = "FUNDACIÓN CHALLENGER" then "FUNDACIÓN CHALLENGER"
+				            else Text.Trim(Text.From(valor)),
+				    HomologarInterpretacion = (valor as nullable any) as nullable text =>
+				        let t = Text.Upper(Text.Trim(Text.From(valor))) in
+				            if t = "" then null
+				            else if t = "CRITICO" or t = "CRÍTICO" then "Crítico"
+				            else Text.Trim(Text.From(valor)),
+				    ConColaboradorKey = Table.AddColumn(Tipos, "ColaboradorDesempeno_Key", each if [Identificación] = null then null else Text.From([Identificación], "es-CO"), type text),
+				    ConEmpresa = Table.AddColumn(ConColaboradorKey, "Empresa_Homologada", each HomologarEmpresa([Empresa]), type text),
+				    ConEmpresaKey = Table.AddColumn(ConEmpresa, "Empresa_Key", each if [Empresa_Homologada] = null then null else Text.Upper(Text.Trim([Empresa_Homologada])), type text),
+				    ConAreaKey = Table.AddColumn(ConEmpresaKey, "Area_Key", each if [Área] = null then null else Text.Upper(Text.Trim(Text.From([Área]))), type text),
+				    ConInterpretacion = Table.AddColumn(ConAreaKey, "Interpretacion_Homologada", each HomologarInterpretacion([Interpretación]), type text),
+				    ConNivelKey = Table.AddColumn(ConInterpretacion, "NivelDesempeno_Key", each if [Interpretacion_Homologada] = null then null else Text.Upper(Text.Trim([Interpretacion_Homologada])), type text),
+				    ConteoIdentificacion = Table.Group(ConNivelKey, {"Identificación"}, {{"Conteo_Identificacion", each Table.RowCount(_), Int64.Type}}),
+				    MergeDuplicados = Table.NestedJoin(ConNivelKey, {"Identificación"}, ConteoIdentificacion, {"Identificación"}, "Dup", JoinKind.LeftOuter),
+				    ExpandDuplicados = Table.ExpandTableColumn(MergeDuplicados, "Dup", {"Conteo_Identificacion"}, {"Conteo_Identificacion"}),
+				    MarcaDuplicado = Table.AddColumn(ExpandDuplicados, "Duplicado_Identificacion", each [Conteo_Identificacion] > 1, type logical),
+				    Resultado = Table.RemoveColumns(MarcaDuplicado, {"Conteo_Identificacion"})
+				in
+				    Resultado
+
+	annotation PBI_NavigationStepName = Navegación
+
+	annotation PBI_ResultType = Table

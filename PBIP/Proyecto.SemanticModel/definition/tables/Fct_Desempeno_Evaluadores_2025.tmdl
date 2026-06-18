@@ -1,0 +1,184 @@
+table Fct_Desempeno_Evaluadores_2025
+	lineageTag: ed3a0294-6cc7-42e1-9ba6-3195acf7dd18
+
+	column 'Fecha Proceso'
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: fe1b6d73-6b3b-4995-bcc1-c54999a370a9
+		summarizeBy: none
+		sourceColumn: Fecha Proceso
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Identificación
+		dataType: int64
+		formatString: 0
+		lineageTag: 5930eb8f-f876-46fc-bc10-ddb6a90448b4
+		summarizeBy: none
+		sourceColumn: Identificación
+
+	column 'Tipo Evaluador'
+		dataType: int64
+		formatString: 0
+		lineageTag: 61503050-f211-47b1-81c3-9c665f71b4ac
+		summarizeBy: none
+		sourceColumn: Tipo Evaluador
+
+	column Evaluador
+		dataType: int64
+		formatString: 0
+		lineageTag: c4159f29-c21a-4dca-83cd-87480f329671
+		summarizeBy: none
+		sourceColumn: Evaluador
+
+	column Registro
+		dataType: int64
+		formatString: 0
+		lineageTag: 98748281-92ff-4b19-bcbd-4a74971e3c92
+		summarizeBy: none
+		sourceColumn: Registro
+
+	column Requerimiento
+		dataType: int64
+		formatString: 0
+		lineageTag: 0fc7b744-a75c-4202-b1b2-9a095c86b4fe
+		summarizeBy: none
+		sourceColumn: Requerimiento
+
+	column Especificación
+		dataType: int64
+		formatString: 0
+		lineageTag: fd359d70-56c6-4ac0-a0aa-8711d9fb319d
+		summarizeBy: none
+		sourceColumn: Especificación
+
+	column 'Calificación Obtenida'
+		dataType: double
+		formatString: 0.00
+		lineageTag: 2fcddda9-c4a4-4944-8861-71c31e797f68
+		summarizeBy: sum
+		sourceColumn: Calificación Obtenida
+
+	column 'Prototipo Evaluacion'
+		dataType: int64
+		formatString: 0
+		lineageTag: 5a430983-c3e0-4280-b0dd-e9c523814ec2
+		summarizeBy: none
+		sourceColumn: Prototipo Evaluacion
+
+	column 'Porcentaje Peso'
+		dataType: double
+		formatString: 0.00
+		lineageTag: 2448fa7b-1f92-4095-854e-53e59269e729
+		summarizeBy: sum
+		sourceColumn: Porcentaje Peso
+
+	column 'Valor Obtenido'
+		dataType: double
+		formatString: 0.00
+		lineageTag: bed9db2b-3f84-43e1-9d92-38e83f90906a
+		summarizeBy: sum
+		sourceColumn: Valor Obtenido
+
+	column 'Nombre Registro'
+		dataType: string
+		lineageTag: e25c40ac-aa30-44be-aa17-f83c5b110fe6
+		summarizeBy: none
+		sourceColumn: Nombre Registro
+
+	column 'Nombre Requerimiento'
+		dataType: string
+		lineageTag: b85470b2-f94a-4908-a4cf-00ef1c44337e
+		summarizeBy: none
+		sourceColumn: Nombre Requerimiento
+
+	column 'Nombre Especificación'
+		dataType: string
+		lineageTag: d64837e1-2aab-4b74-9f6b-4892e6f62eb5
+		summarizeBy: none
+		sourceColumn: Nombre Especificación
+
+	column 'Descripción Tipo Evalución'
+		dataType: string
+		lineageTag: 4aab843f-8d9a-4284-b02c-f27c65b0f228
+		summarizeBy: none
+		sourceColumn: Descripción Tipo Evalución
+
+	column 'Descripción de la Calificaición'
+		dataType: string
+		lineageTag: ffd609ab-0c5c-4075-8b31-6485d79cbb33
+		summarizeBy: none
+		sourceColumn: Descripción de la Calificaición
+
+	column ColaboradorDesempeno_Key
+		dataType: string
+		isHidden
+		lineageTag: 982553a7-5ae6-4209-aca7-a9dd838a4dfb
+		summarizeBy: none
+		sourceColumn: ColaboradorDesempeno_Key
+
+	column Requerimiento_Homologado
+		dataType: string
+		lineageTag: cce56d87-4c3e-4272-b5b7-6996784cd3c0
+		summarizeBy: none
+		sourceColumn: Requerimiento_Homologado
+
+	column Requerimiento_Key
+		dataType: string
+		isHidden
+		lineageTag: f01075bc-1b4b-4c45-9bd7-b4236a59e337
+		summarizeBy: none
+		sourceColumn: Requerimiento_Key
+
+	column PrototipoEvaluacion_Key
+		dataType: string
+		isHidden
+		lineageTag: e31c2b0e-f54b-43a6-b10b-1844e74fd82b
+		summarizeBy: none
+		sourceColumn: PrototipoEvaluacion_Key
+
+	column Interpretacion_Homologada
+		dataType: string
+		lineageTag: 7304b227-7689-480a-94b9-00d4ff9d1c5a
+		summarizeBy: none
+		sourceColumn: Interpretacion_Homologada
+
+	column NivelDesempeno_Key
+		dataType: string
+		isHidden
+		lineageTag: f3c8cd28-0920-48be-8a5a-8eeab0081bd6
+		summarizeBy: none
+		sourceColumn: NivelDesempeno_Key
+
+	partition Fct_Desempeno_Evaluadores_2025 = m
+		mode: import
+		queryGroup: Desempeño
+		source =
+				let
+				    Origen = Excel.Workbook(Web.Contents("https://lemcosas.sharepoint.com/sites/TalentoHumanoGrupoLemco/Documentos compartidos/5. People analytics/04_Aprendizaje_y_Desarrollo/Data/Resultados Consolidados Evaluación Desempeño 2025.xlsx"), null, true),
+				    Hoja = Origen{[Item="Conslidado por evaluador",Kind="Sheet"]}[Data],
+				    Encabezados = Table.PromoteHeaders(Hoja, [PromoteAllScalars=true]),
+				    Seleccion = Table.SelectColumns(Encabezados, {"Fecha Proceso","Identificación","Tipo Evaluador","Evaluador","Registro","Requerimiento","Especificación","Calificación Obtenida","Prototipo Evaluacion","Porcentaje Peso","Valor Obtenido","Nombre Registro","Nombre Requerimiento","Nombre Especificación","Descripción Tipo Evalución","Descripción de la Calificaición"}, MissingField.UseNull),
+				    Tipos = Table.TransformColumnTypes(Seleccion, {{"Fecha Proceso", type date}, {"Identificación", Int64.Type}, {"Tipo Evaluador", Int64.Type}, {"Evaluador", Int64.Type}, {"Registro", Int64.Type}, {"Requerimiento", Int64.Type}, {"Especificación", Int64.Type}, {"Calificación Obtenida", type number}, {"Prototipo Evaluacion", Int64.Type}, {"Porcentaje Peso", type number}, {"Valor Obtenido", type number}, {"Nombre Registro", type text}, {"Nombre Requerimiento", type text}, {"Nombre Especificación", type text}, {"Descripción Tipo Evalución", type text}, {"Descripción de la Calificaición", type text}}, "es-CO"),
+				    HomologarRequerimiento = (valor as nullable any) as nullable text =>
+				        let t = Text.Upper(Text.Trim(Text.From(valor))) in
+				            if t = "" then null
+				            else if t = "COMPETENCIAS DE LIDERAZGO" or t = "COMPETENCIAS LIDERAZGO" then "Competencias Liderazgo"
+				            else Text.Trim(Text.From(valor)),
+				    HomologarInterpretacion = (valor as nullable any) as nullable text =>
+				        let t = Text.Upper(Text.Trim(Text.From(valor))) in
+				            if t = "" then null
+				            else if t = "CRITICO" or t = "CRÍTICO" then "Crítico"
+				            else Text.Trim(Text.From(valor)),
+				    ConColaboradorKey = Table.AddColumn(Tipos, "ColaboradorDesempeno_Key", each if [Identificación] = null then null else Text.From([Identificación], "es-CO"), type text),
+				    ConReq = Table.AddColumn(ConColaboradorKey, "Requerimiento_Homologado", each HomologarRequerimiento([Nombre Requerimiento]), type text),
+				    ConReqKey = Table.AddColumn(ConReq, "Requerimiento_Key", each if [Requerimiento_Homologado] = null then null else Text.Upper(Text.Trim([Requerimiento_Homologado])), type text),
+				    ConProtoKey = Table.AddColumn(ConReqKey, "PrototipoEvaluacion_Key", each if [Descripción Tipo Evalución] = null then null else Text.Upper(Text.Trim(Text.From([Descripción Tipo Evalución]))), type text),
+				    ConInterpretacion = Table.AddColumn(ConProtoKey, "Interpretacion_Homologada", each HomologarInterpretacion([Descripción de la Calificaición]), type text),
+				    Resultado = Table.AddColumn(ConInterpretacion, "NivelDesempeno_Key", each if [Interpretacion_Homologada] = null then null else Text.Upper(Text.Trim([Interpretacion_Homologada])), type text)
+				in
+				    Resultado
+
+	annotation PBI_NavigationStepName = Navegación
+
+	annotation PBI_ResultType = Table
