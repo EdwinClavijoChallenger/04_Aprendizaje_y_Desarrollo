@@ -12,18 +12,140 @@ table Dim_Empresa
 		lineageTag: 9a37f71f-3b0d-4b03-ba10-64012e1cff13
 		sourceColumn: [Empresa]
 
+	column Empresa_Original
+		dataType: string
+		sourceColumn: [Empresa_Original]
+
+	column Empresa_Normalizada
+		dataType: string
+		sourceColumn: [Empresa_Normalizada]
+
+	column Fuente
+		dataType: string
+		sourceColumn: [Fuente]
+
+	column Observacion_Homologacion
+		dataType: string
+		sourceColumn: [Observacion_Homologacion]
+
 	partition Dim_Empresa = calculated
 		mode: import
 		source =
-				VAR _Empresas =
-				    DISTINCT(
-				        UNION(
-				            SELECTCOLUMNS('Fct_AsistenciaFormacion', "Empresa_Key", 'Fct_AsistenciaFormacion'[Empresa_Key]),
-				            SELECTCOLUMNS('Fct_EncuestaFormacion', "Empresa_Key", 'Fct_EncuestaFormacion'[Empresa_Key]),
-				            SELECTCOLUMNS('Fct_Induccion', "Empresa_Key", 'Fct_Induccion'[Empresa_Key]),
-				            SELECTCOLUMNS('Fct_Seguimiento_PDI', "Empresa_Key", 'Fct_Seguimiento_PDI'[Empresa_Key])
+				VAR _EmpresasBase =
+				    UNION(
+				        SELECTCOLUMNS(
+				            'Fct_AsistenciaFormacion',
+				            "Empresa_Key", 'Fct_AsistenciaFormacion'[Empresa_Key],
+				            "Empresa_Original", 'Fct_AsistenciaFormacion'[Empresa_Key],
+				            "Fuente", "Fct_AsistenciaFormacion"
+				        ),
+				        SELECTCOLUMNS(
+				            'Fct_EncuestaFormacion',
+				            "Empresa_Key", 'Fct_EncuestaFormacion'[Empresa_Key],
+				            "Empresa_Original", 'Fct_EncuestaFormacion'[Empresa_Key],
+				            "Fuente", "Fct_EncuestaFormacion"
+				        ),
+				        SELECTCOLUMNS(
+				            'Fct_Induccion',
+				            "Empresa_Key", 'Fct_Induccion'[Empresa_Key],
+				            "Empresa_Original", 'Fct_Induccion'[Empresa_Key],
+				            "Fuente", "Fct_Induccion"
+				        ),
+				        SELECTCOLUMNS(
+				            'Fct_Seguimiento_PDI',
+				            "Empresa_Key", 'Fct_Seguimiento_PDI'[Empresa_Key],
+				            "Empresa_Original", 'Fct_Seguimiento_PDI'[Empresa_Key],
+				            "Fuente", "Fct_Seguimiento_PDI"
+				        ),
+				        SELECTCOLUMNS(
+				            'Fct_Desempeno_2025',
+				            "Empresa_Key", 'Fct_Desempeno_2025'[Empresa_Key],
+				            "Empresa_Original", 'Fct_Desempeno_2025'[Empresa_Homologada],
+				            "Fuente", "Fct_Desempeno_2025"
+				        ),
+				        SELECTCOLUMNS(
+				            'Fct_Competencias_2025',
+				            "Empresa_Key", 'Fct_Competencias_2025'[Empresa_Key],
+				            "Empresa_Original", 'Fct_Competencias_2025'[Empresa_Homologada],
+				            "Fuente", "Fct_Competencias_2025"
+				        ),
+				        SELECTCOLUMNS(
+				            'Fct_Desempeno_2024',
+				            "Empresa_Key", 'Fct_Desempeno_2024'[Empresa_Key],
+				            "Empresa_Original", 'Fct_Desempeno_2024'[Empresa_Homologada],
+				            "Fuente", "Fct_Desempeno_2024"
+				        ),
+				        SELECTCOLUMNS(
+				            'Fct_Poblacion_Indicadores_2025',
+				            "Empresa_Key", 'Fct_Poblacion_Indicadores_2025'[Empresa_Key],
+				            "Empresa_Original", 'Fct_Poblacion_Indicadores_2025'[Empresa_Homologada],
+				            "Fuente", "Fct_Poblacion_Indicadores_2025"
+				        ),
+				        SELECTCOLUMNS(
+				            'Dim_ColaboradorDesempeno',
+				            "Empresa_Key", 'Dim_ColaboradorDesempeno'[Empresa_Key],
+				            "Empresa_Original", 'Dim_ColaboradorDesempeno'[Empresa_Homologada],
+				            "Fuente", "Dim_ColaboradorDesempeno"
 				        )
 				    )
+				VAR _EmpresasValidas =
+				    FILTER(
+				        _EmpresasBase,
+				        NOT ISBLANK([Empresa_Key])
+				            && [Empresa_Key] <> ""
+				    )
+				VAR _Empresas =
+				    SUMMARIZE(_EmpresasValidas, [Empresa_Key])
 				RETURN
-				    ADDCOLUMNS(_Empresas, "Empresa", [Empresa_Key])
+				    ADDCOLUMNS(
+				        _Empresas,
+				        "Empresa", [Empresa_Key],
+				        "Empresa_Original",
+				            VAR _Key = [Empresa_Key]
+				            RETURN
+				                CONCATENATEX(
+				                    DISTINCT(
+				                        SELECTCOLUMNS(
+				                            FILTER(_EmpresasValidas, [Empresa_Key] = _Key),
+				                            "Valor", [Empresa_Original]
+				                        )
+				                    ),
+				                    [Valor],
+				                    " | ",
+				                    [Valor],
+				                    ASC
+				                ),
+				        "Empresa_Normalizada",
+				            SWITCH(
+				                TRUE(),
+				                [Empresa_Key] = "LEMCO" || [Empresa_Key] = "LEMCO SAS", "LEMCO",
+				                [Empresa_Key] = "UNIDAD HOTELERA" || [Empresa_Key] = "HOTELES", "UNIDAD HOTELERA",
+				                [Empresa_Key] = "FUNDACION CHALLENGER" || [Empresa_Key] = "FUNDACIÓN CHALLENGER", "FUNDACIÓN CHALLENGER",
+				                [Empresa_Key]
+				            ),
+				        "Fuente",
+				            VAR _Key = [Empresa_Key]
+				            RETURN
+				                CONCATENATEX(
+				                    DISTINCT(
+				                        SELECTCOLUMNS(
+				                            FILTER(_EmpresasValidas, [Empresa_Key] = _Key),
+				                            "Valor", [Fuente]
+				                        )
+				                    ),
+				                    [Valor],
+				                    " | ",
+				                    [Valor],
+				                    ASC
+				                ),
+				        "Observacion_Homologacion",
+				            SWITCH(
+				                TRUE(),
+				                [Empresa_Key] = "LEMCO SAS", "Homologar con LEMCO",
+				                [Empresa_Key] = "HOTELES", "Homologar con UNIDAD HOTELERA",
+				                [Empresa_Key] = "FUNDACION CHALLENGER", "Homologar con FUNDACIÓN CHALLENGER",
+				                [Empresa_Key] = "HOTELES HABITEL" || [Empresa_Key] = "CHALLENGER SAS" || [Empresa_Key] = "CHALLENGER S.A.S.", "Pendiente decision de negocio",
+				                BLANK()
+				            )
+				    )
 

@@ -11,6 +11,10 @@ queryGroup EntrevistaRetiro
 
 	annotation PBI_QueryGroupOrder = 0
 
+queryGroup Desempeño
+
+	annotation PBI_QueryGroupOrder = 1
+
 annotation __PBI_TimeIntelligenceEnabled = 0
 
 annotation PBI_ProTooling = ["DevMode"]
