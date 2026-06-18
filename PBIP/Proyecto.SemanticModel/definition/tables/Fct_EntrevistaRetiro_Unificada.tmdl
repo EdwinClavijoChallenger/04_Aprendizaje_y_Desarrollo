@@ -289,8 +289,8 @@ table Fct_EntrevistaRetiro_Unificada
 				            base = FxSearch(if tipo <> null then tipo else motivo),
 				            result =
 				                if base = null then "No informado"
-				                else if Text.Contains(base, "VOLUNT") then "Voluntario"
 				                else if Text.Contains(base, "INVOLUNT") or Text.Contains(base, "TERMIN") or Text.Contains(base, "DESPID") or Text.Contains(base, "JUSTA CAUSA") then "Involuntario"
+				                else if Text.Contains(base, "VOLUNT") then "Voluntario"
 				                else "No informado"
 				        in
 				            result,
@@ -342,13 +342,15 @@ table Fct_EntrevistaRetiro_Unificada
 				            tipoRaw = FxGet(row, {"Tipo de retiro"}),
 				            motivo = FxGet(row, {"Motivo principal de retiro", "Motivo principal de retiro1", "Motivo de retiro:"}),
 				            motivoFinal = if motivo <> null then motivo else "No informado",
+				            motivoCorto = Text.Trim(Text.Split(motivoFinal, "|"){0}),
+				            motivoLimpio = if motivoCorto = "Opción 1" then "Sin clasificar" else motivoCorto,
 				            detalle = FxGet(row, {"Detalle del motivo de retiro", "Detalle del motivo de retiro ", "Mejor Oferta - Detalle del motivo de retiro"}),
 				            tipo = FxTipoRetiro(tipoRaw, motivoFinal),
 				            categoria = FxCategoria(motivoFinal, detalle),
 				            causaRaw = FxGet(row, {"Causa potencialmente prevenible", "Según lo manifestado durante la entrevista, ¿la salida pudo haberse prevenido con alguna acción de la organización?"}),
 				            causa = FxSiNo(causaRaw),
 				            proceso = FxGet(row, {"Proceso responsable de revisión", "¿Qué proceso interno generó mayor fricción durante la experiencia del colaborador?"}),
-				            procesoFinal = if proceso <> null then proceso else categoria,
+				            procesoFinal = Text.Trim(Text.Split(if proceso <> null then proceso else categoria, ";"){0}),
 				            oportunidad = FxGet(row, {"¿Qué habría tenido que cambiar para que la salida pudiera prevenirse o el colaborador considerara permanecer?", "Qué cambios propones para mejorar el lugar de trabajo", "¿Hay algo más que quieras compartir de tu experiencia en la compañía?", "¿Hay algo importante que no hayamos preguntado y considere relevante compartir?"}),
 				            planAccion = FxGet(row, {"Requiere plan de acción"}),
 				            keyBase = FxFuenteKey(fuente) & "-" & (if id <> null then id else idx)
@@ -368,7 +370,7 @@ table Fct_EntrevistaRetiro_Unificada
 				                TipoRetiro_Key = FxKey(tipo),
 				                TipoRetiro_Homologado = tipo,
 				                MotivoRetiro_Key = FxKey(motivoFinal),
-				                MotivoRetiro_Homologado = motivoFinal,
+				                MotivoRetiro_Homologado = motivoLimpio,
 				                DetalleMotivo_Homologado = detalle,
 				                CategoriaMotivo_Key = FxKey(categoria),
 				                CategoriaPrincipalMotivo = categoria,
