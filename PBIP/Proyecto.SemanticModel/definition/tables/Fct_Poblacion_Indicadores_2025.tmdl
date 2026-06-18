@@ -181,8 +181,8 @@ table Fct_Poblacion_Indicadores_2025
 				            else Text.Trim(Text.From(valor)),
 				    HomologarNivelCargo = (valor as nullable any) as nullable text =>
 				        let t = Text.Upper(Text.Trim(Text.From(valor))) in
-				            if t = "" then null
-				            else if t = "BASE ADMINISTRATIVA" then "Base administrativa"
+				            if t = "" then "Sin dato"
+				            else if t = "BASE ADMINISTRATIVA" then "Base Administrativa"
 				            else if t = "JEFE" then "Jefe"
 				            else Text.Trim(Text.From(valor)),
 				    HomologarInterpretacion = (valor as nullable any) as nullable text =>
