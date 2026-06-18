@@ -37,6 +37,8 @@ Los frentes o componentes pendientes son:
 
 La pagina `00 Inicio Corporativo` funciona como entrada corporativa. Actualmente muestra Aprendizaje como frente consolidado, Desarrollo como frente iniciado con PDI y Bienestar y Clima como frente iniciado con Entrevista de Retiro, manteniendo placeholders para componentes futuros como movilidad, sucesion, cargos criticos, clima laboral, eNPS y cumplimiento del plan de bienestar.
 
+El panel del frente Desarrollo en el Home muestra: motivo PDI principal (medida `PDI Motivo Principal`), estado predominante con barra de avance (medidas `PDI Estado Principal` y `PDI Avance Promedio`), placeholders para Movilidad, Sucesion y Cargos criticos, y KPIs de alertas criticas e indice de desarrollo. Todo el panel es renderizado por `HTML Inicio Corporativo Propuesta 1`.
+
 La navegacion debe mantener una ruta clara desde el inicio corporativo hacia los frentes funcionales. Cuando se agreguen nuevas paginas, se debe validar si pertenecen a Aprendizaje, Desarrollo u otro frente futuro, y si requieren acceso desde el menu principal o desde una navegacion secundaria.
 
 ## Publico objetivo

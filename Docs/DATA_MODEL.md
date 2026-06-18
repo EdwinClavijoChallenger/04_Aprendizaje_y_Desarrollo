@@ -376,8 +376,12 @@ Estas medidas soportan el analisis de asistencia por `Tipo_Cargo` desde `Dim_Col
 - `PDI Acompanamientos Programados`
 - `PDI Acompanamientos Ejecutados`
 - `PDI Cumplimiento Acompanamientos`
+- `PDI Motivo Principal`
+- `PDI Estado Principal`
 
 `PDI Avance Promedio` normaliza el avance cuando la fuente viene en escala 0-100, para devolver siempre un porcentaje interpretable.
+
+`PDI Motivo Principal` y `PDI Estado Principal` devuelven el motivo y el estado mas frecuente calculados sobre `PDI Total` (todos los registros, sin filtrar por estado activo). `PDI Estado Principal` itera sobre `Dim_EstadoPDI[Estado_PDI]` para garantizar valores en uppercase normalizado y excluir blancos. Ambas medidas alimentan `HTML Inicio Corporativo Propuesta 1`. No hubo cambios en relaciones, Power Query ni visual.json.
 
 ### Desarrollo alertas
 
