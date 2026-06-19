@@ -2,7 +2,7 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "ad1eh10_modalidad",
   "position": {
-    "x": 946.07673948962736,
+    "x": 2000,
     "y": 143.81494400587479,
     "z": 6000,
     "height": 28.1990086286029,

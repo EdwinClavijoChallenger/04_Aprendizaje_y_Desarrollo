@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "ad1eh10_anio",
   "position": {
-    "x": 250.97117679456582,
+    "x": 252,
     "y": 143.81494400587479,
     "z": 1000,
     "height": 28.1990086286029,
-    "width": 103,
+    "width": 238,
     "tabOrder": 1000
   },
   "visual": {
