@@ -1653,6 +1653,466 @@ table Medidas_AD
 		displayFolder: 09 Desarrollo PDI
 		lineageTag: d4b8c3f2-5a90-4e17-c634-9f8020e5b173
 
+	measure 'Desempeno Poblacion Activa' =
+			CALCULATE(
+				DISTINCTCOUNT('Fct_Poblacion_Indicadores_2025'[ColaboradorDesempeno_Key]),
+				'Fct_Poblacion_Indicadores_2025'[INDICADOR ACTIVIDAD] = "ACTIVO"
+			)
+		formatString: #,0
+		displayFolder: 15 Cobertura Desempeno
+		lineageTag: 8bba6ae8-74e9-4dfb-b63c-46d8714d9585
+
+	measure 'Desempeno Evaluados Objetivos' = DISTINCTCOUNT('Fct_Desempeno_2025'[ColaboradorDesempeno_Key])
+		formatString: #,0
+		displayFolder: 15 Cobertura Desempeno
+		lineageTag: 76ae96f0-73c1-4246-adb2-0adbb7fb5157
+
+	measure 'Competencias Evaluados' = DISTINCTCOUNT('Fct_Competencias_2025'[ColaboradorDesempeno_Key])
+		formatString: #,0
+		displayFolder: 15 Cobertura Desempeno
+		lineageTag: a25df2fc-2416-458a-8a0f-29af7ba4a895
+
+	measure 'Desempeno No Evaluados Objetivos' = COALESCE([Desempeno Poblacion Activa], 0) - COALESCE([Desempeno Evaluados Objetivos], 0)
+		formatString: #,0
+		displayFolder: 15 Cobertura Desempeno
+		lineageTag: 21801163-2025-47dd-bf30-5b4b97d3c015
+
+	measure 'Competencias No Evaluados' = COALESCE([Desempeno Poblacion Activa], 0) - COALESCE([Competencias Evaluados], 0)
+		formatString: #,0
+		displayFolder: 15 Cobertura Desempeno
+		lineageTag: 81a7d371-118e-4661-8c6e-b697180f1c47
+
+	measure 'Desempeno Cobertura Objetivos %' = DIVIDE([Desempeno Evaluados Objetivos], [Desempeno Poblacion Activa])
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: 15 Cobertura Desempeno
+		lineageTag: eb4c8ad1-6167-4dab-aa41-5d57e2af9955
+
+	measure 'Competencias Cobertura %' = DIVIDE([Competencias Evaluados], [Desempeno Poblacion Activa])
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: 15 Cobertura Desempeno
+		lineageTag: 27b39cd5-6c71-43e2-85b5-2608b250d9f8
+
+	measure 'Desempeno Promedio' = AVERAGE('Fct_Desempeno_2025'[Calificación Final])
+		formatString: 0.00
+		displayFolder: 12 Desempeno
+		lineageTag: 37dc9dd8-4878-44d8-ac72-4bcb64ee3998
+
+	measure 'Desempeno Promedio 2024' = AVERAGE('Fct_Desempeno_2025'[Calificación 2024])
+		formatString: 0.00
+		displayFolder: 12 Desempeno
+		lineageTag: b34f23d5-1782-4405-85c3-15083361da22
+
+	measure 'Desempeno Variacion 2025 vs 2024' = [Desempeno Promedio] - [Desempeno Promedio 2024]
+		formatString: 0.00
+		displayFolder: 12 Desempeno
+		lineageTag: b3f48710-2be4-4b3f-830a-d991b599fa61
+
+	measure 'Desempeno Variacion 2025 vs 2024 %' = DIVIDE([Desempeno Variacion 2025 vs 2024], [Desempeno Promedio 2024])
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: 12 Desempeno
+		lineageTag: 0c67b1b3-fd2e-456e-8c4f-2395d5d82c6d
+
+	measure 'Desempeno Colaboradores por Nivel' = DISTINCTCOUNT('Fct_Desempeno_2025'[ColaboradorDesempeno_Key])
+		formatString: #,0
+		displayFolder: 12 Desempeno
+		lineageTag: 3d1786dd-5eb1-4fd5-9064-84ff1f4df875
+
+	measure 'Desempeno % por Nivel' =
+			DIVIDE(
+				[Desempeno Colaboradores por Nivel],
+				CALCULATE(
+					[Desempeno Colaboradores por Nivel],
+					REMOVEFILTERS('Fct_Desempeno_2025'[Interpretacion_Homologada]),
+					REMOVEFILTERS('Fct_Desempeno_2025'[NivelDesempeno_Key])
+				)
+			)
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: 12 Desempeno
+		lineageTag: c0974e6d-d221-4828-af40-87b60d1ec622
+
+	measure 'Desempeno Promedio por Empresa' = [Desempeno Promedio]
+		formatString: 0.00
+		displayFolder: 12 Desempeno
+		lineageTag: c27b370f-8ec9-493b-93fe-c72f3cfd951f
+
+	measure 'Desempeno Promedio por Area' = [Desempeno Promedio]
+		formatString: 0.00
+		displayFolder: 12 Desempeno
+		lineageTag: 358f4221-9747-4c07-b35c-5ae79e95418f
+
+	measure 'Desempeno Promedio por Cargo' = [Desempeno Promedio]
+		formatString: 0.00
+		displayFolder: 12 Desempeno
+		lineageTag: 22f68e47-d646-4553-8abf-9d9e2a629b6f
+
+	measure 'Desempeno Promedio por Dependencia' = [Desempeno Promedio]
+		formatString: 0.00
+		displayFolder: 12 Desempeno
+		lineageTag: 588a4d3a-19be-4857-8739-900f72ea3f78
+
+	measure 'Desempeno Ranking Areas Menor Promedio' =
+			VAR _Promedio = [Desempeno Promedio]
+			RETURN
+				IF(
+					ISBLANK(_Promedio),
+					BLANK(),
+					RANKX(
+						ALLSELECTED('Fct_Desempeno_2025'[Área]),
+						[Desempeno Promedio],
+						,
+						ASC,
+						DENSE
+					)
+				)
+		formatString: #,0
+		displayFolder: 12 Desempeno
+		lineageTag: 51d5d680-ff8d-4971-bd93-43c4c4386e7d
+
+	measure 'Competencias Promedio' = AVERAGE('Fct_Competencias_2025'[Puntaje Obtenido])
+		formatString: 0.00
+		displayFolder: 13 Competencias
+		lineageTag: 28d1694c-ee15-42c2-9c46-b31022ba28d7
+
+	measure 'Competencias Puntaje Requerido Promedio' = AVERAGE('Fct_Competencias_2025'[Puntaje Requerido])
+		formatString: 0.00
+		displayFolder: 13 Competencias
+		lineageTag: 79aa45e0-3fa4-4e48-9dd7-bf63f01f48b7
+
+	measure 'Competencias Brecha Promedio' = [Competencias Puntaje Requerido Promedio] - [Competencias Promedio]
+		formatString: 0.00
+		displayFolder: 13 Competencias
+		lineageTag: 0777f311-ef1f-468d-a441-9f2b3f407142
+
+	measure 'Competencias Registros por Nivel' = COUNTROWS('Fct_Competencias_2025')
+		formatString: #,0
+		displayFolder: 13 Competencias
+		lineageTag: 12c576af-2848-4b1c-970d-1021622824f3
+
+	measure 'Competencias % por Nivel' =
+			DIVIDE(
+				[Competencias Registros por Nivel],
+				CALCULATE(
+					[Competencias Registros por Nivel],
+					REMOVEFILTERS('Fct_Competencias_2025'[Interpretacion_Homologada]),
+					REMOVEFILTERS('Fct_Competencias_2025'[NivelDesempeno_Key])
+				)
+			)
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: 13 Competencias
+		lineageTag: e6c49c98-a722-45cc-af48-4a5cd8a6c19a
+
+	measure 'Competencias Promedio por Empresa' = [Competencias Promedio]
+		formatString: 0.00
+		displayFolder: 13 Competencias
+		lineageTag: 8c4b3106-fb5c-4f12-b7e3-7f14a1732bd4
+
+	measure 'Competencias Promedio por Dependencia' = [Competencias Promedio]
+		formatString: 0.00
+		displayFolder: 13 Competencias
+		lineageTag: 5bead195-5d2c-49fd-8329-e875232767a7
+
+	measure 'Competencias Ranking Mayor Brecha' =
+			VAR _Brecha = [Competencias Brecha Promedio]
+			RETURN
+				IF(
+					ISBLANK(_Brecha),
+					BLANK(),
+					RANKX(
+						ALLSELECTED('Fct_Competencias_2025'[Requerimiento_Homologado]),
+						[Competencias Brecha Promedio],
+						,
+						DESC,
+						DENSE
+					)
+				)
+		formatString: #,0
+		displayFolder: 13 Competencias
+		lineageTag: 62d7d99a-d9d4-4197-a95c-fb1f6895e081
+
+	measure 'NineBox Desempeno Score' = AVERAGE('Fct_Desempeno_2025'[Calificación Final])
+		formatString: 0.00
+		displayFolder: 14 Nine Box
+		lineageTag: 8a076910-9b3b-4a60-a689-fb292e5044b5
+
+	measure 'NineBox Competencias Score' = AVERAGE('Fct_Competencias_2025'[Puntaje Obtenido])
+		formatString: 0.00
+		displayFolder: 14 Nine Box
+		lineageTag: 4aa66576-b6e4-4cf8-bff2-df3e7ce42a94
+
+	measure 'NineBox Banda Desempeno' =
+			VAR _Score = [NineBox Desempeno Score]
+			RETURN
+				SWITCH(
+					TRUE(),
+					ISBLANK(_Score), BLANK(),
+					_Score <= 50, "Bajo",
+					_Score <= 70, "Medio",
+					_Score >= 71, "Alto",
+					BLANK()
+				)
+		displayFolder: 14 Nine Box
+		lineageTag: e0567d4e-4354-4182-b85e-f67460da2a22
+
+	measure 'NineBox Banda Competencias' =
+			VAR _Score = [NineBox Competencias Score]
+			RETURN
+				SWITCH(
+					TRUE(),
+					ISBLANK(_Score), BLANK(),
+					_Score <= 50, "Bajo",
+					_Score <= 70, "Medio",
+					_Score >= 71, "Alto",
+					BLANK()
+				)
+		displayFolder: 14 Nine Box
+		lineageTag: 8e501ad5-0b9d-4e2c-a3ee-e269d276bb2d
+
+	measure 'NineBox Cuadrante' =
+			VAR _BandaDesempeno = [NineBox Banda Desempeno]
+			VAR _BandaCompetencias = [NineBox Banda Competencias]
+			RETURN
+				IF(
+					ISBLANK(_BandaDesempeno) || ISBLANK(_BandaCompetencias),
+					BLANK(),
+					_BandaDesempeno & "-" & _BandaCompetencias
+				)
+		displayFolder: 14 Nine Box
+		lineageTag: cfa4ac19-4eb1-4d9e-a9ff-078b60ae1661
+
+	measure 'NineBox Categoria Ejecutiva' =
+			SWITCH(
+				[NineBox Cuadrante],
+				"Alto-Alto", "Alto Potencial",
+				"Alto-Medio", "Alto Potencial",
+				"Medio-Medio", "Talento Sólido",
+				"Medio-Alto", "Talento Sólido",
+				"Bajo-Alto", "Talento Sólido",
+				"Alto-Bajo", "Desarrollo Requerido",
+				"Medio-Bajo", "Desarrollo Requerido",
+				"Bajo-Bajo", "Riesgo",
+				"Bajo-Medio", "Riesgo",
+				BLANK()
+			)
+		displayFolder: 14 Nine Box
+		lineageTag: 84444867-3181-4409-863e-2b55915d946b
+
+	measure 'NineBox Colaboradores Evaluables' =
+			VAR _Base =
+				FILTER(
+					CALCULATETABLE(
+						VALUES('Fct_Poblacion_Indicadores_2025'[ColaboradorDesempeno_Key]),
+						KEEPFILTERS('Fct_Poblacion_Indicadores_2025'[INDICADOR ACTIVIDAD] = "ACTIVO")
+					),
+					NOT ISBLANK('Fct_Poblacion_Indicadores_2025'[ColaboradorDesempeno_Key])
+				)
+			VAR _Scored =
+				ADDCOLUMNS(
+					_Base,
+					"__Desempeno",
+						VAR _Key = 'Fct_Poblacion_Indicadores_2025'[ColaboradorDesempeno_Key]
+						RETURN
+							CALCULATE(
+								AVERAGE('Fct_Desempeno_2025'[Calificación Final]),
+								'Fct_Desempeno_2025'[ColaboradorDesempeno_Key] = _Key
+							),
+					"__Competencias",
+						VAR _Key = 'Fct_Poblacion_Indicadores_2025'[ColaboradorDesempeno_Key]
+						RETURN
+							CALCULATE(
+								AVERAGE('Fct_Competencias_2025'[Puntaje Obtenido]),
+								'Fct_Competencias_2025'[ColaboradorDesempeno_Key] = _Key
+							)
+				)
+			VAR _Bandas =
+				ADDCOLUMNS(
+					_Scored,
+					"__BandaDesempeno",
+						VAR _Score = [__Desempeno]
+						RETURN
+							SWITCH(
+								TRUE(),
+								ISBLANK(_Score), BLANK(),
+								_Score <= 50, "Bajo",
+								_Score <= 70, "Medio",
+								_Score >= 71, "Alto",
+								BLANK()
+							),
+					"__BandaCompetencias",
+						VAR _Score = [__Competencias]
+						RETURN
+							SWITCH(
+								TRUE(),
+								ISBLANK(_Score), BLANK(),
+								_Score <= 50, "Bajo",
+								_Score <= 70, "Medio",
+								_Score >= 71, "Alto",
+								BLANK()
+							)
+				)
+			RETURN
+				COUNTROWS(
+					FILTER(
+						_Bandas,
+						NOT ISBLANK([__BandaDesempeno]) &&
+						NOT ISBLANK([__BandaCompetencias])
+					)
+				)
+		formatString: #,0
+		displayFolder: 14 Nine Box
+		lineageTag: 767e3ff6-dd91-4966-86db-fc613c070a75
+
+	measure 'NineBox Colaboradores por Cuadrante' =
+			VAR _TargetDesempeno = SELECTEDVALUE('Dim_NineBox_Cuadrante'[Banda_Desempeno])
+			VAR _TargetCompetencias = SELECTEDVALUE('Dim_NineBox_Cuadrante'[Banda_Competencias])
+			VAR _TargetCategoria = SELECTEDVALUE('Dim_NineBox_Cuadrante'[Categoria_Ejecutiva])
+			VAR _Base =
+				FILTER(
+					CALCULATETABLE(
+						VALUES('Fct_Poblacion_Indicadores_2025'[ColaboradorDesempeno_Key]),
+						KEEPFILTERS('Fct_Poblacion_Indicadores_2025'[INDICADOR ACTIVIDAD] = "ACTIVO")
+					),
+					NOT ISBLANK('Fct_Poblacion_Indicadores_2025'[ColaboradorDesempeno_Key])
+				)
+			VAR _Scored =
+				ADDCOLUMNS(
+					_Base,
+					"__Desempeno",
+						VAR _Key = 'Fct_Poblacion_Indicadores_2025'[ColaboradorDesempeno_Key]
+						RETURN
+							CALCULATE(
+								AVERAGE('Fct_Desempeno_2025'[Calificación Final]),
+								'Fct_Desempeno_2025'[ColaboradorDesempeno_Key] = _Key
+							),
+					"__Competencias",
+						VAR _Key = 'Fct_Poblacion_Indicadores_2025'[ColaboradorDesempeno_Key]
+						RETURN
+							CALCULATE(
+								AVERAGE('Fct_Competencias_2025'[Puntaje Obtenido]),
+								'Fct_Competencias_2025'[ColaboradorDesempeno_Key] = _Key
+							)
+				)
+			VAR _Bandas =
+				ADDCOLUMNS(
+					_Scored,
+					"__BandaDesempeno",
+						VAR _Score = [__Desempeno]
+						RETURN
+							SWITCH(
+								TRUE(),
+								ISBLANK(_Score), BLANK(),
+								_Score <= 50, "Bajo",
+								_Score <= 70, "Medio",
+								_Score >= 71, "Alto",
+								BLANK()
+							),
+					"__BandaCompetencias",
+						VAR _Score = [__Competencias]
+						RETURN
+							SWITCH(
+								TRUE(),
+								ISBLANK(_Score), BLANK(),
+								_Score <= 50, "Bajo",
+								_Score <= 70, "Medio",
+								_Score >= 71, "Alto",
+								BLANK()
+							)
+				)
+			VAR _Categoria =
+				ADDCOLUMNS(
+					_Bandas,
+					"__Categoria",
+						VAR _Cuadrante = [__BandaDesempeno] & "-" & [__BandaCompetencias]
+						RETURN
+							SWITCH(
+								_Cuadrante,
+								"Alto-Alto", "Alto Potencial",
+								"Alto-Medio", "Alto Potencial",
+								"Medio-Medio", "Talento Sólido",
+								"Medio-Alto", "Talento Sólido",
+								"Bajo-Alto", "Talento Sólido",
+								"Alto-Bajo", "Desarrollo Requerido",
+								"Medio-Bajo", "Desarrollo Requerido",
+								"Bajo-Bajo", "Riesgo",
+								"Bajo-Medio", "Riesgo",
+								BLANK()
+							)
+				)
+			RETURN
+				COUNTROWS(
+					FILTER(
+						_Categoria,
+						NOT ISBLANK([__BandaDesempeno]) &&
+						NOT ISBLANK([__BandaCompetencias]) &&
+						(ISBLANK(_TargetDesempeno) || [__BandaDesempeno] = _TargetDesempeno) &&
+						(ISBLANK(_TargetCompetencias) || [__BandaCompetencias] = _TargetCompetencias) &&
+						(ISBLANK(_TargetCategoria) || [__Categoria] = _TargetCategoria)
+					)
+				)
+		formatString: #,0
+		displayFolder: 14 Nine Box
+		lineageTag: e6a80cb3-b3cf-4817-8170-baf02af18e12
+
+	measure 'NineBox % por Cuadrante' = DIVIDE([NineBox Colaboradores por Cuadrante], [NineBox Colaboradores Evaluables])
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: 14 Nine Box
+		lineageTag: b59fb85e-b654-47d9-8aa0-f45660d2468b
+
+	measure 'NineBox Alto Potencial' =
+			CALCULATE(
+				[NineBox Colaboradores por Cuadrante],
+				TREATAS({"Alto Potencial"}, 'Dim_NineBox_Cuadrante'[Categoria_Ejecutiva])
+			)
+		formatString: #,0
+		displayFolder: 14 Nine Box
+		lineageTag: e63ba0cf-6656-4cfb-bc52-48601465f190
+
+	measure 'NineBox Talento Solido' =
+			CALCULATE(
+				[NineBox Colaboradores por Cuadrante],
+				TREATAS({"Talento Sólido"}, 'Dim_NineBox_Cuadrante'[Categoria_Ejecutiva])
+			)
+		formatString: #,0
+		displayFolder: 14 Nine Box
+		lineageTag: db2fc031-19e9-472a-a2f5-b41839223494
+
+	measure 'NineBox Desarrollo Requerido' =
+			CALCULATE(
+				[NineBox Colaboradores por Cuadrante],
+				TREATAS({"Desarrollo Requerido"}, 'Dim_NineBox_Cuadrante'[Categoria_Ejecutiva])
+			)
+		formatString: #,0
+		displayFolder: 14 Nine Box
+		lineageTag: f89dc2f1-126a-44c9-9b45-cfd699acbd62
+
+	measure 'NineBox Riesgo' =
+			CALCULATE(
+				[NineBox Colaboradores por Cuadrante],
+				TREATAS({"Riesgo"}, 'Dim_NineBox_Cuadrante'[Categoria_Ejecutiva])
+			)
+		formatString: #,0
+		displayFolder: 14 Nine Box
+		lineageTag: d7251fe7-467f-4d5a-87e0-b6facf16aeaa
+
+	measure 'NineBox % Alto Potencial' = DIVIDE([NineBox Alto Potencial], [NineBox Colaboradores Evaluables])
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: 14 Nine Box
+		lineageTag: 2f03e325-6d49-4ad2-8909-1e3957858061
+
+	measure 'NineBox % Talento Solido' = DIVIDE([NineBox Talento Solido], [NineBox Colaboradores Evaluables])
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: 14 Nine Box
+		lineageTag: 5962edae-dc6c-4d61-bd5b-4809134fb88d
+
+	measure 'NineBox % Desarrollo Requerido' = DIVIDE([NineBox Desarrollo Requerido], [NineBox Colaboradores Evaluables])
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: 14 Nine Box
+		lineageTag: 02ed3556-cf59-4b93-a70f-c5f27f138690
+
+	measure 'NineBox % Riesgo' = DIVIDE([NineBox Riesgo], [NineBox Colaboradores Evaluables])
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: 14 Nine Box
+		lineageTag: aa19d736-2b68-49d1-8aeb-bdcfe300aef1
+
 	column Indice
 		dataType: int64
 		isHidden
