@@ -1,7 +1,7 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.0.0/schema.json",
   "name": "ad1edp000000000001",
-  "displayName": "E01 Desempeno - Proxima Fase",
+  "displayName": "DS01_Resumen_Desempeno",
   "displayOption": "FitToPage",
   "height": 720,
   "width": 1280
