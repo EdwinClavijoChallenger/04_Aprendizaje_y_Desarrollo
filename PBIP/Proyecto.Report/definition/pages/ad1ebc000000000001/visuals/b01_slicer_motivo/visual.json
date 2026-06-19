@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "b01_slicer_motivo",
   "position": {
-    "x": 598,
-    "y": 112,
+    "x": 40,
+    "y": 168,
     "z": 5000,
     "height": 48,
-    "width": 176,
+    "width": 294,
     "tabOrder": 5000
   },
   "visual": {

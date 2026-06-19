@@ -1,6 +1,72 @@
 table Fct_EntrevistaRetiro_Unificada
 	lineageTag: bddec8e0-513a-4ba5-8e3b-b181da7f98b6
 
+	measure BC02_Entrevistas_Validas = CALCULATE(COUNTROWS(Fct_EntrevistaRetiro_Unificada), Fct_EntrevistaRetiro_Unificada[RegistroValido] = "Valido")
+		formatString: #,0
+		displayFolder: BC02 Entrevista de Retiro
+		lineageTag: bc020001-0000-4000-a000-000000000001
+
+	measure BC02_Retiros_Voluntarios =
+			VAR v = CALCULATE(COUNTROWS(Fct_EntrevistaRetiro_Unificada), Fct_EntrevistaRetiro_Unificada[TipoRetiro_Homologado] = "Voluntario", Fct_EntrevistaRetiro_Unificada[RegistroValido] = "Valido")
+			RETURN IF(ISBLANK(v), 0, v)
+		formatString: #,0
+		displayFolder: BC02 Entrevista de Retiro
+		lineageTag: bc020001-0000-4000-a000-000000000002
+
+	measure BC02_Retiros_Involuntarios =
+			VAR v = CALCULATE(COUNTROWS(Fct_EntrevistaRetiro_Unificada), Fct_EntrevistaRetiro_Unificada[TipoRetiro_Homologado] = "Involuntario", Fct_EntrevistaRetiro_Unificada[RegistroValido] = "Valido")
+			RETURN IF(ISBLANK(v), 0, v)
+		formatString: #,0
+		displayFolder: BC02 Entrevista de Retiro
+		lineageTag: bc020001-0000-4000-a000-000000000003
+
+	measure BC02_Motivo_Principal =
+			VAR resumen = SUMMARIZE(CALCULATETABLE(Fct_EntrevistaRetiro_Unificada, Fct_EntrevistaRetiro_Unificada[RegistroValido] = "Valido", NOT(Fct_EntrevistaRetiro_Unificada[MotivoRetiro_Homologado] IN {"Sin dato", "No informado", "Sin clasificar"})), Fct_EntrevistaRetiro_Unificada[MotivoRetiro_Homologado], "conteo", COUNTROWS(Fct_EntrevistaRetiro_Unificada))
+			VAR top1 = TOPN(1, resumen, [conteo], DESC)
+			RETURN MAXX(top1, Fct_EntrevistaRetiro_Unificada[MotivoRetiro_Homologado])
+		displayFolder: BC02 Entrevista de Retiro
+		lineageTag: bc020001-0000-4000-a000-000000000004
+
+	measure BC02_Pct_Causas_Prevenibles =
+			VAR numerador = CALCULATE(COUNTROWS(Fct_EntrevistaRetiro_Unificada), Fct_EntrevistaRetiro_Unificada[CausaPrevenible] = "Si", Fct_EntrevistaRetiro_Unificada[RegistroValido] = "Valido")
+			VAR denominador = CALCULATE(COUNTROWS(Fct_EntrevistaRetiro_Unificada), Fct_EntrevistaRetiro_Unificada[CausaPrevenible] IN {"Si", "No"}, Fct_EntrevistaRetiro_Unificada[RegistroValido] = "Valido")
+			RETURN IF(ISBLANK(denominador) || denominador = 0, BLANK(), DIVIDE(numerador, denominador))
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: BC02 Entrevista de Retiro
+		lineageTag: bc020001-0000-4000-a000-000000000005
+
+	measure BC02_Conteo_Retiros = CALCULATE(COUNTROWS(Fct_EntrevistaRetiro_Unificada), Fct_EntrevistaRetiro_Unificada[RegistroValido] = "Valido")
+		formatString: #,0
+		displayFolder: BC02 Entrevista de Retiro
+		lineageTag: bc020001-0000-4000-a000-000000000006
+
+	measure BC02_Retiros_Mes_Anterior =
+			VAR v = CALCULATE([BC02_Conteo_Retiros], DATEADD(Fct_EntrevistaRetiro_Unificada[Fecha_Entrevista], -1, MONTH))
+			RETURN IF(ISBLANK(v), 0, v)
+		formatString: #,0
+		displayFolder: BC02 Entrevista de Retiro
+		lineageTag: bc020001-0000-4000-a000-000000000007
+
+	measure BC02_Variacion_vs_Mes_Ant = [BC02_Conteo_Retiros] - [BC02_Retiros_Mes_Anterior]
+		formatString: #,0
+		displayFolder: BC02 Entrevista de Retiro
+		lineageTag: bc020001-0000-4000-a000-000000000008
+
+	measure BC02_Label_Variacion =
+			VAR diff = [BC02_Variacion_vs_Mes_Ant]
+			VAR flecha_arriba = UNICHAR(8593)
+			VAR flecha_abajo = UNICHAR(8595)
+			RETURN IF(ISBLANK(diff), "Sin mes anterior", IF(diff > 0, flecha_arriba & TEXT(ABS(diff), "0") & " vs mes anterior", IF(diff < 0, flecha_abajo & TEXT(ABS(diff), "0") & " vs mes anterior", "= igual que mes anterior")))
+		displayFolder: BC02 Entrevista de Retiro
+		lineageTag: bc020001-0000-4000-a000-000000000009
+
+	measure BC02_Unidad_Mas_Retiros =
+			VAR resumen = SUMMARIZE(CALCULATETABLE(Fct_EntrevistaRetiro_Unificada, Fct_EntrevistaRetiro_Unificada[RegistroValido] = "Valido"), Fct_EntrevistaRetiro_Unificada[UnidadNegocio_Homologada], "conteo", COUNTROWS(Fct_EntrevistaRetiro_Unificada))
+			VAR top1 = TOPN(1, resumen, [conteo], DESC)
+			RETURN MAXX(top1, Fct_EntrevistaRetiro_Unificada[UnidadNegocio_Homologada])
+		displayFolder: BC02 Entrevista de Retiro
+		lineageTag: bc020001-0000-4000-a000-000000000010
+
 	column EntrevistaRetiro_Key
 		dataType: string
 		isHidden
@@ -238,72 +304,6 @@ table Fct_EntrevistaRetiro_Unificada
 		sourceColumn: RequierePlanAccion
 
 		annotation SummarizationSetBy = Automatic
-
-	measure BC02_Entrevistas_Validas = CALCULATE(COUNTROWS(Fct_EntrevistaRetiro_Unificada), Fct_EntrevistaRetiro_Unificada[RegistroValido] = "Valido")
-		formatString: #,0
-		displayFolder: BC02 Entrevista de Retiro
-		lineageTag: bc020001-0000-4000-a000-000000000001
-
-	measure BC02_Retiros_Voluntarios =
-			VAR v = CALCULATE(COUNTROWS(Fct_EntrevistaRetiro_Unificada), Fct_EntrevistaRetiro_Unificada[TipoRetiro_Homologado] = "Voluntario", Fct_EntrevistaRetiro_Unificada[RegistroValido] = "Valido")
-			RETURN IF(ISBLANK(v), 0, v)
-		formatString: #,0
-		displayFolder: BC02 Entrevista de Retiro
-		lineageTag: bc020001-0000-4000-a000-000000000002
-
-	measure BC02_Retiros_Involuntarios =
-			VAR v = CALCULATE(COUNTROWS(Fct_EntrevistaRetiro_Unificada), Fct_EntrevistaRetiro_Unificada[TipoRetiro_Homologado] = "Involuntario", Fct_EntrevistaRetiro_Unificada[RegistroValido] = "Valido")
-			RETURN IF(ISBLANK(v), 0, v)
-		formatString: #,0
-		displayFolder: BC02 Entrevista de Retiro
-		lineageTag: bc020001-0000-4000-a000-000000000003
-
-	measure BC02_Motivo_Principal =
-			VAR resumen = SUMMARIZE(CALCULATETABLE(Fct_EntrevistaRetiro_Unificada, Fct_EntrevistaRetiro_Unificada[RegistroValido] = "Valido", NOT(Fct_EntrevistaRetiro_Unificada[MotivoRetiro_Homologado] IN {"Sin dato", "No informado", "Sin clasificar"})), Fct_EntrevistaRetiro_Unificada[MotivoRetiro_Homologado], "conteo", COUNTROWS(Fct_EntrevistaRetiro_Unificada))
-			VAR top1 = TOPN(1, resumen, [conteo], DESC)
-			RETURN MAXX(top1, Fct_EntrevistaRetiro_Unificada[MotivoRetiro_Homologado])
-		displayFolder: BC02 Entrevista de Retiro
-		lineageTag: bc020001-0000-4000-a000-000000000004
-
-	measure BC02_Pct_Causas_Prevenibles =
-			VAR numerador = CALCULATE(COUNTROWS(Fct_EntrevistaRetiro_Unificada), Fct_EntrevistaRetiro_Unificada[CausaPrevenible] = "Si", Fct_EntrevistaRetiro_Unificada[RegistroValido] = "Valido")
-			VAR denominador = CALCULATE(COUNTROWS(Fct_EntrevistaRetiro_Unificada), Fct_EntrevistaRetiro_Unificada[CausaPrevenible] IN {"Si", "No"}, Fct_EntrevistaRetiro_Unificada[RegistroValido] = "Valido")
-			RETURN IF(ISBLANK(denominador) || denominador = 0, BLANK(), DIVIDE(numerador, denominador))
-		formatString: 0.0%;-0.0%;0.0%
-		displayFolder: BC02 Entrevista de Retiro
-		lineageTag: bc020001-0000-4000-a000-000000000005
-
-	measure BC02_Conteo_Retiros = CALCULATE(COUNTROWS(Fct_EntrevistaRetiro_Unificada), Fct_EntrevistaRetiro_Unificada[RegistroValido] = "Valido")
-		formatString: #,0
-		displayFolder: BC02 Entrevista de Retiro
-		lineageTag: bc020001-0000-4000-a000-000000000006
-
-	measure BC02_Retiros_Mes_Anterior =
-			VAR v = CALCULATE([BC02_Conteo_Retiros], DATEADD(Fct_EntrevistaRetiro_Unificada[Fecha_Entrevista], -1, MONTH))
-			RETURN IF(ISBLANK(v), 0, v)
-		formatString: #,0
-		displayFolder: BC02 Entrevista de Retiro
-		lineageTag: bc020001-0000-4000-a000-000000000007
-
-	measure BC02_Variacion_vs_Mes_Ant = [BC02_Conteo_Retiros] - [BC02_Retiros_Mes_Anterior]
-		formatString: #,0
-		displayFolder: BC02 Entrevista de Retiro
-		lineageTag: bc020001-0000-4000-a000-000000000008
-
-	measure BC02_Label_Variacion =
-			VAR diff = [BC02_Variacion_vs_Mes_Ant]
-			VAR flecha_arriba = UNICHAR(8593)
-			VAR flecha_abajo = UNICHAR(8595)
-			RETURN IF(ISBLANK(diff), "Sin mes anterior", IF(diff > 0, flecha_arriba & TEXT(ABS(diff), "0") & " vs mes anterior", IF(diff < 0, flecha_abajo & TEXT(ABS(diff), "0") & " vs mes anterior", "= igual que mes anterior")))
-		displayFolder: BC02 Entrevista de Retiro
-		lineageTag: bc020001-0000-4000-a000-000000000009
-
-	measure BC02_Unidad_Mas_Retiros =
-			VAR resumen = SUMMARIZE(CALCULATETABLE(Fct_EntrevistaRetiro_Unificada, Fct_EntrevistaRetiro_Unificada[RegistroValido] = "Valido"), Fct_EntrevistaRetiro_Unificada[UnidadNegocio_Homologada], "conteo", COUNTROWS(Fct_EntrevistaRetiro_Unificada))
-			VAR top1 = TOPN(1, resumen, [conteo], DESC)
-			RETURN MAXX(top1, Fct_EntrevistaRetiro_Unificada[UnidadNegocio_Homologada])
-		displayFolder: BC02 Entrevista de Retiro
-		lineageTag: bc020001-0000-4000-a000-000000000010
 
 	partition Fct_EntrevistaRetiro_Unificada = m
 		mode: import

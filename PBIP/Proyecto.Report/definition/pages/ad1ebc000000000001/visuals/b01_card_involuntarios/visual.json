@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "b01_card_involuntarios",
   "position": {
-    "x": 432,
-    "y": 184,
+    "x": 644,
+    "y": 228,
     "z": 11000,
     "height": 64,
-    "width": 184,
+    "width": 294,
     "tabOrder": 11000
   },
   "visual": {

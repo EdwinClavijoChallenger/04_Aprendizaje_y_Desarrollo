@@ -1,9 +1,9 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "b01_table_unidad_motivo",
   "position": {
     "x": 454,
-    "y": 510,
+    "y": 530,
     "z": 19000,
     "height": 142,
     "width": 360,
@@ -59,6 +59,23 @@
             }
           ]
         }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Medidas_AD"
+                  }
+                },
+                "Property": "EntrevistaRetiro Total Validas"
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
       }
     },
     "objects": {

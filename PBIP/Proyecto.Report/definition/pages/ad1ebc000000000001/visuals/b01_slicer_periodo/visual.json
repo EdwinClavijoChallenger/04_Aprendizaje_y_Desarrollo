@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "b01_slicer_periodo",
   "position": {
-    "x": 154,
+    "x": 342,
     "y": 112,
     "z": 2000,
     "height": 48,
-    "width": 124,
+    "width": 294,
     "tabOrder": 2000
   },
   "visual": {

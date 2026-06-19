@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "b01_card_voluntarios",
   "position": {
-    "x": 238,
-    "y": 184,
+    "x": 342,
+    "y": 228,
     "z": 10000,
     "height": 64,
-    "width": 184,
+    "width": 294,
     "tabOrder": 10000
   },
   "visual": {
