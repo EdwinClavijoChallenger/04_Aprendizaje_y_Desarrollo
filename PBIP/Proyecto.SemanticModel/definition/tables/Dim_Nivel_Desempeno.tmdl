@@ -1,0 +1,39 @@
+table Dim_Nivel_Desempeno
+	lineageTag: 220c4865-8f58-4430-94bf-25842b91138d
+
+	column NivelDesempeno_Key
+		dataType: string
+		lineageTag: 1ef0707d-9704-4ae6-b6e3-966674255c9e
+		summarizeBy: none
+		sourceColumn: [NivelDesempeno_Key]
+		sortByColumn: Orden_Nivel
+
+	column Nivel_Desempeno
+		dataType: string
+		lineageTag: 40f32342-0e91-425a-aa50-27faa6a25c2f
+		summarizeBy: none
+		sourceColumn: [Nivel_Desempeno]
+		sortByColumn: Orden_Nivel
+
+	column Orden_Nivel
+		dataType: int64
+		formatString: 0
+		lineageTag: 596845fb-507b-49ab-b26f-0f9531be1746
+		summarizeBy: none
+		sourceColumn: [Orden_Nivel]
+
+	partition Dim_Nivel_Desempeno = calculated
+		mode: import
+		source =
+				DATATABLE(
+					"NivelDesempeno_Key", STRING,
+					"Nivel_Desempeno", STRING,
+					"Orden_Nivel", INTEGER,
+					{
+						{"CRÍTICO", "Critico", 1},
+						{"BAJO", "Bajo", 2},
+						{"INTERMEDIO", "Intermedio", 3},
+						{"ALTO", "Alto", 4},
+						{"AVANZADO", "Avanzado", 5}
+					}
+				)

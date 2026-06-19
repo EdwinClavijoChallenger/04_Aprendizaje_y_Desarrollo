@@ -2152,6 +2152,95 @@ table Medidas_AD
 		displayFolder: 11 HTML Content
 		lineageTag: db7c3359-e84e-4db8-91e0-08f4eaa0550c
 
+	measure 'Desempeno Evaluados DS03' =
+			VAR _Anios = VALUES('Dim_Anio_Desempeno'[Anio])
+			VAR _FiltroAnio =
+				FILTER(
+					ALL('Fct_Desempeno_2025'[Fecha de Proceso]),
+					YEAR('Fct_Desempeno_2025'[Fecha de Proceso]) IN _Anios
+				)
+			RETURN
+				CALCULATE(
+					[Desempeno Evaluados Objetivos],
+					_FiltroAnio
+				)
+		formatString: #,0
+		displayFolder: 12 Desempeno
+		lineageTag: b16597e3-3e5a-4704-81ea-0d15fa13c404
+
+	measure 'Desempeno Promedio DS03' =
+			VAR _Anios = VALUES('Dim_Anio_Desempeno'[Anio])
+			VAR _FiltroAnio =
+				FILTER(
+					ALL('Fct_Desempeno_2025'[Fecha de Proceso]),
+					YEAR('Fct_Desempeno_2025'[Fecha de Proceso]) IN _Anios
+				)
+			RETURN
+				CALCULATE(
+					[Desempeno Promedio],
+					_FiltroAnio
+				)
+		formatString: 0.00
+		displayFolder: 12 Desempeno
+		lineageTag: a4490197-731f-412f-88fc-6d17986c9922
+
+	measure 'Desempeno Cobertura Objetivos DS03 %' = DIVIDE([Desempeno Evaluados DS03], [Desempeno Poblacion Activa])
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: 12 Desempeno
+		lineageTag: 60e59257-762d-4575-959c-90031cbdbfde
+
+	measure 'Desempeno Colaboradores Nivel DS03' =
+			VAR _Nivel = VALUES('Dim_Nivel_Desempeno'[NivelDesempeno_Key])
+			VAR _Anios = VALUES('Dim_Anio_Desempeno'[Anio])
+			VAR _FiltroAnio =
+				FILTER(
+					ALL('Fct_Desempeno_2025'[Fecha de Proceso]),
+					YEAR('Fct_Desempeno_2025'[Fecha de Proceso]) IN _Anios
+				)
+			RETURN
+				CALCULATE(
+					[Desempeno Colaboradores por Nivel],
+					TREATAS(_Nivel, 'Fct_Desempeno_2025'[NivelDesempeno_Key]),
+					_FiltroAnio
+				)
+		formatString: #,0
+		displayFolder: 12 Desempeno
+		lineageTag: 9802cbae-5dcb-4990-9583-98a8a9c017c8
+
+	measure 'Desempeno % Nivel DS03' =
+			DIVIDE(
+				[Desempeno Colaboradores Nivel DS03],
+				CALCULATE(
+					[Desempeno Colaboradores Nivel DS03],
+					REMOVEFILTERS('Dim_Nivel_Desempeno')
+				)
+			)
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: 12 Desempeno
+		lineageTag: 85fe5bba-b847-4dff-9ed4-bf5124870fdb
+
+	measure 'HTML Shell DS03 Curva Niveles' =
+			VAR _Html =
+				"<div style='font-family:Outfit,Poppins,Segoe UI,Arial,sans-serif;width:1280px;height:720px;background:#F7F9FC;color:#0B1C35;position:relative;overflow:hidden;'>" &
+				"<div style='position:absolute;left:0;top:0;width:1280px;height:100px;background:#0B1C35;'></div>" &
+				"<div style='position:absolute;left:48px;top:24px;color:#F7931E;font-size:11px;font-weight:850;letter-spacing:2px;text-transform:uppercase;'>DASHBOARD CORPORATIVO - GRUPO LEMCO</div>" &
+				"<div style='position:absolute;left:48px;top:48px;color:#FFFFFF;font-size:25px;font-weight:850;line-height:28px;'>DS03 Curva de Niveles</div>" &
+				"<div style='position:absolute;left:48px;top:78px;color:#D8E4F2;font-size:11px;line-height:14px;'>Distribucion Critico, Bajo, Intermedio, Alto y Avanzado por estructura.</div>" &
+				"<div style='position:absolute;right:48px;top:32px;background:#F7931E;color:#0B1C35;border-radius:18px;padding:8px 16px;font-size:11px;font-weight:850;'>Bloque Desempe&ntilde;o</div>" &
+				"<div style='position:absolute;left:48px;top:112px;width:1200px;height:76px;background:#FFFFFF;border:1px solid #DCE5F2;border-radius:14px;box-shadow:0 6px 18px rgba(11,28,53,0.06);'></div>" &
+				"<div style='position:absolute;left:48px;top:112px;width:7px;height:76px;background:#F7931E;border-radius:14px 0 0 14px;'></div>" &
+				"<div style='position:absolute;left:68px;top:127px;color:#0B1C35;font-size:10px;font-weight:850;letter-spacing:1.5px;text-transform:uppercase;'>Contexto de analisis</div>" &
+				"<div style='position:absolute;left:68px;top:148px;width:150px;color:#6B778A;font-size:9.5px;line-height:12px;'>Filtros activos para curva de desempeno.</div>" &
+				"<div style='position:absolute;left:238px;top:121px;width:1050px;height:58px;display:grid;grid-template-columns:repeat(6,1fr);gap:12px;'>" &
+				"<div style='background:#F7FAFD;border:1px solid #E6EEF7;border-radius:8px;'></div><div style='background:#F7FAFD;border:1px solid #E6EEF7;border-radius:8px;'></div><div style='background:#F7FAFD;border:1px solid #E6EEF7;border-radius:8px;'></div><div style='background:#F7FAFD;border:1px solid #E6EEF7;border-radius:8px;'></div><div style='background:#F7FAFD;border:1px solid #E6EEF7;border-radius:8px;'></div><div style='background:#F7FAFD;border:1px solid #E6EEF7;border-radius:8px;'></div>" &
+				"</div>" &
+				"<div style='position:absolute;left:32px;top:198px;width:1216px;height:468px;background:#FFFFFF;border:1px solid #E1E8F2;border-radius:10px;'></div>" &
+				"<div style='position:absolute;left:32px;top:674px;width:655px;height:40px;background:#FFFFFF;border:1px solid #DCE5F2;border-radius:9px;'></div>" &
+				"</div>"
+			RETURN _Html
+		displayFolder: 11 HTML Content
+		lineageTag: e325de5d-2128-489c-a222-12cf2982ec27
+
 	column Indice
 		dataType: int64
 		isHidden

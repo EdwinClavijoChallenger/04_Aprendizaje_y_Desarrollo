@@ -66,6 +66,8 @@ ref table Fct_Desempeno_2024
 ref table Fct_Poblacion_Indicadores_2025
 ref table Dim_ColaboradorDesempeno
 ref table Dim_NineBox_Cuadrante
+ref table Dim_Anio_Desempeno
+ref table Dim_Nivel_Desempeno
 
 ref cultureInfo es-ES
 
