@@ -60,6 +60,7 @@ La tabla de medidas principal es `Medidas_AD`.
 | `Dim_ActividadBienestar` | Catalogo de actividades del plan de bienestar. Clave compuesta `DIMENSION + COMPONENTES`. Calculada desde staging. |
 | `Dim_DimensionBienestar` | Catalogo de dimensiones del plan de bienestar (agrupaciones de actividades). Calculada desde staging. |
 | `Dim_Frente_Home` | Tabla auxiliar para controlar el frente activo del home corporativo. |
+| `Dim_FechaActualizacion` | Tabla auxiliar de metadatos. Captura la datetime del ultimo refresh del modelo en zona horaria Bogota (UTC-5). Una sola fila. Usada por `HTML Inicio Corporativo Propuesta 1` para mostrar la fecha de actualizacion en el header del Home. |
 
 ## Criterios de homologacion
 

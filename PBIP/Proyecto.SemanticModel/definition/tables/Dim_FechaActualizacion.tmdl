@@ -1,0 +1,27 @@
+table Dim_FechaActualizacion
+	lineageTag: 058e0875-0f04-4325-9d6a-3a0a284c92a7
+
+	column FechaActualizacion
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 3590428d-00f1-4627-bec3-2bd95abd8cc6
+		summarizeBy: none
+		sourceColumn: FechaActualizacion
+
+	partition Dim_FechaActualizacion = m
+		mode: import
+		source =
+				let
+				    UtcNow = DateTimeZone.UtcNow(),
+				    BogotaNow = DateTimeZone.SwitchZone(UtcNow, -5),
+				    BogotaDateTime = DateTimeZone.RemoveZone(BogotaNow),
+				    Tabla =
+				        #table(
+				            type table [FechaActualizacion = datetime],
+				            { { BogotaDateTime } }
+				        )
+				in
+				    Tabla
+
+	annotation PBI_ResultType = Table
+

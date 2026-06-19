@@ -853,11 +853,14 @@ table Medidas_AD
 			    _CDes & "<div style='font-size:11px;color:#F7931E;font-weight:800;'>03</div><div style='font-size:19px;font-weight:800;margin-top:7px;" & IF(_FA="Desarrollo","color:#fff;","color:#1A3059;") & "'>Desarrollo</div><div style='font-size:10px;line-height:15px;margin-top:8px;" & IF(_FA="Desarrollo","color:#d9e4f2;","color:#53657D;") & "'>PDI activos. Avance: " & _PDIAvz & ".</div><div style='margin-top:12px;display:grid;grid-template-columns:1fr 1fr;gap:6px;'><div style='background:#F7931E;color:#fff;border-radius:12px;padding:5px 9px;font-size:9px;font-weight:800;text-align:center;'>PDI</div><div style='background:rgba(255,255,255,.08);color:" & IF(_FA="Desarrollo","#d9e4f2","#53657D") & ";border:1px dashed " & IF(_FA="Desarrollo","rgba(255,255,255,.28)","#B0C4D8") & ";border-radius:12px;padding:5px 9px;font-size:9px;font-weight:800;text-align:center;'>Movilidad</div><div style='background:rgba(255,255,255,.08);color:" & IF(_FA="Desarrollo","#d9e4f2","#53657D") & ";border:1px dashed " & IF(_FA="Desarrollo","rgba(255,255,255,.28)","#B0C4D8") & ";border-radius:12px;padding:5px 9px;font-size:9px;font-weight:800;text-align:center;'>Sucesi&oacute;n</div><div style='background:rgba(255,255,255,.08);color:" & IF(_FA="Desarrollo","#d9e4f2","#53657D") & ";border:1px dashed " & IF(_FA="Desarrollo","rgba(255,255,255,.28)","#B0C4D8") & ";border-radius:12px;padding:5px 9px;font-size:9px;font-weight:800;text-align:center;'>Cargos cr&iacute;ticos</div></div></div>" &
 			    _CByC & "<div style='font-size:11px;color:" & IF(_FA="Bienestar y Clima","#F7931E","#1B487F") & ";font-weight:800;'>04</div><div style='font-size:19px;font-weight:800;margin-top:7px;" & IF(_FA="Bienestar y Clima","color:#fff;","color:#1A3059;") & "'>Bienestar y Clima</div><div style='font-size:10px;line-height:15px;margin-top:8px;" & IF(_FA="Bienestar y Clima","color:#d9e4f2;","color:#53657D;") & "'>Retiro y Plan Bienestar activos. Clima y eNPS en roadmap.</div><div style='display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:12px;'><div style='background:#F7931E;color:#fff;border-radius:12px;padding:5px 9px;font-size:9px;font-weight:800;text-align:center;'>Entrevista de Retiro</div><div style='background:#F7931E;color:#fff;border-radius:12px;padding:5px 9px;font-size:9px;font-weight:800;text-align:center;'>Plan Bienestar</div><div style='background:rgba(255,255,255,.06);color:" & IF(_FA="Bienestar y Clima","#b8c8de","#9DB5CC") & ";border:1px dashed " & IF(_FA="Bienestar y Clima","rgba(255,255,255,.22)","#B0C4D8") & ";border-radius:12px;padding:5px 9px;font-size:9px;font-weight:700;text-align:center;'>Planes Clima Laboral</div><div style='background:rgba(255,255,255,.06);color:" & IF(_FA="Bienestar y Clima","#b8c8de","#9DB5CC") & ";border:1px dashed " & IF(_FA="Bienestar y Clima","rgba(255,255,255,.22)","#B0C4D8") & ";border-radius:12px;padding:5px 9px;font-size:9px;font-weight:700;text-align:center;'>eNPS Bienestar</div></div></div>" &
 			    "</div>"
+			VAR _FechaBase = MAXX(Dim_FechaActualizacion, Dim_FechaActualizacion[FechaActualizacion])
+			VAR _FechaAct = IF(ISBLANK(_FechaBase), "Sin datos", FORMAT(_FechaBase, "DD MMM YYYY  h:mm AM/PM"))
 			RETURN
 			"<div style='width:1280px;height:720px;box-sizing:border-box;position:relative;background:#ffffff;font-family:Outfit,Segoe UI,Arial,sans-serif;color:#0B1C35;overflow:hidden;'>" &
 			"<div style='height:88px;background:#0B1C35;color:#fff;padding:20px 34px;box-sizing:border-box;display:flex;justify-content:space-between;align-items:center;'>" &
 			"<div><div style='font-size:11px;letter-spacing:1.8px;text-transform:uppercase;color:#F7931E;font-weight:700;'>Dashboard Corporativo &middot; Grupo LEMCO</div><div style='font-size:25px;line-height:29px;font-weight:800;margin-top:5px;'>Inicio Corporativo</div></div>" &
-			"<div style='font-size:10px;color:#7A9EC2;'></div></div>" &
+			"<div style='text-align:right;'><div style='font-size:9px;color:#F7931E;font-weight:700;text-transform:uppercase;letter-spacing:1px;'>Actualizaci&oacute;n</div>" &
+			"<div style='font-size:13px;font-weight:800;color:#FFFFFF;margin-top:3px;'>" & _FechaAct & "</div></div></div>" &
 			"<div style='position:absolute;left:34px;top:104px;width:1214px;height:82px;background:#ffffff;border:1px solid #DCE5F2;border-radius:14px;box-sizing:border-box;box-shadow:0 10px 28px rgba(11,28,53,.07);overflow:hidden;'>" &
 			"<div style='position:absolute;left:0;top:0;width:7px;height:82px;background:#F7931E;'></div>" &
 			"<div style='position:absolute;left:22px;top:17px;width:178px;'><div style='font-size:10px;font-weight:900;color:#0B1C35;text-transform:uppercase;letter-spacing:1px;'>Contexto de an&aacute;lisis</div><div style='font-size:9px;color:#6B7D93;line-height:13px;margin-top:5px;'>Filtros activos para la lectura ejecutiva del home.</div></div>" &
@@ -2240,6 +2243,87 @@ table Medidas_AD
 			RETURN _Html
 		displayFolder: 11 HTML Content
 		lineageTag: e325de5d-2128-489c-a222-12cf2982ec27
+
+	measure 'Competencias Registros Nivel DS04' =
+			VAR _Nivel = VALUES('Dim_Nivel_Desempeno'[NivelDesempeno_Key])
+			RETURN
+				CALCULATE(
+					[Competencias Registros por Nivel],
+					TREATAS(_Nivel, 'Fct_Competencias_2025'[NivelDesempeno_Key])
+				)
+		formatString: #,0
+		displayFolder: 13 Competencias
+		lineageTag: 7c9ef05e-f05d-4698-946e-b1c68494e18f
+
+	measure 'Competencias % Nivel DS04' =
+			DIVIDE(
+				[Competencias Registros Nivel DS04],
+				CALCULATE(
+					[Competencias Registros Nivel DS04],
+					REMOVEFILTERS('Dim_Nivel_Desempeno')
+				)
+			)
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: 13 Competencias
+		lineageTag: 2cf8956b-c491-4bed-b6ac-fedfe76549d0
+
+	measure 'Competencias Ranking Mejor Evaluadas' =
+			VAR _Puntaje = [Competencias Promedio]
+			RETURN
+				IF(
+					ISBLANK(_Puntaje),
+					BLANK(),
+					RANKX(
+						ALLSELECTED('Fct_Competencias_2025'[Nombre Registro]),
+					[Competencias Promedio],
+					,
+					DESC,
+					DENSE
+				)
+			)
+		formatString: #,0
+		displayFolder: 13 Competencias
+		lineageTag: b84f366e-f5ec-491a-b026-f768e827f048
+
+	measure 'Competencias Top 10 Mayor Brecha' =
+			IF(
+				[Competencias Ranking Mayor Brecha] <= 10,
+				[Competencias Brecha Promedio]
+			)
+		formatString: 0.00
+		displayFolder: 13 Competencias
+		lineageTag: a8c077d6-cbbf-406c-9b2e-39e4f117d2de
+
+	measure 'Competencias Top 10 Mejor Evaluadas' =
+			IF(
+				[Competencias Ranking Mejor Evaluadas] <= 10,
+				[Competencias Promedio]
+			)
+		formatString: 0.00
+		displayFolder: 13 Competencias
+		lineageTag: 5627fe5d-7f8d-4728-bff2-118261625f4f
+
+	measure 'HTML Shell DS04 Competencias' =
+			VAR _Html =
+				"<div style='font-family:Outfit,Poppins,Segoe UI,Arial,sans-serif;width:1280px;height:720px;background:#F7F9FC;color:#0B1C35;position:relative;overflow:hidden;'>" &
+				"<div style='position:absolute;left:0;top:0;width:1280px;height:100px;background:#0B1C35;'></div>" &
+				"<div style='position:absolute;left:48px;top:24px;color:#F7931E;font-size:11px;font-weight:850;letter-spacing:2px;text-transform:uppercase;'>DASHBOARD CORPORATIVO - GRUPO LEMCO</div>" &
+				"<div style='position:absolute;left:48px;top:48px;color:#FFFFFF;font-size:25px;font-weight:850;line-height:28px;'>DS04 Competencias</div>" &
+				"<div style='position:absolute;left:48px;top:78px;color:#D8E4F2;font-size:11px;line-height:14px;'>Puntaje obtenido, requerido y brechas de competencias.</div>" &
+				"<div style='position:absolute;right:48px;top:32px;background:#F7931E;color:#0B1C35;border-radius:18px;padding:8px 16px;font-size:11px;font-weight:850;'>Bloque Desempe&ntilde;o</div>" &
+				"<div style='position:absolute;left:48px;top:112px;width:1200px;height:76px;background:#FFFFFF;border:1px solid #DCE5F2;border-radius:14px;box-shadow:0 6px 18px rgba(11,28,53,0.06);'></div>" &
+				"<div style='position:absolute;left:48px;top:112px;width:7px;height:76px;background:#F7931E;border-radius:14px 0 0 14px;'></div>" &
+				"<div style='position:absolute;left:68px;top:127px;color:#0B1C35;font-size:10px;font-weight:850;letter-spacing:1.5px;text-transform:uppercase;'>Contexto de analisis</div>" &
+				"<div style='position:absolute;left:68px;top:148px;width:150px;color:#6B778A;font-size:9.5px;line-height:12px;'>Filtros activos para competencias.</div>" &
+				"<div style='position:absolute;left:238px;top:121px;width:1050px;height:58px;display:grid;grid-template-columns:repeat(6,1fr);gap:12px;'>" &
+				"<div style='background:#F7FAFD;border:1px solid #E6EEF7;border-radius:8px;'></div><div style='background:#F7FAFD;border:1px solid #E6EEF7;border-radius:8px;'></div><div style='background:#F7FAFD;border:1px solid #E6EEF7;border-radius:8px;'></div><div style='background:#F7FAFD;border:1px solid #E6EEF7;border-radius:8px;'></div><div style='background:#F7FAFD;border:1px solid #E6EEF7;border-radius:8px;'></div><div style='background:#F7FAFD;border:1px solid #E6EEF7;border-radius:8px;'></div>" &
+				"</div>" &
+				"<div style='position:absolute;left:32px;top:198px;width:1216px;height:468px;background:#FFFFFF;border:1px solid #E1E8F2;border-radius:10px;'></div>" &
+				"<div style='position:absolute;left:32px;top:674px;width:790px;height:40px;background:#FFFFFF;border:1px solid #DCE5F2;border-radius:9px;'></div>" &
+				"</div>"
+			RETURN _Html
+		displayFolder: 11 HTML Content
+		lineageTag: df3649d7-1a0f-449f-b831-99e332e6334c
 
 	column Indice
 		dataType: int64
