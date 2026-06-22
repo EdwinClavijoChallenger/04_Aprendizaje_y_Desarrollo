@@ -4,10 +4,10 @@
   "position": {
     "x": 638,
     "y": 422,
-    "z": 14003,
-    "height": 224,
+    "z": 10000,
+    "height": 220,
     "width": 610,
-    "tabOrder": 14003
+    "tabOrder": 10000
   },
   "visual": {
     "visualType": "tableEx",
@@ -23,11 +23,11 @@
                       "Entity": "Fct_Competencias_2025"
                     }
                   },
-                  "Property": "Nombre Registro"
+                  "Property": "Nombre Especificación"
                 }
               },
-              "queryRef": "Fct_Competencias_2025.Nombre Registro",
-              "nativeQueryRef": "Nombre Registro",
+              "queryRef": "Fct_Competencias_2025.Nombre Especificación",
+              "nativeQueryRef": "Nombre Especificación",
               "active": true
             },
             {

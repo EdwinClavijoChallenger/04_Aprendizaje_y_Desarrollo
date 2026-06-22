@@ -4,10 +4,10 @@
   "position": {
     "x": 31.259751712909573,
     "y": 422.0066481242792,
-    "z": 14002,
-    "height": 223.50722474730344,
+    "z": 8000,
+    "height": 220,
     "width": 590.80930737399092,
-    "tabOrder": 14002
+    "tabOrder": 8000
   },
   "visual": {
     "visualType": "barChart",
@@ -23,11 +23,11 @@
                       "Entity": "Fct_Competencias_2025"
                     }
                   },
-                  "Property": "Nombre Registro"
+                  "Property": "Nombre Especificación"
                 }
               },
-              "queryRef": "Fct_Competencias_2025.Nombre Registro",
-              "nativeQueryRef": "Nombre Registro",
+              "queryRef": "Fct_Competencias_2025.Nombre Especificación",
+              "nativeQueryRef": "Nombre Especificación",
               "active": true
             }
           ]

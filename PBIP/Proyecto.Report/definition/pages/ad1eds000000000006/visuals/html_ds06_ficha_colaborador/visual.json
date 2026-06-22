@@ -4,10 +4,10 @@
   "position": {
     "x": 31.259751712909573,
     "y": 206.31436130520316,
-    "z": 14000,
+    "z": 6000,
     "height": 215.69228681907603,
     "width": 361.05013228410553,
-    "tabOrder": 14000
+    "tabOrder": 6000
   },
   "visual": {
     "visualType": "htmlContent443BE3AD55E043BF878BED274D3A6855",
@@ -28,24 +28,6 @@
               },
               "queryRef": "Medidas_AD.HTML DS06 Ficha Colaborador",
               "nativeQueryRef": "HTML DS06 Ficha Colaborador"
-            }
-          ]
-        },
-        "Values": {
-          "projections": [
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "Medidas_AD"
-                    }
-                  },
-                  "Property": "HTML Shell DS04 Competencias"
-                }
-              },
-              "queryRef": "Medidas_AD.HTML Shell DS04 Competencias",
-              "nativeQueryRef": "HTML Shell DS04 Competencias"
             }
           ]
         }

@@ -94,6 +94,24 @@ table Dim_ColaboradorDesempeno
 		summarizeBy: none
 		sourceColumn: Cargo_Key
 
+	column Nombres
+		dataType: string
+		lineageTag: db538aaa-75b4-4050-bb97-d14ce529bd15
+		summarizeBy: none
+		sourceColumn: Nombres
+
+	column Apellido
+		dataType: string
+		lineageTag: ad2cb0fb-5d97-4540-a257-aaf0717c52a2
+		summarizeBy: none
+		sourceColumn: Apellido
+
+	column 'Nombre Jefe'
+		dataType: string
+		lineageTag: be2471f6-64ff-4f4c-8b7f-ab67ab21255a
+		summarizeBy: none
+		sourceColumn: Nombre Jefe
+
 	partition Dim_ColaboradorDesempeno = m
 		mode: import
 		queryGroup: Desempeño
@@ -102,8 +120,8 @@ table Dim_ColaboradorDesempeno
 				    Origen = Excel.Workbook(Web.Contents("https://lemcosas.sharepoint.com/sites/TalentoHumanoGrupoLemco/Documentos compartidos/5. People analytics/04_Aprendizaje_y_Desarrollo/Data/Resultados Consolidados Evaluación Desempeño 2025.xlsx"), null, true),
 				    Hoja = Origen{[Item="bd",Kind="Sheet"]}[Data],
 				    Encabezados = Table.PromoteHeaders(Hoja, [PromoteAllScalars=true]),
-				    Seleccion = Table.SelectColumns(Encabezados, {"Identificación","Tipo Contrato","Fecha Inicio","Descripción Cargo","Nombre Centro Costo","EMPRESA","DEPENDENCIA","ÁREA"}, MissingField.UseNull),
-				    Tipos = Table.TransformColumnTypes(Seleccion, {{"Identificación", type text}, {"Tipo Contrato", type text}, {"Fecha Inicio", type date}, {"Descripción Cargo", type text}, {"Nombre Centro Costo", type text}, {"EMPRESA", type text}, {"DEPENDENCIA", type text}, {"ÁREA", type text}}, "es-CO"),
+				    Seleccion = Table.SelectColumns(Encabezados, {"Identificación","Tipo Contrato","Fecha Inicio","Descripción Cargo","Nombre Centro Costo","EMPRESA","DEPENDENCIA","ÁREA","Nombres","Nombre Jefe"}, MissingField.UseNull),
+				    Tipos = Table.TransformColumnTypes(Seleccion, {{"Identificación", type text}, {"Tipo Contrato", type text}, {"Fecha Inicio", type date}, {"Descripción Cargo", type text}, {"Nombre Centro Costo", type text}, {"EMPRESA", type text}, {"DEPENDENCIA", type text}, {"ÁREA", type text}, {"Nombres", type text}, {"Nombre Jefe", type text}}, "es-CO"),
 				    HomologarEmpresa = (valor as nullable any) as nullable text =>
 				        let t = Text.Upper(Text.Trim(Text.From(valor))) in
 				            if t = "" then null
@@ -116,7 +134,12 @@ table Dim_ColaboradorDesempeno
 				    ConEmpresaKey = Table.AddColumn(ConEmpresa, "Empresa_Key", each if [Empresa_Homologada] = null then null else Text.Upper(Text.Trim([Empresa_Homologada])), type text),
 				    ConAreaKey = Table.AddColumn(ConEmpresaKey, "Area_Key", each if [ÁREA] = null then null else Text.Upper(Text.Trim(Text.From([ÁREA]))), type text),
 				    ConDependenciaKey = Table.AddColumn(ConAreaKey, "Dependencia_Key", each if [DEPENDENCIA] = null then null else Text.Upper(Text.Trim(Text.From([DEPENDENCIA]))), type text),
-				    Resultado = Table.AddColumn(ConDependenciaKey, "Cargo_Key", each if [Descripción Cargo] = null then null else Text.Upper(Text.Trim(Text.From([Descripción Cargo]))), type text)
+				    ConCargoKey = Table.AddColumn(ConDependenciaKey, "Cargo_Key", each if [Descripción Cargo] = null then null else Text.Upper(Text.Trim(Text.From([Descripción Cargo]))), type text),
+				    HojaConsolidado = Origen{[Item="Consolidado 2025",Kind="Sheet"]}[Data],
+				    EncabezadosConsolidado = Table.PromoteHeaders(HojaConsolidado, [PromoteAllScalars=true]),
+				    ApellidosUnicos = Table.Distinct(Table.TransformColumnTypes(Table.SelectColumns(EncabezadosConsolidado, {"Identificación", "Apellido"}, MissingField.UseNull), {{"Identificación", type text}}, "es-CO"), {"Identificación"}),
+				    ConApellido = Table.NestedJoin(ConCargoKey, {"Identificación"}, ApellidosUnicos, {"Identificación"}, "_ApellidoJoin", JoinKind.LeftOuter),
+				    Resultado = Table.ExpandTableColumn(ConApellido, "_ApellidoJoin", {"Apellido"}, {"Apellido"})
 				in
 				    Resultado
 
