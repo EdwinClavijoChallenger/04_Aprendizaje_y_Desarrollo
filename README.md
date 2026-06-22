@@ -2,9 +2,9 @@
 
 ## Objetivo
 
-Este repositorio contiene el proyecto Power BI `Proyecto.pbip`, correspondiente al Dashboard Corporativo de Desarrollo Organizacional.
+Este repositorio contiene el proyecto Power BI `Proyecto4.pbip`, correspondiente al Dashboard Corporativo de Desarrollo Organizacional.
 
-El objetivo es entregar una lectura gerencial, visual y accionable sobre los frentes de Desarrollo Organizacional, integrando indicadores de Aprendizaje, seguimiento inicial de Planes de Desarrollo Individual del frente Desarrollo y analisis de Entrevista de Retiro del frente Bienestar y Clima.
+El objetivo es entregar una lectura gerencial, visual y accionable sobre los frentes de Desarrollo Organizacional, integrando indicadores de Aprendizaje, Planes de Desarrollo Individual, Bienestar y Clima, y el frente de Desempeno en construccion.
 
 ## Alcance del MVP
 
@@ -21,7 +21,7 @@ El alcance consolidado cubre el frente de Aprendizaje. El reporte permite analiz
 - comparativos mensuales y anuales;
 - indicadores ejecutivos para priorizacion gerencial.
 
-El frente Desarrollo inicia su estructuracion con la tabla `Fct_Seguimiento_PDI`, orientada al seguimiento gerencial de Planes de Desarrollo Individual. El frente Bienestar y Clima inicia con las tablas de entrevista de retiro, incluyendo una vista unificada para analisis gerencial agregado. El frente Desempeno continua contemplado para fases posteriores.
+El frente Desarrollo inicia su estructuracion con la tabla `Fct_Seguimiento_PDI`, orientada al seguimiento gerencial de Planes de Desarrollo Individual. Bienestar y Clima cuenta con entrevista de retiro, una vista unificada para analisis gerencial agregado y plan de bienestar. Desempeno esta en construccion con tablas de resultados, competencias, evaluadores y cobertura poblacional para 2025.
 
 ## Estructura general
 
@@ -38,7 +38,7 @@ El frente Desarrollo inicia su estructuracion con la tabla `Fct_Seguimiento_PDI`
 
 1. Abrir Power BI Desktop.
 2. Seleccionar `Archivo > Abrir`.
-3. Abrir `PBIP/Proyecto.pbip`.
+3. Abrir `PBIP/Proyecto4.pbip`.
 4. Esperar la carga del reporte y del modelo semantico.
 5. Guardar cambios desde Power BI Desktop cuando se modifiquen visuales, modelo o medidas.
 
@@ -69,13 +69,21 @@ El frente Bienestar y Clima cuenta con tres paginas activas:
 - `BC02 Entrevista de Retiro`
 - `BC03 Plan de Bienestar`
 
+El frente Desempeno cuenta con seis paginas en construccion:
+
+- `DS01_Resumen_Desempeno`
+- `DS02_Cobertura`
+- `DS03_Curva_Niveles`
+- `DS04_Competencias`
+- `DS05_Areas_Cargos`
+- `DS06_Detalle_Individual`
+
 El modelo incluye dimensiones gerenciales, tabla de medidas `Medidas_AD`, fact consolidada de induccion, relacion entre `Fct_AsistenciaFormacion` y `Dim_ColaboradorHC`, estructura inicial para `Fct_Seguimiento_PDI`, fact homologada `Fct_EntrevistaRetiro_Unificada` y `Fct_SeguimientoBienestar` para seguimiento del plan de bienestar.
 
 ## Bloques pendientes del Dashboard Corporativo
 
-Los siguientes bloques estan previstos para fases posteriores:
+Los siguientes componentes estan previstos para fases posteriores:
 
-- Desempeno
 - Planes de trabajo de Clima Laboral
 - eNPS de actividades de Bienestar
 

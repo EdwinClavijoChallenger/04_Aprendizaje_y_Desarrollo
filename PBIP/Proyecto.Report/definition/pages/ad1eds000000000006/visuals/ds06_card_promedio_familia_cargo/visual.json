@@ -1,86 +1,91 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
-  "name": "ds06_slicer_identificacion",
+  "name": "ds06_card_promedio_familia_cargo",
   "position": {
-    "x": 247.28782926360316,
-    "y": 119.70621034416459,
-    "z": 12000,
-    "height": 75.603922322630268,
-    "width": 280.36454527975388,
-    "tabOrder": 12000
+    "x": 835,
+    "y": 280,
+    "z": 14004,
+    "height": 60,
+    "width": 413,
+    "tabOrder": 14004
   },
   "visual": {
-    "visualType": "slicer",
+    "visualType": "card",
     "query": {
       "queryState": {
         "Values": {
           "projections": [
             {
               "field": {
-                "Column": {
+                "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Dim_ColaboradorDesempeno"
+                      "Entity": "Medidas_AD"
                     }
                   },
-                  "Property": "Identificación"
+                  "Property": "Desempeno_Promedio_Familia_Cargo"
                 }
               },
-              "queryRef": "Dim_ColaboradorDesempeno.Identificación",
-              "nativeQueryRef": "Identificación",
-              "active": true
+              "queryRef": "Medidas_AD.Desempeno_Promedio_Familia_Cargo",
+              "nativeQueryRef": "Desempeno_Promedio_Familia_Cargo"
             }
           ]
         }
       }
     },
     "objects": {
-      "selection": [
+      "labels": [
         {
           "properties": {
-            "singleSelect": {
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Outfit'"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#0B1C35'"
+                    }
+                  }
+                }
+              }
+            },
+            "bold": {
               "expr": {
                 "Literal": {
                   "Value": "true"
                 }
               }
-            }
-          }
-        }
-      ],
-      "data": [
-        {
-          "properties": {
-            "mode": {
+            },
+            "labelDisplayUnits": {
               "expr": {
                 "Literal": {
-                  "Value": "'Dropdown'"
+                  "Value": "1D"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "18D"
                 }
               }
             }
           }
         }
       ],
-      "header": [
+      "categoryLabels": [
         {
           "properties": {
             "show": {
               "expr": {
                 "Literal": {
                   "Value": "false"
-                }
-              }
-            }
-          }
-        }
-      ],
-      "general": [
-        {
-          "properties": {
-            "selfFilterEnabled": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
                 }
               }
             }
@@ -95,20 +100,7 @@
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
-                }
-              }
-            }
-          }
-        }
-      ],
-      "visualTooltip": [
-        {
-          "properties": {
-            "show": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
+                  "Value": "false"
                 }
               }
             }
@@ -123,7 +115,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#FFFFFF'"
+                      "Value": "'#F7FAFD'"
                     }
                   }
                 }
@@ -146,19 +138,6 @@
           }
         }
       ],
-      "dropShadow": [
-        {
-          "properties": {
-            "show": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
-                }
-              }
-            }
-          }
-        }
-      ],
       "border": [
         {
           "properties": {
@@ -174,7 +153,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#E6EEF5'"
+                      "Value": "'#1B487F'"
                     }
                   }
                 }
@@ -224,25 +203,14 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "12D"
-                }
-              }
-            },
-            "background": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#FFFFFF'"
-                    }
-                  }
+                  "Value": "11D"
                 }
               }
             },
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Identificación'"
+                  "Value": "'Promedio familia de cargos'"
                 }
               }
             },
@@ -260,7 +228,7 @@
             "alignment": {
               "expr": {
                 "Literal": {
-                  "Value": "'Left'"
+                  "Value": "'Center'"
                 }
               }
             }

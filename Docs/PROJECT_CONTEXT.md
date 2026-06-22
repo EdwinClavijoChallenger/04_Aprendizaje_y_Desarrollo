@@ -24,22 +24,22 @@ El bloque Bienestar y Clima inicia su construccion con el analisis de entrevista
 - eNPS de actividades de Bienestar;
 - Cumplimiento del Plan de Bienestar.
 
-La fase actual permite revisar motivos de salida, tipos de retiro, unidades de negocio con mayor concentracion, tendencias mensuales, causas potencialmente prevenibles y procesos asociados a oportunidades de mejora. Los componentes de clima, eNPS y plan de bienestar quedan visibles como roadmap funcional hasta incorporar sus fuentes.
+La fase actual permite revisar motivos de salida, tipos de retiro, unidades de negocio con mayor concentracion, tendencias mensuales, causas potencialmente prevenibles y procesos asociados a oportunidades de mejora. El plan de bienestar cuenta con una pagina inicial de seguimiento; los componentes de clima y eNPS permanecen como roadmap funcional hasta incorporar sus fuentes.
+
+El bloque Desempeno se encuentra en construccion con las paginas `DS01_Resumen_Desempeno` a `DS06_Detalle_Individual`. La primera etapa integra resultados de desempeno, competencias, evaluadores, poblacion activa, curva de niveles, analisis por estructura y consulta individual.
 
 ## Proximos bloques
 
-Los frentes o componentes pendientes son:
+Los componentes pendientes son:
 
-- Desempeno
 - Planes de trabajo de Clima Laboral
 - eNPS de actividades de Bienestar
-- Cumplimiento del Plan de Bienestar
 
 La pagina `00 Inicio Corporativo` funciona como entrada corporativa. Actualmente muestra Aprendizaje como frente consolidado, Desarrollo como frente iniciado con PDI y Bienestar y Clima como frente iniciado con Entrevista de Retiro, manteniendo placeholders para componentes futuros como movilidad, sucesion, cargos criticos, clima laboral, eNPS y cumplimiento del plan de bienestar.
 
 El panel del frente Desarrollo en el Home muestra: motivo PDI principal (medida `PDI Motivo Principal`), estado predominante con barra de avance (medidas `PDI Estado Principal` y `PDI Avance Promedio`), placeholders para Movilidad, Sucesion y Cargos criticos, y KPIs de alertas criticas e indice de desarrollo. Todo el panel es renderizado por `HTML Inicio Corporativo Propuesta 1`.
 
-La navegacion debe mantener una ruta clara desde el inicio corporativo hacia los frentes funcionales. Cuando se agreguen nuevas paginas, se debe validar si pertenecen a Aprendizaje, Desarrollo u otro frente futuro, y si requieren acceso desde el menu principal o desde una navegacion secundaria.
+La navegacion debe mantener una ruta clara desde el inicio corporativo hacia los frentes funcionales. Cuando se agreguen nuevas paginas, se debe validar si pertenecen a Aprendizaje, Desarrollo, Desempeno, Bienestar y Clima u otro frente futuro, y si requieren acceso desde el menu principal o desde una navegacion secundaria.
 
 ## Publico objetivo
 

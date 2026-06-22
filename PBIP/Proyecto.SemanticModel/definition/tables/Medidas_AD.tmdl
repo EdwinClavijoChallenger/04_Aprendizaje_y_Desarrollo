@@ -2450,20 +2450,46 @@ table Medidas_AD
 			VAR _TieneSeleccion = HASONEVALUE('Dim_ColaboradorDesempeno'[ColaboradorDesempeno_Key])
 			VAR _Identificacion = SELECTEDVALUE('Dim_ColaboradorDesempeno'[Identificación])
 			VAR _Cargo = SELECTEDVALUE('Dim_ColaboradorDesempeno'[Descripción Cargo])
-			VAR _Empresa = SELECTEDVALUE('Dim_ColaboradorDesempeno'[Empresa_Homologada])
-			VAR _Area = SELECTEDVALUE('Dim_ColaboradorDesempeno'[ÁREA])
+			VAR _NivelCargo = SELECTEDVALUE('Fct_Desempeno_2025'[Nombre del Cargo])
 			VAR _Dependencia = SELECTEDVALUE('Dim_ColaboradorDesempeno'[DEPENDENCIA])
-			VAR _Resultado = [Desempeno Promedio]
-			VAR _Nivel = [Desempeno Nivel Individual]
+			VAR _CentroCosto = SELECTEDVALUE('Dim_ColaboradorDesempeno'[Nombre Centro Costo])
 			VAR _Texto =
 				IF(
 					NOT _TieneSeleccion,
-					"<div style='width:100%;height:100%;box-sizing:border-box;background:#F7FAFD;border:1px solid #E6EEF5;border-radius:8px;padding:16px;color:#1A3059;font-family:Outfit,Poppins,Segoe UI,Arial,sans-serif;'><div style='font-size:12px;font-weight:850;'>Ficha individual</div><div style='margin-top:12px;color:#6B778A;font-size:11px;'>Seleccione una identificacion para mostrar la informacion disponible.</div></div>",
-					"<div style='width:100%;height:100%;box-sizing:border-box;background:#F7FAFD;border:1px solid #E6EEF5;border-radius:8px;padding:13px 16px;font-family:Outfit,Poppins,Segoe UI,Arial,sans-serif;'><div style='font-size:11px;color:#6B778A;'>Identificacion</div><div style='font-size:20px;font-weight:850;color:#0B1C35;margin:2px 0 10px;'>" & COALESCE(_Identificacion, "Sin dato") & "</div><div style='display:grid;grid-template-columns:repeat(2,1fr);gap:7px;font-size:9.5px;'><div><span style='color:#6B778A;'>Cargo</span><br><b style='color:#1A3059;'>" & COALESCE(_Cargo, "Sin dato") & "</b></div><div><span style='color:#6B778A;'>Empresa</span><br><b style='color:#1A3059;'>" & COALESCE(_Empresa, "Sin dato") & "</b></div><div><span style='color:#6B778A;'>Area</span><br><b style='color:#1A3059;'>" & COALESCE(_Area, "Sin dato") & "</b></div><div><span style='color:#6B778A;'>Dependencia</span><br><b style='color:#1A3059;'>" & COALESCE(_Dependencia, "Sin dato") & "</b></div></div><div style='margin-top:9px;display:flex;gap:8px;'><span style='background:#1B487F;color:#FFFFFF;border-radius:10px;padding:4px 8px;font-size:9px;font-weight:800;'>Resultado " & FORMAT(_Resultado, "0.00") & "</span><span style='background:#FFF2E5;color:#9C5B00;border-radius:10px;padding:4px 8px;font-size:9px;font-weight:800;'>Nivel " & COALESCE(_Nivel, "Sin dato") & "</span></div></div>"
+					"<div style='width:100%;height:100%;box-sizing:border-box;background:#F7FAFD;border:1px solid #E6EEF5;border-radius:8px;color:#1A3059;font-family:Outfit,Poppins,Segoe UI,Arial,sans-serif;'><div style='background:#1B487F;color:#FFFFFF;padding:9px 14px;font-size:12px;font-weight:850;text-align:center;border-radius:8px 8px 0 0;'>Datos del evaluado</div><div style='padding:12px 14px;color:#6B778A;font-size:11px;'>Seleccione una identificación para mostrar la información disponible.</div></div>",
+					"<div style='width:100%;height:100%;box-sizing:border-box;background:#F7FAFD;border:1px solid #E6EEF5;border-radius:8px;color:#1A3059;font-family:Outfit,Poppins,Segoe UI,Arial,sans-serif;'><div style='background:#1B487F;color:#FFFFFF;padding:9px 14px;font-size:12px;font-weight:850;text-align:center;border-radius:8px 8px 0 0;'>Datos del evaluado</div><!-- Tipo de documento fijo: la fuente bd no incluye este campo. --><div style='display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:20px;row-gap:9px;padding:12px 14px;font-size:9.5px;line-height:13px;'><div><span style='color:#6B778A;'>Tipo de documento</span><br><b style='color:#1A3059;word-break:break-word;'>Cédula de ciudadanía</b></div><div><span style='color:#6B778A;'>Identificación</span><br><b style='color:#1A3059;word-break:break-word;'>" & COALESCE(_Identificacion, "Sin dato") & "</b></div><div><span style='color:#6B778A;'>Nombres</span><br><b style='color:#1A3059;'>Sin dato</b></div><div><span style='color:#6B778A;'>Apellidos</span><br><b style='color:#1A3059;'>Sin dato</b></div><div><span style='color:#6B778A;'>Cargo</span><br><b style='color:#1A3059;word-break:break-word;'>" & COALESCE(_Cargo, "Sin dato") & "</b></div><div><span style='color:#6B778A;'>Nivel del cargo</span><br><b style='color:#1A3059;word-break:break-word;'>" & COALESCE(_NivelCargo, "Sin dato") & "</b></div><div><span style='color:#6B778A;'>Dependencia</span><br><b style='color:#1A3059;word-break:break-word;'>" & COALESCE(_Dependencia, "Sin dato") & "</b></div><div><span style='color:#6B778A;'>Centro de costo</span><br><b style='color:#1A3059;word-break:break-word;'>" & COALESCE(_CentroCosto, "Sin dato") & "</b></div></div></div>"
 				)
 			RETURN _Texto
 		displayFolder: 11 HTML Content
 		lineageTag: 336fae22-50f5-4a41-8e90-c28bf539aad1
+
+	measure Desempeno_Promedio_Sin_Auto_Evaluacion =
+			// Promedio de Calificación Obtenida en Fct_Desempeno_Evaluadores_2025, excluyendo Tipo Evaluador = 2 (autoevaluación).
+			CALCULATE(
+				AVERAGE('Fct_Desempeno_Evaluadores_2025'[Calificación Obtenida]),
+				'Fct_Desempeno_Evaluadores_2025'[Tipo Evaluador] <> 2
+			)
+		formatString: 0.00
+		displayFolder: 10 Desempeno Evaluadores
+		lineageTag: 8dd5f2bf-3f5d-4e1c-a3db-2d57d44c90d6
+
+	measure Desempeno_Promedio_Familia_Cargo =
+			// Promedio de Calificación Final para colaboradores con el mismo cargo del evaluado seleccionado, sin filtrar por su identificación.
+			VAR _Cargo = SELECTEDVALUE('Dim_ColaboradorDesempeno'[Descripción Cargo])
+			RETURN
+				IF(
+					ISBLANK(_Cargo),
+					BLANK(),
+					CALCULATE(
+						AVERAGE('Fct_Desempeno_2025'[Calificación Final]),
+						REMOVEFILTERS('Dim_ColaboradorDesempeno'[Identificación]),
+						REMOVEFILTERS('Dim_ColaboradorDesempeno'[ColaboradorDesempeno_Key]),
+						TREATAS({ _Cargo }, 'Dim_ColaboradorDesempeno'[Descripción Cargo])
+					)
+				)
+		formatString: 0.00
+		displayFolder: 10 Desempeno Evaluadores
+		lineageTag: 01a45272-4d8a-4c47-b4f6-132c8d32782f
 
 	column Indice
 		dataType: int64

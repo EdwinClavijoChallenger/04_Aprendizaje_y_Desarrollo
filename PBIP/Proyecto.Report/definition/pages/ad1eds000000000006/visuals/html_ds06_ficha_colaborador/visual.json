@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "html_ds06_ficha_colaborador",
   "position": {
-    "x": 32,
-    "y": 206,
+    "x": 31.259751712909573,
+    "y": 206.31436130520316,
     "z": 14000,
-    "height": 150,
-    "width": 360,
+    "height": 215.69228681907603,
+    "width": 361.05013228410553,
     "tabOrder": 14000
   },
   "visual": {

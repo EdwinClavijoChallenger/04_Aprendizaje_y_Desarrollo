@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "ds06_bar_brechas",
   "position": {
-    "x": 32,
-    "y": 372,
+    "x": 31.259751712909573,
+    "y": 422.0066481242792,
     "z": 14002,
-    "height": 274,
-    "width": 590,
+    "height": 223.50722474730344,
+    "width": 590.80930737399092,
     "tabOrder": 14002
   },
   "visual": {

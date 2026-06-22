@@ -23,6 +23,11 @@ La tabla de medidas principal es `Medidas_AD`.
 | `Fct_EntrevistaRetiro_Corporativa` | Fuente corporativa nueva para unificar el proceso de entrevista de retiro. | Una respuesta de entrevista de retiro. |
 | `Fct_EntrevistaRetiro_Unificada` | Fact homologada para analisis agregado de entrevista de retiro en Bienestar y Clima. | Una entrevista de retiro homologada, con trazabilidad de fuente. |
 | `Fct_SeguimientoBienestar` | Seguimiento mensual del plan de actividades de bienestar (planeacion original, planeacion de ejecucion y ejecucion real). Tabla calculada con cruce de actividades por los 12 meses del anio. | Una actividad de bienestar por mes. |
+| `Fct_Desempeno_2025` | Resultado consolidado de evaluacion de desempeno 2025. | Un registro de evaluacion por colaborador y prototipo. |
+| `Fct_Competencias_2025` | Resultados de competencias evaluadas en 2025. | Un registro por colaborador y competencia. |
+| `Fct_Desempeno_Evaluadores_2025` | Detalle de calificaciones por tipo de evaluador. | Un registro por colaborador, evaluador y competencia. |
+| `Fct_Desempeno_2024` | Resultado historico de desempeno para referencia comparativa. | Un registro historico por colaborador. |
+| `Fct_Poblacion_Indicadores_2025` | Poblacion de referencia e indicador de actividad para cobertura 2025. | Un colaborador de la poblacion de indicadores. |
 
 ## Observaciones por fuente
 
@@ -61,6 +66,9 @@ La tabla de medidas principal es `Medidas_AD`.
 | `Dim_DimensionBienestar` | Catalogo de dimensiones del plan de bienestar (agrupaciones de actividades). Calculada desde staging. |
 | `Dim_Frente_Home` | Tabla auxiliar para controlar el frente activo del home corporativo. |
 | `Dim_FechaActualizacion` | Tabla auxiliar de metadatos. Captura la datetime del ultimo refresh del modelo en zona horaria Bogota (UTC-5). Una sola fila. Usada por `HTML Inicio Corporativo Propuesta 1` para mostrar la fecha de actualizacion en el header del Home. |
+| `Dim_ColaboradorDesempeno` | Dimension especifica de evaluacion construida desde `bd`, con identificacion, cargo, centro de costo, empresa, dependencia y area. |
+| `Dim_Nivel_Desempeno` | Catalogo de niveles de desempeno para curva y distribuciones. |
+| `Dim_Anio_Desempeno` | Segmentacion de anio para el frente Desempeno. |
 
 ## Criterios de homologacion
 
@@ -120,6 +128,15 @@ Relaciones de negocio:
 Relacion de headcount:
 
 - `Fct_AsistenciaFormacion[Colaborador_Key]` -> `Dim_ColaboradorHC[Colaborador_Key]`
+
+Relaciones de Desempeno:
+
+- `Fct_Desempeno_2025[ColaboradorDesempeno_Key]` -> `Dim_ColaboradorDesempeno[ColaboradorDesempeno_Key]`
+- `Fct_Competencias_2025[ColaboradorDesempeno_Key]` -> `Dim_ColaboradorDesempeno[ColaboradorDesempeno_Key]`
+- `Fct_Desempeno_Evaluadores_2025[ColaboradorDesempeno_Key]` -> `Dim_ColaboradorDesempeno[ColaboradorDesempeno_Key]`
+- `Fct_Desempeno_2024[ColaboradorDesempeno_Key]` -> `Dim_ColaboradorDesempeno[ColaboradorDesempeno_Key]`
+- `Fct_Poblacion_Indicadores_2025[ColaboradorDesempeno_Key]` -> `Dim_ColaboradorDesempeno[ColaboradorDesempeno_Key]`
+- Las tablas de Desempeno se relacionan con `Dim_Empresa` mediante `Empresa_Key` cuando la fuente dispone de la llave.
 
 ## Logica de `Dim_ColaboradorHC`
 
@@ -420,6 +437,19 @@ Estas medidas soportan el analisis de asistencia por `Tipo_Cargo` desde `Dim_Col
 
 Las medidas gerenciales usan registros validos como base principal, aplicando `RegistroValido_Flag = 1`.
 
+### Desempeno
+
+Las medidas del frente se mantienen en `Medidas_AD`, organizadas en las carpetas `10 Desempeno Evaluadores`, `12 Desempeno`, `13 Competencias`, `14 Nine Box` y `15 Cobertura Desempeno`.
+
+Las medidas base incluyen cobertura de objetivos y competencias, promedios, brechas, variacion numerica 2025 vs 2024, curva de niveles y distribucion Nine Box.
+
+Para el detalle individual de `DS06_Detalle_Individual` se usan, entre otras:
+
+- `Desempeno_Promedio_Sin_Auto_Evaluacion`: promedio de `Fct_Desempeno_Evaluadores_2025[Calificación Obtenida]`, excluyendo `Tipo Evaluador = 2`.
+- `Desempeno_Promedio_Familia_Cargo`: promedio de `Fct_Desempeno_2025[Calificación Final]` para colaboradores con el mismo `Descripción Cargo` del evaluado seleccionado.
+
+La ficha individual obtiene cargo, dependencia y centro de costo desde `Dim_ColaboradorDesempeno`; usa `Fct_Desempeno_2025[Nombre del Cargo]` como nivel del cargo. Nombres, apellidos y tipo de documento no hacen parte de las fuentes de Desempeno cargadas; los dos primeros se muestran como `Sin dato` y el tipo de documento se maneja temporalmente como texto fijo.
+
 ### KPI gerencial
 
 `KPI Indice Aprendizaje` promedia los principales indicadores del bloque, excluyendo valores en blanco:
@@ -443,6 +473,7 @@ Las medidas gerenciales usan registros validos como base principal, aplicando `R
 - `Fct_Induccion` es la fuente gerencial consolidada para onboarding, entrenamiento y segmentacion UC.
 - `Fct_EntrevistaRetiro_Unificada` es la fuente gerencial del modulo de entrevista de retiro en Bienestar y Clima, para motivos de salida, tendencias y oportunidades de mejora.
 - `Fct_SeguimientoBienestar` es la fuente del modulo de plan de bienestar. Su estructura actividad x mes permite lectura mensual de cumplimiento, diferencias de programacion y alertas de pendientes vencidos.
+- `Fct_Desempeno_2025`, `Fct_Competencias_2025`, `Fct_Desempeno_Evaluadores_2025`, `Fct_Desempeno_2024` y `Fct_Poblacion_Indicadores_2025` soportan el frente Desempeno para resultados, evaluadores, competencias, cobertura y comparativos.
 - `Dim_ColaboradorHC` debe mantenerse actualizada por corte mensual para que el analisis de tipo de cargo sea confiable.
 - `Fct_Seguimiento_PDI` es la fuente inicial del frente Desarrollo; los componentes de movilidad, sucesion y cargos criticos quedan como pendientes de fuente.
 
@@ -456,3 +487,4 @@ Las medidas gerenciales usan registros validos como base principal, aplicando `R
 - La fecha activa de PDI es `Fecha_Inicio`. Las alertas por vencimiento usan `Fecha_Fin` dentro de las medidas para evitar una segunda relacion activa con calendario.
 - La entrevista de retiro se analiza de forma agregada. Los textos abiertos deben tratarse con cautela por posible sensibilidad y no deben exponerse en visuales de detalle sin revision previa.
 - La clasificacion de `CategoriaPrincipalMotivo` y `ProcesoRelacionado` es una primera homologacion tecnica basada en palabras clave; requiere validacion funcional antes de usarse como taxonomia oficial.
+- `Dim_ColaboradorDesempeno` es una dimension especifica de evaluacion y no debe sustituirse automaticamente por `Dim_ColaboradorHC`, que corresponde a un snapshot mensual de headcount.
