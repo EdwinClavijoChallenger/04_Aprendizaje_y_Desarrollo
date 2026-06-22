@@ -50,6 +50,23 @@
             }
           ]
         }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Medidas_AD"
+                  }
+                },
+                "Property": "Plan Actividades Planificadas"
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
       }
     },
     "objects": {
