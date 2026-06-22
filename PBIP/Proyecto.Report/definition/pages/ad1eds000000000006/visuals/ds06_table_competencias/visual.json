@@ -28,6 +28,7 @@
               },
               "queryRef": "Fct_Competencias_2025.Nombre Especificación",
               "nativeQueryRef": "Nombre Especificación",
+              "displayName": "Nombre competencia",
               "active": true
             },
             {
