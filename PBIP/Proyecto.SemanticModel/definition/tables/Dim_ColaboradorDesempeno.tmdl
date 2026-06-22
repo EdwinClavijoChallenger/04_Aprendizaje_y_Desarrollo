@@ -9,9 +9,8 @@ table Dim_ColaboradorDesempeno
 		sourceColumn: ColaboradorDesempeno_Key
 
 	column Identificación
-		dataType: int64
+		dataType: string
 		isHidden
-		formatString: 0
 		lineageTag: 2cdf4c4a-30b2-4f77-bc3c-4f639fb80b29
 		summarizeBy: none
 		sourceColumn: Identificación
@@ -104,7 +103,7 @@ table Dim_ColaboradorDesempeno
 				    Hoja = Origen{[Item="bd",Kind="Sheet"]}[Data],
 				    Encabezados = Table.PromoteHeaders(Hoja, [PromoteAllScalars=true]),
 				    Seleccion = Table.SelectColumns(Encabezados, {"Identificación","Tipo Contrato","Fecha Inicio","Descripción Cargo","Nombre Centro Costo","EMPRESA","DEPENDENCIA","ÁREA"}, MissingField.UseNull),
-				    Tipos = Table.TransformColumnTypes(Seleccion, {{"Identificación", Int64.Type}, {"Tipo Contrato", type text}, {"Fecha Inicio", type date}, {"Descripción Cargo", type text}, {"Nombre Centro Costo", type text}, {"EMPRESA", type text}, {"DEPENDENCIA", type text}, {"ÁREA", type text}}, "es-CO"),
+				    Tipos = Table.TransformColumnTypes(Seleccion, {{"Identificación", type text}, {"Tipo Contrato", type text}, {"Fecha Inicio", type date}, {"Descripción Cargo", type text}, {"Nombre Centro Costo", type text}, {"EMPRESA", type text}, {"DEPENDENCIA", type text}, {"ÁREA", type text}}, "es-CO"),
 				    HomologarEmpresa = (valor as nullable any) as nullable text =>
 				        let t = Text.Upper(Text.Trim(Text.From(valor))) in
 				            if t = "" then null
@@ -124,3 +123,4 @@ table Dim_ColaboradorDesempeno
 	annotation PBI_NavigationStepName = Navegación
 
 	annotation PBI_ResultType = Table
+
