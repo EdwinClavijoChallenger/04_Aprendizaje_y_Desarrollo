@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "nav_ds05_resumen",
   "position": {
-    "x": 170,
+    "x": 156,
     "y": 684,
     "z": 17001,
     "height": 28,
-    "width": 116,
+    "width": 104,
     "tabOrder": 17001
   },
   "visual": {

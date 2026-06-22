@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
-  "name": "nav_ds05_inicio",
+  "name": "nav_ds06_detalle",
   "position": {
-    "x": 48,
+    "x": 696,
     "y": 684,
-    "z": 17000,
+    "z": 17006,
     "height": 28,
     "width": 104,
-    "tabOrder": 17000
+    "tabOrder": 17006
   },
   "visual": {
     "visualType": "actionButton",
@@ -57,7 +57,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#FFFFFF'"
+                      "Value": "'#F7931E'"
                     }
                   }
                 }
@@ -82,7 +82,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#E6EEF5'"
+                      "Value": "'#F7931E'"
                     }
                   }
                 }
@@ -118,7 +118,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Inicio'"
+                  "Value": "'Detalle'"
                 }
               }
             },
@@ -141,7 +141,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#003A70'"
+                      "Value": "'#FFFFFF'"
                     }
                   }
                 }
@@ -178,7 +178,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Inicio'"
+                  "Value": "'Detalle'"
                 }
               }
             },
@@ -201,7 +201,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#003A70'"
+                      "Value": "'#FFFFFF'"
                     }
                   }
                 }
@@ -297,7 +297,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#1B487F'"
+                      "Value": "'#F7931E'"
                     }
                   }
                 }
@@ -359,7 +359,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Navegacion: Inicio'"
+                  "Value": "'Navegacion: Detalle'"
                 }
               }
             }
@@ -372,7 +372,7 @@
             "navigationSection": {
               "expr": {
                 "Literal": {
-                  "Value": "'ad1eh100000000000001'"
+                  "Value": "'ad1eds000000000006'"
                 }
               }
             },
@@ -386,7 +386,7 @@
             "tooltip": {
               "expr": {
                 "Literal": {
-                  "Value": "'Ir a Inicio'"
+                  "Value": "'Ir a Detalle'"
                 }
               }
             },

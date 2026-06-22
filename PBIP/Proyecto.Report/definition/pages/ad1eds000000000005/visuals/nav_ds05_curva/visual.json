@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "nav_ds05_curva",
   "position": {
-    "x": 414,
+    "x": 372,
     "y": 684,
     "z": 17003,
     "height": 28,
-    "width": 116,
+    "width": 104,
     "tabOrder": 17003
   },
   "visual": {

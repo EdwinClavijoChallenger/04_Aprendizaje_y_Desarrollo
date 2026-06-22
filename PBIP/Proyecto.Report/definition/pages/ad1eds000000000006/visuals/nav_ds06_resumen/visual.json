@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
-  "name": "nav_ds05_inicio",
+  "name": "nav_ds06_resumen",
   "position": {
-    "x": 48,
+    "x": 156,
     "y": 684,
-    "z": 17000,
+    "z": 17001,
     "height": 28,
     "width": 104,
-    "tabOrder": 17000
+    "tabOrder": 17001
   },
   "visual": {
     "visualType": "actionButton",
@@ -118,7 +118,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Inicio'"
+                  "Value": "'Resumen'"
                 }
               }
             },
@@ -178,7 +178,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Inicio'"
+                  "Value": "'Resumen'"
                 }
               }
             },
@@ -359,7 +359,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Navegacion: Inicio'"
+                  "Value": "'Navegacion: Resumen'"
                 }
               }
             }
@@ -372,7 +372,7 @@
             "navigationSection": {
               "expr": {
                 "Literal": {
-                  "Value": "'ad1eh100000000000001'"
+                  "Value": "'ad1edp000000000001'"
                 }
               }
             },
@@ -386,7 +386,7 @@
             "tooltip": {
               "expr": {
                 "Literal": {
-                  "Value": "'Ir a Inicio'"
+                  "Value": "'Ir a Resumen'"
                 }
               }
             },
