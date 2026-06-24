@@ -255,3 +255,4 @@ table Fct_Desempeno_2025
 	annotation PBI_NavigationStepName = Navegación
 
 	annotation PBI_ResultType = Table
+

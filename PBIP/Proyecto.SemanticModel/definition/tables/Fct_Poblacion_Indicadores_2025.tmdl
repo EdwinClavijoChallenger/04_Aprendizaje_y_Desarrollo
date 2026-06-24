@@ -205,3 +205,4 @@ table Fct_Poblacion_Indicadores_2025
 	annotation PBI_NavigationStepName = Navegación
 
 	annotation PBI_ResultType = Table
+

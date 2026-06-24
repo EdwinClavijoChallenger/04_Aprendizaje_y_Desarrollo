@@ -170,3 +170,11 @@ relationship DS_Empresa_Poblacion2025
 	fromColumn: Fct_Poblacion_Indicadores_2025.Empresa_Key
 	toColumn: Dim_Empresa.Empresa_Key
 
+relationship DS_Colaborador_NineBoxTalento2025
+	fromColumn: Fct_NineBox_Talento_2025.NineBox_Key
+	toColumn: Dim_ColaboradorDesempeno.ColaboradorDesempeno_Key
+
+relationship DS_Cuadrante_NineBoxTalento2025
+	fromColumn: Fct_NineBox_Talento_2025.Cuadrante_Tecnico
+	toColumn: Dim_NineBox_Cuadrante.Cuadrante_Nombre_Tecnico
+

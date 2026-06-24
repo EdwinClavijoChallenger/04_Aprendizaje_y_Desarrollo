@@ -464,6 +464,12 @@ Las medidas del frente se mantienen en `Medidas_AD`, organizadas en las carpetas
 
 Las medidas base incluyen cobertura de objetivos y competencias, promedios, brechas, variacion numerica 2025 vs 2024, curva de niveles y distribucion Nine Box.
 
+Las medidas clave del Nine Box (`DS07_Nine_Box`) son:
+
+- `NineBox X Visual`: coordenada X del centro visual del cuadrante, derivada de `AVERAGE(Fct_NineBox_Talento_2025[INDICADORES])` con cortes 71/91. Devuelve 16.67 (Bajo), 50.00 (Medio) o 83.33 (Alto). Usa patron `ISFILTERED + TREATAS` para soportar filtro de ano.
+- `NineBox Y Visual`: equivalente para el eje Y usando `COMPETENCIAS`.
+- Estas medidas bypasean la relacion `Dim_NineBox_Cuadrante` para evitar la inconsistencia de naming DILEMA 1/2 entre esa dimension y el ANEXO 6. Los valores reales de COMPETENCIAS, INDICADORES y TOTAL se conservan en tooltips y tabla detalle a traves de `NineBox Indicador Score`, `NineBox Competencias Score` y `NineBox ANEXO Total Score`.
+
 Para el detalle individual de `DS06_Detalle_Individual` se usan, entre otras:
 
 - `Desempeno_Promedio_Sin_Auto_Evaluacion`: promedio de `Fct_Desempeno_Evaluadores_2025[Calificación Obtenida]`, excluyendo `Tipo Evaluador = 2`.

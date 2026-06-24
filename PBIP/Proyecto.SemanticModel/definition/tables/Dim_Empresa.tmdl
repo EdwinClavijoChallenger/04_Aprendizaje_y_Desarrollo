@@ -14,18 +14,22 @@ table Dim_Empresa
 
 	column Empresa_Original
 		dataType: string
+		lineageTag: 4f9c42ec-0b91-4e68-8449-1a9e3dbdccd0
 		sourceColumn: [Empresa_Original]
 
 	column Empresa_Normalizada
 		dataType: string
+		lineageTag: e1d9e7b8-1e14-4126-920d-8a6b5b515ca2
 		sourceColumn: [Empresa_Normalizada]
 
 	column Fuente
 		dataType: string
+		lineageTag: 1049221f-23a4-4e43-91f4-bd759ee54f5e
 		sourceColumn: [Fuente]
 
 	column Observacion_Homologacion
 		dataType: string
+		lineageTag: da4b13e8-2c85-43c9-9457-be6137eca693
 		sourceColumn: [Observacion_Homologacion]
 
 	partition Dim_Empresa = calculated

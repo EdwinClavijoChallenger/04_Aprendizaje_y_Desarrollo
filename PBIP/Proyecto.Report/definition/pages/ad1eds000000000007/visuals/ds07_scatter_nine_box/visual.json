@@ -1,0 +1,419 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "ds07_scatter_nine_box",
+  "position": {
+    "x": 348.25775656324583,
+    "y": 252.38112722599595,
+    "z": 8000,
+    "height": 201.62291169451075,
+    "width": 518.86175876629341,
+    "tabOrder": 8000
+  },
+  "visual": {
+    "visualType": "scatterChart",
+    "query": {
+      "queryState": {
+        "Details": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Fct_NineBox_Talento_2025"
+                    }
+                  },
+                  "Property": "NineBox_Key"
+                }
+              },
+              "queryRef": "Fct_NineBox_Talento_2025.NineBox_Key",
+              "nativeQueryRef": "NineBox_Key",
+              "active": true
+            }
+          ]
+        },
+        "Tooltips": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Fct_NineBox_Talento_2025"
+                    }
+                  },
+                  "Property": "Nombre"
+                }
+              },
+              "queryRef": "Fct_NineBox_Talento_2025.Nombre",
+              "nativeQueryRef": "Nombre",
+              "displayName": "Nombre"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Fct_NineBox_Talento_2025"
+                    }
+                  },
+                  "Property": "Identificación"
+                }
+              },
+              "queryRef": "Fct_NineBox_Talento_2025.Identificación",
+              "nativeQueryRef": "Identificación"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Fct_NineBox_Talento_2025"
+                    }
+                  },
+                  "Property": "Apellido"
+                }
+              },
+              "queryRef": "Fct_NineBox_Talento_2025.Apellido",
+              "nativeQueryRef": "Apellido",
+              "displayName": "Apellido"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Fct_NineBox_Talento_2025"
+                    }
+                  },
+                  "Property": "Empresa"
+                }
+              },
+              "queryRef": "Fct_NineBox_Talento_2025.Empresa",
+              "nativeQueryRef": "Empresa",
+              "displayName": "Empresa"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Fct_NineBox_Talento_2025"
+                    }
+                  },
+                  "Property": "Área"
+                }
+              },
+              "queryRef": "Fct_NineBox_Talento_2025.Área",
+              "nativeQueryRef": "Área",
+              "displayName": "Área"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Fct_NineBox_Talento_2025"
+                    }
+                  },
+                  "Property": "Nombre del Cargo"
+                }
+              },
+              "queryRef": "Fct_NineBox_Talento_2025.Nombre del Cargo",
+              "nativeQueryRef": "Nombre del Cargo",
+              "displayName": "Cargo"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Fct_NineBox_Talento_2025"
+                    }
+                  },
+                  "Property": "CLASIFICACIÓN"
+                }
+              },
+              "queryRef": "Fct_NineBox_Talento_2025.CLASIFICACIÓN",
+              "nativeQueryRef": "CLASIFICACIÓN",
+              "displayName": "Clasificacion oficial"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medidas_AD"
+                    }
+                  },
+                  "Property": "NineBox Indicador Score"
+                }
+              },
+              "queryRef": "Medidas_AD.NineBox Indicador Score",
+              "nativeQueryRef": "NineBox Indicador Score",
+              "displayName": "Indicador"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medidas_AD"
+                    }
+                  },
+                  "Property": "NineBox Competencias Score"
+                }
+              },
+              "queryRef": "Medidas_AD.NineBox Competencias Score",
+              "nativeQueryRef": "NineBox Competencias Score",
+              "displayName": "Competencias"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medidas_AD"
+                    }
+                  },
+                  "Property": "NineBox Categoria Ejecutiva"
+                }
+              },
+              "queryRef": "Medidas_AD.NineBox Categoria Ejecutiva",
+              "nativeQueryRef": "NineBox Categoria Ejecutiva",
+              "displayName": "Categoria ejecutiva"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medidas_AD"
+                    }
+                  },
+                  "Property": "NineBox ANEXO Total Score"
+                }
+              },
+              "queryRef": "Medidas_AD.NineBox ANEXO Total Score",
+              "nativeQueryRef": "NineBox ANEXO Total Score",
+              "displayName": "Total"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medidas_AD"
+                    }
+                  },
+                  "Property": "NineBox Cuadrante"
+                }
+              },
+              "queryRef": "Medidas_AD.NineBox Cuadrante",
+              "nativeQueryRef": "NineBox Cuadrante",
+              "displayName": "Cuadrante tecnico"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medidas_AD"
+                    }
+                  },
+                  "Property": "NineBox Cuadrante Visual"
+                }
+              },
+              "queryRef": "Medidas_AD.NineBox Cuadrante Visual",
+              "nativeQueryRef": "NineBox Cuadrante Visual",
+              "displayName": "Cuadrante visual"
+            }
+          ]
+        },
+        "X": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medidas_AD"
+                    }
+                  },
+                  "Property": "NineBox X Visual"
+                }
+              },
+              "queryRef": "Medidas_AD.NineBox X Visual",
+              "nativeQueryRef": "NineBox X Visual",
+              "active": true,
+              "displayName": "X Visual"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medidas_AD"
+                    }
+                  },
+                  "Property": "NineBox Y Visual"
+                }
+              },
+              "queryRef": "Medidas_AD.NineBox Y Visual",
+              "nativeQueryRef": "NineBox Y Visual",
+              "displayName": "Y Visual"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "valueAxis": [
+        {
+          "properties": {
+            "showAxisTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "start": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            },
+            "end": {
+              "expr": {
+                "Literal": {
+                  "Value": "100D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "categoryAxis": [
+        {
+          "properties": {
+            "showAxisTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "start": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            },
+            "end": {
+              "expr": {
+                "Literal": {
+                  "Value": "100D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "visualHeader": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "visualTooltip": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "100D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "dropShadow": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

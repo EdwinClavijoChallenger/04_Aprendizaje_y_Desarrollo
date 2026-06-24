@@ -1,0 +1,338 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "ds07_table_detalle",
+  "position": {
+    "x": 47.252451451643914,
+    "y": 499.30090367237068,
+    "z": 10000,
+    "height": 154.35800807537012,
+    "width": 582.780234570275,
+    "tabOrder": 10000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Dim_ColaboradorDesempeno"
+                    }
+                  },
+                  "Property": "Nombres"
+                }
+              },
+              "queryRef": "Dim_ColaboradorDesempeno.Nombres",
+              "nativeQueryRef": "Nombres",
+              "active": true
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Dim_ColaboradorDesempeno"
+                    }
+                  },
+                  "Property": "Identificación"
+                }
+              },
+              "queryRef": "Dim_ColaboradorDesempeno.Identificación",
+              "nativeQueryRef": "Identificación",
+              "active": true,
+              "displayName": "Identificacion"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Dim_ColaboradorDesempeno"
+                    }
+                  },
+                  "Property": "Empresa_Homologada"
+                }
+              },
+              "queryRef": "Dim_ColaboradorDesempeno.Empresa_Homologada",
+              "nativeQueryRef": "Empresa_Homologada",
+              "active": true,
+              "displayName": "Empresa"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Dim_ColaboradorDesempeno"
+                    }
+                  },
+                  "Property": "ÁREA"
+                }
+              },
+              "queryRef": "Dim_ColaboradorDesempeno.ÁREA",
+              "nativeQueryRef": "ÁREA",
+              "active": true,
+              "displayName": "Area"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Dim_ColaboradorDesempeno"
+                    }
+                  },
+                  "Property": "Descripción Cargo"
+                }
+              },
+              "queryRef": "Dim_ColaboradorDesempeno.Descripción Cargo",
+              "nativeQueryRef": "Descripción Cargo",
+              "active": true,
+              "displayName": "Cargo"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Dim_ColaboradorDesempeno"
+                    }
+                  },
+                  "Property": "Jefe_Inmediato"
+                }
+              },
+              "queryRef": "Dim_ColaboradorDesempeno.Jefe_Inmediato",
+              "nativeQueryRef": "Jefe_Inmediato",
+              "active": true,
+              "displayName": "Jefe"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medidas_AD"
+                    }
+                  },
+                  "Property": "DS07 Detalle Desempeno Score"
+                }
+              },
+              "queryRef": "Medidas_AD.DS07 Detalle Desempeno Score",
+              "nativeQueryRef": "DS07 Detalle Desempeno Score",
+              "active": true,
+              "displayName": "Desempeno"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medidas_AD"
+                    }
+                  },
+                  "Property": "DS07 Detalle Competencias Score"
+                }
+              },
+              "queryRef": "Medidas_AD.DS07 Detalle Competencias Score",
+              "nativeQueryRef": "DS07 Detalle Competencias Score",
+              "active": true,
+              "displayName": "Competencias"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medidas_AD"
+                    }
+                  },
+                  "Property": "DS07 Detalle Total Score"
+                }
+              },
+              "queryRef": "Medidas_AD.DS07 Detalle Total Score",
+              "nativeQueryRef": "DS07 Detalle Total Score",
+              "active": true,
+              "displayName": "Total"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medidas_AD"
+                    }
+                  },
+                  "Property": "DS07 Detalle Cuadrante"
+                }
+              },
+              "queryRef": "Medidas_AD.DS07 Detalle Cuadrante",
+              "nativeQueryRef": "DS07 Detalle Cuadrante",
+              "active": true,
+              "displayName": "Cuadrante tecnico"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medidas_AD"
+                    }
+                  },
+                  "Property": "DS07 Detalle Cuadrante Visual"
+                }
+              },
+              "queryRef": "Medidas_AD.DS07 Detalle Cuadrante Visual",
+              "nativeQueryRef": "DS07 Detalle Cuadrante Visual",
+              "active": true,
+              "displayName": "Cuadrante visual"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medidas_AD"
+                    }
+                  },
+                  "Property": "DS07 Detalle Categoria Ejecutiva"
+                }
+              },
+              "queryRef": "Medidas_AD.DS07 Detalle Categoria Ejecutiva",
+              "nativeQueryRef": "DS07 Detalle Categoria Ejecutiva",
+              "active": true,
+              "displayName": "Categoria"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "visualHeader": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "visualTooltip": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "background": [
+        {
+          "properties": {
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#FFFFFF'"
+                    }
+                  }
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "dropShadow": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "border": [
+        {
+          "properties": {
+            "radius": {
+              "expr": {
+                "Literal": {
+                  "Value": "4D"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#E6EEF5'"
+                    }
+                  }
+                }
+              }
+            },
+            "width": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
+                }
+              }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

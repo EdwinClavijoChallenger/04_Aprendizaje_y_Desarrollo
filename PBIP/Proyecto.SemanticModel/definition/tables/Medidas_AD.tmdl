@@ -1849,25 +1849,52 @@ table Medidas_AD
 		displayFolder: 13 Competencias
 		lineageTag: 62d7d99a-d9d4-4197-a95c-fb1f6895e081
 
-	measure 'NineBox Desempeno Score' = AVERAGE('Fct_Desempeno_2025'[Calificación Final])
+	measure 'NineBox Desempeno Score' =
+			VAR _Anios = VALUES('Dim_Anio_Desempeno'[Anio])
+			VAR _FiltroAnio =
+				FILTER(
+					ALL('Fct_Desempeno_2025'[Fecha de Proceso]),
+					YEAR('Fct_Desempeno_2025'[Fecha de Proceso]) IN _Anios
+				)
+			RETURN
+				CALCULATE(
+					AVERAGE('Fct_Desempeno_2025'[Calificación Final]),
+					_FiltroAnio
+				)
 		formatString: 0.00
 		displayFolder: 14 Nine Box
 		lineageTag: 8a076910-9b3b-4a60-a689-fb292e5044b5
 
-	measure 'NineBox Competencias Score' = AVERAGE('Fct_Competencias_2025'[Puntaje Obtenido])
+	measure 'NineBox Competencias Score' =
+			VAR _Anios = VALUES('Dim_Anio_Desempeno'[Anio])
+			VAR _HayFiltroAnio = ISFILTERED('Dim_Anio_Desempeno'[Anio])
+			RETURN
+				IF(
+					_HayFiltroAnio,
+					CALCULATE(
+						AVERAGE('Fct_NineBox_Talento_2025'[COMPETENCIAS]),
+						KEEPFILTERS('Fct_NineBox_Talento_2025'[Es_Evaluable_NineBox] = TRUE()),
+						TREATAS(_Anios, 'Fct_NineBox_Talento_2025'[Anio_NineBox])
+					),
+					CALCULATE(
+						AVERAGE('Fct_NineBox_Talento_2025'[COMPETENCIAS]),
+						KEEPFILTERS('Fct_NineBox_Talento_2025'[Es_Evaluable_NineBox] = TRUE()),
+						'Fct_NineBox_Talento_2025'[Anio_NineBox] = 2025
+					)
+				)
 		formatString: 0.00
 		displayFolder: 14 Nine Box
 		lineageTag: 4aa66576-b6e4-4cf8-bff2-df3e7ce42a94
 
 	measure 'NineBox Banda Desempeno' =
-			VAR _Score = [NineBox Desempeno Score]
+			VAR _Score = [NineBox Indicador Score]
 			RETURN
 				SWITCH(
 					TRUE(),
 					ISBLANK(_Score), BLANK(),
-					_Score <= 50, "Bajo",
-					_Score <= 70, "Medio",
-					_Score >= 71, "Alto",
+					_Score <= 40, "Bajo",
+					_Score <= 80, "Medio",
+					_Score > 80, "Alto",
 					BLANK()
 				)
 		displayFolder: 14 Nine Box
@@ -1879,102 +1906,63 @@ table Medidas_AD
 				SWITCH(
 					TRUE(),
 					ISBLANK(_Score), BLANK(),
-					_Score <= 50, "Bajo",
-					_Score <= 70, "Medio",
-					_Score >= 71, "Alto",
+					_Score <= 40, "Bajo",
+					_Score <= 80, "Medio",
+					_Score > 80, "Alto",
 					BLANK()
 				)
 		displayFolder: 14 Nine Box
 		lineageTag: 8e501ad5-0b9d-4e2c-a3ee-e269d276bb2d
 
 	measure 'NineBox Cuadrante' =
-			VAR _BandaDesempeno = [NineBox Banda Desempeno]
-			VAR _BandaCompetencias = [NineBox Banda Competencias]
+			VAR _Anios = VALUES('Dim_Anio_Desempeno'[Anio])
+			VAR _HayFiltroAnio = ISFILTERED('Dim_Anio_Desempeno'[Anio])
 			RETURN
 				IF(
-					ISBLANK(_BandaDesempeno) || ISBLANK(_BandaCompetencias),
-					BLANK(),
-					_BandaDesempeno & "-" & _BandaCompetencias
+					_HayFiltroAnio,
+					CALCULATE(
+						SELECTEDVALUE('Fct_NineBox_Talento_2025'[Cuadrante_Tecnico]),
+						KEEPFILTERS('Fct_NineBox_Talento_2025'[Es_Evaluable_NineBox] = TRUE()),
+						TREATAS(_Anios, 'Fct_NineBox_Talento_2025'[Anio_NineBox])
+					),
+					CALCULATE(
+						SELECTEDVALUE('Fct_NineBox_Talento_2025'[Cuadrante_Tecnico]),
+						KEEPFILTERS('Fct_NineBox_Talento_2025'[Es_Evaluable_NineBox] = TRUE()),
+						'Fct_NineBox_Talento_2025'[Anio_NineBox] = 2025
+					)
 				)
 		displayFolder: 14 Nine Box
 		lineageTag: cfa4ac19-4eb1-4d9e-a9ff-078b60ae1661
 
 	measure 'NineBox Categoria Ejecutiva' =
-			SWITCH(
-				[NineBox Cuadrante],
-				"Alto-Alto", "Alto Potencial",
-				"Alto-Medio", "Alto Potencial",
-				"Medio-Medio", "Talento Sólido",
-				"Medio-Alto", "Talento Sólido",
-				"Bajo-Alto", "Talento Sólido",
-				"Alto-Bajo", "Desarrollo Requerido",
-				"Medio-Bajo", "Desarrollo Requerido",
-				"Bajo-Bajo", "Riesgo",
-				"Bajo-Medio", "Riesgo",
-				BLANK()
-			)
+			VAR _CuadranteTecnico = [NineBox Cuadrante]
+			RETURN
+				IF(
+					ISBLANK(_CuadranteTecnico),
+					BLANK(),
+					CALCULATE(
+						SELECTEDVALUE('Dim_NineBox_Cuadrante'[Categoria_Ejecutiva]),
+						TREATAS({_CuadranteTecnico}, 'Dim_NineBox_Cuadrante'[Cuadrante_Nombre_Tecnico])
+					)
+				)
 		displayFolder: 14 Nine Box
 		lineageTag: 84444867-3181-4409-863e-2b55915d946b
 
 	measure 'NineBox Colaboradores Evaluables' =
-			VAR _Base =
-				FILTER(
-					CALCULATETABLE(
-						VALUES('Fct_Poblacion_Indicadores_2025'[ColaboradorDesempeno_Key]),
-						KEEPFILTERS('Fct_Poblacion_Indicadores_2025'[INDICADOR ACTIVIDAD] = "ACTIVO")
-					),
-					NOT ISBLANK('Fct_Poblacion_Indicadores_2025'[ColaboradorDesempeno_Key])
-				)
-			VAR _Scored =
-				ADDCOLUMNS(
-					_Base,
-					"__Desempeno",
-						VAR _Key = 'Fct_Poblacion_Indicadores_2025'[ColaboradorDesempeno_Key]
-						RETURN
-							CALCULATE(
-								AVERAGE('Fct_Desempeno_2025'[Calificación Final]),
-								'Fct_Desempeno_2025'[ColaboradorDesempeno_Key] = _Key
-							),
-					"__Competencias",
-						VAR _Key = 'Fct_Poblacion_Indicadores_2025'[ColaboradorDesempeno_Key]
-						RETURN
-							CALCULATE(
-								AVERAGE('Fct_Competencias_2025'[Puntaje Obtenido]),
-								'Fct_Competencias_2025'[ColaboradorDesempeno_Key] = _Key
-							)
-				)
-			VAR _Bandas =
-				ADDCOLUMNS(
-					_Scored,
-					"__BandaDesempeno",
-						VAR _Score = [__Desempeno]
-						RETURN
-							SWITCH(
-								TRUE(),
-								ISBLANK(_Score), BLANK(),
-								_Score <= 50, "Bajo",
-								_Score <= 70, "Medio",
-								_Score >= 71, "Alto",
-								BLANK()
-							),
-					"__BandaCompetencias",
-						VAR _Score = [__Competencias]
-						RETURN
-							SWITCH(
-								TRUE(),
-								ISBLANK(_Score), BLANK(),
-								_Score <= 50, "Bajo",
-								_Score <= 70, "Medio",
-								_Score >= 71, "Alto",
-								BLANK()
-							)
-				)
+			VAR _Anios = VALUES('Dim_Anio_Desempeno'[Anio])
+			VAR _HayFiltroAnio = ISFILTERED('Dim_Anio_Desempeno'[Anio])
 			RETURN
-				COUNTROWS(
-					FILTER(
-						_Bandas,
-						NOT ISBLANK([__BandaDesempeno]) &&
-						NOT ISBLANK([__BandaCompetencias])
+				IF(
+					_HayFiltroAnio,
+					CALCULATE(
+						DISTINCTCOUNT('Fct_NineBox_Talento_2025'[NineBox_Key]),
+						KEEPFILTERS('Fct_NineBox_Talento_2025'[Es_Evaluable_NineBox] = TRUE()),
+						TREATAS(_Anios, 'Fct_NineBox_Talento_2025'[Anio_NineBox])
+					),
+					CALCULATE(
+						DISTINCTCOUNT('Fct_NineBox_Talento_2025'[NineBox_Key]),
+						KEEPFILTERS('Fct_NineBox_Talento_2025'[Es_Evaluable_NineBox] = TRUE()),
+						'Fct_NineBox_Talento_2025'[Anio_NineBox] = 2025
 					)
 				)
 		formatString: #,0
@@ -1982,90 +1970,20 @@ table Medidas_AD
 		lineageTag: 767e3ff6-dd91-4966-86db-fc613c070a75
 
 	measure 'NineBox Colaboradores por Cuadrante' =
-			VAR _TargetDesempeno = SELECTEDVALUE('Dim_NineBox_Cuadrante'[Banda_Desempeno])
-			VAR _TargetCompetencias = SELECTEDVALUE('Dim_NineBox_Cuadrante'[Banda_Competencias])
-			VAR _TargetCategoria = SELECTEDVALUE('Dim_NineBox_Cuadrante'[Categoria_Ejecutiva])
-			VAR _Base =
-				FILTER(
-					CALCULATETABLE(
-						VALUES('Fct_Poblacion_Indicadores_2025'[ColaboradorDesempeno_Key]),
-						KEEPFILTERS('Fct_Poblacion_Indicadores_2025'[INDICADOR ACTIVIDAD] = "ACTIVO")
-					),
-					NOT ISBLANK('Fct_Poblacion_Indicadores_2025'[ColaboradorDesempeno_Key])
-				)
-			VAR _Scored =
-				ADDCOLUMNS(
-					_Base,
-					"__Desempeno",
-						VAR _Key = 'Fct_Poblacion_Indicadores_2025'[ColaboradorDesempeno_Key]
-						RETURN
-							CALCULATE(
-								AVERAGE('Fct_Desempeno_2025'[Calificación Final]),
-								'Fct_Desempeno_2025'[ColaboradorDesempeno_Key] = _Key
-							),
-					"__Competencias",
-						VAR _Key = 'Fct_Poblacion_Indicadores_2025'[ColaboradorDesempeno_Key]
-						RETURN
-							CALCULATE(
-								AVERAGE('Fct_Competencias_2025'[Puntaje Obtenido]),
-								'Fct_Competencias_2025'[ColaboradorDesempeno_Key] = _Key
-							)
-				)
-			VAR _Bandas =
-				ADDCOLUMNS(
-					_Scored,
-					"__BandaDesempeno",
-						VAR _Score = [__Desempeno]
-						RETURN
-							SWITCH(
-								TRUE(),
-								ISBLANK(_Score), BLANK(),
-								_Score <= 50, "Bajo",
-								_Score <= 70, "Medio",
-								_Score >= 71, "Alto",
-								BLANK()
-							),
-					"__BandaCompetencias",
-						VAR _Score = [__Competencias]
-						RETURN
-							SWITCH(
-								TRUE(),
-								ISBLANK(_Score), BLANK(),
-								_Score <= 50, "Bajo",
-								_Score <= 70, "Medio",
-								_Score >= 71, "Alto",
-								BLANK()
-							)
-				)
-			VAR _Categoria =
-				ADDCOLUMNS(
-					_Bandas,
-					"__Categoria",
-						VAR _Cuadrante = [__BandaDesempeno] & "-" & [__BandaCompetencias]
-						RETURN
-							SWITCH(
-								_Cuadrante,
-								"Alto-Alto", "Alto Potencial",
-								"Alto-Medio", "Alto Potencial",
-								"Medio-Medio", "Talento Sólido",
-								"Medio-Alto", "Talento Sólido",
-								"Bajo-Alto", "Talento Sólido",
-								"Alto-Bajo", "Desarrollo Requerido",
-								"Medio-Bajo", "Desarrollo Requerido",
-								"Bajo-Bajo", "Riesgo",
-								"Bajo-Medio", "Riesgo",
-								BLANK()
-							)
-				)
+			VAR _Anios = VALUES('Dim_Anio_Desempeno'[Anio])
+			VAR _HayFiltroAnio = ISFILTERED('Dim_Anio_Desempeno'[Anio])
 			RETURN
-				COUNTROWS(
-					FILTER(
-						_Categoria,
-						NOT ISBLANK([__BandaDesempeno]) &&
-						NOT ISBLANK([__BandaCompetencias]) &&
-						(ISBLANK(_TargetDesempeno) || [__BandaDesempeno] = _TargetDesempeno) &&
-						(ISBLANK(_TargetCompetencias) || [__BandaCompetencias] = _TargetCompetencias) &&
-						(ISBLANK(_TargetCategoria) || [__Categoria] = _TargetCategoria)
+				IF(
+					_HayFiltroAnio,
+					CALCULATE(
+						DISTINCTCOUNT('Fct_NineBox_Talento_2025'[NineBox_Key]),
+						KEEPFILTERS('Fct_NineBox_Talento_2025'[Es_Evaluable_NineBox] = TRUE()),
+						TREATAS(_Anios, 'Fct_NineBox_Talento_2025'[Anio_NineBox])
+					),
+					CALCULATE(
+						DISTINCTCOUNT('Fct_NineBox_Talento_2025'[NineBox_Key]),
+						KEEPFILTERS('Fct_NineBox_Talento_2025'[Es_Evaluable_NineBox] = TRUE()),
+						'Fct_NineBox_Talento_2025'[Anio_NineBox] = 2025
 					)
 				)
 		formatString: #,0
@@ -2089,7 +2007,7 @@ table Medidas_AD
 	measure 'NineBox Talento Solido' =
 			CALCULATE(
 				[NineBox Colaboradores por Cuadrante],
-				TREATAS({"Talento Sólido"}, 'Dim_NineBox_Cuadrante'[Categoria_Ejecutiva])
+				TREATAS({"Talento Solido"}, 'Dim_NineBox_Cuadrante'[Categoria_Ejecutiva])
 			)
 		formatString: #,0
 		displayFolder: 14 Nine Box
@@ -2438,7 +2356,6 @@ table Medidas_AD
 				"<div style='position:absolute;left:68px;top:127px;color:#0B1C35;font-size:10px;font-weight:850;letter-spacing:1.5px;text-transform:uppercase;'>Busqueda individual</div>" &
 				"<div style='position:absolute;left:68px;top:148px;width:150px;color:#6B778A;font-size:9.5px;line-height:12px;'>Seleccione una identificacion para consultar el detalle.</div>" &
 				"<div style='position:absolute;left:238px;top:121px;width:300px;height:58px;background:#F7FAFD;border:1px solid #E6EEF7;border-radius:8px;'></div>" &
-
 				"<div style='position:absolute;left:32px;top:198px;width:1216px;height:468px;background:#FFFFFF;border:1px solid #E1E8F2;border-radius:10px;'></div>" &
 				"<div style='position:absolute;left:32px;top:674px;width:822px;height:40px;background:#FFFFFF;border:1px solid #DCE5F2;border-radius:9px;'></div>" &
 				"</div>"
@@ -2457,7 +2374,6 @@ table Medidas_AD
 			VAR _Apellido = SELECTEDVALUE('Dim_ColaboradorDesempeno'[Apellido])
 			VAR _Jefe = SELECTEDVALUE('Dim_ColaboradorDesempeno'[Nombre Jefe])
 			// Tipo de documento: valor estatico hasta que la fuente bd lo incluya
-
 			VAR _Texto =
 				IF(
 					NOT _TieneSeleccion,
@@ -2502,6 +2418,549 @@ table Medidas_AD
 			RETURN _Html
 		displayFolder: 11 HTML Content
 		lineageTag: 544c9bf3-cb33-4d63-8a83-c2a3c34878d3
+
+	measure 'DS07 Detalle Cuadrante Flag' =
+			VAR _Desempeno = [NineBox Indicador Score]
+			VAR _Competencias = [NineBox Competencias Score]
+			RETURN
+				IF(
+					ISBLANK(_Desempeno) || ISBLANK(_Competencias),
+					BLANK(),
+					1
+				)
+		formatString: 0
+		displayFolder: 14 Nine Box
+		lineageTag: d018718c-f82a-4f2c-a07e-f42f793894b4
+
+	measure 'DS07 Detalle Desempeno Score' =
+			IF(
+				[DS07 Detalle Cuadrante Flag] = 1,
+				[NineBox Indicador Score]
+			)
+		formatString: 0.00
+		displayFolder: 14 Nine Box
+		lineageTag: 00f05f65-6f5b-44c0-9693-e0db0e5e1947
+
+	measure 'DS07 Detalle Competencias Score' =
+			IF(
+				[DS07 Detalle Cuadrante Flag] = 1,
+				[NineBox Competencias Score]
+			)
+		formatString: 0.00
+		displayFolder: 14 Nine Box
+		lineageTag: e89a275f-3ef3-4968-a26b-e1e5117a512c
+
+	measure 'DS07 Detalle Cuadrante' =
+			IF(
+				[DS07 Detalle Cuadrante Flag] = 1,
+				[NineBox Cuadrante]
+			)
+		displayFolder: 14 Nine Box
+		lineageTag: a94e2a48-32cb-4352-b9ac-16bc4ea6f3cb
+
+	measure 'DS07 Detalle Categoria Ejecutiva' =
+			IF(
+				[DS07 Detalle Cuadrante Flag] = 1,
+				[NineBox Categoria Ejecutiva]
+			)
+		displayFolder: 14 Nine Box
+		lineageTag: 8f9ca76e-a55f-4b49-a17f-a433c4940338
+
+	measure 'DS07 360 Colaboradores Comite' =
+			VAR _Anios = VALUES('Dim_Anio_Desempeno'[Anio])
+			VAR _Empresas = VALUES('Dim_Empresa'[Empresa_Key])
+			VAR _FiltroAnio =
+				FILTER(
+					ALL('Fct_Desempeno_Evaluadores_2025'[Fecha Proceso]),
+					YEAR('Fct_Desempeno_Evaluadores_2025'[Fecha Proceso]) IN _Anios
+				)
+			RETURN
+				CALCULATE(
+					DISTINCTCOUNT('Fct_Desempeno_Evaluadores_2025'[ColaboradorDesempeno_Key]),
+					KEEPFILTERS('Fct_Desempeno_Evaluadores_2025'[Descripción Tipo Evalución] = "VALORACIÓN 360°"),
+					_FiltroAnio,
+					TREATAS(_Empresas, 'Dim_ColaboradorDesempeno'[Empresa_Key])
+				)
+		formatString: #,0
+		displayFolder: 10 Desempeno Evaluadores
+		lineageTag: 7f2eb646-0796-45ea-bd6a-ece321e6413d
+
+	measure 'DS07 360 Resultado por Tipo' =
+			VAR _Anios = VALUES('Dim_Anio_Desempeno'[Anio])
+			VAR _Empresas = VALUES('Dim_Empresa'[Empresa_Key])
+			VAR _FiltroAnio =
+				FILTER(
+					ALL('Fct_Desempeno_Evaluadores_2025'[Fecha Proceso]),
+					YEAR('Fct_Desempeno_Evaluadores_2025'[Fecha Proceso]) IN _Anios
+				)
+			VAR _TotalesPorEvaluador =
+				CALCULATETABLE(
+					ADDCOLUMNS(
+						SUMMARIZE(
+							'Fct_Desempeno_Evaluadores_2025',
+							'Fct_Desempeno_Evaluadores_2025'[Evaluador]
+						),
+						"__TotalEvaluador",
+							CALCULATE(
+								SUM('Fct_Desempeno_Evaluadores_2025'[Valor Obtenido])
+							)
+					),
+					KEEPFILTERS('Fct_Desempeno_Evaluadores_2025'[Descripción Tipo Evalución] = "VALORACIÓN 360°"),
+					_FiltroAnio,
+					TREATAS(_Empresas, 'Dim_ColaboradorDesempeno'[Empresa_Key])
+				)
+			RETURN
+				AVERAGEX(
+					FILTER(_TotalesPorEvaluador, NOT ISBLANK([__TotalEvaluador])),
+					[__TotalEvaluador]
+				)
+		formatString: 0.00
+		displayFolder: 10 Desempeno Evaluadores
+		lineageTag: bb520a45-f496-46b9-be1b-cb45ccc7215b
+
+	measure 'DS07 360 Tipo 1' =
+			CALCULATE(
+				[DS07 360 Resultado por Tipo],
+				TREATAS({"Tipo 1"}, 'Fct_Desempeno_Evaluadores_2025'[TipoEvaluador_Label])
+			)
+		formatString: 0.00
+		displayFolder: 10 Desempeno Evaluadores
+		lineageTag: 846227db-2368-424b-a66a-5c521b56899c
+
+	measure 'DS07 360 Tipo 2' =
+			CALCULATE(
+				[DS07 360 Resultado por Tipo],
+				TREATAS({"Tipo 2"}, 'Fct_Desempeno_Evaluadores_2025'[TipoEvaluador_Label])
+			)
+		formatString: 0.00
+		displayFolder: 10 Desempeno Evaluadores
+		lineageTag: 92d03079-9e1f-43dc-b0fa-4006b3dce25e
+
+	measure 'DS07 360 Tipo 3' =
+			CALCULATE(
+				[DS07 360 Resultado por Tipo],
+				TREATAS({"Tipo 3"}, 'Fct_Desempeno_Evaluadores_2025'[TipoEvaluador_Label])
+			)
+		formatString: 0.00
+		displayFolder: 10 Desempeno Evaluadores
+		lineageTag: 4c318efe-04ca-4ca7-90f6-bfa1087d1196
+
+	measure 'DS07 360 Tipo 4' =
+			CALCULATE(
+				[DS07 360 Resultado por Tipo],
+				TREATAS({"Tipo 4"}, 'Fct_Desempeno_Evaluadores_2025'[TipoEvaluador_Label])
+			)
+		formatString: 0.00
+		displayFolder: 10 Desempeno Evaluadores
+		lineageTag: b5f5fc77-e2bb-411e-adad-980833a965a0
+
+	measure 'DS07 360 Tipo 5' =
+			CALCULATE(
+				[DS07 360 Resultado por Tipo],
+				TREATAS({"Tipo 5"}, 'Fct_Desempeno_Evaluadores_2025'[TipoEvaluador_Label])
+			)
+		formatString: 0.00
+		displayFolder: 10 Desempeno Evaluadores
+		lineageTag: d8787f98-1f7e-4a77-ab29-213819069628
+
+	measure 'HTML Shell DS07 Nine Box 360' =
+			VAR _Html =
+				"<div style='font-family:Outfit,Poppins,Segoe UI,Arial,sans-serif;width:1280px;height:720px;background:#F7F9FC;color:#0B1C35;position:relative;overflow:hidden;'>" &
+				"<div style='position:absolute;left:0;top:0;width:1280px;height:100px;background:#0B1C35;'></div>" &
+				"<div style='position:absolute;left:48px;top:24px;color:#F7931E;font-size:11px;font-weight:850;letter-spacing:2px;text-transform:uppercase;'>DASHBOARD CORPORATIVO - GRUPO LEMCO</div>" &
+				"<div style='position:absolute;left:48px;top:48px;color:#FFFFFF;font-size:25px;font-weight:850;line-height:28px;'>DS07 Nine Box 360</div>" &
+				"<div style='position:absolute;left:48px;top:78px;color:#D8E4F2;font-size:11px;line-height:14px;'>Mapa de talento por desempe&ntilde;o y competencias, con lectura ejecutiva y vista separada del comit&eacute; 360&deg;.</div>" &
+				"<div style='position:absolute;right:48px;top:32px;background:#F7931E;color:#0B1C35;border-radius:18px;padding:8px 16px;font-size:11px;font-weight:850;'>Bloque Desempe&ntilde;o</div>" &
+				"<div style='position:absolute;left:48px;top:112px;width:1200px;height:76px;background:#FFFFFF;border:1px solid #DCE5F2;border-radius:14px;box-shadow:0 6px 18px rgba(11,28,53,0.06);'></div>" &
+				"<div style='position:absolute;left:48px;top:112px;width:7px;height:76px;background:#F7931E;border-radius:14px 0 0 14px;'></div>" &
+				"<div style='position:absolute;left:68px;top:127px;color:#0B1C35;font-size:10px;font-weight:850;letter-spacing:1.5px;text-transform:uppercase;'>Contexto de analisis</div>" &
+				"<div style='position:absolute;left:68px;top:148px;width:150px;color:#6B778A;font-size:9.5px;line-height:12px;'>Filtros activos para Nine Box y comit&eacute; 360.</div>" &
+				"<div style='position:absolute;left:238px;top:121px;width:1050px;height:58px;display:grid;grid-template-columns:repeat(5,1fr);gap:12px;'>" &
+				"<div style='background:#F7FAFD;border:1px solid #E6EEF7;border-radius:8px;'></div><div style='background:#F7FAFD;border:1px solid #E6EEF7;border-radius:8px;'></div><div style='background:#F7FAFD;border:1px solid #E6EEF7;border-radius:8px;'></div><div style='background:#F7FAFD;border:1px solid #E6EEF7;border-radius:8px;'></div><div style='background:#F7FAFD;border:1px solid #E6EEF7;border-radius:8px;'></div>" &
+				"</div>" &
+				"<div style='position:absolute;left:32px;top:198px;width:304px;height:236px;background:#FFFFFF;border:1px solid #E1E8F2;border-radius:10px;'></div>" &
+				"<div style='position:absolute;left:330px;top:198px;width:542px;height:280px;background:#FFFFFF;border:1px solid #E1E8F2;border-radius:10px;'></div>" &
+				"<div style='position:absolute;left:888px;top:198px;width:360px;height:236px;background:#FFFFFF;border:1px solid #E1E8F2;border-radius:10px;'></div>" &
+				"<div style='position:absolute;left:32px;top:450px;width:612px;height:216px;background:#FFFFFF;border:1px solid #E1E8F2;border-radius:10px;'></div>" &
+				"<div style='position:absolute;left:660px;top:450px;width:588px;height:216px;background:#FFFFFF;border:1px solid #E1E8F2;border-radius:10px;'></div>" &
+				"<div style='position:absolute;left:52px;top:214px;color:#1A3059;font-size:12px;font-weight:850;'>Lectura ejecutiva</div>" &
+				"<div style='position:absolute;left:352px;top:214px;color:#1A3059;font-size:12px;font-weight:850;'>Scatter Nine Box</div>" &
+				"<div style='position:absolute;left:352px;top:232px;color:#6B778A;font-size:9px;'>Cada punto representa un colaborador evaluable.</div>" &
+				"<div style='position:absolute;left:908px;top:214px;color:#1A3059;font-size:12px;font-weight:850;'>Cuadrantes 3x3</div>" &
+				"<div style='position:absolute;left:908px;top:232px;color:#6B778A;font-size:9px;'>Conteo y participaci&oacute;n sobre el total evaluable.</div>" &
+				"<div style='position:absolute;left:52px;top:466px;color:#1A3059;font-size:12px;font-weight:850;'>Detalle por cuadrante</div>" &
+				"<div style='position:absolute;left:52px;top:484px;color:#6B778A;font-size:9px;'>Seleccione un cuadrante en la matriz para concentrar la tabla.</div>" &
+				"<div style='position:absolute;left:680px;top:466px;color:#1A3059;font-size:12px;font-weight:850;'>Evaluaci&oacute;n 360&deg; &mdash; Comit&eacute; Directivo</div>" &
+				"<div style='position:absolute;left:680px;top:484px;color:#6B778A;font-size:9px;'>Vista separada de los 15 colaboradores con valoraci&oacute;n 360&deg;.</div>" &
+				"<div style='position:absolute;left:380px;top:257px;width:481px;height:176px;display:grid;grid-template-columns:33.33% 33.33% 33.34%;grid-template-rows:33.34% 33.33% 33.33%;gap:2px;'>" &
+				"<div style='background:#E6ECF5;border-radius:6px 0 0 0;display:flex;align-items:flex-end;padding:3px 5px;overflow:hidden;'><span style='font-size:7px;font-weight:700;color:#1A3059;line-height:1;'>DIAMANTE EN BRUTO</span></div><div style='background:#D7E9FB;display:flex;align-items:flex-end;padding:3px 5px;overflow:hidden;'><span style='font-size:7px;font-weight:700;color:#1A3059;line-height:1;'>PROMESAS</span></div><div style='background:#D6F1DA;border-radius:0 6px 0 0;display:flex;align-items:flex-end;padding:3px 5px;overflow:hidden;'><span style='font-size:7px;font-weight:700;color:#1A3059;line-height:1;'>ALTO POTENCIAL</span></div>" &
+				"<div style='background:#F9E1D7;display:flex;align-items:flex-end;padding:3px 5px;overflow:hidden;'><span style='font-size:7px;font-weight:700;color:#1A3059;line-height:1;'>DILEMA</span></div><div style='background:#E8EEF7;display:flex;align-items:flex-end;padding:3px 5px;overflow:hidden;'><span style='font-size:7px;font-weight:700;color:#1A3059;line-height:1;'>S&Oacute;LIDOS</span></div><div style='background:#D9F0E4;display:flex;align-items:flex-end;padding:3px 5px;overflow:hidden;'><span style='font-size:7px;font-weight:700;color:#1A3059;line-height:1;'>CONTRIBUYENTES CLAVE</span></div>" &
+				"<div style='background:#FDE2E2;border-radius:0 0 0 6px;display:flex;align-items:flex-end;padding:3px 5px;overflow:hidden;'><span style='font-size:7px;font-weight:700;color:#1A3059;line-height:1;'>TALENTO EN RIESGO</span></div><div style='background:#FFE3C2;display:flex;align-items:flex-end;padding:3px 5px;overflow:hidden;'><span style='font-size:7px;font-weight:700;color:#1A3059;line-height:1;'>DILEMA</span></div><div style='background:#FFF2D6;border-radius:0 0 6px 0;display:flex;align-items:flex-end;padding:3px 5px;overflow:hidden;'><span style='font-size:7px;font-weight:700;color:#1A3059;line-height:1;'>EXPERIMENTADO</span></div>" &
+				"</div>" &
+				"<div style='position:absolute;left:380px;top:460px;width:481px;text-align:center;color:#6B778A;font-size:9px;'>Desempe&ntilde;o</div>" &
+				"<div style='position:absolute;left:875px;top:345px;transform:rotate(-90deg);transform-origin:top left;color:#6B778A;font-size:9px;'>Competencias</div>" &
+				"<div style='position:absolute;left:32px;top:674px;width:822px;height:40px;background:#FFFFFF;border:1px solid #DCE5F2;border-radius:9px;'></div>" &
+				"</div>"
+			RETURN _Html
+		displayFolder: 11 HTML Content
+		lineageTag: 47b7bf51-8a74-4097-9aeb-2f2d01177a6b
+
+	measure 'HTML DS07 Lectura Ejecutiva' =
+			VAR _IdSeleccionada = SELECTEDVALUE('Dim_ColaboradorDesempeno'[Identificación])
+			VAR _HaySeleccion = NOT ISBLANK(_IdSeleccionada)
+			VAR _ClasifOficial = SELECTEDVALUE('Fct_NineBox_Talento_2025'[CLASIFICACIÓN])
+			VAR _CatEjecutiva = [NineBox Categoria Ejecutiva]
+			VAR _ColorFondo =
+				SWITCH(
+					_CatEjecutiva,
+					"Alto Potencial", "#D6F1DA",
+					"Talento Solido", "#EEF4FB",
+					"Desarrollo Requerido", "#FFF6EB",
+					"Riesgo", "#FDEEEE",
+					"#F7F9FC"
+				)
+			VAR _ColorTexto =
+				SWITCH(
+					_CatEjecutiva,
+					"Alto Potencial", "#167044",
+					"Talento Solido", "#1B487F",
+					"Desarrollo Requerido", "#9C5B00",
+					"Riesgo", "#A12C3A",
+					"#1A3059"
+				)
+			VAR _HtmlIndividual =
+				"<div style='width:100%;height:100%;box-sizing:border-box;padding:14px;font-family:Outfit,Poppins,Segoe UI,Arial,sans-serif;color:#0B1C35;overflow:hidden;display:flex;flex-direction:column;justify-content:center;'>" &
+				"<div style='background:" & _ColorFondo & ";border-radius:10px;padding:14px 16px;width:100%;box-sizing:border-box;text-align:center;'>" &
+				"<div style='font-size:9px;color:#5E738F;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;'>Clasificaci&oacute;n oficial ANEXO 6</div>" &
+				"<div style='font-size:17px;font-weight:850;color:" & _ColorTexto & ";line-height:1.3;'>" & _ClasifOficial & "</div>" &
+				"<div style='font-size:9.5px;color:" & _ColorTexto & ";margin-top:6px;opacity:.8;'>Categor&iacute;a: " & _CatEjecutiva & "</div>" &
+				"</div>" &
+				"</div>"
+			VAR _Total = [NineBox Colaboradores Evaluables]
+			VAR _Alto = [NineBox Alto Potencial]
+			VAR _Solido = [NineBox Talento Solido]
+			VAR _Desarrollo = [NineBox Desarrollo Requerido]
+			VAR _Riesgo = [NineBox Riesgo]
+			VAR _PctAlto = [NineBox % Alto Potencial]
+			VAR _PctSolido = [NineBox % Talento Solido]
+			VAR _PctDesarrollo = [NineBox % Desarrollo Requerido]
+			VAR _PctRiesgo = [NineBox % Riesgo]
+			VAR _DominanteTabla =
+				TOPN(
+					1,
+					SUMMARIZE(
+						'Dim_NineBox_Cuadrante',
+						'Dim_NineBox_Cuadrante'[Cuadrante_Nombre_Visual],
+						'Dim_NineBox_Cuadrante'[Categoria_Ejecutiva],
+						"__Conteo", [NineBox Colaboradores por Cuadrante]
+					),
+					[__Conteo], DESC,
+					'Dim_NineBox_Cuadrante'[Cuadrante_Nombre_Visual], ASC,
+					'Dim_NineBox_Cuadrante'[Categoria_Ejecutiva], ASC
+				)
+			VAR _NombreDominante = MAXX(_DominanteTabla, 'Dim_NineBox_Cuadrante'[Cuadrante_Nombre_Visual])
+			VAR _CatDelDominante = MAXX(_DominanteTabla, 'Dim_NineBox_Cuadrante'[Categoria_Ejecutiva])
+			VAR _Alertas =
+				IF(_PctRiesgo >= 0.20, "<li>La participaci&oacute;n en riesgo supera el 20% y requiere seguimiento prioritario.</li>", "") &
+				IF(_PctDesarrollo >= 0.30, "<li>El bloque de desarrollo requerido supera el 30% y demanda foco en acompa&ntilde;amiento.</li>", "") &
+				IF(_PctAlto >= 0.20, "<li>La base de alto potencial es representativa y permite construir una agenda de sucesi&oacute;n.</li>", "")
+			VAR _AlertasFinal =
+				IF(
+					_Alertas = "",
+					"<li>La distribuci&oacute;n se mantiene balanceada y no muestra alertas de concentraci&oacute;n extrema.</li>",
+					_Alertas
+				)
+			VAR _HtmlAgregado =
+				"<div style='width:100%;height:100%;box-sizing:border-box;padding:12px 14px;font-family:Outfit,Poppins,Segoe UI,Arial,sans-serif;color:#0B1C35;overflow:hidden;'>" &
+				"<div style='font-size:11px;line-height:16px;color:#4B5D78;margin-bottom:10px;'>Se observan <b style='color:#1A3059;'>" & FORMAT(_Total, "#,0") & "</b> colaboradores evaluables. El cuadrante dominante es <b style='color:#1A3059;'>" & _NombreDominante & "</b>, categor&iacute;a ejecutiva <b style='color:#1A3059;'>" & _CatDelDominante & "</b>.</div>" &
+				"<div style='display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-bottom:10px;'>" &
+				"<div style='background:#EDF7F0;border:1px solid #D7EAD9;border-radius:8px;padding:8px;'><div style='font-size:8px;color:#5E738F;text-transform:uppercase;letter-spacing:.4px;'>Alto potencial</div><div style='font-size:16px;font-weight:850;color:#1A3059;'>" & FORMAT(_Alto, "#,0") & "</div><div style='font-size:9px;color:#167044;'>" & FORMAT(_PctAlto, "0.0%") & "</div></div>" &
+				"<div style='background:#EEF4FB;border:1px solid #D7E4F2;border-radius:8px;padding:8px;'><div style='font-size:8px;color:#5E738F;text-transform:uppercase;letter-spacing:.4px;'>Talento s&oacute;lido</div><div style='font-size:16px;font-weight:850;color:#1A3059;'>" & FORMAT(_Solido, "#,0") & "</div><div style='font-size:9px;color:#1B487F;'>" & FORMAT(_PctSolido, "0.0%") & "</div></div>" &
+				"<div style='background:#FFF6EB;border:1px solid #F5DFC1;border-radius:8px;padding:8px;'><div style='font-size:8px;color:#5E738F;text-transform:uppercase;letter-spacing:.4px;'>Desarrollo requerido</div><div style='font-size:16px;font-weight:850;color:#1A3059;'>" & FORMAT(_Desarrollo, "#,0") & "</div><div style='font-size:9px;color:#9C5B00;'>" & FORMAT(_PctDesarrollo, "0.0%") & "</div></div>" &
+				"<div style='background:#FDEEEE;border:1px solid #F2D4D8;border-radius:8px;padding:8px;'><div style='font-size:8px;color:#5E738F;text-transform:uppercase;letter-spacing:.4px;'>Riesgo</div><div style='font-size:16px;font-weight:850;color:#1A3059;'>" & FORMAT(_Riesgo, "#,0") & "</div><div style='font-size:9px;color:#A12C3A;'>" & FORMAT(_PctRiesgo, "0.0%") & "</div></div>" &
+				"</div>" &
+				"<div style='font-size:10px;font-weight:850;color:#1A3059;margin-bottom:4px;'>Lectura ejecutiva</div>" &
+				"<ul style='margin:0;padding-left:18px;color:#4B5D78;font-size:9.5px;line-height:14px;'>" & _AlertasFinal & "</ul>" &
+				"</div>"
+			RETURN
+				IF(_HaySeleccion, _HtmlIndividual, _HtmlAgregado)
+		displayFolder: 11 HTML Content
+		lineageTag: 54195a1a-3065-4734-9a8b-0d93f3eac091
+
+	measure 'NineBox Indicador Score' =
+			VAR _Anios = VALUES('Dim_Anio_Desempeno'[Anio])
+			VAR _HayFiltroAnio = ISFILTERED('Dim_Anio_Desempeno'[Anio])
+			RETURN
+				IF(
+					_HayFiltroAnio,
+					CALCULATE(
+						AVERAGE('Fct_NineBox_Talento_2025'[INDICADORES]),
+						KEEPFILTERS('Fct_NineBox_Talento_2025'[Es_Evaluable_NineBox] = TRUE()),
+						TREATAS(_Anios, 'Fct_NineBox_Talento_2025'[Anio_NineBox])
+					),
+					CALCULATE(
+						AVERAGE('Fct_NineBox_Talento_2025'[INDICADORES]),
+						KEEPFILTERS('Fct_NineBox_Talento_2025'[Es_Evaluable_NineBox] = TRUE()),
+						'Fct_NineBox_Talento_2025'[Anio_NineBox] = 2025
+					)
+				)
+		formatString: 0.00
+		displayFolder: 14 Nine Box
+		lineageTag: a5be189e-d6cb-4b8c-8345-12f398ea3423
+
+	measure 'NineBox ANEXO Colaboradores Evaluables' = [NineBox Colaboradores Evaluables]
+		formatString: #,0
+		displayFolder: 14 Nine Box
+		lineageTag: 2f645329-cb3e-4f75-b762-b7133e220b33
+
+	measure 'NineBox ANEXO Competencias Score' = [NineBox Competencias Score]
+		formatString: 0.00
+		displayFolder: 14 Nine Box
+		lineageTag: 9731a3a5-c257-4e8c-a0c0-c4a39638d016
+
+	measure 'NineBox ANEXO Indicadores Score' = [NineBox Indicador Score]
+		formatString: 0.00
+		displayFolder: 14 Nine Box
+		lineageTag: 603c6948-f735-47be-b31c-b67f92eaa629
+
+	measure 'NineBox ANEXO Total Score' =
+			VAR _Anios = VALUES('Dim_Anio_Desempeno'[Anio])
+			VAR _HayFiltroAnio = ISFILTERED('Dim_Anio_Desempeno'[Anio])
+			RETURN
+				IF(
+					_HayFiltroAnio,
+					CALCULATE(
+						AVERAGE('Fct_NineBox_Talento_2025'[TOTAL]),
+						KEEPFILTERS('Fct_NineBox_Talento_2025'[Es_Evaluable_NineBox] = TRUE()),
+						TREATAS(_Anios, 'Fct_NineBox_Talento_2025'[Anio_NineBox])
+					),
+					CALCULATE(
+						AVERAGE('Fct_NineBox_Talento_2025'[TOTAL]),
+						KEEPFILTERS('Fct_NineBox_Talento_2025'[Es_Evaluable_NineBox] = TRUE()),
+						'Fct_NineBox_Talento_2025'[Anio_NineBox] = 2025
+					)
+				)
+		formatString: 0.00
+		displayFolder: 14 Nine Box
+		lineageTag: 09bd6f77-26d6-4d2c-aa12-fd65f0d34f7d
+
+	measure 'NineBox ANEXO Conteo Cuadrante' = [NineBox Colaboradores por Cuadrante]
+		formatString: #,0
+		displayFolder: 14 Nine Box
+		lineageTag: f7a61214-1e5c-4a1c-9336-8310dbaf1f8f
+
+	measure 'NineBox ANEXO % Cuadrante' = [NineBox % por Cuadrante]
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: 14 Nine Box
+		lineageTag: 80f2e2db-c588-42f4-a2e1-c16d90fcc088
+
+	measure 'NineBox ANEXO Cuadrante Dominante' =
+			VAR _Dominante =
+				TOPN(
+					1,
+					SUMMARIZE(
+						'Dim_NineBox_Cuadrante',
+						'Dim_NineBox_Cuadrante'[Cuadrante_Nombre_Visual],
+						"__Conteo", [NineBox Colaboradores por Cuadrante]
+					),
+					[__Conteo], DESC,
+					'Dim_NineBox_Cuadrante'[Cuadrante_Nombre_Visual], ASC
+				)
+			RETURN
+				MAXX(_Dominante, 'Dim_NineBox_Cuadrante'[Cuadrante_Nombre_Visual])
+		displayFolder: 14 Nine Box
+		lineageTag: f2aab016-8d4f-4ec0-b2c5-7a2a4af40d99
+
+	measure 'NineBox ANEXO Categoria Ejecutiva Dominante' =
+			VAR _Dominante =
+				TOPN(
+					1,
+					SUMMARIZE(
+						'Dim_NineBox_Cuadrante',
+						'Dim_NineBox_Cuadrante'[Cuadrante_Nombre_Visual],
+						'Dim_NineBox_Cuadrante'[Categoria_Ejecutiva],
+						"__Conteo", [NineBox Colaboradores por Cuadrante]
+					),
+					[__Conteo], DESC,
+					'Dim_NineBox_Cuadrante'[Cuadrante_Nombre_Visual], ASC,
+					'Dim_NineBox_Cuadrante'[Categoria_Ejecutiva], ASC
+				)
+			RETURN
+				MAXX(_Dominante, 'Dim_NineBox_Cuadrante'[Categoria_Ejecutiva])
+		displayFolder: 14 Nine Box
+		lineageTag: 6a2935c7-9862-4e35-bb00-a07f041fcd9f
+
+	measure 'NineBox Cuadrante Visual' =
+			VAR _Anios = VALUES('Dim_Anio_Desempeno'[Anio])
+			VAR _HayFiltroAnio = ISFILTERED('Dim_Anio_Desempeno'[Anio])
+			RETURN
+				IF(
+					_HayFiltroAnio,
+					CALCULATE(
+						SELECTEDVALUE('Fct_NineBox_Talento_2025'[Cuadrante_Visual]),
+						KEEPFILTERS('Fct_NineBox_Talento_2025'[Es_Evaluable_NineBox] = TRUE()),
+						TREATAS(_Anios, 'Fct_NineBox_Talento_2025'[Anio_NineBox])
+					),
+					CALCULATE(
+						SELECTEDVALUE('Fct_NineBox_Talento_2025'[Cuadrante_Visual]),
+						KEEPFILTERS('Fct_NineBox_Talento_2025'[Es_Evaluable_NineBox] = TRUE()),
+						'Fct_NineBox_Talento_2025'[Anio_NineBox] = 2025
+					)
+				)
+		displayFolder: 14 Nine Box
+		lineageTag: 4645f790-bf95-4294-87ec-4f4b6876cde2
+
+	measure 'DS07 Detalle Total Score' =
+			IF(
+				[DS07 Detalle Cuadrante Flag] = 1,
+				[NineBox ANEXO Total Score]
+			)
+		formatString: 0.00
+		displayFolder: 14 Nine Box
+		lineageTag: 4e62fb73-1821-44c4-883e-3802a85f64a7
+
+	measure 'DS07 Detalle Cuadrante Visual' =
+			IF(
+				[DS07 Detalle Cuadrante Flag] = 1,
+				[NineBox Cuadrante Visual]
+			)
+		displayFolder: 14 Nine Box
+		lineageTag: 0903209a-c318-4d2a-9b0a-6f3885c3f4f2
+
+	measure 'Conteo registros ANEXO 6' =
+			VAR _Anios = VALUES('Dim_Anio_Desempeno'[Anio])
+			RETURN
+				CALCULATE(
+					COUNTROWS('Fct_NineBox_Talento_2025'),
+					TREATAS(_Anios, 'Fct_NineBox_Talento_2025'[Anio_NineBox])
+				)
+		formatString: #,0
+		displayFolder: 14 Nine Box
+		lineageTag: 2651ea33-ff03-4662-86ce-b89f71147fd4
+
+	measure 'Conteo evaluables ANEXO 6' =
+			VAR _Anios = VALUES('Dim_Anio_Desempeno'[Anio])
+			RETURN
+				CALCULATE(
+					COUNTROWS('Fct_NineBox_Talento_2025'),
+					KEEPFILTERS('Fct_NineBox_Talento_2025'[Es_Evaluable_NineBox] = TRUE()),
+					TREATAS(_Anios, 'Fct_NineBox_Talento_2025'[Anio_NineBox])
+				)
+		formatString: #,0
+		displayFolder: 14 Nine Box
+		lineageTag: 208dc1f6-d920-4ee3-8a5d-1edb8d193666
+
+	measure 'Competencias promedio ANEXO 6' = [NineBox Competencias Score]
+		formatString: 0.00
+		displayFolder: 14 Nine Box
+		lineageTag: b6744153-5d1f-4efc-b6d9-0d54882cff52
+
+	measure 'Indicadores promedio ANEXO 6' = [NineBox Indicador Score]
+		formatString: 0.00
+		displayFolder: 14 Nine Box
+		lineageTag: 2dad2147-c2f7-473e-9ee1-60d89da15ad0
+
+	measure 'Tiene dato scatter ANEXO 6' =
+			VAR _TieneX = NOT ISBLANK([NineBox Indicador Score])
+			VAR _TieneY = NOT ISBLANK([NineBox Competencias Score])
+			VAR _TieneRegistros = [Conteo evaluables ANEXO 6] > 0
+			RETURN IF(_TieneRegistros && _TieneX && _TieneY, 1, 0)
+		formatString: 0
+		displayFolder: 14 Nine Box
+		lineageTag: 47c884c3-abfe-4114-a898-9b9f5725482c
+
+	measure 'NineBox ANEXO Registros Fact' = [Conteo registros ANEXO 6]
+		formatString: #,0
+		displayFolder: 14 Nine Box
+		lineageTag: e0f46132-24f4-44e9-b2d8-7c79eb7ecf4d
+
+	measure 'NineBox ANEXO Registros Filtrados' = [Conteo evaluables ANEXO 6]
+		formatString: #,0
+		displayFolder: 14 Nine Box
+		lineageTag: f9ac90f3-53cc-410e-a21a-40d02db2e8e4
+
+	measure 'NineBox ANEXO Tiene Match Identificacion' =
+			VAR _IdDim = SELECTEDVALUE('Dim_ColaboradorDesempeno'[Identificación])
+			VAR _IdFact = SELECTEDVALUE('Fct_NineBox_Talento_2025'[Identificación])
+			VAR _IdObjetivo = COALESCE(_IdFact, _IdDim)
+			VAR _Anios = VALUES('Dim_Anio_Desempeno'[Anio])
+			VAR _Match =
+				CALCULATE(
+					COUNTROWS('Fct_NineBox_Talento_2025'),
+					KEEPFILTERS('Fct_NineBox_Talento_2025'[Es_Evaluable_NineBox] = TRUE()),
+					TREATAS(_Anios, 'Fct_NineBox_Talento_2025'[Anio_NineBox]),
+					TREATAS({_IdObjetivo}, 'Fct_NineBox_Talento_2025'[Identificación])
+				)
+			RETURN IF(NOT ISBLANK(_IdObjetivo) && _Match > 0, 1, 0)
+		formatString: 0
+		displayFolder: 14 Nine Box
+		lineageTag: c5a68b39-f994-4e6e-9ffd-5f4ec5dbf6f1
+
+	measure 'NineBox ANEXO X Diagnostico' = [NineBox Indicador Score]
+		formatString: 0.00
+		displayFolder: 14 Nine Box
+		lineageTag: e22e0972-5c95-460e-862e-05bd2e6b1ce6
+
+	measure 'NineBox ANEXO Y Diagnostico' = [NineBox Competencias Score]
+		formatString: 0.00
+		displayFolder: 14 Nine Box
+		lineageTag: 9cd18f67-9582-4ec6-84f3-95fef3843d8c
+
+	measure 'NineBox X Visual' =
+			VAR _Anios = VALUES('Dim_Anio_Desempeno'[Anio])
+			VAR _HayFiltroAnio = ISFILTERED('Dim_Anio_Desempeno'[Anio])
+			VAR _Ind =
+				IF(
+					_HayFiltroAnio,
+					CALCULATE(
+						AVERAGE('Fct_NineBox_Talento_2025'[INDICADORES]),
+						KEEPFILTERS('Fct_NineBox_Talento_2025'[Es_Evaluable_NineBox] = TRUE()),
+						TREATAS(_Anios, 'Fct_NineBox_Talento_2025'[Anio_NineBox])
+					),
+					CALCULATE(
+						AVERAGE('Fct_NineBox_Talento_2025'[INDICADORES]),
+						KEEPFILTERS('Fct_NineBox_Talento_2025'[Es_Evaluable_NineBox] = TRUE()),
+						'Fct_NineBox_Talento_2025'[Anio_NineBox] = 2025
+					)
+				)
+			VAR _OrdenX =
+				IF(
+					ISBLANK(_Ind), BLANK(),
+					IF(_Ind < 71, 1, IF(_Ind < 91, 2, 3))
+				)
+			RETURN
+				IF(ISBLANK(_OrdenX), BLANK(), (_OrdenX - 0.5) * (100.0 / 3))
+		formatString: 0.00
+		displayFolder: 14 Nine Box
+		lineageTag: ba30dbf4-8352-4e65-b836-836125d7fcc0
+
+	measure 'NineBox Y Visual' =
+			VAR _Anios = VALUES('Dim_Anio_Desempeno'[Anio])
+			VAR _HayFiltroAnio = ISFILTERED('Dim_Anio_Desempeno'[Anio])
+			VAR _Comp =
+				IF(
+					_HayFiltroAnio,
+					CALCULATE(
+						AVERAGE('Fct_NineBox_Talento_2025'[COMPETENCIAS]),
+						KEEPFILTERS('Fct_NineBox_Talento_2025'[Es_Evaluable_NineBox] = TRUE()),
+						TREATAS(_Anios, 'Fct_NineBox_Talento_2025'[Anio_NineBox])
+					),
+					CALCULATE(
+						AVERAGE('Fct_NineBox_Talento_2025'[COMPETENCIAS]),
+						KEEPFILTERS('Fct_NineBox_Talento_2025'[Es_Evaluable_NineBox] = TRUE()),
+						'Fct_NineBox_Talento_2025'[Anio_NineBox] = 2025
+					)
+				)
+			VAR _OrdenY =
+				IF(
+					ISBLANK(_Comp), BLANK(),
+					IF(_Comp < 71, 1, IF(_Comp < 91, 2, 3))
+				)
+			RETURN
+				IF(ISBLANK(_OrdenY), BLANK(), (_OrdenY - 0.5) * (100.0 / 3))
+		formatString: 0.00
+		displayFolder: 14 Nine Box
+		lineageTag: d8818bae-7e52-4b2b-8209-6bdb968d62d3
 
 	column Indice
 		dataType: int64

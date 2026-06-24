@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "sel_p1_frente",
   "position": {
     "x": 1130,
@@ -142,7 +142,7 @@
                           [
                             {
                               "Literal": {
-                                "Value": "'Bienestar y Clima'"
+                                "Value": "'Desempeño'"
                               }
                             }
                           ]
@@ -270,7 +270,7 @@
                     [
                       {
                         "Literal": {
-                          "Value": "'Bienestar y Clima'"
+                          "Value": "'Desempeño'"
                         }
                       }
                     ]

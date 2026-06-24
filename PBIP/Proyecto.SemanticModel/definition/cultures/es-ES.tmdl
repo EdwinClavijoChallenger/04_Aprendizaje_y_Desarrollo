@@ -12216,6 +12216,624 @@ cultureInfo es-ES
 			          }
 			        }
 			      ]
+			    },
+			    "fct_competencias_2025.nombre_especificación": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Fct_Competencias_2025",
+			          "ConceptualProperty": "Nombre Especificación"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Nombre competencia": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "medidas_ad.ninebox_colaboradores_por_cuadrante": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Medidas_AD",
+			          "ConceptualProperty": "NineBox Colaboradores por Cuadrante"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Conteo": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "medidas_ad.ninebox__por_cuadrante": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Medidas_AD",
+			          "ConceptualProperty": "NineBox % por Cuadrante"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "%": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "medidas_ad.ninebox_desempeno_score": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Medidas_AD",
+			          "ConceptualProperty": "NineBox Desempeno Score"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "medidas_ad.ninebox_competencias_score": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Medidas_AD",
+			          "ConceptualProperty": "NineBox Competencias Score"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Competencias": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "medidas_ad.ninebox_categoria_ejecutiva": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Medidas_AD",
+			          "ConceptualProperty": "NineBox Categoria Ejecutiva"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Categoria ejecutiva": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "medidas_ad.ds07_360_resultado_por_tipo": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Medidas_AD",
+			          "ConceptualProperty": "DS07 360 Resultado por Tipo"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Resultado 360": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "medidas_ad.ds07_detalle_desempeno_score": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Medidas_AD",
+			          "ConceptualProperty": "DS07 Detalle Desempeno Score"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Desempeno": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "medidas_ad.ds07_detalle_competencias_score": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Medidas_AD",
+			          "ConceptualProperty": "DS07 Detalle Competencias Score"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Competencias": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "medidas_ad.ds07_detalle_cuadrante": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Medidas_AD",
+			          "ConceptualProperty": "DS07 Detalle Cuadrante"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Cuadrante tecnico": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "medidas_ad.ds07_detalle_categoria_ejecutiva": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Medidas_AD",
+			          "ConceptualProperty": "DS07 Detalle Categoria Ejecutiva"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Categoria": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "dim_colaboradordesempeno.empresa_homologada": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Dim_ColaboradorDesempeno",
+			          "ConceptualProperty": "Empresa_Homologada"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Empresa": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "dim_colaboradordesempeno.área": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Dim_ColaboradorDesempeno",
+			          "ConceptualProperty": "ÁREA"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Area": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "dim_colaboradordesempeno.descripción_cargo": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Dim_ColaboradorDesempeno",
+			          "ConceptualProperty": "Descripción Cargo"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Cargo": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "dim_colaboradordesempeno.jefe_inmediato": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Dim_ColaboradorDesempeno",
+			          "ConceptualProperty": "Jefe_Inmediato"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Jefe": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "dim_colaboradordesempeno.identificación": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Dim_ColaboradorDesempeno",
+			          "ConceptualProperty": "Identificación"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Identificacion": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "medidas_ad.ninebox_indicador_score": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Medidas_AD",
+			          "ConceptualProperty": "NineBox Indicador Score"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Indicador": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "medidas_ad.ninebox_anexo_total_score": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Medidas_AD",
+			          "ConceptualProperty": "NineBox ANEXO Total Score"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Total": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "medidas_ad.ninebox_cuadrante": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Medidas_AD",
+			          "ConceptualProperty": "NineBox Cuadrante"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Cuadrante tecnico": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "medidas_ad.ninebox_cuadrante_visual": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Medidas_AD",
+			          "ConceptualProperty": "NineBox Cuadrante Visual"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Cuadrante visual": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "medidas_ad.ds07_detalle_total_score": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Medidas_AD",
+			          "ConceptualProperty": "DS07 Detalle Total Score"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Total": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "medidas_ad.ds07_detalle_cuadrante_visual": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Medidas_AD",
+			          "ConceptualProperty": "DS07 Detalle Cuadrante Visual"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Cuadrante visual": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "fct_ninebox_talento_2025.nombre": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Fct_NineBox_Talento_2025",
+			          "ConceptualProperty": "Nombre"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Nombre": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "fct_ninebox_talento_2025.apellido": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Fct_NineBox_Talento_2025",
+			          "ConceptualProperty": "Apellido"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Apellido": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "fct_ninebox_talento_2025.empresa": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Fct_NineBox_Talento_2025",
+			          "ConceptualProperty": "Empresa"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Empresa": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "fct_ninebox_talento_2025.área": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Fct_NineBox_Talento_2025",
+			          "ConceptualProperty": "Área"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Área": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "fct_ninebox_talento_2025.nombre_del_cargo": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Fct_NineBox_Talento_2025",
+			          "ConceptualProperty": "Nombre del Cargo"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Cargo": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "fct_ninebox_talento_2025.clasificación": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Fct_NineBox_Talento_2025",
+			          "ConceptualProperty": "CLASIFICACIÓN"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Clasificacion oficial": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "medidas_ad.ninebox_x_visual": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Medidas_AD",
+			          "ConceptualProperty": "NineBox X Visual"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "X Visual": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "medidas_ad.ninebox_y_visual": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Medidas_AD",
+			          "ConceptualProperty": "NineBox Y Visual"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Y Visual": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
 			    }
 			  },
 			  "Relationships": {

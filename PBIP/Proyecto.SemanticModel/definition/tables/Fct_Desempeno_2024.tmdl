@@ -137,3 +137,4 @@ table Fct_Desempeno_2024
 	annotation PBI_NavigationStepName = Navegación
 
 	annotation PBI_ResultType = Table
+

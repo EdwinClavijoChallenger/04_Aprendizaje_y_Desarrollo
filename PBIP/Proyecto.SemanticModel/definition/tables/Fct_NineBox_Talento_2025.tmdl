@@ -1,0 +1,168 @@
+table Fct_NineBox_Talento_2025
+	lineageTag: 5cd7f4f3-df66-4a12-9b03-8f2b4f81d2b9
+
+	column Identificación
+		dataType: string
+		lineageTag: 98a233b0-a77a-4f99-bf59-a912c2bc4e5e
+		summarizeBy: none
+		sourceColumn: Identificación
+
+	column Nombre
+		dataType: string
+		lineageTag: 3f992816-bf9e-4f0c-bf53-3f6b18fd31f9
+		summarizeBy: none
+		sourceColumn: Nombre
+
+	column Apellido
+		dataType: string
+		lineageTag: 6ce8fd9c-bf93-49e9-8f3a-5ae2f09d9db3
+		summarizeBy: none
+		sourceColumn: Apellido
+
+	column 'Nombre del Cargo'
+		dataType: string
+		lineageTag: 9d66ff35-6fe6-49e8-8af4-f4a8f2e2d6e7
+		summarizeBy: none
+		sourceColumn: Nombre del Cargo
+
+	column Empresa
+		dataType: string
+		lineageTag: 735fd6d6-98cd-4746-a138-d92a4c4ac5f7
+		summarizeBy: none
+		sourceColumn: Empresa
+
+	column 'Dirección / Gerencia'
+		dataType: string
+		lineageTag: aeb7414e-e5d5-481f-a057-2f20de9f6027
+		summarizeBy: none
+		sourceColumn: Dirección / Gerencia
+
+	column Área
+		dataType: string
+		lineageTag: 8f1644c0-f2bd-44b8-af98-4f4dff8988cc
+		summarizeBy: none
+		sourceColumn: Área
+
+	column 'Nombre Centro de Costos'
+		dataType: string
+		lineageTag: 77731758-8ee1-4b65-b227-bd0f8f2f46c9
+		summarizeBy: none
+		sourceColumn: Nombre Centro de Costos
+
+	column COMPETENCIAS
+		dataType: double
+		formatString: 0.00
+		lineageTag: b5cdf95a-b340-4253-b0bd-e7a80bd2f9b1
+		summarizeBy: none
+		sourceColumn: COMPETENCIAS
+
+	column INDICADORES
+		dataType: double
+		formatString: 0.00
+		lineageTag: 88f66cff-6a73-4e6f-97c9-cf74a31cb7a3
+		summarizeBy: none
+		sourceColumn: INDICADORES
+
+	column TOTAL
+		dataType: double
+		formatString: 0.00
+		lineageTag: 5401ee63-7d65-4514-a89d-089bf47f3f8a
+		summarizeBy: none
+		sourceColumn: TOTAL
+
+	column CLASIFICACIÓN
+		dataType: string
+		lineageTag: 5fe9df83-66c7-4496-985f-ef6c425f6644
+		summarizeBy: none
+		sourceColumn: CLASIFICACIÓN
+
+	column NineBox_Key
+		dataType: string
+		lineageTag: c0efd893-fb52-4636-93f2-c238fcdac0e1
+		summarizeBy: none
+		sourceColumn: NineBox_Key
+
+	column Cuadrante_Nombre
+		dataType: string
+		lineageTag: 3346ea18-f13b-4e45-8fda-4c3ddd51e8e8
+		summarizeBy: none
+		sourceColumn: Cuadrante_Nombre
+
+	column Cuadrante_Visual
+		dataType: string
+		lineageTag: bdfb45f6-4c4b-4cc0-afca-d40a76498c77
+		summarizeBy: none
+		sourceColumn: Cuadrante_Visual
+
+	column Cuadrante_Tecnico
+		dataType: string
+		lineageTag: 5bc46d18-f79f-4309-91f3-1c7b1e4aa551
+		summarizeBy: none
+		sourceColumn: Cuadrante_Tecnico
+
+	column Es_Evaluable_NineBox
+		dataType: boolean
+		lineageTag: e6ec64aa-6cf9-4f91-95fa-cf3542f70072
+		summarizeBy: none
+		sourceColumn: Es_Evaluable_NineBox
+
+	column Total_Recalculado
+		dataType: double
+		formatString: 0.0000
+		lineageTag: 8f37b026-1a7f-4dc9-8ce3-7fcf687fa87a
+		summarizeBy: none
+		sourceColumn: Total_Recalculado
+
+	column Diferencia_Total
+		dataType: double
+		formatString: 0.0000
+		lineageTag: 89eb7aa6-f42a-4e25-b32f-a8fdc1f119b1
+		summarizeBy: none
+		sourceColumn: Diferencia_Total
+
+	column Flag_Diferencia_Total
+		dataType: boolean
+		lineageTag: dbd7f937-f4bd-4d99-a9fb-44f66464ec71
+		summarizeBy: none
+		sourceColumn: Flag_Diferencia_Total
+
+	column Anio_NineBox
+		dataType: int64
+		formatString: 0
+		lineageTag: 5e89cbf4-60cb-4e4f-93f9-a1f0f3b6fe40
+		summarizeBy: none
+		sourceColumn: Anio_NineBox
+
+	partition Fct_NineBox_Talento_2025 = m
+		mode: import
+		queryGroup: Desempeño
+		source =
+				let
+				    Origen = Excel.Workbook(File.Contents("C:\\Users\\edwin.clavijo\\OneDrive - CHALLENGER S.A.S\\5. People analytics\\04_Aprendizaje_y_Desarrollo\\Data\\(ANEXO 6) Identificación del talento 2025.xlsx"), null, true),
+				    Hoja = Origen{[Item="BD",Kind="Sheet"]}[Data],
+				    Encabezados = Table.PromoteHeaders(Hoja, [PromoteAllScalars=true]),
+				    Seleccion = Table.SelectColumns(Encabezados, {"Identificación", "Nombre", "Apellido", "Nombre del Cargo", "Empresa", "Dirección / Gerencia", "Área", "Nombre Centro de Costos", "COMPETENCIAS", "INDICADORES", "TOTAL", "CLASIFICACIÓN"}, MissingField.UseNull),
+				    Tipos = Table.TransformColumnTypes(Seleccion, {{"Identificación", type text}, {"Nombre", type text}, {"Apellido", type text}, {"Nombre del Cargo", type text}, {"Empresa", type text}, {"Dirección / Gerencia", type text}, {"Área", type text}, {"Nombre Centro de Costos", type text}, {"COMPETENCIAS", type number}, {"INDICADORES", type number}, {"TOTAL", type number}, {"CLASIFICACIÓN", type text}}, "es-CO"),
+				    NormalizarIdentificacion = (valor as nullable any) as nullable text =>
+				        let
+				            txt = if valor = null then null else Text.Trim(Text.From(valor, "es-CO")),
+				            limpio = if txt = null or txt = "" then null else txt,
+				            sinDecimal = if limpio = null then null else if Text.Contains(limpio, ".") then Text.BeforeDelimiter(limpio, ".", 1) else limpio
+				        in
+				            sinDecimal,
+				    ConNineBoxKey = Table.AddColumn(Tipos, "NineBox_Key", each NormalizarIdentificacion([Identificación]), type text),
+				    ConCuadranteNombre = Table.AddColumn(ConNineBoxKey, "Cuadrante_Nombre", each [CLASIFICACIÓN], type text),
+				    ConCuadranteVisual = Table.AddColumn(ConCuadranteNombre, "Cuadrante_Visual", each let c = if [CLASIFICACIÓN] = null then "" else Text.Upper(Text.Trim([CLASIFICACIÓN])) in if c = "DILEMA 1" or c = "DILEMA 2" then "DILEMA" else [CLASIFICACIÓN], type text),
+				    ConCuadranteTecnico = Table.AddColumn(ConCuadranteVisual, "Cuadrante_Tecnico", each [CLASIFICACIÓN], type text),
+				    ConEvaluable = Table.AddColumn(ConCuadranteTecnico, "Es_Evaluable_NineBox", each let c = if [CLASIFICACIÓN] = null then "" else Text.Upper(Text.Trim([CLASIFICACIÓN])) in c <> "" and c <> "NO APLICA", type logical),
+				    ConAnioNineBox = Table.AddColumn(ConEvaluable, "Anio_NineBox", each 2025, Int64.Type),
+				    ConTotalRecalculado = Table.AddColumn(ConAnioNineBox, "Total_Recalculado", each if [COMPETENCIAS] = null or [INDICADORES] = null then null else 0.4 * [COMPETENCIAS] + 0.6 * [INDICADORES], type number),
+				    ConDiferenciaTotal = Table.AddColumn(ConTotalRecalculado, "Diferencia_Total", each if [TOTAL] = null or [Total_Recalculado] = null then null else [TOTAL] - [Total_Recalculado], type number),
+				    Resultado = Table.AddColumn(ConDiferenciaTotal, "Flag_Diferencia_Total", each if [Diferencia_Total] = null then false else Number.Abs([Diferencia_Total]) > 0.01, type logical)
+				in
+				    Resultado
+
+	annotation PBI_NavigationStepName = Navegación
+
+	annotation PBI_ResultType = Table
+

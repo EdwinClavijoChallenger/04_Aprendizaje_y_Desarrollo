@@ -19,7 +19,7 @@ annotation __PBI_TimeIntelligenceEnabled = 0
 
 annotation PBI_ProTooling = ["DevMode"]
 
-annotation PBI_QueryOrder = ["Fct_PlanFormacion","Fct_AsistenciaFormacion","Fct_EncuestaFormacion","Fct_InduccionColaborador_antes_de_UC_2025","Fct_InduccionColaborador_UC_2025","Fct_InduccionColaborador_UC_2026","Dim_ColaboradorHC","Fct_Seguimiento_PDI","Fct_EntrevistaRetiro_V1","Fct_EntrevistaRetiro_V2","Fct_EntrevistaRetiro_Corporativa","Fct_EntrevistaRetiro_Unificada","Stg_Bienestar_Ejecucion","Stg_Bienestar_Planeacion","Fct_Desempeno_2025","Fct_Competencias_2025","Fct_Desempeno_Evaluadores_2025","Fct_Desempeno_2024","Fct_Poblacion_Indicadores_2025","Dim_ColaboradorDesempeno","Dim_FechaActualizacion"]
+annotation PBI_QueryOrder = ["Fct_PlanFormacion","Fct_AsistenciaFormacion","Fct_EncuestaFormacion","Fct_InduccionColaborador_antes_de_UC_2025","Fct_InduccionColaborador_UC_2025","Fct_InduccionColaborador_UC_2026","Dim_ColaboradorHC","Fct_Seguimiento_PDI","Fct_EntrevistaRetiro_V1","Fct_EntrevistaRetiro_V2","Fct_EntrevistaRetiro_Corporativa","Fct_EntrevistaRetiro_Unificada","Stg_Bienestar_Ejecucion","Stg_Bienestar_Planeacion","Fct_Desempeno_2025","Fct_Competencias_2025","Fct_Desempeno_Evaluadores_2025","Fct_Desempeno_2024","Fct_Poblacion_Indicadores_2025","Fct_NineBox_Talento_2025","Dim_ColaboradorDesempeno","Dim_FechaActualizacion"]
 
 ref table Dim_Calendario
 ref table Fct_PlanFormacion
@@ -69,6 +69,7 @@ ref table Dim_NineBox_Cuadrante
 ref table Dim_Anio_Desempeno
 ref table Dim_Nivel_Desempeno
 ref table Dim_FechaActualizacion
+ref table Fct_NineBox_Talento_2025
 
 ref cultureInfo es-ES
 
