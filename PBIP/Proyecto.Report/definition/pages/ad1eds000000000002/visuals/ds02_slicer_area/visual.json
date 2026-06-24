@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "ds02_slicer_area",
   "position": {
-    "x": 422,
-    "y": 146,
+    "x": 421.57517899761336,
+    "y": 126.89553882871306,
     "z": 1000,
-    "height": 38,
-    "width": 156,
+    "height": 57.807967688635948,
+    "width": 156.5044978887461,
     "tabOrder": 1000
   },
   "visual": {

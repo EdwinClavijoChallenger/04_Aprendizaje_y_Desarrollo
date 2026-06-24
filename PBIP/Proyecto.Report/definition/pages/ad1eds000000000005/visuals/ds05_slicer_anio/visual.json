@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "ds05_slicer_anio",
   "position": {
-    "x": 248,
-    "y": 146,
-    "z": 12000,
-    "height": 38,
-    "width": 190,
-    "tabOrder": 12000
+    "x": 248.15127593170553,
+    "y": 126.89553882871306,
+    "z": 1000,
+    "height": 57.807967688635948,
+    "width": 190.34330824306957,
+    "tabOrder": 1000
   },
   "visual": {
     "visualType": "slicer",

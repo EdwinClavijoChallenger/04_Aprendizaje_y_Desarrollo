@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "ds02_slicer_empresa",
   "position": {
-    "x": 248,
-    "y": 146,
-    "z": 1000,
-    "height": 38,
-    "width": 156,
-    "tabOrder": 1000
+    "x": 248.15127593170553,
+    "y": 126.89553882871306,
+    "z": 4000,
+    "height": 57.807967688635948,
+    "width": 156.5044978887461,
+    "tabOrder": 4000
   },
   "visual": {
     "visualType": "slicer",

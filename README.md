@@ -69,7 +69,7 @@ El frente Bienestar y Clima cuenta con tres paginas activas:
 - `BC02 Entrevista de Retiro`
 - `BC03 Plan de Bienestar`
 
-El frente Desempeno cuenta con seis paginas en construccion:
+El frente Desempeno cuenta con siete paginas en construccion:
 
 - `DS01_Resumen_Desempeno`
 - `DS02_Cobertura`
@@ -77,6 +77,7 @@ El frente Desempeno cuenta con seis paginas en construccion:
 - `DS04_Competencias`
 - `DS05_Areas_Cargos`
 - `DS06_Detalle_Individual`
+- `DS07_Nine_Box` (en validacion visual)
 
 El modelo incluye dimensiones gerenciales, tabla de medidas `Medidas_AD`, fact consolidada de induccion, relacion entre `Fct_AsistenciaFormacion` y `Dim_ColaboradorHC`, estructura inicial para `Fct_Seguimiento_PDI`, fact homologada `Fct_EntrevistaRetiro_Unificada` y `Fct_SeguimientoBienestar` para seguimiento del plan de bienestar.
 

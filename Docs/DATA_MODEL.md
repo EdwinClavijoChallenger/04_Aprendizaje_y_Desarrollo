@@ -28,6 +28,21 @@ La tabla de medidas principal es `Medidas_AD`.
 | `Fct_Desempeno_Evaluadores_2025` | Detalle de calificaciones por tipo de evaluador. | Un registro por colaborador, evaluador y competencia. |
 | `Fct_Desempeno_2024` | Resultado historico de desempeno para referencia comparativa. | Un registro historico por colaborador. |
 | `Fct_Poblacion_Indicadores_2025` | Poblacion de referencia e indicador de actividad para cobertura 2025. | Un colaborador de la poblacion de indicadores. |
+| `Fct_NineBox_Talento_2025` | Identificacion del talento 2025 desde ANEXO 6. Contiene scores de COMPETENCIAS e INDICADORES, clasificacion cualitativa y columnas tecnicas para el scatter Nine Box. | Un colaborador evaluado en el proceso de identificacion de talento 2025. |
+
+## Observaciones por fuente — Fct_NineBox_Talento_2025
+
+`Fct_NineBox_Talento_2025` usa `File.Contents` sobre el archivo local `Data/(ANEXO 6) Identificacion del talento 2025.xlsx`, hoja `BD`. Fuente dependiente del equipo; requiere que el archivo exista en la ruta exacta al refrescar.
+
+Columnas tecnicas calculadas en Power Query:
+
+- `NineBox_Key`: normalizacion de `Identificacion` (trim + elimina sufijo `.0`) — llave de relacion con `Dim_ColaboradorDesempeno`.
+- `Es_Evaluable_NineBox`: `TRUE` cuando `CLASIFICACION` no es vacio ni `NO APLICA`.
+- `Cuadrante_Tecnico`: equivale a `CLASIFICACION`; llave hacia `Dim_NineBox_Cuadrante`.
+- `Cuadrante_Visual`: consolida `DILEMA 1` y `DILEMA 2` en `DILEMA` para etiquetas del scatter.
+- `Anio_NineBox`: constante `2025`; permite filtrar por ano a traves de `TREATAS` o filtro directo.
+
+Las medidas NineBox usan el patron `ISFILTERED('Dim_Anio_Desempeno'[Anio])` como guarda: si hay filtro explicito de ano aplican `TREATAS`; si no, aplican `Anio_NineBox = 2025` directamente.
 
 ## Observaciones por fuente
 
@@ -66,9 +81,10 @@ La tabla de medidas principal es `Medidas_AD`.
 | `Dim_DimensionBienestar` | Catalogo de dimensiones del plan de bienestar (agrupaciones de actividades). Calculada desde staging. |
 | `Dim_Frente_Home` | Tabla auxiliar para controlar el frente activo del home corporativo. |
 | `Dim_FechaActualizacion` | Tabla auxiliar de metadatos. Captura la datetime del ultimo refresh del modelo en zona horaria Bogota (UTC-5). Una sola fila. Usada por `HTML Inicio Corporativo Propuesta 1` para mostrar la fecha de actualizacion en el header del Home. |
-| `Dim_ColaboradorDesempeno` | Dimension especifica de evaluacion construida desde `bd`, con identificacion, cargo, centro de costo, empresa, dependencia y area. |
+| `Dim_ColaboradorDesempeno` | Dimension especifica de evaluacion construida desde `bd`, con identificacion, cargo, centro de costo, empresa, dependencia y area. Llave `ColaboradorDesempeno_Key` = `Text.From(Identificacion)`. |
 | `Dim_Nivel_Desempeno` | Catalogo de niveles de desempeno para curva y distribuciones. |
-| `Dim_Anio_Desempeno` | Segmentacion de anio para el frente Desempeno. |
+| `Dim_Anio_Desempeno` | Segmentacion de anio para el frente Desempeno. Tabla calculada desde `Fct_Desempeno_2025`. Si esa tabla esta vacia, `Dim_Anio_Desempeno` queda sin filas y las medidas NineBox con `TREATAS` retornan BLANK. |
+| `Dim_NineBox_Cuadrante` | Catalogo de cuadrantes Nine Box con nombre tecnico, nombre visual, categoria ejecutiva (Alto Potencial, Talento Solido, etc.) y fuente de regla (ANEXO 6). Dimension manual; no depende de ninguna fact. |
 
 ## Criterios de homologacion
 
@@ -137,6 +153,11 @@ Relaciones de Desempeno:
 - `Fct_Desempeno_2024[ColaboradorDesempeno_Key]` -> `Dim_ColaboradorDesempeno[ColaboradorDesempeno_Key]`
 - `Fct_Poblacion_Indicadores_2025[ColaboradorDesempeno_Key]` -> `Dim_ColaboradorDesempeno[ColaboradorDesempeno_Key]`
 - Las tablas de Desempeno se relacionan con `Dim_Empresa` mediante `Empresa_Key` cuando la fuente dispone de la llave.
+
+Relaciones Nine Box:
+
+- `Fct_NineBox_Talento_2025[NineBox_Key]` -> `Dim_ColaboradorDesempeno[ColaboradorDesempeno_Key]` (nombre: `DS_Colaborador_NineBoxTalento2025`)
+- `Fct_NineBox_Talento_2025[Cuadrante_Tecnico]` -> `Dim_NineBox_Cuadrante[Cuadrante_Nombre_Tecnico]` (nombre: `DS_Cuadrante_NineBoxTalento2025`)
 
 ## Logica de `Dim_ColaboradorHC`
 

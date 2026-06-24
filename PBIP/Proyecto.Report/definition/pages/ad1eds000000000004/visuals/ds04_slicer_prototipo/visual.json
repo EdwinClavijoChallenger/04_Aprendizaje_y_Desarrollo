@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "ds04_slicer_prototipo",
   "position": {
-    "x": 421,
-    "y": 146,
-    "z": 1002,
-    "height": 38,
-    "width": 156,
-    "tabOrder": 1002
+    "x": 421.57517899761336,
+    "y": 128.30548926014319,
+    "z": 2000,
+    "height": 56.3980172572058,
+    "width": 155.09454745731597,
+    "tabOrder": 2000
   },
   "visual": {
     "visualType": "slicer",

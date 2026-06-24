@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "ds04_slicer_competencia",
   "position": {
-    "x": 940,
-    "y": 146,
-    "z": 1005,
-    "height": 38,
-    "width": 156,
-    "tabOrder": 1005
+    "x": 940.43693776390671,
+    "y": 128.30548926014319,
+    "z": 5000,
+    "height": 56.3980172572058,
+    "width": 155.09454745731597,
+    "tabOrder": 5000
   },
   "visual": {
     "visualType": "slicer",

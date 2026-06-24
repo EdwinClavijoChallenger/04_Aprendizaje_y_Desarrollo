@@ -4,10 +4,10 @@
   "position": {
     "x": 844,
     "y": 288,
-    "z": 14002,
+    "z": 13000,
     "height": 194,
     "width": 404,
-    "tabOrder": 14002
+    "tabOrder": 13000
   },
   "visual": {
     "visualType": "barChart",
@@ -32,24 +32,6 @@
             }
           ]
         },
-        "Y": {
-          "projections": [
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "Medidas_AD"
-                    }
-                  },
-                  "Property": "Desempeno Colaboradores Nivel DS03"
-                }
-              },
-              "queryRef": "Medidas_AD.Desempeno Colaboradores Nivel DS03",
-              "nativeQueryRef": "Desempeno Colaboradores Nivel DS03"
-            }
-          ]
-        },
         "Series": {
           "projections": [
             {
@@ -66,6 +48,24 @@
               "queryRef": "Dim_Nivel_Desempeno.Nivel_Desempeno",
               "nativeQueryRef": "Nivel",
               "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medidas_AD"
+                    }
+                  },
+                  "Property": "Desempeno Colaboradores Nivel DS03"
+                }
+              },
+              "queryRef": "Medidas_AD.Desempeno Colaboradores Nivel DS03",
+              "nativeQueryRef": "Desempeno Colaboradores Nivel DS03"
             }
           ]
         }

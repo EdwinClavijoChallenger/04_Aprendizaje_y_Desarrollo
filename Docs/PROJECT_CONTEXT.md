@@ -26,7 +26,7 @@ El bloque Bienestar y Clima inicia su construccion con el analisis de entrevista
 
 La fase actual permite revisar motivos de salida, tipos de retiro, unidades de negocio con mayor concentracion, tendencias mensuales, causas potencialmente prevenibles y procesos asociados a oportunidades de mejora. El plan de bienestar cuenta con una pagina inicial de seguimiento; los componentes de clima y eNPS permanecen como roadmap funcional hasta incorporar sus fuentes.
 
-El bloque Desempeno se encuentra en construccion con las paginas `DS01_Resumen_Desempeno` a `DS06_Detalle_Individual`. La primera etapa integra resultados de desempeno, competencias, evaluadores, poblacion activa, curva de niveles, analisis por estructura y consulta individual.
+El bloque Desempeno se encuentra en construccion con las paginas `DS01_Resumen_Desempeno` a `DS07_Nine_Box`. La primera etapa integra resultados de desempeno, competencias, evaluadores, poblacion activa, curva de niveles, analisis por estructura y consulta individual. La pagina `DS07_Nine_Box` incorpora la identificacion del talento 2025 (fuente ANEXO 6) en un scatter 3x3 con nueve cuadrantes, apoyado en la tabla `Fct_NineBox_Talento_2025` y la dimension `Dim_NineBox_Cuadrante`.
 
 ## Proximos bloques
 

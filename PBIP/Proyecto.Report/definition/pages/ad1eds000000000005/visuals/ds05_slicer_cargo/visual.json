@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "ds05_slicer_cargo",
   "position": {
-    "x": 1096,
-    "y": 146,
-    "z": 12004,
-    "height": 38,
-    "width": 190,
-    "tabOrder": 12004
+    "x": 1095.5314852212227,
+    "y": 126.89553882871306,
+    "z": 5000,
+    "height": 57.807967688635948,
+    "width": 190.34330824306957,
+    "tabOrder": 5000
   },
   "visual": {
     "visualType": "slicer",

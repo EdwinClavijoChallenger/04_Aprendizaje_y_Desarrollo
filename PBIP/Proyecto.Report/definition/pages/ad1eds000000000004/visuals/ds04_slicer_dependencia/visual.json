@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "ds04_slicer_dependencia",
   "position": {
-    "x": 594,
-    "y": 146,
-    "z": 1003,
-    "height": 38,
-    "width": 156,
-    "tabOrder": 1003
+    "x": 593.589131632091,
+    "y": 128.30548926014319,
+    "z": 3000,
+    "height": 56.3980172572058,
+    "width": 156.5044978887461,
+    "tabOrder": 3000
   },
   "visual": {
     "visualType": "slicer",

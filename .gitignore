@@ -6,10 +6,19 @@ backups_codex/
 Outputs/
 outputs/
 
-# Archivos locales/cache de Power BI
+# Archivos locales/cache de Power BI Desktop
 **/.pbi/localSettings.json
+**/.pbi/localSettings-*.json
 **/.pbi/cache.abf
+**/.pbi/cache-*.abf
 **/.pbi/editorSettings.json
+**/.pbi/settings.json
+
+# Claude Code session data
+.claude/
+
+# VS Code session settings (auto-approve rules de Claude Code)
+.vscode/
 
 # Documento pesado de referencia de marca
 Docs/Manual Marca Grupo LEMCO.pdf

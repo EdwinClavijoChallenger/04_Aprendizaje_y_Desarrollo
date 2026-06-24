@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "ds05_slicer_area",
   "position": {
-    "x": 672,
-    "y": 146,
-    "z": 12002,
-    "height": 38,
-    "width": 190,
-    "tabOrder": 12002
+    "x": 672.54635579217916,
+    "y": 126.89553882871306,
+    "z": 3000,
+    "height": 57.807967688635948,
+    "width": 188.93335781163944,
+    "tabOrder": 3000
   },
   "visual": {
     "visualType": "slicer",
