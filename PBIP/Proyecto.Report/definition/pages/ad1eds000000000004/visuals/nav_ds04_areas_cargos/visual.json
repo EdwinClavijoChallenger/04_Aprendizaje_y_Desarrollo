@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
-  "name": "nav_ds05_areas_cargos",
+  "name": "nav_ds04_areas_cargos",
   "position": {
-    "x": 588,
+    "x": 728,
     "y": 684,
-    "z": 20000,
+    "z": 20040,
     "height": 28,
-    "width": 104,
-    "tabOrder": 20000
+    "width": 126,
+    "tabOrder": 20040
   },
   "visual": {
     "visualType": "actionButton",
@@ -57,7 +57,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#F7931E'"
+                      "Value": "'#FFFFFF'"
                     }
                   }
                 }
@@ -82,7 +82,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#F7931E'"
+                      "Value": "'#E6EEF5'"
                     }
                   }
                 }
@@ -141,7 +141,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#FFFFFF'"
+                      "Value": "'#003A70'"
                     }
                   }
                 }
@@ -164,7 +164,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "9D"
+                  "Value": "8D"
                 }
               }
             }
@@ -201,7 +201,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#FFFFFF'"
+                      "Value": "'#003A70'"
                     }
                   }
                 }
@@ -224,7 +224,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "9D"
+                  "Value": "8D"
                 }
               }
             }
@@ -297,7 +297,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#F7931E'"
+                      "Value": "'#1B487F'"
                     }
                   }
                 }

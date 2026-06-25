@@ -118,7 +118,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Areas/Cargos'"
+                  "Value": "'Áreas/Cargos'"
                 }
               }
             },
@@ -178,7 +178,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Areas/Cargos'"
+                  "Value": "'Áreas/Cargos'"
                 }
               }
             },
