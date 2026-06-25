@@ -2610,29 +2610,48 @@ table Medidas_AD
 			VAR _HaySeleccion = NOT ISBLANK(_IdSeleccionada)
 			VAR _ClasifOficial = SELECTEDVALUE('Fct_NineBox_Talento_2025'[CLASIFICACIÓN])
 			VAR _CatEjecutiva = [NineBox Categoria Ejecutiva]
+			VAR _CuadranteTecnico =
+				COALESCE(
+					[NineBox Cuadrante],
+					_ClasifOficial
+				)
+			VAR _CuadranteVisual =
+				COALESCE(
+					CALCULATE(
+						SELECTEDVALUE('Dim_NineBox_Cuadrante'[Cuadrante_Nombre_Visual]),
+						TREATAS({_CuadranteTecnico}, 'Dim_NineBox_Cuadrante'[Cuadrante_Nombre_Tecnico])
+					),
+					SWITCH(
+						TRUE(),
+						_CuadranteTecnico IN {"DILEMA 1", "DILEMA 2"}, "DILEMA",
+						_CuadranteTecnico
+					)
+				)
+			VAR _TextoPrincipal = COALESCE(_ClasifOficial, _CuadranteTecnico, "Sin clasificacion")
+			VAR _ColorKey = UPPER(TRIM(COALESCE(_CuadranteTecnico, _CuadranteVisual, _ClasifOficial, "")))
 			VAR _ColorFondo =
 				SWITCH(
-					_CatEjecutiva,
-					"Alto Potencial", "#D6F1DA",
-					"Talento Solido", "#EEF4FB",
-					"Desarrollo Requerido", "#FFF6EB",
-					"Riesgo", "#FDEEEE",
+					TRUE(),
+					_ColorKey IN {"ALTO POTENCIAL", "CONTRIBUYENTE CLAVE", "CONTRIBUYENTES CLAVE"}, "#D6F1DA",
+					_ColorKey IN {"PROMESAS", "SÓLIDO", "SÓLIDOS", "SOLIDO", "SOLIDOS"}, "#EEF4FB",
+					_ColorKey IN {"DIAMANTE EN BRUTO", "DILEMA 1", "DILEMA 2", "DILEMA", "EXPERIMENTADO"}, "#FFF6EB",
+					_ColorKey = "TALENTO EN RIESGO", "#FDEEEE",
 					"#F7F9FC"
 				)
 			VAR _ColorTexto =
 				SWITCH(
-					_CatEjecutiva,
-					"Alto Potencial", "#167044",
-					"Talento Solido", "#1B487F",
-					"Desarrollo Requerido", "#9C5B00",
-					"Riesgo", "#A12C3A",
+					TRUE(),
+					_ColorKey IN {"ALTO POTENCIAL", "CONTRIBUYENTE CLAVE", "CONTRIBUYENTES CLAVE"}, "#167044",
+					_ColorKey IN {"PROMESAS", "SÓLIDO", "SÓLIDOS", "SOLIDO", "SOLIDOS"}, "#1B487F",
+					_ColorKey IN {"DIAMANTE EN BRUTO", "DILEMA 1", "DILEMA 2", "DILEMA", "EXPERIMENTADO"}, "#9C5B00",
+					_ColorKey = "TALENTO EN RIESGO", "#A12C3A",
 					"#1A3059"
 				)
 			VAR _HtmlIndividual =
 				"<div style='width:100%;height:100%;box-sizing:border-box;padding:14px;font-family:Outfit,Poppins,Segoe UI,Arial,sans-serif;color:#0B1C35;overflow:hidden;display:flex;flex-direction:column;justify-content:center;'>" &
 				"<div style='background:" & _ColorFondo & ";border-radius:10px;padding:14px 16px;width:100%;box-sizing:border-box;text-align:center;'>" &
 				"<div style='font-size:9px;color:#5E738F;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;'>Clasificaci&oacute;n oficial ANEXO 6</div>" &
-				"<div style='font-size:17px;font-weight:850;color:" & _ColorTexto & ";line-height:1.3;'>" & _ClasifOficial & "</div>" &
+				"<div style='font-size:17px;font-weight:850;color:" & _ColorTexto & ";line-height:1.3;'>" & _TextoPrincipal & "</div>" &
 				"<div style='font-size:9.5px;color:" & _ColorTexto & ";margin-top:6px;opacity:.8;'>Categor&iacute;a: " & _CatEjecutiva & "</div>" &
 				"</div>" &
 				"</div>"
@@ -2660,6 +2679,25 @@ table Medidas_AD
 				)
 			VAR _NombreDominante = MAXX(_DominanteTabla, 'Dim_NineBox_Cuadrante'[Cuadrante_Nombre_Visual])
 			VAR _CatDelDominante = MAXX(_DominanteTabla, 'Dim_NineBox_Cuadrante'[Categoria_Ejecutiva])
+			VAR _ColorKeyDominante = UPPER(TRIM(COALESCE(_NombreDominante, "")))
+			VAR _ColorFondoDominante =
+				SWITCH(
+					TRUE(),
+					_ColorKeyDominante IN {"ALTO POTENCIAL", "CONTRIBUYENTE CLAVE", "CONTRIBUYENTES CLAVE"}, "#D6F1DA",
+					_ColorKeyDominante IN {"PROMESAS", "SÓLIDO", "SÓLIDOS", "SOLIDO", "SOLIDOS"}, "#EEF4FB",
+					_ColorKeyDominante IN {"DIAMANTE EN BRUTO", "DILEMA 1", "DILEMA 2", "DILEMA", "EXPERIMENTADO"}, "#FFF6EB",
+					_ColorKeyDominante = "TALENTO EN RIESGO", "#FDEEEE",
+					"#F7F9FC"
+				)
+			VAR _ColorTextoDominante =
+				SWITCH(
+					TRUE(),
+					_ColorKeyDominante IN {"ALTO POTENCIAL", "CONTRIBUYENTE CLAVE", "CONTRIBUYENTES CLAVE"}, "#167044",
+					_ColorKeyDominante IN {"PROMESAS", "SÓLIDO", "SÓLIDOS", "SOLIDO", "SOLIDOS"}, "#1B487F",
+					_ColorKeyDominante IN {"DIAMANTE EN BRUTO", "DILEMA 1", "DILEMA 2", "DILEMA", "EXPERIMENTADO"}, "#9C5B00",
+					_ColorKeyDominante = "TALENTO EN RIESGO", "#A12C3A",
+					"#1A3059"
+				)
 			VAR _Alertas =
 				IF(_PctRiesgo >= 0.20, "<li>La participaci&oacute;n en riesgo supera el 20% y requiere seguimiento prioritario.</li>", "") &
 				IF(_PctDesarrollo >= 0.30, "<li>El bloque de desarrollo requerido supera el 30% y demanda foco en acompa&ntilde;amiento.</li>", "") &
@@ -2672,7 +2710,7 @@ table Medidas_AD
 				)
 			VAR _HtmlAgregado =
 				"<div style='width:100%;height:100%;box-sizing:border-box;padding:12px 14px;font-family:Outfit,Poppins,Segoe UI,Arial,sans-serif;color:#0B1C35;overflow:hidden;'>" &
-				"<div style='font-size:11px;line-height:16px;color:#4B5D78;margin-bottom:10px;'>Se observan <b style='color:#1A3059;'>" & FORMAT(_Total, "#,0") & "</b> colaboradores evaluables. El cuadrante dominante es <b style='color:#1A3059;'>" & _NombreDominante & "</b>, categor&iacute;a ejecutiva <b style='color:#1A3059;'>" & _CatDelDominante & "</b>.</div>" &
+				"<div style='font-size:11px;line-height:16px;color:#4B5D78;margin-bottom:10px;background:" & _ColorFondoDominante & ";border:1px solid #E6EEF5;border-radius:8px;padding:8px 10px;'>Se observan <b style='color:#1A3059;'>" & FORMAT(_Total, "#,0") & "</b> colaboradores evaluables. El cuadrante dominante es <b style='color:" & _ColorTextoDominante & ";'>" & _NombreDominante & "</b>, categor&iacute;a ejecutiva <b style='color:#1A3059;'>" & _CatDelDominante & "</b>.</div>" &
 				"<div style='display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-bottom:10px;'>" &
 				"<div style='background:#EDF7F0;border:1px solid #D7EAD9;border-radius:8px;padding:8px;'><div style='font-size:8px;color:#5E738F;text-transform:uppercase;letter-spacing:.4px;'>Alto potencial</div><div style='font-size:16px;font-weight:850;color:#1A3059;'>" & FORMAT(_Alto, "#,0") & "</div><div style='font-size:9px;color:#167044;'>" & FORMAT(_PctAlto, "0.0%") & "</div></div>" &
 				"<div style='background:#EEF4FB;border:1px solid #D7E4F2;border-radius:8px;padding:8px;'><div style='font-size:8px;color:#5E738F;text-transform:uppercase;letter-spacing:.4px;'>Talento s&oacute;lido</div><div style='font-size:16px;font-weight:850;color:#1A3059;'>" & FORMAT(_Solido, "#,0") & "</div><div style='font-size:9px;color:#1B487F;'>" & FORMAT(_PctSolido, "0.0%") & "</div></div>" &
