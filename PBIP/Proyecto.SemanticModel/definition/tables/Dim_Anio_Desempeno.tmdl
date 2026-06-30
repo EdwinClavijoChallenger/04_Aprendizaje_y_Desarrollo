@@ -11,13 +11,36 @@ table Dim_Anio_Desempeno
 	partition Dim_Anio_Desempeno = calculated
 		mode: import
 		source =
-				DISTINCT(
+				VAR _AniosDesempeno =
 					SELECTCOLUMNS(
 						FILTER(
 							'Fct_Desempeno_2025',
-							NOT ISBLANK('Fct_Desempeno_2025'[Fecha de Proceso])
+							NOT ISBLANK('Fct_Desempeno_2025'[Anio])
 						),
-						"Anio", YEAR('Fct_Desempeno_2025'[Fecha de Proceso])
+						"Anio", 'Fct_Desempeno_2025'[Anio]
 					)
-				)
+				VAR _AniosCompetencias =
+					SELECTCOLUMNS(
+						FILTER(
+							'Fct_Competencias_2025',
+							NOT ISBLANK('Fct_Competencias_2025'[Anio])
+						),
+						"Anio", 'Fct_Competencias_2025'[Anio]
+					)
+				VAR _AniosPoblacion =
+					SELECTCOLUMNS(
+						FILTER(
+							'Fct_Poblacion_Indicadores_2025',
+							NOT ISBLANK('Fct_Poblacion_Indicadores_2025'[Anio])
+						),
+						"Anio", 'Fct_Poblacion_Indicadores_2025'[Anio]
+					)
+				RETURN
+					DISTINCT(
+						UNION(
+							_AniosDesempeno,
+							_AniosCompetencias,
+							_AniosPoblacion
+						)
+					)
 

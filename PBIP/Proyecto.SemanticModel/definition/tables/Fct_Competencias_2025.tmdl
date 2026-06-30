@@ -200,6 +200,12 @@ table Fct_Competencias_2025
 		summarizeBy: none
 		sourceColumn: NivelDesempeno_Key
 
+	column Anio
+		dataType: int64
+		lineageTag: 7f33f6d6-dff9-40d1-9c62-1792a26fc027
+		summarizeBy: none
+		sourceColumn: Anio
+
 	partition Fct_Competencias_2025 = m
 		mode: import
 		queryGroup: Desempeño
@@ -233,9 +239,11 @@ table Fct_Competencias_2025
 				    ConReq = Table.AddColumn(ConEmpresaKey, "Requerimiento_Homologado", each HomologarRequerimiento([Nombre Requerimiento]), type text),
 				    ConReqKey = Table.AddColumn(ConReq, "Requerimiento_Key", each if [Requerimiento_Homologado] = null then null else Text.Upper(Text.Trim([Requerimiento_Homologado])), type text),
 				    ConInterpretacion = Table.AddColumn(ConReqKey, "Interpretacion_Homologada", each HomologarInterpretacion([Interpretación Competencia]), type text),
-				    Resultado = Table.AddColumn(ConInterpretacion, "NivelDesempeno_Key", each if [Interpretacion_Homologada] = null then null else Text.Upper(Text.Trim([Interpretacion_Homologada])), type text)
+				    Resultado = Table.AddColumn(ConInterpretacion, "NivelDesempeno_Key", each if [Interpretacion_Homologada] = null then null else Text.Upper(Text.Trim([Interpretacion_Homologada])), type text),
+				    // Anio representa el ciclo de evaluacion 2025, no el anio calendario de Fecha de Proceso.
+				    AgregarAnio = Table.AddColumn(Resultado, "Anio", each 2025, Int64.Type)
 				in
-				    Resultado
+				    AgregarAnio
 
 	annotation PBI_NavigationStepName = Navegación
 

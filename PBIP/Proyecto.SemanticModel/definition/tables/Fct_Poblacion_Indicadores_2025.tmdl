@@ -161,6 +161,12 @@ table Fct_Poblacion_Indicadores_2025
 		summarizeBy: none
 		sourceColumn: NivelDesempeno_Key
 
+	column Anio
+		dataType: int64
+		lineageTag: c1982acc-ef4d-4ebe-9885-020bc9fd9b93
+		summarizeBy: none
+		sourceColumn: Anio
+
 	partition Fct_Poblacion_Indicadores_2025 = m
 		mode: import
 		queryGroup: Desempeño
@@ -198,9 +204,11 @@ table Fct_Poblacion_Indicadores_2025
 				    ConNivelCargo = Table.AddColumn(ConEmpresaKey, "Nivel_Cargo_Homologado", each HomologarNivelCargo([NIVEL DEL CARGO]), type text),
 				    ConNivelCargoKey = Table.AddColumn(ConNivelCargo, "NivelCargo_Key", each if [Nivel_Cargo_Homologado] = null then null else Text.Upper(Text.Trim([Nivel_Cargo_Homologado])), type text),
 				    ConInterpretacion = Table.AddColumn(ConNivelCargoKey, "Interpretacion_Homologada", each HomologarInterpretacion([NIVEL DESEMPEÑO]), type text),
-				    Resultado = Table.AddColumn(ConInterpretacion, "NivelDesempeno_Key", each if [Interpretacion_Homologada] = null then null else Text.Upper(Text.Trim([Interpretacion_Homologada])), type text)
+				    Resultado = Table.AddColumn(ConInterpretacion, "NivelDesempeno_Key", each if [Interpretacion_Homologada] = null then null else Text.Upper(Text.Trim([Interpretacion_Homologada])), type text),
+				    // FECHA INICIO, FECHA FINAL y FECHA INGRESO pertenecen al ciclo laboral del colaborador, no al corte del indicador. Dias_Corte_45656 no debe usarse sin validacion adicional porque puede ser un serial de fecha de Excel sin convertir. Por eso Anio se asigna temporalmente como 2025.
+				    AgregarAnio = Table.AddColumn(Resultado, "Anio", each 2025, Int64.Type)
 				in
-				    Resultado
+				    AgregarAnio
 
 	annotation PBI_NavigationStepName = Navegación
 

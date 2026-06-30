@@ -1674,20 +1674,52 @@ table Medidas_AD
 		lineageTag: d4b8c3f2-5a90-4e17-c634-9f8020e5b173
 
 	measure 'Desempeno Poblacion Activa' =
-			CALCULATE(
-				DISTINCTCOUNT('Fct_Poblacion_Indicadores_2025'[ColaboradorDesempeno_Key]),
-				'Fct_Poblacion_Indicadores_2025'[INDICADOR ACTIVIDAD] = "ACTIVO"
-			)
+			VAR _Anios =
+				VALUES('Dim_Anio_Desempeno'[Anio])
+			RETURN
+				CALCULATE(
+					DISTINCTCOUNT('Fct_Poblacion_Indicadores_2025'[ColaboradorDesempeno_Key]),
+					'Fct_Poblacion_Indicadores_2025'[Es_Poblacion_Activa] = TRUE(),
+					TREATAS(_Anios, 'Fct_Poblacion_Indicadores_2025'[Anio])
+				)
 		formatString: #,0
 		displayFolder: 15 Cobertura Desempeno
 		lineageTag: 8bba6ae8-74e9-4dfb-b63c-46d8714d9585
 
-	measure 'Desempeno Evaluados Objetivos' = DISTINCTCOUNT('Fct_Desempeno_2025'[ColaboradorDesempeno_Key])
+	measure 'Desempeno Evaluados Objetivos' =
+			VAR _Anios =
+				VALUES('Dim_Anio_Desempeno'[Anio])
+			VAR _ActivosDelAnio =
+				CALCULATETABLE(
+					VALUES('Fct_Poblacion_Indicadores_2025'[ColaboradorDesempeno_Key]),
+					'Fct_Poblacion_Indicadores_2025'[Es_Poblacion_Activa] = TRUE(),
+					TREATAS(_Anios, 'Fct_Poblacion_Indicadores_2025'[Anio])
+				)
+			RETURN
+				CALCULATE(
+					DISTINCTCOUNT('Fct_Desempeno_2025'[ColaboradorDesempeno_Key]),
+					TREATAS(_Anios, 'Fct_Desempeno_2025'[Anio]),
+					TREATAS(_ActivosDelAnio, 'Fct_Desempeno_2025'[ColaboradorDesempeno_Key])
+				)
 		formatString: #,0
 		displayFolder: 15 Cobertura Desempeno
 		lineageTag: 76ae96f0-73c1-4246-adb2-0adbb7fb5157
 
-	measure 'Competencias Evaluados' = DISTINCTCOUNT('Fct_Competencias_2025'[ColaboradorDesempeno_Key])
+	measure 'Competencias Evaluados' =
+			VAR _Anios =
+				VALUES('Dim_Anio_Desempeno'[Anio])
+			VAR _ActivosDelAnio =
+				CALCULATETABLE(
+					VALUES('Fct_Poblacion_Indicadores_2025'[ColaboradorDesempeno_Key]),
+					'Fct_Poblacion_Indicadores_2025'[Es_Poblacion_Activa] = TRUE(),
+					TREATAS(_Anios, 'Fct_Poblacion_Indicadores_2025'[Anio])
+				)
+			RETURN
+				CALCULATE(
+					DISTINCTCOUNT('Fct_Competencias_2025'[ColaboradorDesempeno_Key]),
+					TREATAS(_Anios, 'Fct_Competencias_2025'[Anio]),
+					TREATAS(_ActivosDelAnio, 'Fct_Competencias_2025'[ColaboradorDesempeno_Key])
+				)
 		formatString: #,0
 		displayFolder: 15 Cobertura Desempeno
 		lineageTag: a25df2fc-2416-458a-8a0f-29af7ba4a895
@@ -2999,6 +3031,39 @@ table Medidas_AD
 		formatString: 0.00
 		displayFolder: 14 Nine Box
 		lineageTag: d8818bae-7e52-4b2b-8209-6bdb968d62d3
+
+	measure 'Desempeno Advertencia Cobertura Anio' =
+			VAR _TieneUnAnio =
+				HASONEVALUE('Dim_Anio_Desempeno'[Anio])
+			VAR _Anio =
+				SELECTEDVALUE('Dim_Anio_Desempeno'[Anio])
+			VAR _TieneDesempeno =
+				CALCULATE(
+					COUNTROWS('Fct_Desempeno_2025'),
+					'Fct_Desempeno_2025'[Anio] = _Anio
+				) > 0
+			VAR _TieneCompetencias =
+				CALCULATE(
+					COUNTROWS('Fct_Competencias_2025'),
+					'Fct_Competencias_2025'[Anio] = _Anio
+				) > 0
+			VAR _TienePoblacion =
+				CALCULATE(
+					COUNTROWS('Fct_Poblacion_Indicadores_2025'),
+					'Fct_Poblacion_Indicadores_2025'[Anio] = _Anio
+				) > 0
+			RETURN
+				IF(
+					NOT _TieneUnAnio,
+					BLANK(),
+					IF(
+						_TieneDesempeno && _TieneCompetencias && _TienePoblacion,
+						BLANK(),
+						"Datos incompletos para " & FORMAT(_Anio, "0") & " — alguna fuente aún no está cargada"
+					)
+				)
+		displayFolder: 15 Cobertura Desempeno
+		lineageTag: 9859c33a-3256-4b0a-a326-66b16028a4b3
 
 	column Indice
 		dataType: int64

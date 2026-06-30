@@ -83,8 +83,9 @@ Las medidas NineBox usan el patron `ISFILTERED('Dim_Anio_Desempeno'[Anio])` como
 | `Dim_FechaActualizacion` | Tabla auxiliar de metadatos. Captura la datetime del ultimo refresh del modelo en zona horaria Bogota (UTC-5). Una sola fila. Usada por `HTML Inicio Corporativo Propuesta 1` para mostrar la fecha de actualizacion en el header del Home. |
 | `Dim_ColaboradorDesempeno` | Dimension especifica de evaluacion construida desde `bd`, con identificacion, cargo, centro de costo, empresa, dependencia y area. Llave `ColaboradorDesempeno_Key` = `Text.From(Identificacion)`. |
 | `Dim_Nivel_Desempeno` | Catalogo de niveles de desempeno para curva y distribuciones. |
-| `Dim_Anio_Desempeno` | Segmentacion de anio para el frente Desempeno. Tabla calculada desde `Fct_Desempeno_2025`. Si esa tabla esta vacia, `Dim_Anio_Desempeno` queda sin filas y las medidas NineBox con `TREATAS` retornan BLANK. |
+| `Dim_Anio_Desempeno` | Segmentacion de anio para el frente Desempeno. Tabla calculada desde la union de `Fct_Desempeno_2025[Anio]`, `Fct_Competencias_2025[Anio]` y `Fct_Poblacion_Indicadores_2025[Anio]`. En el ciclo actual contiene 2025. |
 | `Dim_NineBox_Cuadrante` | Catalogo de cuadrantes Nine Box con nombre tecnico, nombre visual, categoria ejecutiva (Alto Potencial, Talento Solido, etc.) y fuente de regla (ANEXO 6). Dimension manual; no depende de ninguna fact. |
+| `Dim_TipoEvaluador` | Diccionario MVP de tipos de evaluador. Mapeo confirmado para Challenger (Tipo 1=Jefe inmediato, 2=Autoevaluacion, 3=Par, 4=Colaborador a cargo, 5=Cliente interno). No reemplaza `TipoEvaluador_Label`. El mapeo para Habitel, Grupo Sky, Lemco y Fundacion esta pendiente de validacion. |
 
 ## Criterios de homologacion
 
@@ -153,6 +154,9 @@ Relaciones de Desempeno:
 - `Fct_Desempeno_2024[ColaboradorDesempeno_Key]` -> `Dim_ColaboradorDesempeno[ColaboradorDesempeno_Key]`
 - `Fct_Poblacion_Indicadores_2025[ColaboradorDesempeno_Key]` -> `Dim_ColaboradorDesempeno[ColaboradorDesempeno_Key]`
 - Las tablas de Desempeno se relacionan con `Dim_Empresa` mediante `Empresa_Key` cuando la fuente dispone de la llave.
+- `Fct_Desempeno_2025[Anio]` -> `Dim_Anio_Desempeno[Anio]`
+- `Fct_Competencias_2025[Anio]` -> `Dim_Anio_Desempeno[Anio]`
+- `Fct_Poblacion_Indicadores_2025[Anio]` -> `Dim_Anio_Desempeno[Anio]`
 
 Relaciones Nine Box:
 
@@ -463,6 +467,8 @@ Las medidas gerenciales usan registros validos como base principal, aplicando `R
 Las medidas del frente se mantienen en `Medidas_AD`, organizadas en las carpetas `10 Desempeno Evaluadores`, `12 Desempeno`, `13 Competencias`, `14 Nine Box` y `15 Cobertura Desempeno`.
 
 Las medidas base incluyen cobertura de objetivos y competencias, promedios, brechas, variacion numerica 2025 vs 2024, curva de niveles y distribucion Nine Box.
+
+Las medidas de cobertura de Desempeno (`Desempeno Poblacion Activa`, `Desempeno Evaluados Objetivos`, `Competencias Evaluados`, `Desempeno Cobertura Objetivos %` y `Competencias Cobertura %`) se gobiernan por `Dim_Anio_Desempeno[Anio]`. En el ciclo actual, `Anio` representa el ciclo de evaluacion 2025 y no necesariamente el anio calendario de `Fecha de Proceso`. El slicer general de Anio del Home usa `Dim_Calendario[Año]` y no gobierna estas medidas por decision funcional del 2026-06-30; esta decision debe revisarse cuando exista un segundo ciclo real cargado en las facts de Desempeno.
 
 Las medidas clave del Nine Box (`DS07_Nine_Box`) son:
 

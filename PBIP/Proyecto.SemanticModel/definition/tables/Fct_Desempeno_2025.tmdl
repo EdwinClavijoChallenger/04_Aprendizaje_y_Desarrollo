@@ -216,6 +216,12 @@ table Fct_Desempeno_2025
 		summarizeBy: none
 		sourceColumn: Duplicado_Identificacion
 
+	column Anio
+		dataType: int64
+		lineageTag: 6d770fa6-02ee-4701-b1f2-64b3e5255a97
+		summarizeBy: none
+		sourceColumn: Anio
+
 	partition Fct_Desempeno_2025 = m
 		mode: import
 		queryGroup: Desempeño
@@ -248,9 +254,11 @@ table Fct_Desempeno_2025
 				    MergeDuplicados = Table.NestedJoin(ConNivelKey, {"Identificación"}, ConteoIdentificacion, {"Identificación"}, "Dup", JoinKind.LeftOuter),
 				    ExpandDuplicados = Table.ExpandTableColumn(MergeDuplicados, "Dup", {"Conteo_Identificacion"}, {"Conteo_Identificacion"}),
 				    MarcaDuplicado = Table.AddColumn(ExpandDuplicados, "Duplicado_Identificacion", each [Conteo_Identificacion] > 1, type logical),
-				    Resultado = Table.RemoveColumns(MarcaDuplicado, {"Conteo_Identificacion"})
+				    Resultado = Table.RemoveColumns(MarcaDuplicado, {"Conteo_Identificacion"}),
+				    // Anio representa el ciclo de evaluacion 2025, no el anio calendario de Fecha de Proceso.
+				    AgregarAnio = Table.AddColumn(Resultado, "Anio", each 2025, Int64.Type)
 				in
-				    Resultado
+				    AgregarAnio
 
 	annotation PBI_NavigationStepName = Navegación
 
