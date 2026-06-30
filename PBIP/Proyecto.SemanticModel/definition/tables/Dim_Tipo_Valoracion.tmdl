@@ -1,0 +1,58 @@
+table Dim_Tipo_Valoracion
+	lineageTag: a41f3ec8-6f8c-4fd0-b7a5-3bb3e4970a91
+
+	column TipoValoracion_Key
+		dataType: string
+		lineageTag: 0f4d607d-687e-4776-856c-5c64e785f1a7
+		summarizeBy: none
+		sourceColumn: [TipoValoracion_Key]
+		sortByColumn: Orden_TipoValoracion
+
+	column TipoValoracion
+		dataType: string
+		lineageTag: d9b3581a-d54b-4dcc-a693-70bdf1f10aa6
+		summarizeBy: none
+		sourceColumn: [TipoValoracion]
+		sortByColumn: Orden_TipoValoracion
+
+	column PrototipoEvaluacion_Codigo
+		dataType: int64
+		formatString: 0
+		lineageTag: 2159a92c-5e42-4b41-bc7b-c12a22a37a04
+		summarizeBy: none
+		sourceColumn: [PrototipoEvaluacion_Codigo]
+
+	column Orden_TipoValoracion
+		dataType: int64
+		formatString: 0
+		lineageTag: 8a82d87e-503e-49c3-8099-d63d8e455d2c
+		summarizeBy: none
+		sourceColumn: [Orden_TipoValoracion]
+
+	partition Dim_Tipo_Valoracion = calculated
+		mode: import
+		source =
+				ADDCOLUMNS(
+					DISTINCT(
+						SELECTCOLUMNS(
+							FILTER(
+								'Fct_Desempeno_Evaluadores_2025',
+								NOT ISBLANK('Fct_Desempeno_Evaluadores_2025'[PrototipoEvaluacion_Key])
+							),
+							"TipoValoracion_Key", 'Fct_Desempeno_Evaluadores_2025'[PrototipoEvaluacion_Key],
+							"TipoValoracion", 'Fct_Desempeno_Evaluadores_2025'[Descripción Tipo Evalución],
+							"PrototipoEvaluacion_Codigo", 'Fct_Desempeno_Evaluadores_2025'[Prototipo Evaluacion]
+						)
+					),
+					"Orden_TipoValoracion",
+						SWITCH(
+							TRUE(),
+							CONTAINSSTRING([TipoValoracion_Key], "90"), 1,
+							CONTAINSSTRING([TipoValoracion_Key], "180"), 2,
+							CONTAINSSTRING([TipoValoracion_Key], "270") && CONTAINSSTRING([TipoValoracion_Key], "LD"), 3,
+							CONTAINSSTRING([TipoValoracion_Key], "270") && CONTAINSSTRING([TipoValoracion_Key], "AD"), 4,
+							CONTAINSSTRING([TipoValoracion_Key], "360"), 5,
+							99
+						)
+				)
+

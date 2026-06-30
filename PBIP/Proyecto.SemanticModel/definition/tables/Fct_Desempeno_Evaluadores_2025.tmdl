@@ -150,6 +150,12 @@ table Fct_Desempeno_Evaluadores_2025
 		summarizeBy: none
 		sourceColumn: NivelDesempeno_Key
 
+	column TipoEvaluador_Label
+		dataType: string
+		lineageTag: fb1ab124-9ced-4179-a6aa-796411239ed2
+		summarizeBy: none
+		sourceColumn: TipoEvaluador_Label
+
 	partition Fct_Desempeno_Evaluadores_2025 = m
 		mode: import
 		queryGroup: Desempeño
@@ -175,10 +181,12 @@ table Fct_Desempeno_Evaluadores_2025
 				    ConReqKey = Table.AddColumn(ConReq, "Requerimiento_Key", each if [Requerimiento_Homologado] = null then null else Text.Upper(Text.Trim([Requerimiento_Homologado])), type text),
 				    ConProtoKey = Table.AddColumn(ConReqKey, "PrototipoEvaluacion_Key", each if [Descripción Tipo Evalución] = null then null else Text.Upper(Text.Trim(Text.From([Descripción Tipo Evalución]))), type text),
 				    ConInterpretacion = Table.AddColumn(ConProtoKey, "Interpretacion_Homologada", each HomologarInterpretacion([Descripción de la Calificaición]), type text),
-				    Resultado = Table.AddColumn(ConInterpretacion, "NivelDesempeno_Key", each if [Interpretacion_Homologada] = null then null else Text.Upper(Text.Trim([Interpretacion_Homologada])), type text)
+				    ConTipoEvaluadorLabel = Table.AddColumn(ConInterpretacion, "TipoEvaluador_Label", each if [Tipo Evaluador] = null then null else "Tipo " & Text.From([Tipo Evaluador], "es-CO"), type text),
+				    Resultado = Table.AddColumn(ConTipoEvaluadorLabel, "NivelDesempeno_Key", each if [Interpretacion_Homologada] = null then null else Text.Upper(Text.Trim([Interpretacion_Homologada])), type text)
 				in
 				    Resultado
 
 	annotation PBI_NavigationStepName = Navegación
 
 	annotation PBI_ResultType = Table
+

@@ -178,6 +178,14 @@ relationship DS_Cuadrante_NineBoxTalento2025
 	fromColumn: Fct_NineBox_Talento_2025.Cuadrante_Tecnico
 	toColumn: Dim_NineBox_Cuadrante.Cuadrante_Nombre_Tecnico
 
+relationship DS_TipoEvaluador_Evaluadores2025
+	fromColumn: Fct_Desempeno_Evaluadores_2025.TipoEvaluador_Label
+	toColumn: Dim_TipoEvaluador.TipoEvaluador_Label
+
+relationship DS_TipoValoracion_Evaluadores2025
+	fromColumn: Fct_Desempeno_Evaluadores_2025.PrototipoEvaluacion_Key
+	toColumn: Dim_Tipo_Valoracion.TipoValoracion_Key
+
 relationship DS_Anio_Desempeno2025
 	fromColumn: Fct_Desempeno_2025.Anio
 	toColumn: Dim_Anio_Desempeno.Anio
@@ -189,3 +197,4 @@ relationship DS_Anio_Competencias2025
 relationship DS_Anio_Poblacion2025
 	fromColumn: Fct_Poblacion_Indicadores_2025.Anio
 	toColumn: Dim_Anio_Desempeno.Anio
+

@@ -70,6 +70,8 @@ ref table Dim_Anio_Desempeno
 ref table Dim_Nivel_Desempeno
 ref table Dim_FechaActualizacion
 ref table Fct_NineBox_Talento_2025
+ref table Dim_TipoEvaluador
+ref table Dim_Tipo_Valoracion
 
 ref cultureInfo es-ES
 

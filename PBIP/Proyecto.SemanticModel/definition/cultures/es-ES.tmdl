@@ -12338,19 +12338,7 @@ cultureInfo es-ES
 			          "ConceptualProperty": "DS07 360 Resultado por Tipo"
 			        }
 			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "Resultado 360": {
-			            "State": "Suggested",
-			            "Source": {
-			              "Type": "External",
-			              "Agent": "PowerBI.VisualColumnRename"
-			            },
-			            "Weight": 0.9
-			          }
-			        }
-			      ]
+			      "State": "Generated"
 			    },
 			    "medidas_ad.ds07_detalle_desempeno_score": {
 			      "Definition": {
@@ -12825,6 +12813,48 @@ cultureInfo es-ES
 			      "Terms": [
 			        {
 			          "Y Visual": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "medidas_ad.ds07_valoracion_resultado_por_tipo": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Medidas_AD",
+			          "ConceptualProperty": "DS07 Valoracion Resultado por Tipo"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Resultado evaluador": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "fct_desempeno_evaluadores_2025.evaluador": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Fct_Desempeno_Evaluadores_2025",
+			          "ConceptualProperty": "Evaluador"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Evaluador": {
 			            "State": "Suggested",
 			            "Source": {
 			              "Type": "External",

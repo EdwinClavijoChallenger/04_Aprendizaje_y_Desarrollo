@@ -1,0 +1,84 @@
+table Dim_TipoEvaluador
+	lineageTag: d7e8f9a0-b1c2-4d3e-8f90-a1b2c3d4e5f6
+
+	column TipoEvaluador_Label
+		dataType: string
+		lineageTag: e8f90a1b-c2d3-4e5f-90a1-b2c3d4e5f6a7
+		summarizeBy: none
+		sourceColumn: [TipoEvaluador_Label]
+		sortByColumn: Orden_TipoEvaluador
+
+	column TipoEvaluador_Codigo
+		dataType: int64
+		formatString: 0
+		lineageTag: f9a0b1c2-d3e4-4f5a-91b2-c3d4e5f6a7b8
+		summarizeBy: none
+		sourceColumn: [TipoEvaluador_Codigo]
+
+	column TipoEvaluador_Nombre_Challenger
+		dataType: string
+		lineageTag: 0a1b2c3d-e4f5-4a6b-82c3-d4e5f6a7b8c9
+		summarizeBy: none
+		sourceColumn: [TipoEvaluador_Nombre_Challenger]
+		sortByColumn: Orden_TipoEvaluador
+
+	column TipoEvaluador_Nombre_MVP
+		dataType: string
+		lineageTag: 1b2c3d4e-f5a6-4b7c-83d4-e5f6a7b8c9d0
+		summarizeBy: none
+		sourceColumn: [TipoEvaluador_Nombre_MVP]
+		sortByColumn: Orden_TipoEvaluador
+
+	column Estado_Validacion
+		dataType: string
+		lineageTag: 2c3d4e5f-a6b7-4c8d-84e5-f6a7b8c9d0e1
+		summarizeBy: none
+		sourceColumn: [Estado_Validacion]
+
+	column Alcance_Validacion
+		dataType: string
+		lineageTag: 3d4e5f6a-b7c8-4d9e-85f6-a7b8c9d0e1f2
+		summarizeBy: none
+		sourceColumn: [Alcance_Validacion]
+
+	column Fuente_Validacion
+		dataType: string
+		lineageTag: 4e5f6a7b-c8d9-4e0f-86a7-b8c9d0e1f2a3
+		summarizeBy: none
+		sourceColumn: [Fuente_Validacion]
+
+	column Observacion
+		dataType: string
+		lineageTag: 5f6a7b8c-d9e0-4f1a-87b8-c9d0e1f2a3b4
+		summarizeBy: none
+		sourceColumn: [Observacion]
+
+	column Orden_TipoEvaluador
+		dataType: int64
+		formatString: 0
+		lineageTag: 6a7b8c9d-e0f1-4a2b-88c9-d0e1f2a3b4c5
+		summarizeBy: none
+		sourceColumn: [Orden_TipoEvaluador]
+
+	partition Dim_TipoEvaluador = calculated
+		mode: import
+		source =
+				DATATABLE(
+					"TipoEvaluador_Label", STRING,
+					"TipoEvaluador_Codigo", INTEGER,
+					"TipoEvaluador_Nombre_Challenger", STRING,
+					"TipoEvaluador_Nombre_MVP", STRING,
+					"Estado_Validacion", STRING,
+					"Alcance_Validacion", STRING,
+					"Fuente_Validacion", STRING,
+					"Observacion", STRING,
+					"Orden_TipoEvaluador", INTEGER,
+					{
+						{"Tipo 1", 1, "Jefe inmediato", "Jefe inmediato", "Confirmado", "Challenger", "David Mateo / validacion negocio", "No aplicar automaticamente a otros negocios", 1},
+						{"Tipo 2", 2, "Autoevaluacion", "Autoevaluacion", "Confirmado", "Challenger", "David Mateo + comentario DAX existente", "Codigo 2 usado como autoevaluacion en modelo actual", 2},
+						{"Tipo 3", 3, "Par", "Par", "Confirmado Challenger - reconfirmar si aplica a otros negocios", "Challenger", "David Mateo / validacion negocio", "Pendiente validar comportamiento en otros negocios", 3},
+						{"Tipo 4", 4, "Colaborador a cargo", "Colaborador a cargo", "Confirmado", "Challenger", "David Mateo / validacion negocio", "No aplicar automaticamente a otros negocios", 4},
+						{"Tipo 5", 5, "Cliente interno", "Cliente interno", "Confirmado", "Challenger", "David Mateo / validacion negocio", "No aplicar automaticamente a otros negocios", 5}
+					}
+				)
+
