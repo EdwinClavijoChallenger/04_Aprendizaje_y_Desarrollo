@@ -202,6 +202,7 @@ table Fct_Desempeno_2025
 		lineageTag: 7cd91c9b-cb6f-4ccb-b785-e935d1cb4f86
 		summarizeBy: none
 		sourceColumn: Interpretacion_Homologada
+		sortByColumn: Orden_Nivel
 
 	column NivelDesempeno_Key
 		dataType: string
@@ -221,6 +222,13 @@ table Fct_Desempeno_2025
 		lineageTag: 6d770fa6-02ee-4701-b1f2-64b3e5255a97
 		summarizeBy: none
 		sourceColumn: Anio
+
+	column Orden_Nivel
+		dataType: int64
+		isHidden
+		lineageTag: f98db765-a961-40ac-a2b4-5cc5e333b2b2
+		summarizeBy: none
+		sourceColumn: Orden_Nivel
 
 	partition Fct_Desempeno_2025 = m
 		mode: import
@@ -256,9 +264,16 @@ table Fct_Desempeno_2025
 				    MarcaDuplicado = Table.AddColumn(ExpandDuplicados, "Duplicado_Identificacion", each [Conteo_Identificacion] > 1, type logical),
 				    Resultado = Table.RemoveColumns(MarcaDuplicado, {"Conteo_Identificacion"}),
 				    // Anio representa el ciclo de evaluacion 2025, no el anio calendario de Fecha de Proceso.
-				    AgregarAnio = Table.AddColumn(Resultado, "Anio", each 2025, Int64.Type)
+				    AgregarAnio = Table.AddColumn(Resultado, "Anio", each 2025, Int64.Type),
+				    AgregarOrdenNivel = Table.AddColumn(AgregarAnio, "Orden_Nivel",
+				        each if [Interpretacion_Homologada] = "Crítico" then 1
+				        else if [Interpretacion_Homologada] = "Bajo" then 2
+				        else if [Interpretacion_Homologada] = "Intermedio" then 3
+				        else if [Interpretacion_Homologada] = "Alto" then 4
+				        else if [Interpretacion_Homologada] = "Avanzado" then 5
+				        else 99, Int64.Type)
 				in
-				    AgregarAnio
+				    AgregarOrdenNivel
 
 	annotation PBI_NavigationStepName = Navegación
 

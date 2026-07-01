@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
-  "name": "nav_ds01_areas_cargos",
+  "name": "nav_ds01_inicio",
   "position": {
-    "x": 588,
+    "x": 48,
     "y": 684,
-    "z": 6000,
+    "z": 1000,
     "height": 28,
     "width": 104,
-    "tabOrder": 6000
+    "tabOrder": 1000
   },
   "visual": {
     "visualType": "actionButton",
@@ -118,7 +118,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Áreas/Cargos'"
+                  "Value": "'Inicio'"
                 }
               }
             },
@@ -178,7 +178,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Áreas/Cargos'"
+                  "Value": "'Inicio'"
                 }
               }
             },
@@ -359,7 +359,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Navegacion: Areas/Cargos'"
+                  "Value": "'Navegacion: Inicio'"
                 }
               }
             }
@@ -372,7 +372,7 @@
             "navigationSection": {
               "expr": {
                 "Literal": {
-                  "Value": "'ad1eds000000000005'"
+                  "Value": "'ad1eh100000000000001'"
                 }
               }
             },
@@ -386,7 +386,7 @@
             "tooltip": {
               "expr": {
                 "Literal": {
-                  "Value": "'Ir a Areas/Cargos'"
+                  "Value": "'Ir a Inicio'"
                 }
               }
             },

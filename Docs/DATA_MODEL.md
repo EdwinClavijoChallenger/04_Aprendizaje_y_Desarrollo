@@ -163,6 +163,21 @@ Relaciones Nine Box:
 - `Fct_NineBox_Talento_2025[NineBox_Key]` -> `Dim_ColaboradorDesempeno[ColaboradorDesempeno_Key]` (nombre: `DS_Colaborador_NineBoxTalento2025`)
 - `Fct_NineBox_Talento_2025[Cuadrante_Tecnico]` -> `Dim_NineBox_Cuadrante[Cuadrante_Nombre_Tecnico]` (nombre: `DS_Cuadrante_NineBoxTalento2025`)
 
+## Columnas tecnicas de `Fct_Desempeno_2025`
+
+`Fct_Desempeno_2025` incluye columnas calculadas en Power Query ademas de las columnas de origen:
+
+- `ColaboradorDesempeno_Key`: `Text.From([Identificacion])` — llave de relacion con `Dim_ColaboradorDesempeno`.
+- `Empresa_Homologada` / `Empresa_Key`: normalizacion de empresa mediante la funcion `HomologarEmpresa`.
+- `Area_Key`: normalizacion de area en mayusculas.
+- `Interpretacion_Homologada`: normalizacion del campo `Interpretacion` mediante `HomologarInterpretacion` (estandariza "CRITICO"/"CRÍTICO" → "Crítico", conserva el resto). Tiene `sortByColumn: Orden_Nivel` para ordenar jerarquicamente en visuals.
+- `NivelDesempeno_Key`: version en mayusculas de `Interpretacion_Homologada` — llave de relacion.
+- `Duplicado_Identificacion`: booleano que marca si la `Identificacion` aparece mas de una vez en la fuente. Las medidas usan `DISTINCTCOUNT` para evitar inflacion por duplicados.
+- `Anio`: constante `2025` (Int64) — ciclo de evaluacion, no anio calendario de `Fecha de Proceso`. Permite relacionar con `Dim_Anio_Desempeno`.
+- `Orden_Nivel` (oculta, Int64): llave de ordenamiento jerarquico para `Interpretacion_Homologada`. Critico=1, Bajo=2, Intermedio=3, Alto=4, Avanzado=5, otro=99. Usada exclusivamente como `sortByColumn`; no se usa directamente en visuales ni medidas.
+
+**Nota de medida:** La medida `Desempeno % por Nivel` aplica `REMOVEFILTERS` sobre `Interpretacion_Homologada` y `NivelDesempeno_Key` pero no sobre `Orden_Nivel`. Cuando Power BI incluye `Orden_Nivel` en el GROUP BY de la consulta (via `sortByColumn`), el denominador queda filtrado por nivel y la medida devuelve 100%. Pendiente agregar `REMOVEFILTERS('Fct_Desempeno_2025'[Orden_Nivel])` en una sesion futura.
+
 ## Logica de `Dim_ColaboradorHC`
 
 `Dim_ColaboradorHC` permite analizar atributos del colaborador por corte mensual, porque el tipo o nivel de cargo puede cambiar por movilidad interna.

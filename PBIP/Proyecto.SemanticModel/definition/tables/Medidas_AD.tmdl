@@ -3157,6 +3157,28 @@ table Medidas_AD
 		displayFolder: 15 Cobertura Desempeno
 		lineageTag: 9859c33a-3256-4b0a-a326-66b16028a4b3
 
+	measure 'HTML Shell DS01 Resumen Desempeno' =
+			VAR _Html =
+				"<div style='font-family:Outfit,Poppins,Segoe UI,Arial,sans-serif;width:1280px;height:720px;background:#F7F9FC;color:#0B1C35;position:relative;overflow:hidden;'>" &
+				"<div style='position:absolute;left:0;top:0;width:1280px;height:100px;background:#0B1C35;'></div>" &
+				"<div style='position:absolute;left:48px;top:24px;color:#F7931E;font-size:11px;font-weight:850;letter-spacing:2px;text-transform:uppercase;'>DASHBOARD CORPORATIVO - GRUPO LEMCO</div>" &
+				"<div style='position:absolute;left:48px;top:48px;color:#FFFFFF;font-size:25px;font-weight:850;line-height:28px;'>DS01 Resumen Ejecutivo Desempe&ntilde;o</div>" &
+				"<div style='position:absolute;left:48px;top:78px;color:#D8E4F2;font-size:11px;line-height:14px;'>Cobertura, objetivos, competencias, curva de niveles y focos gerenciales.</div>" &
+				"<div style='position:absolute;right:48px;top:32px;background:#F7931E;color:#0B1C35;border-radius:18px;padding:8px 16px;font-size:11px;font-weight:850;'>Bloque Desempe&ntilde;o</div>" &
+				"<div style='position:absolute;left:48px;top:112px;width:1200px;height:76px;background:#FFFFFF;border:1px solid #DCE5F2;border-radius:14px;box-shadow:0 6px 18px rgba(11,28,53,0.06);'></div>" &
+				"<div style='position:absolute;left:48px;top:112px;width:7px;height:76px;background:#F7931E;border-radius:14px 0 0 14px;'></div>" &
+				"<div style='position:absolute;left:68px;top:127px;color:#0B1C35;font-size:10px;font-weight:850;letter-spacing:1.5px;text-transform:uppercase;'>Contexto de analisis</div>" &
+				"<div style='position:absolute;left:68px;top:148px;width:150px;color:#6B778A;font-size:9.5px;line-height:12px;'>Ano del ciclo de desempeno.</div>" &
+				"<div style='position:absolute;left:238px;top:121px;width:756px;height:58px;display:grid;grid-template-columns:repeat(3,1fr);gap:12px;'>" &
+				"<div style='background:#F7FAFD;border:1px solid #E6EEF7;border-radius:8px;'></div><div style='background:#F7FAFD;border:1px solid #E6EEF7;border-radius:8px;'></div><div style='background:#F7FAFD;border:1px solid #E6EEF7;border-radius:8px;'></div>" &
+				"</div>" &
+				"<div style='position:absolute;left:32px;top:198px;width:1216px;height:468px;background:#FFFFFF;border:1px solid #E1E8F2;border-radius:10px;'></div>" &
+				"<div style='position:absolute;left:32px;top:674px;width:892px;height:40px;background:#FFFFFF;border:1px solid #DCE5F2;border-radius:9px;'></div>" &
+				"</div>"
+			RETURN _Html
+		displayFolder: 11 HTML Content
+		lineageTag: 1511d59d-8119-4a13-b064-4019ddfa87d0
+
 	column Indice
 		dataType: int64
 		isHidden

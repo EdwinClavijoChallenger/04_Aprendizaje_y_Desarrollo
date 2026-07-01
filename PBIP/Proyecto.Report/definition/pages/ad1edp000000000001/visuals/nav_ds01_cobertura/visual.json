@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
-  "name": "nav_ds01_areas_cargos",
+  "name": "nav_ds01_cobertura",
   "position": {
-    "x": 588,
+    "x": 264,
     "y": 684,
-    "z": 6000,
+    "z": 3000,
     "height": 28,
     "width": 104,
-    "tabOrder": 6000
+    "tabOrder": 3000
   },
   "visual": {
     "visualType": "actionButton",
@@ -118,7 +118,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Áreas/Cargos'"
+                  "Value": "'Cobertura'"
                 }
               }
             },
@@ -178,7 +178,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Áreas/Cargos'"
+                  "Value": "'Cobertura'"
                 }
               }
             },
@@ -359,7 +359,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Navegacion: Areas/Cargos'"
+                  "Value": "'Navegacion: Cobertura'"
                 }
               }
             }
@@ -372,7 +372,7 @@
             "navigationSection": {
               "expr": {
                 "Literal": {
-                  "Value": "'ad1eds000000000005'"
+                  "Value": "'ad1eds000000000002'"
                 }
               }
             },
@@ -386,7 +386,7 @@
             "tooltip": {
               "expr": {
                 "Literal": {
-                  "Value": "'Ir a Areas/Cargos'"
+                  "Value": "'Ir a Cobertura'"
                 }
               }
             },

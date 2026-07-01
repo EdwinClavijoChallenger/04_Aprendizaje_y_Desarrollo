@@ -23,11 +23,11 @@
                       "Entity": "Medidas_AD"
                     }
                   },
-                  "Property": "HTML Shell E01 Desempeno Proxima Fase"
+                  "Property": "HTML Shell DS01 Resumen Desempeno"
                 }
               },
-              "queryRef": "Medidas_AD.HTML Shell E01 Desempeno Proxima Fase",
-              "nativeQueryRef": "HTML Shell E01 Desempeno Proxima Fase"
+              "queryRef": "Medidas_AD.HTML Shell DS01 Resumen Desempeno",
+              "nativeQueryRef": "HTML Shell DS01 Resumen Desempeno"
             }
           ]
         },
@@ -41,11 +41,11 @@
                       "Entity": "Medidas_AD"
                     }
                   },
-                  "Property": "HTML Shell E01 Desempeno Proxima Fase"
+                  "Property": "HTML Shell DS01 Resumen Desempeno"
                 }
               },
-              "queryRef": "Medidas_AD.HTML Shell E01 Desempeno Proxima Fase",
-              "nativeQueryRef": "HTML Shell E01 Desempeno Proxima Fase"
+              "queryRef": "Medidas_AD.HTML Shell DS01 Resumen Desempeno",
+              "nativeQueryRef": "HTML Shell DS01 Resumen Desempeno"
             }
           ]
         }
