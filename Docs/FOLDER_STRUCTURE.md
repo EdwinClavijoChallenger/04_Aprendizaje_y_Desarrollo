@@ -67,6 +67,14 @@ El estandar visual vigente esta definido por la pagina `00 Inicio Corporativo - 
 
 La clasificacion detallada de scripts debe mantenerse en `Docs/SCRIPTS_GOVERNANCE.md`.
 
+## `tools`
+
+Contiene herramientas locales de apoyo tecnico y diagnostico. Su uso debe ser de solo lectura salvo autorizacion explicita, y no debe modificar el PBIP ni reemplazar validaciones en Power BI Desktop.
+
+## `Skills`
+
+Contiene skills locales del proyecto para estandarizar flujos de trabajo con IA. Estas skills documentan procedimientos repetibles para asistentes como Codex, Claude Code o GitHub Copilot.
+
 ## `Assets`
 
 Contiene recursos visuales aprobados.
