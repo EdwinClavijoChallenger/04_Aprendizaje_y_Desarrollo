@@ -81,6 +81,16 @@ Antes de finalizar la tarea, validar si aplica actualizar:
 
 Si el cambio impacta modelo de datos, medidas, relaciones, visualizaciones, estructura del proyecto o reglas de trabajo, se debe proponer la actualizacion documental correspondiente antes de hacer commit.
 
+## Reglas para skills y tools
+
+- Las skills compartidas del repositorio viven en `.agents/skills/`.
+- `.codex/skills/` se reserva para pruebas locales, overrides o experimentacion del usuario.
+- Las tools deben agruparse por dominio:
+  - `tools/pbip/`
+  - `tools/governance/`
+- Los cambios en `.agents/skills/` y `tools/` deben revisarse como bloque de automatizacion del repositorio y no mezclarse con cambios PBIP salvo autorizacion explicita.
+- Ninguna skill o tool debe asumirse autorizada para commit, push o borrado de archivos sin instruccion explicita del usuario.
+
 ## Regla sobre Outputs
 
 La carpeta `Outputs` puede contener respuestas, borradores, pruebas o entregables generados por IA. No debe incluirse automaticamente en commits.

@@ -12,6 +12,25 @@ El archivo principal actual es `PBIP/Proyecto4.pbip`. Se abre desde Power BI Des
 
 `Data/`, `backups_codex/` y `Outputs/` están excluidas de git. `Outputs/` es para borradores generados por IA y nunca es fuente oficial salvo aprobación explícita.
 
+## Skills y tools locales
+
+La ubicacion oficial de skills compartidas del repositorio es `.agents/skills/`.
+
+Reglas:
+
+- cada skill debe vivir en carpeta propia;
+- cada skill debe incluir `SKILL.md`;
+- `.codex/skills/` queda reservada para pruebas locales, overrides o experimentacion, no para skills compartidas del repositorio;
+- las tools deben organizarse por dominio:
+  - `tools/pbip/` para estructura PBIP, inventarios y diagnosticos tecnicos;
+  - `tools/governance/` para revision Git, control documental, precommit y gobierno del repositorio;
+- skills activas del proyecto:
+  - `powerbi-signals`
+  - `pbi-aprendizaje-inventario`
+  - `pbi-commit-prep`
+- ninguna skill debe ejecutar commit, push, borrado de archivos o cambios criticos sin autorizacion explicita del usuario;
+- las tools deben considerarse de solo lectura por defecto salvo autorizacion explicita.
+
 ## Trabajo sobre el PBIP
 
 **Antes de cualquier edición:** ejecutar `git status` para revisar el estado actual. Si Power BI Desktop está abierto, asumir que el usuario puede tener cambios manuales sin guardar — no sobrescribirlos.

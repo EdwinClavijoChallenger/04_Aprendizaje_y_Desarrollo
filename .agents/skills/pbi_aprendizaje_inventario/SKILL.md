@@ -1,8 +1,13 @@
+---
+name: pbi-aprendizaje-inventario
+description: Inspect the local Power BI PBIP project structure and generate a fast inventory using the PBIP structure tool. Use when the user asks for project inventory, repo map, initial review, or quick diagnostics.
+---
+
 # pbi-aprendizaje-inventario
 
 ## Proposito
 
-Usar la herramienta local `tools/list_pbip_structure.py` para levantar un inventario rapido, estructurado y repetible del proyecto Power BI PBIP de Aprendizaje antes de explorar manualmente carpetas, paginas o archivos del modelo.
+Usar la herramienta local `tools/pbip/list_pbip_structure.py` para levantar un inventario rapido, estructurado y repetible del proyecto Power BI PBIP de Aprendizaje antes de explorar manualmente carpetas, paginas o archivos del modelo.
 
 Esta skill reduce consumo de tokens porque la primera evidencia debe venir del JSON generado por la herramienta, no de una exploracion manual completa del arbol del proyecto.
 
@@ -34,7 +39,7 @@ Usar esta skill cuando el usuario pida:
 Antes de explorar manualmente el proyecto, ejecutar:
 
 ```powershell
-python tools/list_pbip_structure.py . --pretty
+python tools/pbip/list_pbip_structure.py . --pretty
 ```
 
 Despues:
@@ -112,7 +117,7 @@ Haz un inventario rapido del proyecto PBIP de Aprendizaje.
 
 Respuesta esperada de Codex:
 
-1. Ejecutar `python tools/list_pbip_structure.py . --pretty`.
+1. Ejecutar `python tools/pbip/list_pbip_structure.py . --pretty`.
 2. Usar el JSON como evidencia.
 3. Resumir inventario, hallazgos, riesgos y proximos pasos.
 4. Confirmar que no modifico PBIP, Docs ni Outputs.

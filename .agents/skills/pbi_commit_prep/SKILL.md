@@ -1,8 +1,13 @@
+---
+name: pbi-commit-prep
+description: Prepare a controlled commit review for the local Power BI PBIP project using git evidence and commit governance rules. Use when the user asks to review changes, prepare a commit, or separate commit scope.
+---
+
 # pbi-commit-prep
 
 ## Proposito
 
-Preparar commits controlados del proyecto Power BI PBIP usando evidencia JSON generada por `tools/prepare_commit_review.py` y las reglas de `Docs/COMMIT_GUIDELINES.md`.
+Preparar commits controlados del proyecto Power BI PBIP usando evidencia JSON generada por `tools/governance/prepare_commit_review.py` y las reglas de `Docs/COMMIT_GUIDELINES.md`.
 
 ## Cuando usarla
 
@@ -20,7 +25,7 @@ Usar esta skill cuando el usuario pida:
 1. Ejecutar primero:
 
 ```powershell
-python tools/prepare_commit_review.py . --pretty
+python tools/governance/prepare_commit_review.py . --pretty
 ```
 
 2. Usar el JSON como evidencia principal.
@@ -48,7 +53,7 @@ Responder con:
 - Excluir `Outputs/` salvo autorizacion explicita.
 - Excluir `.codex/` y `contracts/` salvo instruccion explicita.
 - Hacer commits separados por bloque funcional.
-- No mezclar PBIP con `tools/` o `Skills/` salvo que sea parte del mismo cambio autorizado.
+- No mezclar PBIP con `tools/` o `.agents/skills/` salvo que sea parte del mismo cambio autorizado.
 - Pedir autorizacion antes de ejecutar cualquier commit.
 - No modificar PBIP durante la preparacion del commit.
 - No modificar Docs existentes salvo autorizacion del usuario.
@@ -65,7 +70,7 @@ Revisar documentacion aplicable segun el JSON:
 
 - cambios en `PBIP/Proyecto.SemanticModel`: revisar `Docs/DATA_MODEL.md`;
 - cambios visuales en `PBIP/Proyecto.Report/visuals`: revisar `Docs/BRAND_GUIDELINES.md` o `Docs/PROJECT_CONTEXT.md`;
-- cambios en `tools/` o `Skills/`: revisar `Docs/FOLDER_STRUCTURE.md` y `Docs/AI_INSTRUCTIONS.md`;
+- cambios en `tools/` o `.agents/skills/`: revisar `Docs/FOLDER_STRUCTURE.md` y `Docs/AI_INSTRUCTIONS.md`;
 - cambios en reglas de commit: revisar `Docs/COMMIT_GUIDELINES.md`.
 
 ## Ejemplo
@@ -78,7 +83,7 @@ Prepara un commit controlado para la nueva tool de diagnostico.
 
 Codex debe:
 
-1. Ejecutar `python tools/prepare_commit_review.py . --pretty`.
+1. Ejecutar `python tools/governance/prepare_commit_review.py . --pretty`.
 2. Revisar `Docs/COMMIT_GUIDELINES.md`.
 3. Proponer archivos incluidos y excluidos.
 4. Proponer mensaje y cuerpo de commit.

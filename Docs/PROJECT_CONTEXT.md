@@ -41,6 +41,31 @@ El panel del frente Desarrollo en el Home muestra: motivo PDI principal (medida 
 
 La navegacion debe mantener una ruta clara desde el inicio corporativo hacia los frentes funcionales. Cuando se agreguen nuevas paginas, se debe validar si pertenecen a Aprendizaje, Desarrollo, Desempeno, Bienestar y Clima u otro frente futuro, y si requieren acceso desde el menu principal o desde una navegacion secundaria.
 
+## Automatizacion local del repositorio
+
+El repositorio cuenta con una capa local de automatizacion para Codex CLI y flujos asistidos.
+
+Skills compartidas vigentes:
+
+- `powerbi-signals`: genera y estructura senales de Power BI con contrato y evidencia.
+- `pbi-aprendizaje-inventario`: revisa la estructura del proyecto Power BI PBIP y genera inventario tecnico.
+- `pbi-commit-prep`: prepara revision controlada de commit con evidencia Git y documentacion asociada.
+
+Ubicacion oficial:
+
+- `.agents/skills/`
+
+Tools locales vigentes:
+
+- `tools/pbip/list_pbip_structure.py`
+- `tools/governance/prepare_commit_review.py`
+
+Reglas de operacion:
+
+- las skills no deben ejecutar commit, push, borrado de archivos o cambios criticos sin autorizacion explicita del usuario;
+- las tools son de solo lectura por defecto salvo autorizacion explicita;
+- `.codex/skills/` se reserva para pruebas locales, overrides o experimentacion y no debe usarse como ubicacion oficial de skills compartidas.
+
 ## Publico objetivo
 
 El publico principal es gerencial. Por esta razon, el reporte prioriza:

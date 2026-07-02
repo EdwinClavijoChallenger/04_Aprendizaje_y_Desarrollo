@@ -88,33 +88,57 @@ def normalizar_ruta(ruta: str) -> str:
 def bloque_archivo(ruta: str) -> str:
     """Clasifica una ruta por bloque funcional del proyecto."""
     ruta = normalizar_ruta(ruta)
-    if ruta.startswith("PBIP/Proyecto.Report/"):
-        return "PBIP Report"
-    if ruta.startswith("PBIP/Proyecto.SemanticModel/"):
-        return "PBIP SemanticModel"
+    if ruta.startswith("PBIP/"):
+        return "pbip"
     if ruta.startswith("Docs/") or ruta == "README.md" or ruta == "AGENTS.md":
-        return "Docs"
+        return "docs"
     if ruta.startswith("Outputs/"):
-        return "Outputs"
+        return "outputs"
+    if ruta.startswith(".agents/skills/") or ruta == ".agents/" or ruta == ".agents":
+        return "skills"
     if ruta.startswith("Skills/") or ruta.startswith("skills/"):
-        return "Skills"
+        return "skills_legacy"
+    if ruta.startswith("tools/pbip/"):
+        return "tools_pbip"
+    if ruta.startswith("tools/governance/"):
+        return "tools_governance"
     if ruta.startswith("tools/"):
         return "tools"
     if ruta.startswith("contracts/"):
         return "contracts"
     if ruta.startswith(".codex/"):
-        return ".codex"
+        return "codex_local"
     if ruta.startswith("Data/") or ruta.startswith("data/") or "tmp" in ruta.lower() or "temp" in ruta.lower():
         return "temporales"
     return "otros"
 
 
+def es_bloque_arquitectura(bloque: str) -> bool:
+    """Indica si un bloque pertenece a gobierno de skills/tools/docs."""
+    return bloque in {
+        "docs",
+        "skills",
+        "skills_legacy",
+        "tools",
+        "tools_pbip",
+        "tools_governance",
+        "contracts",
+        "codex_local",
+    }
+
+
+def hay_mezcla_pbip_arquitectura(archivos: list[dict[str, Any]]) -> bool:
+    """Detecta si se mezclan cambios PBIP con arquitectura."""
+    bloques = {archivo["bloque"] for archivo in archivos}
+    return "pbip" in bloques and any(es_bloque_arquitectura(bloque) for bloque in bloques)
+
+
 def es_excluido_por_defecto(ruta: str, incluir_outputs: bool) -> tuple[bool, str | None]:
     """Indica si una ruta deberia excluirse por defecto del commit."""
     bloque = bloque_archivo(ruta)
-    if bloque == "Outputs" and not incluir_outputs:
+    if bloque == "outputs" and not incluir_outputs:
         return True, "Outputs se excluye por defecto salvo autorizacion explicita."
-    if bloque in {".codex", "contracts", "temporales"}:
+    if bloque in {"codex_local", "contracts", "temporales"}:
         return True, f"{bloque} se excluye por defecto salvo instruccion explicita."
     return False, None
 
@@ -178,12 +202,13 @@ def documentos_a_revisar(archivos: list[dict[str, Any]]) -> list[dict[str, str]]
 
     for archivo in archivos:
         ruta = archivo["ruta"]
+        bloque = archivo["bloque"]
         if ruta.startswith("PBIP/Proyecto.SemanticModel/"):
             sugerencias["Docs/DATA_MODEL.md"] = "Cambio en modelo semantico."
         if ruta.startswith("PBIP/Proyecto.Report/") and "/visuals/" in ruta:
             sugerencias["Docs/BRAND_GUIDELINES.md"] = "Cambio visual del reporte."
             sugerencias["Docs/PROJECT_CONTEXT.md"] = "Cambio visual o funcional del reporte."
-        if ruta.startswith("tools/") or ruta.startswith("Skills/") or ruta.startswith("skills/"):
+        if bloque in {"tools", "tools_pbip", "tools_governance", "skills", "skills_legacy"}:
             sugerencias["Docs/FOLDER_STRUCTURE.md"] = "Cambio en herramientas o skills locales."
             sugerencias["Docs/AI_INSTRUCTIONS.md"] = "Cambio en flujos asistidos por IA."
         if ruta == "Docs/COMMIT_GUIDELINES.md":
@@ -200,31 +225,35 @@ def sugerir_commit(archivos: list[dict[str, Any]], scope: str | None) -> dict[st
     tipo = "chore"
     alcance = scope
 
-    if any(ruta.startswith("Docs/") for ruta in rutas) and not any(
-        ruta.startswith(("PBIP/", "tools/", "Skills/", "skills/")) for ruta in rutas
+    if hay_mezcla_pbip_arquitectura(archivos):
+        tipo = "chore"
+        alcance = alcance or "governance"
+    elif any(archivo["bloque"] == "docs" for archivo in archivos) and not any(
+        archivo["bloque"] in {"pbip", "tools", "tools_pbip", "tools_governance", "skills", "skills_legacy"}
+        for archivo in archivos
     ):
         tipo = "docs"
         alcance = alcance or "docs"
     elif any(ruta.startswith("PBIP/Proyecto.SemanticModel/") for ruta in rutas):
         tipo = "fix" if any("correccion" in ruta.lower() for ruta in rutas) else "feat"
         alcance = alcance or "model"
-    elif any(ruta.startswith("PBIP/Proyecto.Report/") for ruta in rutas):
+    elif any(archivo["bloque"] == "pbip" for archivo in archivos):
         tipo = "fix" if any("visual" in ruta.lower() for ruta in rutas) else "feat"
         alcance = alcance or "visuals"
-    elif "tools" in bloques or "Skills" in bloques:
+    elif bloques & {"tools", "tools_pbip", "tools_governance", "skills", "skills_legacy"}:
         tipo = "chore"
         alcance = alcance or "tools"
     else:
-        alcance = alcance or "pbip"
+        alcance = alcance or "governance"
 
     descripcion = "prepara cambios controlados del proyecto"
-    if "tools" in bloques and "Skills" in bloques:
-        descripcion = "agrega preparacion controlada de commits"
-    elif "PBIP Report" in bloques:
+    if hay_mezcla_pbip_arquitectura(archivos):
+        descripcion = "separa cambios pbip y gobierno"
+    elif bloques & {"tools", "tools_pbip", "tools_governance", "skills", "skills_legacy"}:
+        descripcion = "actualiza gobierno de skills y tools"
+    elif "pbip" in bloques:
         descripcion = "actualiza visuales del reporte"
-    elif "PBIP SemanticModel" in bloques:
-        descripcion = "actualiza modelo semantico"
-    elif "Docs" in bloques:
+    elif "docs" in bloques:
         descripcion = "actualiza documentacion del proyecto"
 
     cuerpo = [
@@ -244,6 +273,9 @@ def sugerir_commit(archivos: list[dict[str, Any]], scope: str | None) -> dict[st
 
 def construir_staging_sugerido(archivos: list[dict[str, Any]], incluir_outputs: bool) -> list[str]:
     """Construye comandos de staging explicitos por rutas no excluidas."""
+    if hay_mezcla_pbip_arquitectura(archivos):
+        return []
+
     rutas: list[str] = []
     for archivo in archivos:
         excluido, _ = es_excluido_por_defecto(archivo["ruta"], incluir_outputs)
@@ -289,10 +321,11 @@ def preparar_revision(raiz: Path, incluir_outputs: bool, scope: str | None) -> d
         riesgos.append("Hay archivos en staging; revisar antes de preparar otro commit.")
     if comandos["diff_check"]["codigo_salida"] not in (0, None):
         riesgos.append("git diff --check reporto posibles problemas de whitespace.")
-    if any(archivo["bloque"].startswith("PBIP") for archivo in todos) and any(
-        archivo["bloque"] in {"tools", "Skills"} for archivo in todos
-    ):
-        riesgos.append("Hay cambios PBIP y tools/Skills simultaneos; considerar commits separados.")
+    if hay_mezcla_pbip_arquitectura(todos):
+        riesgos.append(
+            "Hay cambios PBIP y cambios de arquitectura skills/tools/docs simultaneos; se requieren commits separados."
+        )
+        riesgos.append("No se sugieren comandos de staging para evitar mezclar PBIP con gobierno del repositorio.")
     if excluidos:
         riesgos.append("Hay archivos excluidos por defecto que requieren autorizacion explicita para incluirse.")
     if not comandos["log_origin_main"]["ok"]:

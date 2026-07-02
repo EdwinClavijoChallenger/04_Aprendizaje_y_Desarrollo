@@ -69,11 +69,57 @@ La clasificacion detallada de scripts debe mantenerse en `Docs/SCRIPTS_GOVERNANC
 
 ## `tools`
 
-Contiene herramientas locales de apoyo tecnico y diagnostico. Su uso debe ser de solo lectura salvo autorizacion explicita, y no debe modificar el PBIP ni reemplazar validaciones en Power BI Desktop.
+Contiene herramientas locales de apoyo tecnico y diagnostico. Su uso debe ser de solo lectura por defecto salvo autorizacion explicita, y no debe modificar el PBIP ni reemplazar validaciones en Power BI Desktop.
+
+Organizacion vigente:
+
+- `tools/pbip/`: herramientas relacionadas con estructura PBIP, paginas, modelo, inventarios o diagnosticos tecnicos.
+- `tools/governance/`: herramientas de control documental, revision Git, precommit y gobierno del repositorio.
+
+Tools activas actuales:
+
+- `tools/pbip/list_pbip_structure.py`
+- `tools/governance/prepare_commit_review.py`
+
+## `.agents`
+
+Contiene assets compartidos del repositorio para asistentes de IA.
+
+Ubicacion oficial de skills del proyecto:
+
+- `.agents/skills/`
+
+Reglas:
+
+- cada skill debe vivir en carpeta propia;
+- cada skill debe incluir `SKILL.md` como archivo obligatorio;
+- puede incluir carpetas opcionales como `references/`, `scripts/`, `assets/` y `agents/openai.yaml`;
+- ninguna skill debe ejecutar commit, push, borrado de archivos o cambios criticos sin autorizacion explicita del usuario.
+
+Skills activas actuales:
+
+- `.agents/skills/powerbi_signals/SKILL.md`
+- `.agents/skills/pbi_aprendizaje_inventario/SKILL.md`
+- `.agents/skills/pbi_commit_prep/SKILL.md`
+
+## `.codex`
+
+Contiene configuracion o contexto local del entorno Codex.
+
+Regla vigente:
+
+- `.codex/skills/` queda reservada para pruebas locales, overrides o experimentacion del usuario;
+- no debe usarse como ubicacion oficial de skills compartidas del repositorio.
 
 ## `Skills`
 
-Contiene skills locales del proyecto para estandarizar flujos de trabajo con IA. Estas skills documentan procedimientos repetibles para asistentes como Codex, Claude Code o GitHub Copilot.
+La carpeta `Skills/` fue una estructura legacy del repositorio.
+
+Estado actual:
+
+- ya no es la ubicacion oficial de skills;
+- no debe recrearse para nuevas automatizaciones;
+- si aparece en historial, backups o referencias antiguas, debe tratarse como legado.
 
 ## `Assets`
 

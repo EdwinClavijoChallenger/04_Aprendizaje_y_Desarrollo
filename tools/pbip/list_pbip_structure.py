@@ -9,12 +9,57 @@ from pathlib import Path
 from typing import Any
 
 
+CARPETAS_EXCLUIDAS = {
+    ".git",
+    ".hg",
+    ".svn",
+    ".venv",
+    "venv",
+    "env",
+    "node_modules",
+    "__pycache__",
+    ".pytest_cache",
+    ".mypy_cache",
+    ".ruff_cache",
+    "backups_codex",
+    "backup",
+    "backups",
+    "tmp",
+    "temp",
+    "temporal",
+    "temporales",
+}
+
+
 def ruta_relativa(ruta: Path, raiz: Path) -> str:
     """Devuelve una ruta relativa al proyecto, con separadores estables."""
     try:
         return ruta.relative_to(raiz).as_posix()
     except ValueError:
         return ruta.as_posix()
+
+
+def ruta_excluida(ruta: Path, raiz: Path) -> bool:
+    """Indica si una ruta pertenece a carpetas no oficiales o temporales."""
+    try:
+        partes = ruta.relative_to(raiz).parts
+    except ValueError:
+        partes = ruta.parts
+
+    for parte in partes:
+        nombre = parte.lower()
+        if nombre in CARPETAS_EXCLUIDAS:
+            return True
+        if nombre.startswith("backup_") or nombre.startswith("tmp_") or nombre.startswith("temp_"):
+            return True
+    return False
+
+
+def iterar_archivos_filtrados(raiz: Path, patron: str):
+    """Itera archivos evitando carpetas excluidas desde el recorrido."""
+    for ruta in raiz.rglob(patron):
+        if ruta.is_file() and not ruta_excluida(ruta, raiz):
+            yield ruta
 
 
 def estado_ruta(ruta: Path, raiz: Path) -> dict[str, Any]:
@@ -49,9 +94,17 @@ def listar_archivos_por_patron(raiz: Path, patron: str) -> list[str]:
 
     return [
         ruta_relativa(ruta, raiz)
-        for ruta in sorted(raiz.rglob(patron), key=lambda item: item.as_posix().lower())
-        if ruta.is_file()
+        for ruta in sorted(iterar_archivos_filtrados(raiz, patron), key=lambda item: item.as_posix().lower())
     ]
+
+
+def detectar_pbip_activo(raiz: Path) -> dict[str, Any]:
+    """Detecta el PBIP activo esperado del proyecto."""
+    ruta_activa = raiz / "PBIP" / "Proyecto4.pbip"
+    return {
+        "existe": ruta_activa.exists(),
+        "ruta": ruta_relativa(ruta_activa, raiz),
+    }
 
 
 def leer_json_seguro(ruta: Path) -> tuple[dict[str, Any] | None, str | None]:
@@ -129,7 +182,7 @@ def listar_archivos_documentacion(raiz: Path, nombre_carpeta: str) -> dict[str, 
 
     archivos: list[dict[str, Any]] = []
     for ruta in sorted(carpeta.rglob("*"), key=lambda item: item.as_posix().lower()):
-        if ruta.is_file():
+        if ruta.is_file() and not ruta_excluida(ruta, raiz):
             try:
                 estadisticas = ruta.stat()
                 archivos.append(
@@ -162,6 +215,7 @@ def inspeccionar_proyecto(ruta_proyecto: Path) -> dict[str, Any]:
             "es_directorio": raiz.is_dir(),
         },
         "carpetas_principales": listar_carpetas_principales(raiz),
+        "pbip_activo": detectar_pbip_activo(raiz),
         "archivos_pbip": listar_archivos_por_patron(raiz, "*.pbip"),
         "rutas_clave": {
             "reporte": estado_ruta(raiz / "PBIP" / "Proyecto.Report", raiz),

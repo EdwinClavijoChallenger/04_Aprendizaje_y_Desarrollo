@@ -43,6 +43,21 @@ Este documento define reglas obligatorias para cualquier IA o asistente que trab
 - Si el cambio impacta modelo, medidas, relaciones, visualizaciones, estructura del proyecto o reglas de trabajo, proponer la actualizacion documental correspondiente antes de cerrar.
 - No actualizar documentacion sin autorizacion previa cuando el usuario haya pedido validar primero el impacto documental.
 
+## Skills y tools locales
+
+- La ubicacion oficial de skills compartidas del repositorio es `.agents/skills/`.
+- Cada skill compartida debe vivir en carpeta propia y contener `SKILL.md`.
+- `.codex/skills/` queda reservada para pruebas locales, overrides o experimentacion; no es la ubicacion oficial de skills compartidas.
+- Las tools deben organizarse por dominio:
+  - `tools/pbip/` para estructura PBIP, inventarios y diagnosticos tecnicos.
+  - `tools/governance/` para revision Git, control documental, precommit y gobierno del repositorio.
+- Skills activas del proyecto:
+  - `powerbi-signals`
+  - `pbi-aprendizaje-inventario`
+  - `pbi-commit-prep`
+- Ninguna skill debe ejecutar commit, push, borrado de archivos o cambios criticos sin autorizacion explicita del usuario.
+- Las tools deben considerarse de solo lectura por defecto salvo autorizacion explicita.
+
 ## Versionamiento
 
 Antes de proponer un commit, mostrar:
