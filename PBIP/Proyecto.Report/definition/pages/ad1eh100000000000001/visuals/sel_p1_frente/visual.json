@@ -142,7 +142,7 @@
                           [
                             {
                               "Literal": {
-                                "Value": "'Desempeño'"
+                                "Value": "'Aprendizaje'"
                               }
                             }
                           ]
@@ -270,7 +270,7 @@
                     [
                       {
                         "Literal": {
-                          "Value": "'Desempeño'"
+                          "Value": "'Aprendizaje'"
                         }
                       }
                     ]
