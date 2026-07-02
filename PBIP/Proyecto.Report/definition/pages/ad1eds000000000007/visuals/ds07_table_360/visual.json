@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "ds07_table_360",
   "position": {
-    "x": 676,
-    "y": 526,
-    "z": 13000,
-    "height": 128,
-    "width": 552,
-    "tabOrder": 13000
+    "x": 672,
+    "y": 504,
+    "z": 14000,
+    "height": 154,
+    "width": 560,
+    "tabOrder": 14000
   },
   "visual": {
     "visualType": "pivotTable",
@@ -54,6 +54,22 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
+                      "Entity": "Fct_Desempeno_Evaluadores_2025"
+                    }
+                  },
+                  "Property": "Evaluador"
+                }
+              },
+              "queryRef": "Fct_Desempeno_Evaluadores_2025.Evaluador",
+              "nativeQueryRef": "Evaluador",
+              "active": false,
+              "displayName": "Evaluador"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
                       "Entity": "Dim_ColaboradorDesempeno"
                     }
                   },
@@ -93,17 +109,114 @@
                       "Entity": "Medidas_AD"
                     }
                   },
-                  "Property": "DS07 360 Resultado por Tipo"
+                  "Property": "DS07 Valoracion Resultado por Tipo"
                 }
               },
-              "queryRef": "Medidas_AD.DS07 360 Resultado por Tipo",
-              "nativeQueryRef": "DS07 360 Resultado por Tipo",
-              "displayName": "Resultado 360"
+              "queryRef": "Medidas_AD.DS07 Valoracion Resultado por Tipo",
+              "nativeQueryRef": "DS07 Valoracion Resultado por Tipo",
+              "displayName": "Resultado evaluador"
             }
           ]
         }
       }
     },
+    "expansionStates": [
+      {
+        "roles": [
+          "Rows"
+        ],
+        "levels": [
+          {
+            "queryRefs": [
+              "Dim_ColaboradorDesempeno.Nombres"
+            ],
+            "isCollapsed": true,
+            "identityKeys": [
+              {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Dim_ColaboradorDesempeno"
+                    }
+                  },
+                  "Property": "Nombres"
+                }
+              }
+            ],
+            "isPinned": true
+          },
+          {
+            "queryRefs": [
+              "Fct_Desempeno_Evaluadores_2025.Evaluador"
+            ],
+            "identityKeys": [
+              {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Fct_Desempeno_Evaluadores_2025"
+                    }
+                  },
+                  "Property": "Evaluador"
+                }
+              }
+            ],
+            "isPinned": true
+          },
+          {
+            "queryRefs": [
+              "Dim_ColaboradorDesempeno.Descripción Cargo"
+            ],
+            "isCollapsed": true,
+            "identityKeys": [
+              {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Dim_ColaboradorDesempeno"
+                    }
+                  },
+                  "Property": "Descripción Cargo"
+                }
+              }
+            ],
+            "isPinned": true
+          },
+          {
+            "queryRefs": [
+              "Dim_ColaboradorDesempeno.Empresa_Homologada"
+            ],
+            "isCollapsed": true,
+            "isPinned": true
+          }
+        ],
+        "root": {
+          "children": [
+            {
+              "identityValues": [
+                {
+                  "Literal": {
+                    "Value": "'JONATHAN STIVEN DIAZ MARTINEZ'"
+                  }
+                }
+              ],
+              "children": [
+                {
+                  "identityValues": [
+                    {
+                      "Literal": {
+                        "Value": "21118663L"
+                      }
+                    }
+                  ],
+                  "isToggled": true
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ],
     "objects": {
       "grid": [
         {
@@ -126,14 +239,8 @@
                   "Value": "false"
                 }
               }
-            }
-          }
-        }
-      ],
-      "columnHeaders": [
-        {
-          "properties": {
-            "fontColor": {
+            },
+            "backColor": {
               "solid": {
                 "color": {
                   "expr": {
@@ -143,19 +250,13 @@
                   }
                 }
               }
-            }
-          }
-        }
-      ],
-      "rowHeaders": [
-        {
-          "properties": {
+            },
             "fontColor": {
               "solid": {
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#1B487F'"
+                      "Value": "'#0B1C35'"
                     }
                   }
                 }
@@ -171,9 +272,97 @@
           }
         }
       ],
-      "values": [
+      "total": [
         {
           "properties": {
+            "backColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#FFFFFF'"
+                    }
+                  }
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#0B1C35'"
+                    }
+                  }
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnHeaders": [
+        {
+          "properties": {
+            "backColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#1A3059'"
+                    }
+                  }
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#FFFFFF'"
+                    }
+                  }
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "rowHeaders": [
+        {
+          "properties": {
+            "backColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#FFFFFF'"
+                    }
+                  }
+                }
+              }
+            },
             "fontColor": {
               "solid": {
                 "color": {
@@ -184,7 +373,381 @@
                   }
                 }
               }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Left'"
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "showExpandCollapseButtons": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "legacyStyleDisabled": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
             }
+          }
+        }
+      ],
+      "values": [
+        {
+          "properties": {
+            "backColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#FFFFFF'"
+                    }
+                  }
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#0B1C35'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 1
+                }
+              }
+            ],
+            "metadata": "Medidas_AD.DS07 Valoracion Resultado por Tipo"
+          }
+        },
+        {
+          "properties": {
+            "backColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Conditional": {
+                      "Cases": [
+                        {
+                          "Condition": {
+                            "Comparison": {
+                              "ComparisonKind": 0,
+                              "Left": {
+                                "Measure": {
+                                  "Expression": {
+                                    "SourceRef": {
+                                      "Entity": "Medidas_AD"
+                                    }
+                                  },
+                                  "Property": "DS07 Color Resultado Evaluador"
+                                }
+                              },
+                              "Right": {
+                                "Literal": {
+                                  "Value": "'#FFFFFF'"
+                                }
+                              }
+                            }
+                          },
+                          "Value": {
+                            "Literal": {
+                              "Value": "'#FFFFFF'"
+                            }
+                          }
+                        },
+                        {
+                          "Condition": {
+                            "Comparison": {
+                              "ComparisonKind": 0,
+                              "Left": {
+                                "Measure": {
+                                  "Expression": {
+                                    "SourceRef": {
+                                      "Entity": "Medidas_AD"
+                                    }
+                                  },
+                                  "Property": "DS07 Color Resultado Evaluador"
+                                }
+                              },
+                              "Right": {
+                                "Literal": {
+                                  "Value": "'#FDEEEE'"
+                                }
+                              }
+                            }
+                          },
+                          "Value": {
+                            "Literal": {
+                              "Value": "'#FDEEEE'"
+                            }
+                          }
+                        },
+                        {
+                          "Condition": {
+                            "Comparison": {
+                              "ComparisonKind": 0,
+                              "Left": {
+                                "Measure": {
+                                  "Expression": {
+                                    "SourceRef": {
+                                      "Entity": "Medidas_AD"
+                                    }
+                                  },
+                                  "Property": "DS07 Color Resultado Evaluador"
+                                }
+                              },
+                              "Right": {
+                                "Literal": {
+                                  "Value": "'#FFF6EB'"
+                                }
+                              }
+                            }
+                          },
+                          "Value": {
+                            "Literal": {
+                              "Value": "'#FFF6EB'"
+                            }
+                          }
+                        },
+                        {
+                          "Condition": {
+                            "Comparison": {
+                              "ComparisonKind": 0,
+                              "Left": {
+                                "Measure": {
+                                  "Expression": {
+                                    "SourceRef": {
+                                      "Entity": "Medidas_AD"
+                                    }
+                                  },
+                                  "Property": "DS07 Color Resultado Evaluador"
+                                }
+                              },
+                              "Right": {
+                                "Literal": {
+                                  "Value": "'#EEF4FB'"
+                                }
+                              }
+                            }
+                          },
+                          "Value": {
+                            "Literal": {
+                              "Value": "'#EEF4FB'"
+                            }
+                          }
+                        },
+                        {
+                          "Condition": {
+                            "Comparison": {
+                              "ComparisonKind": 0,
+                              "Left": {
+                                "Measure": {
+                                  "Expression": {
+                                    "SourceRef": {
+                                      "Entity": "Medidas_AD"
+                                    }
+                                  },
+                                  "Property": "DS07 Color Resultado Evaluador"
+                                }
+                              },
+                              "Right": {
+                                "Literal": {
+                                  "Value": "'#D6F1DA'"
+                                }
+                              }
+                            }
+                          },
+                          "Value": {
+                            "Literal": {
+                              "Value": "'#D6F1DA'"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Conditional": {
+                      "Cases": [
+                        {
+                          "Condition": {
+                            "Comparison": {
+                              "ComparisonKind": 0,
+                              "Left": {
+                                "Measure": {
+                                  "Expression": {
+                                    "SourceRef": {
+                                      "Entity": "Medidas_AD"
+                                    }
+                                  },
+                                  "Property": "DS07 Color Fuente Resultado Evaluador"
+                                }
+                              },
+                              "Right": {
+                                "Literal": {
+                                  "Value": "'#1A3059'"
+                                }
+                              }
+                            }
+                          },
+                          "Value": {
+                            "Literal": {
+                              "Value": "'#1A3059'"
+                            }
+                          }
+                        },
+                        {
+                          "Condition": {
+                            "Comparison": {
+                              "ComparisonKind": 0,
+                              "Left": {
+                                "Measure": {
+                                  "Expression": {
+                                    "SourceRef": {
+                                      "Entity": "Medidas_AD"
+                                    }
+                                  },
+                                  "Property": "DS07 Color Fuente Resultado Evaluador"
+                                }
+                              },
+                              "Right": {
+                                "Literal": {
+                                  "Value": "'#A12C3A'"
+                                }
+                              }
+                            }
+                          },
+                          "Value": {
+                            "Literal": {
+                              "Value": "'#A12C3A'"
+                            }
+                          }
+                        },
+                        {
+                          "Condition": {
+                            "Comparison": {
+                              "ComparisonKind": 0,
+                              "Left": {
+                                "Measure": {
+                                  "Expression": {
+                                    "SourceRef": {
+                                      "Entity": "Medidas_AD"
+                                    }
+                                  },
+                                  "Property": "DS07 Color Fuente Resultado Evaluador"
+                                }
+                              },
+                              "Right": {
+                                "Literal": {
+                                  "Value": "'#9C5B00'"
+                                }
+                              }
+                            }
+                          },
+                          "Value": {
+                            "Literal": {
+                              "Value": "'#9C5B00'"
+                            }
+                          }
+                        },
+                        {
+                          "Condition": {
+                            "Comparison": {
+                              "ComparisonKind": 0,
+                              "Left": {
+                                "Measure": {
+                                  "Expression": {
+                                    "SourceRef": {
+                                      "Entity": "Medidas_AD"
+                                    }
+                                  },
+                                  "Property": "DS07 Color Fuente Resultado Evaluador"
+                                }
+                              },
+                              "Right": {
+                                "Literal": {
+                                  "Value": "'#1B487F'"
+                                }
+                              }
+                            }
+                          },
+                          "Value": {
+                            "Literal": {
+                              "Value": "'#1B487F'"
+                            }
+                          }
+                        },
+                        {
+                          "Condition": {
+                            "Comparison": {
+                              "ComparisonKind": 0,
+                              "Left": {
+                                "Measure": {
+                                  "Expression": {
+                                    "SourceRef": {
+                                      "Entity": "Medidas_AD"
+                                    }
+                                  },
+                                  "Property": "DS07 Color Fuente Resultado Evaluador"
+                                }
+                              },
+                              "Right": {
+                                "Literal": {
+                                  "Value": "'#167044'"
+                                }
+                              }
+                            }
+                          },
+                          "Value": {
+                            "Literal": {
+                              "Value": "'#167044'"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 1
+                }
+              }
+            ],
+            "metadata": "Medidas_AD.DS07 Valoracion Resultado por Tipo"
           }
         }
       ]
@@ -313,63 +876,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "ds07_filter_360_tipo_evaluacion",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Fct_Desempeno_Evaluadores_2025"
-              }
-            },
-            "Property": "Descripción Tipo Evalución"
-          }
-        },
-        "type": "Categorical",
-        "filter": {
-          "Version": 2,
-          "From": [
-            {
-              "Name": "f",
-              "Entity": "Fct_Desempeno_Evaluadores_2025",
-              "Type": 0
-            }
-          ],
-          "Where": [
-            {
-              "Condition": {
-                "In": {
-                  "Expressions": [
-                    {
-                      "Column": {
-                        "Expression": {
-                          "SourceRef": {
-                            "Source": "f"
-                          }
-                        },
-                        "Property": "Descripción Tipo Evalución"
-                      }
-                    }
-                  ],
-                  "Values": [
-                    [
-                      {
-                        "Literal": {
-                          "Value": "'VALORACIÓN 360°'"
-                        }
-                      }
-                    ]
-                  ]
-                }
-              }
-            }
-          ]
-        },
-        "howCreated": "User"
-      }
-    ]
   }
 }

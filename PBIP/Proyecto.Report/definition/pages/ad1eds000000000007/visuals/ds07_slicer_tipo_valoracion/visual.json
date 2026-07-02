@@ -1,91 +1,93 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
-  "name": "ds07_card_360",
+  "name": "ds07_slicer_tipo_valoracion",
   "position": {
-    "x": 1047.5931705525977,
-    "y": 463.87369194051774,
-    "z": 12000,
-    "height": 59.217918120066095,
-    "width": 180.47365522305856,
-    "tabOrder": 12000
+    "x": 388,
+    "y": 126.89553882871306,
+    "z": 2000,
+    "height": 57.807967688635948,
+    "width": 140,
+    "tabOrder": 2000
   },
   "visual": {
-    "visualType": "card",
+    "visualType": "slicer",
     "query": {
       "queryState": {
         "Values": {
           "projections": [
             {
               "field": {
-                "Measure": {
+                "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Medidas_AD"
+                      "Entity": "Dim_Tipo_Valoracion"
                     }
                   },
-                  "Property": "DS07 Valoracion Colaboradores Comite"
+                  "Property": "TipoValoracion"
                 }
               },
-              "queryRef": "Medidas_AD.DS07 Valoracion Colaboradores Comite",
-              "nativeQueryRef": "DS07 Valoracion Colaboradores Comite"
+              "queryRef": "Dim_Tipo_Valoracion.TipoValoracion",
+              "nativeQueryRef": "TipoValoracion",
+              "active": true
             }
           ]
         }
       }
     },
     "objects": {
-      "labels": [
+      "selection": [
         {
           "properties": {
-            "fontFamily": {
+            "singleSelect": {
               "expr": {
                 "Literal": {
-                  "Value": "'Outfit'"
+                  "Value": "false"
                 }
               }
             },
-            "color": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#0B1C35'"
-                    }
-                  }
-                }
-              }
-            },
-            "bold": {
+            "selectAllCheckboxEnabled": {
               "expr": {
                 "Literal": {
                   "Value": "true"
-                }
-              }
-            },
-            "labelDisplayUnits": {
-              "expr": {
-                "Literal": {
-                  "Value": "1D"
-                }
-              }
-            },
-            "fontSize": {
-              "expr": {
-                "Literal": {
-                  "Value": "16D"
                 }
               }
             }
           }
         }
       ],
-      "categoryLabels": [
+      "data": [
+        {
+          "properties": {
+            "mode": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Dropdown'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "header": [
         {
           "properties": {
             "show": {
               "expr": {
                 "Literal": {
                   "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "general": [
+        {
+          "properties": {
+            "selfFilterEnabled": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
                 }
               }
             }
@@ -247,7 +249,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Colaboradores evaluados'"
+                  "Value": "'Tipo valoracion'"
                 }
               }
             },
@@ -274,6 +276,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "isHidden": true
+  }
 }
