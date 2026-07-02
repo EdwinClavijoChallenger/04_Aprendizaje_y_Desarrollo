@@ -1,0 +1,113 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "senales.schema.json",
+  "title": "Contrato de datos para senales",
+  "description": "Contrato para registrar senales estructuradas derivadas de hallazgos del proyecto.",
+  "version": "1.0.0",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "contract_version",
+    "proyecto",
+    "fecha",
+    "senales"
+  ],
+  "properties": {
+    "contract_version": {
+      "type": "string",
+      "const": "1.0.0"
+    },
+    "proyecto": {
+      "type": "string"
+    },
+    "fecha": {
+      "type": "string",
+      "format": "date",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+    },
+    "senales": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/senal"
+      },
+      "uniqueItems": true
+    }
+  },
+  "$defs": {
+    "senal": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "fecha",
+        "fuente",
+        "evidencia",
+        "impacto",
+        "accion",
+        "estado"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Identificador unico estable."
+        },
+        "fecha": {
+          "type": "string",
+          "format": "date",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+          "description": "Fecha de generacion en formato YYYY-MM-DD."
+        },
+        "fuente": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Origen del hallazgo."
+        },
+        "evidencia": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Dato, texto o referencia que sustenta la senal."
+        },
+        "impacto": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "alto",
+            "medio",
+            "bajo",
+            null
+          ],
+          "description": "Nivel de impacto estimado."
+        },
+        "accion": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Recomendacion concreta."
+        },
+        "estado": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "nuevo",
+            "en_revision",
+            "priorizado",
+            "descartado",
+            "ejecutado",
+            null
+          ],
+          "description": "Estado de gestion de la senal."
+        }
+      }
+    }
+  }
+}

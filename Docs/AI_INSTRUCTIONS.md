@@ -57,6 +57,9 @@ Este documento define reglas obligatorias para cualquier IA o asistente que trab
   - `pbi-commit-prep`
 - Ninguna skill debe ejecutar commit, push, borrado de archivos o cambios criticos sin autorizacion explicita del usuario.
 - Las tools deben considerarse de solo lectura por defecto salvo autorizacion explicita.
+- Los contratos versionados en `contracts/` son fuente oficial para validar salidas generadas por skills y tools.
+- No modificar contratos sin autorizacion explicita y sin revisar consumidores en `.agents/skills/` y `tools/`.
+- Los datos diarios, salidas generadas y evidencias siguen fuera del versionamiento por defecto salvo autorizacion explicita.
 
 ## Versionamiento
 

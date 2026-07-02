@@ -30,6 +30,9 @@ Reglas:
   - `pbi-commit-prep`
 - ninguna skill debe ejecutar commit, push, borrado de archivos o cambios criticos sin autorizacion explicita del usuario;
 - las tools deben considerarse de solo lectura por defecto salvo autorizacion explicita.
+- `contracts/` es carpeta oficial versionada para contratos de datos.
+- no modificar contratos sin revisar consumidores, skills y tools relacionadas.
+- no mezclar `contracts/` con PBIP, DAX, visuales o modelo semantico en el mismo commit.
 
 ## Trabajo sobre el PBIP
 

@@ -52,6 +52,7 @@ Responder con:
 - No usar `git add .`.
 - Excluir `Outputs/` salvo autorizacion explicita.
 - Excluir `.codex/` y `contracts/` salvo instruccion explicita.
+- Incluir `contracts/` unicamente en commits explicitos de gobierno de contratos.
 - Hacer commits separados por bloque funcional.
 - No mezclar PBIP con `tools/` o `.agents/skills/` salvo que sea parte del mismo cambio autorizado.
 - Pedir autorizacion antes de ejecutar cualquier commit.

@@ -82,6 +82,21 @@ Tools activas actuales:
 - `tools/pbip/audit_navigation.py`
 - `tools/governance/prepare_commit_review.py`
 
+## `contracts`
+
+Contiene contratos JSON Schema versionados para validar salidas generadas por skills y tools del proyecto.
+
+Contratos actuales:
+
+- `contracts/senales_powerbi.schema.json`: contrato activo del flujo `powerbi-signals`.
+- `contracts/senales.schema.json`: contrato generico pendiente de ratificacion o retiro futuro.
+
+Reglas:
+
+- no modificar contratos sin revisar consumidores en `.agents/skills/` y `tools/`;
+- no mezclar cambios de `contracts/` con cambios PBIP, DAX, modelo semantico o visuales en el mismo commit;
+- las salidas generadas, datos diarios y evidencias siguen fuera del versionamiento por defecto salvo autorizacion explicita.
+
 ## `.agents`
 
 Contiene assets compartidos del repositorio para asistentes de IA.
