@@ -17,7 +17,7 @@ Este documento define reglas obligatorias para cualquier IA o asistente que trab
 
 ## Trabajo sobre PBIP
 
-- El archivo principal es `PBIP/Proyecto.pbip`.
+- El archivo principal es `PBIP/Proyecto4.pbip`.
 - Antes de editar JSON o TMDL, revisar `git status`.
 - Si Power BI Desktop esta abierto, asumir que el usuario puede estar realizando cambios manuales.
 - No regenerar paginas, visuales o medidas sin validar primero el estado actual.

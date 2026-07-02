@@ -6,7 +6,7 @@ Fecha de construccion: 2026-05-28
 
 ## Alcance
 
-Se construyo un modelo gerencial para Aprendizaje y Desarrollo sobre el proyecto `PBIP/Proyecto.pbip`, tomando como fuente de verdad el modelo abierto en Power BI Desktop.
+Se construyo un modelo gerencial para Aprendizaje y Desarrollo sobre el proyecto `PBIP/Proyecto4.pbip`, tomando como fuente de verdad el modelo abierto en Power BI Desktop.
 
 El dashboard cubre:
 

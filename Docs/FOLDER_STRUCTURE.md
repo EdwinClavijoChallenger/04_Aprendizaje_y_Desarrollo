@@ -13,7 +13,7 @@ No se deben crear archivos sueltos en la raiz sin justificacion.
 
 Contiene el proyecto Power BI en formato PBIP.
 
-- `Proyecto.pbip`: archivo principal para abrir en Power BI Desktop.
+- `Proyecto4.pbip`: archivo principal actual para abrir en Power BI Desktop.
 - `Proyecto.Report`: definicion del reporte, paginas y visuales.
 - `Proyecto.SemanticModel`: modelo semantico, tablas, relaciones y medidas.
 
