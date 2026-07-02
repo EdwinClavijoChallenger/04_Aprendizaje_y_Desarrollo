@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
-  "name": "nav_ds06_cobertura",
+  "name": "nav_ds02_curva",
   "position": {
-    "x": 320,
+    "x": 456,
     "y": 684,
-    "z": 15000,
+    "z": 21000,
     "height": 28,
     "width": 126,
-    "tabOrder": 15000
+    "tabOrder": 21000
   },
   "visual": {
     "visualType": "actionButton",
@@ -118,7 +118,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Cobertura'"
+                  "Value": "'Curva'"
                 }
               }
             },
@@ -164,7 +164,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "9D"
+                  "Value": "8D"
                 }
               }
             }
@@ -178,7 +178,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Cobertura'"
+                  "Value": "'Curva'"
                 }
               }
             },
@@ -224,7 +224,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "9D"
+                  "Value": "8D"
                 }
               }
             }
@@ -359,7 +359,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Navegacion: Cobertura'"
+                  "Value": "'Navegacion: Curva'"
                 }
               }
             }
@@ -372,7 +372,7 @@
             "navigationSection": {
               "expr": {
                 "Literal": {
-                  "Value": "'ad1eds000000000002'"
+                  "Value": "'ad1eds000000000003'"
                 }
               }
             },
@@ -386,7 +386,7 @@
             "tooltip": {
               "expr": {
                 "Literal": {
-                  "Value": "'Ir a Cobertura'"
+                  "Value": "'Ir a Curva'"
                 }
               }
             },

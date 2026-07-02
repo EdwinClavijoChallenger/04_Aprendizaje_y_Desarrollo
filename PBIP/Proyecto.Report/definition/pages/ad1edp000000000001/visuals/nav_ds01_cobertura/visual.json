@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "nav_ds01_cobertura",
   "position": {
-    "x": 264,
+    "x": 320,
     "y": 684,
     "z": 3000,
     "height": 28,
-    "width": 104,
+    "width": 126,
     "tabOrder": 3000
   },
   "visual": {

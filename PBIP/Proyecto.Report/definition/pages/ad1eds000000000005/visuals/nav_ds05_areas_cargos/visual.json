@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "nav_ds05_areas_cargos",
   "position": {
-    "x": 588,
+    "x": 728,
     "y": 684,
     "z": 20000,
     "height": 28,
-    "width": 104,
+    "width": 126,
     "tabOrder": 20000
   },
   "visual": {

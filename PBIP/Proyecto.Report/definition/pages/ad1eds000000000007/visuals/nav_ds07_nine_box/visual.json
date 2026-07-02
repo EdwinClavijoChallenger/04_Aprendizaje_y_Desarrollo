@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "nav_ds07_nine_box",
   "position": {
-    "x": 728,
+    "x": 1000,
     "y": 684,
-    "z": 18000,
+    "z": 19000,
     "height": 28,
     "width": 126,
-    "tabOrder": 18000
+    "tabOrder": 19000
   },
   "visual": {
     "visualType": "actionButton",

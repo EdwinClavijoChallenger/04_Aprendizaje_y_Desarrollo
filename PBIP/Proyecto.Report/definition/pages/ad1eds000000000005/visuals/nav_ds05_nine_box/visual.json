@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
-  "name": "nav_ds06_cobertura",
+  "name": "nav_ds05_nine_box",
   "position": {
-    "x": 320,
+    "x": 1000,
     "y": 684,
-    "z": 15000,
+    "z": 20010,
     "height": 28,
     "width": 126,
-    "tabOrder": 15000
+    "tabOrder": 20010
   },
   "visual": {
     "visualType": "actionButton",
@@ -118,7 +118,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Cobertura'"
+                  "Value": "'Nine Box 360'"
                 }
               }
             },
@@ -178,7 +178,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Cobertura'"
+                  "Value": "'Nine Box 360'"
                 }
               }
             },
@@ -359,7 +359,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Navegacion: Cobertura'"
+                  "Value": "'Navegacion: Nine Box 360'"
                 }
               }
             }
@@ -372,7 +372,7 @@
             "navigationSection": {
               "expr": {
                 "Literal": {
-                  "Value": "'ad1eds000000000002'"
+                  "Value": "'ad1eds000000000007'"
                 }
               }
             },
@@ -386,7 +386,7 @@
             "tooltip": {
               "expr": {
                 "Literal": {
-                  "Value": "'Ir a Cobertura'"
+                  "Value": "'Ir a Nine Box 360'"
                 }
               }
             },

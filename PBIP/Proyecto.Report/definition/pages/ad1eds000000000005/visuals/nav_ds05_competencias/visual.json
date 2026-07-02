@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "nav_ds05_competencias",
   "position": {
-    "x": 480,
+    "x": 592,
     "y": 684,
     "z": 19000,
     "height": 28,
-    "width": 104,
+    "width": 126,
     "tabOrder": 19000
   },
   "visual": {

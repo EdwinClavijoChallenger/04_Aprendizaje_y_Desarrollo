@@ -2,7 +2,7 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "nav_ds04_nine_box",
   "position": {
-    "x": 728,
+    "x": 1000,
     "y": 684,
     "z": 20000,
     "height": 28,
