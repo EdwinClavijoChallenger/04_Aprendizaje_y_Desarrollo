@@ -79,6 +79,7 @@ Organizacion vigente:
 Tools activas actuales:
 
 - `tools/pbip/list_pbip_structure.py`
+- `tools/pbip/audit_navigation.py`
 - `tools/governance/prepare_commit_review.py`
 
 ## `.agents`
